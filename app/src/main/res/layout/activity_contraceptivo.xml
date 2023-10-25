@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:gravity="center">
+
+    <FrameLayout
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp">
+        <RelativeLayout
+            android:id="@+id/back_button"
+            android:layout_width="65dp"
+            android:layout_height="66dp"
+
+            android:layout_marginStart="2dp">
+
+        <ImageView
+            android:id="@+id/left_arrow"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/back" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/tela_cadastro"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/overlap_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/voc_utiliza_algum_m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Você utiliza algum método contraceptivo?"
+                android:textAlignment="center"
+                android:textColor="#8a50ff"
+                android:textSize="32sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/boto_preservativo_wrapper"
+                android:layout_width="137dp"
+                android:layout_height="117dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/prototipo_TCC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/prototipo_tcc_2" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/boto_ACO_wrapper"
+                android:layout_width="137dp"
+                android:layout_height="117dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/prototipo_TCC_4"
+                    android:layout_width="131dp"
+                    android:layout_height="88dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/prototipo_tcc_3" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/boto_DIU_wrapper"
+                android:layout_width="137dp"
+                android:layout_height="117dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="95dp"
+                    android:layout_height="104dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/prototipo_tcc_4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/boto_injetavel_wrapper"
+                android:layout_width="137dp"
+                android:layout_height="117dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/prototipo_TCC_2"
+                    android:layout_width="131dp"
+                    android:layout_height="87dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/prototipo_tcc_5" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/boto_implanon_wrapper"
+                android:layout_width="137dp"
+                android:layout_height="117dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/prototipo_TCC_3"
+                    android:layout_width="131dp"
+                    android:layout_height="108dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/prototipo_tcc_6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/boto_outros_wrapper"
+                android:layout_width="137dp"
+                android:layout_height="117dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/text_wrapper_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#8a50ff36"
+                    android:gravity="center"
+                    android:text="Outros"
+                    android:textColor="#8a50ff"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_nao_utilizo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0px"
+                android:layout_marginTop="10dp"
+                android:background="#8a50ff36"
+                android:text="Não utilizo"
+                android:textColor="#8a50ff"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_seguinte"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10px"
+                android:layout_marginTop="10dp"
+                android:background="#8a50ff36"
+                android:text="Seguinte"
+                android:textColor="#8a50ff"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
