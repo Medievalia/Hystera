@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/arrow_back"
+        android:background="@drawable/circular_button_background"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/voltar"
+        />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="-5dp"
+        android:text="Qual foi a data da sua última menstruação?"
+        android:textColor="#8A50FF"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="-5dp"
+        android:text="Assim podemos calcular sua próxima \nmenstruação"
+        android:textColor="#8A50FF"
+        android:textSize="16sp" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@drawable/square_rounded_button_background"
+        android:columnCount="1"
+        android:rowCount="1">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:dateTextAppearance="@style/CalenderViewDateCustomText"
+            android:theme="@style/CalenderViewCustom"
+            android:weekDayTextAppearance="@color/black" />
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/gridLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="60"
+        android:columnCount="2"
+        android:rowCount="1">
+
+        <!-- Botão 1 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nao_sei"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="35dp"
+            android:layout_marginStart="35dp"
+            android:background="@drawable/fundo_botton_claro"
+            android:fontFamily="@font/kurale"
+            android:scaleType=""
+            android:text="Não sei"
+            android:textAllCaps="false"
+            android:textColor="#8A50FF"
+            android:textSize="22sp" />
+
+        <!-- Botão 2 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_seguinte"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/fundo_botton_escuro"
+            android:fontFamily="@font/kurale"
+            android:scaleType=""
+            android:text="Seguinte"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+    </GridLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:color="#AFF0F2" /> <!-- Defina a cor desejada para o estado selecionado -->
+    <item android:color="#000000" /> <!-- Defina a cor padrão para os outros estados -->
+    <solid android:color="@color/white" /> <!-- Cor de fundo do EditText -->
+    <corners android:radius="10dp" /> <!-- Raio das bordas (bordas arredondadas) -->
+    <stroke
+        android:width="4px"
+        android:color="#8C52FF"/>
+</selector>
