@@ -13,10 +13,11 @@
         android:layout_margin="20dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@drawable/circular_button_background"
         android:src="@drawable/arrow_back"
+        android:background="@drawable/circular_button_background"
         android:scaleType="fitCenter"
-        android:contentDescription="Voltar" />
+        android:contentDescription="Voltar"
+        />
 
 
     <TextView
@@ -49,7 +50,7 @@
             android:layout_marginEnd="20dp"
             android:src="@drawable/camisinha"
             android:scaleType="fitCenter"
-            android:background="@drawable/fundo_botton_contraceptivo"
+            android:background="@drawable/fundo_botton_claro"
             android:layout_marginBottom="8dp"
             />
 
@@ -62,7 +63,7 @@
             android:layout_marginEnd="20dp"
             android:src="@drawable/pilula"
             android:scaleType="fitCenter"
-            android:background="@drawable/fundo_botton_contraceptivo"
+            android:background="@drawable/fundo_botton_claro"
             android:layout_marginBottom="8dp"
             />
 
@@ -76,7 +77,7 @@
             android:layout_marginBottom="8dp"
             android:src="@drawable/DIU"
             android:scaleType="fitCenter"
-            android:background="@drawable/fundo_botton_contraceptivo"
+            android:background="@drawable/fundo_botton_claro"
             />
 
         <!-- Botão 4 -->
@@ -89,7 +90,7 @@
             android:layout_marginBottom="8dp"
             android:src="@drawable/vacina"
             android:scaleType="fitCenter"
-            android:background="@drawable/fundo_botton_contraceptivo"
+            android:background="@drawable/fundo_botton_claro"
             />
 
         <!-- Botão 5 -->
@@ -102,20 +103,24 @@
             android:layout_marginBottom="8dp"
             android:src="@drawable/chip"
             android:scaleType="fitCenter"
-            android:background="@drawable/fundo_botton_contraceptivo"
+            android:background="@drawable/fundo_botton_claro"
             />
 
         <!-- Botão 6 -->
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/botao6"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/outros"
+            android:text="Outros"
+            android:fontFamily="@font/kurale"
+            android:textColor="#8A50FF"
             android:scaleType=""
-            android:background="@drawable/fundo_botton_contraceptivo" />
+            android:background="@drawable/fundo_botton_claro"
+            android:textSize="20sp"
+            />
     </GridLayout>
 
     <View
@@ -132,31 +137,36 @@
         android:rowCount="1">
 
         <!-- Botão 1 -->
-        <ImageButton
-            android:id="@+id/nao_utilizo"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_n_utilizo"
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_columnWeight="1"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/fundo_botton_contraceptivo"
+            android:text="Não utilizo"
+            android:fontFamily="@font/kurale"
+            android:textColor="#8A50FF"
             android:scaleType=""
-            android:src="@drawable/nao_utilizo"
+            android:background="@drawable/fundo_botton_claro"
+            android:textSize="20sp"
             />
 
         <!-- Botão 2 -->
-        <ImageButton
-            android:id="@+id/seguinte"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_seguinte"
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_columnWeight="1"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/fundo_botton_contraceptivo"
-            android:scaleType="fitCenter"
-            android:src="@drawable/pilula" />
+            android:text="Seguinte"
+            android:fontFamily="@font/kurale"
+            android:textColor="#FFFFFF"
+            android:scaleType=""
+            android:background="@drawable/fundo_botton_escuro"
+            android:textSize="20sp"
+            />
 
     </GridLayout>
-
-
 </LinearLayout>
