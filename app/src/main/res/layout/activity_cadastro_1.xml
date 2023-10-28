@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_gravity="left"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/arrow_back"
+        android:background="@drawable/circular_button_background"
+        android:scaleType="fitCenter"
+        android:contentDescription="Voltar"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="O que você deseja?"
+        android:textStyle="bold"
+        android:textColor="#8A50FF"
+        android:textSize="35sp" />
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/monitorar"
+        android:layout_width="350"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:background="@drawable/fundo_botton_blue"
+        android:fontFamily="@font/kurale"
+        android:scaleType=""
+        android:text="Monitorar a Menstruação"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:text="Registre a menstruação para ter uma previsão dos próximos ciclos"
+        android:textColor="#8C52FF"
+        android:fontFamily="@font/kurale"
+        android:textSize="17sp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/engravidar"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:background="@drawable/fundo_botton_escuro"
+        android:fontFamily="@font/kurale"
+        android:scaleType=""
+        android:text="Tentar Engravidar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20"
+        android:layout_marginRight="30"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:text="Receba informações sobre seu período fértil e dicas sobre tentativas de gravidez"
+        android:textColor="#8C52FF"
+        android:fontFamily="@font/kurale"
+        android:textSize="17sp"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30"
+        android:layout_marginRight="30"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:text="Não se preocupe, você pode alterar a qualquer momento"
+        android:textColor="#8C52FF"
+        android:fontFamily="@font/kurale"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_seguinte"
+        android:text="Seguinte"
+        android:fontFamily="@font/kurale"
+        android:textColor="#FFFFFF"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:scaleType=""
+        android:textAllCaps="false"
+        android:background="@drawable/fundo_botton_escuro"
+        android:textSize="23sp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/elipse"
+        android:layout_marginTop="20dp">
+    </ImageView>
+
+</LinearLayout>

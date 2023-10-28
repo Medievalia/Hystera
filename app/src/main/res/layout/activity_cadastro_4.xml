@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
     <ImageButton
         android:id="@+id/back_button"
@@ -115,11 +116,12 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
             android:text="Outros"
+            android:textAllCaps="false"
             android:fontFamily="@font/kurale"
             android:textColor="#8A50FF"
             android:scaleType=""
             android:background="@drawable/fundo_botton_claro"
-            android:textSize="20sp"
+            android:textSize="25sp"
             />
     </GridLayout>
 
@@ -148,8 +150,9 @@
             android:fontFamily="@font/kurale"
             android:textColor="#8A50FF"
             android:scaleType=""
+            android:textAllCaps="false"
             android:background="@drawable/fundo_botton_claro"
-            android:textSize="20sp"
+            android:textSize="23sp"
             />
 
         <!-- Botão 2 -->
@@ -164,8 +167,9 @@
             android:fontFamily="@font/kurale"
             android:textColor="#FFFFFF"
             android:scaleType=""
+            android:textAllCaps="false"
             android:background="@drawable/fundo_botton_escuro"
-            android:textSize="20sp"
+            android:textSize="23sp"
             />
 
     </GridLayout>
