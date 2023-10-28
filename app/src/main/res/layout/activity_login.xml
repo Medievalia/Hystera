@@ -1,86 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:orientation="vertical">
 
     <!-- Logo -->
     <ImageView
+        android:layout_marginLeft="55"
         android:id="@+id/logo"
         android:layout_width="290dp"
         android:layout_height="250dp"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_marginTop="74dp"
         android:src="@drawable/logo" />
 
-    <!-- Email Input -->
-    <RelativeLayout
-        android:id="@+id/email"
-        android:layout_width="342dp"
-        android:layout_height="65dp"
-        android:layout_below="@id/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp">
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:columnCount="1"
+        android:rowCount="2"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50"
+            android:layout_marginRight="30"
+            android:layout_below="@id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="Email"
+            android:textColor="#8C52FF"
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/email_input"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/fundo_botton_claro"
-            android:hint="Email"
-            android:padding="10dp"
-            android:textColor="#000000" />
+            android:layout_marginLeft="30"
+            android:layout_marginRight="30"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:padding="15sp"
+            android:background="@drawable/edit_text"
+            android:textSize="18sp" />
+    </GridLayout>
 
-    </RelativeLayout>
+    <GridLayout
+        android:id="@+id/gridLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:columnCount="1"
+        android:rowCount="2"
+        >
 
-    <!-- Password Input -->
-    <RelativeLayout
-        android:id="@+id/senha"
-        android:layout_width="342dp"
-        android:layout_height="65dp"
-        android:layout_below="@id/email"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50"
+            android:layout_marginRight="30"
+            android:layout_below="@id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:text="Senha"
+            android:textColor="#8C52FF"
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/senha_input"
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/fundo_botton_claro"
-            android:hint="Senha"
-            android:padding="10dp"
-            android:textColor="#000000" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30"
+            android:layout_marginRight="30"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:padding="15sp"
+            android:background="@drawable/edit_text"
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/tenho_uma_conta"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/kurale"
+            android:text="Esqueceu a senha? Clique aqui"
+            android:layout_marginLeft="30"
+            android:layout_marginRight="30"
+            android:textColor="#8A50FF"
+            android:textSize="12sp"
+            />
+    </GridLayout>
 
-    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
-    <!-- Botão Gmail -->
+    <GridLayout
+        android:id="@+id/gridLayout3"
+        android:layout_width="327dp"
+        android:layout_height="46dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        android:rowCount="1">
 
-    <!-- Botão Login -->
+        <!-- Botão 1 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/gmail"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/fundo_botton_escuro"
+            android:fontFamily="@font/kurale"
+            android:scaleType=""
+            android:text="Gmail"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/gmail_button"
-        android:layout_width="154dp"
-        android:layout_height="48dp"
-        android:layout_below="@id/senha"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/rounded_button"
-        android:drawableLeft="@drawable/gmail"
-        android:text="Gmail"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp" />
+        <!-- Botão 2 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_seguinte"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/fundo_botton_escuro"
+            android:fontFamily="@font/kurale"
+            android:scaleType=""
+            android:text="Login"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="154dp"
-        android:layout_height="48dp"
-        android:layout_below="@id/senha"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="53dp"
-        android:layout_toRightOf="@id/gmail_button"
-        android:background="@drawable/rounded_button"
-        android:text="Login"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp" />
+    </GridLayout>
 
-</RelativeLayout>
+</LinearLayout>

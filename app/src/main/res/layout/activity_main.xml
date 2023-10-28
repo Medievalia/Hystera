@@ -7,21 +7,22 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
     <!-- Adicione aqui qualquer conteúdo adicional do cabeçalho, se necessário -->
-
     <ImageView
         android:id="@+id/logo_removebg_preview_1"
-        android:layout_width="wrap_content"
-        android:layout_height="429dp"
+        android:layout_width="300dp"
+        android:layout_height="348dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:contentDescription="LOGO-removebg-preview 1"
         android:src="@drawable/logo" />
 
-    <Space
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp" />
 
     <Space
         android:layout_width="match_parent"
@@ -33,30 +34,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="99dp"
+        android:layout_height="79dp"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/tenho_uma_conta"
-            android:layout_width="204dp"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="#00FFFFFF"
+            android:fontFamily="@font/kurale"
+            android:onClick="activity_login"
             android:text="Tenho uma conta"
             android:textColor="#8A50FF"
-            android:textSize="18sp"
-            android:onClick="activity_login"
+            android:textSize="20sp"
             app:rippleColor="#8A50FF" />
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/comece_agora"
-        android:layout_width="201dp"
+        android:layout_width="305dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/fundo_botton_escuro"
+        android:fontFamily="@font/kurale"
         android:radius="8dp"
         android:shadowRadius="8"
         android:text="COMECE AGORA"
