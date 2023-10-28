@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_gravity="left"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/arrow_back"
+        android:background="@drawable/circular_button_background"
+        android:scaleType="fitCenter"
+        android:contentDescription="Voltar"
+        />
+
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="210dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:text="Como você deseja se cadastrar?"
+        android:textStyle="bold"
+        android:textColor="#8A50FF"
+        android:textSize="35sp" />
+
+
+    <GridLayout
+        android:id="@+id/gridLayout3"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:columnCount="1"
+        android:gravity="center"
+        android:rowCount="2">
+
+        <!-- Botão 1 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signInGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/fundo_botton_blue"
+            android:fontFamily="@font/kurale"
+            android:scaleType=""
+            android:text="Inscreva-se com o Google"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <!-- Botão 2 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signInEmail"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/fundo_botton_escuro"
+            android:fontFamily="@font/kurale"
+            android:scaleType=""
+            android:text="Inscreva-se com o e-mail"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+    </GridLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/elipse">
+    </ImageView>
+</LinearLayout>
