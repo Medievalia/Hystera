@@ -26,7 +26,7 @@
             android:id="@+id/email_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/edittext_background"
+            android:background="@drawable/fundo_botton_contraceptivo"
             android:hint="Email"
             android:padding="10dp"
             android:textColor="#000000" />
@@ -46,7 +46,7 @@
             android:id="@+id/senha_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/edittext_background"
+            android:background="@drawable/fundo_botton_contraceptivo"
             android:hint="Senha"
             android:padding="10dp"
             android:textColor="#000000" />
