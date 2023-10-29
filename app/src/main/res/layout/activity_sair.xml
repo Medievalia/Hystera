@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+    <!-- Logo -->
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/circular_button_background"
+        android:contentDescription="Voltar"
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow_back" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="210dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:text="O que você deseja?"
+        android:textStyle="bold"
+        android:textColor="#8A50FF"
+        android:textSize="35sp" />
+
+
+    <GridLayout
+        android:id="@+id/gridLayout3"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:columnCount="1"
+        android:gravity="center"
+        android:rowCount="2">
+
+        <!-- Botão 2 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signInEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="104dp"
+            android:layout_columnWeight="1"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/fundo_botton_escuro"
+            android:fontFamily="@font/kurale"
+            android:scaleType=""
+            android:text="Continuar acompanhando
+            meu ciclo"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="411dp"
+        android:layout_height="76dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="412dp"
+            android:layout_height="69dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:text="Relamente sair"
+            android:textColor="#8A50FF"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </GridLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/elipse">
+    </ImageView>
+
+</LinearLayout>
