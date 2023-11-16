@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="0dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="#F1F1F1"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Duvidas Frequentes"
+            android:textColor="#715CF8"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="390dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/alterar_senha"
+            android:layout_width="318dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginTop="13dp"
+            android:layout_centerHorizontal="true"
+            android:text="Como alterar minha senha?"
+            android:textAlignment="center"
+            android:textColor="#715CF8"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/line_1"
+            android:layout_width="304dp"
+            android:layout_height="3dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_centerHorizontal="true"
+            android:background="#66545454"
+            android:contextClickable="true"
+            android:fontFamily="@font/kurale"
+            android:gravity="center_horizontal"
+            android:textColor="#66545454"
+            android:textSize="20dp" />
+
+        <ImageButton
+            android:id="@+id/baixo1"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="#F1F1F1"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_1" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="390dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/ciclo_incorreto"
+            android:layout_width="318dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_centerHorizontal="true"
+            android:text="Os dados do meu ciclo estão incorretos, como posso modificar?"
+            android:textAlignment="center"
+            android:textColor="#715CF8"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/line_2"
+            android:layout_width="304dp"
+            android:layout_height="4dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_centerHorizontal="true"
+            android:background="#66545454"
+            android:contextClickable="true"
+            android:fontFamily="@font/kurale"
+            android:gravity="center_horizontal"
+            android:textColor="#66545454"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/baixo2"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="#F1F1F1"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_1" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="394dp"
+        android:layout_height="94dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/metodo_incorreto"
+            android:layout_width="321dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_centerHorizontal="true"
+            android:text="Como alterar o meu método contraceptivo?"
+            android:textAlignment="center"
+            android:textColor="#715CF8"
+            android:textSize="20dp" />
+
+        <View
+            android:id="@+id/line_3"
+            android:layout_width="304dp"
+            android:layout_height="3dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_centerHorizontal="true"
+            android:background="#66545454"
+            android:contextClickable="true"
+            android:fontFamily="@font/kurale"
+            android:gravity="center_horizontal"
+            android:textColor="#66545454"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/baixo3"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="#F1F1F1"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_1" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="117dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="108dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Não achou o que estava procurando?"
+            android:textColor="#715CF8"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="117dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="108dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Envie um email para hysteriaapp@gmail.com"
+            android:textColor="#715CF8"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/elipse"
+        android:layout_marginTop="20dp">
+    </ImageView>
+
+
+</LinearLayout>
+
+

@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical">
-
     <!-- Logo -->
     <ImageView
-        android:layout_marginLeft="100"
+        android:layout_marginLeft="100dp"
         android:id="@+id/logo"
         android:layout_width="200dp"
         android:layout_height="210dp"
@@ -15,72 +14,69 @@
         android:layout_marginTop="40dp"
         android:src="@drawable/logo" />
 
-
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:columnCount="1"
-        android:rowCount="2"
-        >
+        android:rowCount="2">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50"
-            android:layout_marginRight="30"
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="16dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/kurale"
             android:text="Digite o seu e-mail"
             android:textColor="#8C52FF"
-            android:fontFamily="@font/kurale"
             android:textSize="18sp" />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
-            android:layout_margi="20"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/edit_text"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15sp"
-            android:background="@drawable/edit_text"
             android:textSize="18sp" />
     </GridLayout>
 
     <GridLayout
         android:id="@+id/gridLayout3"
         android:layout_width="327dp"
-        android:layout_height="wrap_content"
+        android:layout_height="66dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
+        android:layout_marginTop="5dp"
         android:columnCount="2"
         android:rowCount="1">
-
-        <!-- Botão 1 -->
-
         <!-- Botão 2 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_seguinte"
             android:layout_width="20dp"
             android:layout_height="40dp"
+            android:layout_row="0"
+            android:layout_column="0"
             android:layout_columnWeight="1"
-            android:layout_marginStart="160"
-            android:layout_marginTop="20"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
-            android:scaleType=""
             android:text="Enviar"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </GridLayout>
 
     <ImageView
-        android:layout_marginTop="215"
+        android:layout_marginTop="215dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@drawable/elipse">

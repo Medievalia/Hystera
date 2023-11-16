@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -10,15 +8,15 @@
 
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_gravity="left"
-        android:layout_margin="20dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/arrow_back"
+        android:layout_gravity="left"
+        android:layout_margin="20dp"
         android:background="@drawable/circular_button_background"
-        android:scaleType="fitCenter"
         android:contentDescription="Voltar"
-        />
+        android:onClick="onImageButtonClick"
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow_back" />
 
 
     <TextView
@@ -119,7 +117,6 @@
             android:textAllCaps="false"
             android:fontFamily="@font/kurale"
             android:textColor="#8A50FF"
-            android:scaleType=""
             android:background="@drawable/fundo_botton_claro"
             android:textSize="25sp"
             />
@@ -149,12 +146,10 @@
             android:text="Não utilizo"
             android:fontFamily="@font/kurale"
             android:textColor="#8A50FF"
-            android:scaleType=""
             android:textAllCaps="false"
             android:background="@drawable/fundo_botton_claro"
             android:textSize="23sp"
             />
-
         <!-- Botão 2 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_seguinte"
@@ -166,11 +161,9 @@
             android:text="Seguinte"
             android:fontFamily="@font/kurale"
             android:textColor="#FFFFFF"
-            android:scaleType=""
             android:textAllCaps="false"
             android:background="@drawable/fundo_botton_escuro"
             android:textSize="23sp"
             />
-
     </GridLayout>
 </LinearLayout>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="0dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="#F1F1F1"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Duvidas Frequentes"
+            android:textColor="#715CF8"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="391dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/alterar_senha"
+            android:layout_width="318dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:text="Como alterar minha senha?"
+            android:textAlignment="center"
+            android:textColor="#715CF8"
+            android:textSize="20dp" />
+
+
+        <ImageButton
+            android:id="@+id/baixo1"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="#F1F1F1"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_2" />
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/alterar_senha2"
+        android:layout_width="329dp"
+        android:layout_height="126dp"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:background="#D9D9D9"
+        android:fontFamily="@font/kurale"
+        android:lineSpacingExtra="10sp"
+        android:text="Para alterar a senha você precisa clicar no botão Editar Perfil, na tela Perfil. Após uma verificação com a senha antiga, você deverá cliclar em salvar. Após esses passos, sua senha será alterada com sucesso"
+        android:textAlignment="center"
+        android:textColor="#715CF8"
+        android:textSize="15dp"
+        android:typeface="sans" />
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="117dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="108dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Não achou o que estava procurando?"
+            android:textColor="#715CF8"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="117dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="108dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Envie um email para hysteriaapp@gmail.com"
+            android:textColor="#715CF8"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/elipse"
+        android:layout_marginTop="20dp">
+    </ImageView>
+
+
+</LinearLayout>
+
+

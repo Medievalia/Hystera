@@ -8,17 +8,17 @@
 
     <ImageButton
         android:id="@+id/back_button"
-        android:layout_gravity="left"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="5dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/arrow_back"
+        android:layout_gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/circular_button_background"
-        android:scaleType="fitCenter"
         android:contentDescription="Voltar"
-        />
+        android:onClick="onImageButtonClick"
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow_back" />
 
 
     <!-- Logo -->
@@ -62,7 +62,6 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/fundo_botton_blue"
             android:fontFamily="@font/kurale"
-            android:scaleType=""
             android:text="Inscreva-se com o Google"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -77,7 +76,6 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
-            android:scaleType=""
             android:text="Inscreva-se com o e-mail"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -87,6 +85,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/elipse">
     </ImageView>
 </LinearLayout>

@@ -1,6 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/circular_button_background"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrow_back" />
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="Quanto tempo dura o seu ciclo?"
+        android:textColor="#8A50FF"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <me.tankery.lib.circularseekbar.CircularSeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_centerInParent="true"
+        app:cs_circle_color="#74C9FD"
+        app:cs_circle_fill="@color/white"
+        app:cs_circle_progress_color="#8A50FF"
+        app:cs_circle_stroke_width="20dp"
+        app:cs_circle_style="round"
+        app:cs_circle_x_radius="0dp"
+        app:cs_circle_y_radius="0dp"
+        app:cs_disable_pointer="true"
+        app:cs_disable_progress_glow="true"
+        app:cs_hide_progress_when_empty="true"
+        app:cs_lock_enabled="true"
+        app:cs_maintain_equal_circle="true"
+        app:cs_max="100"
+        app:cs_move_outside_circle="true"
+        app:cs_negative_enabled="false"
+        app:cs_pointer_angle="0"
+        app:cs_pointer_color="#8A50FF"
+        app:cs_pointer_halo_width="40dp"
+        app:cs_pointer_stroke_width="20dp"
+        app:cs_progress="70"
+        app:cs_use_custom_radii="false" />
+
+    <TextView
+        android:id="@+id/Dias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/kurale"
+        android:text="28 dias"
+        android:textColor="#8A50FF"
+        android:textSize="40dp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="550dp">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Normalmente um ciclo dura de 24 a 38 dias"
+            android:textColor="#8A50FF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/gridLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="750dp"
+        android:columnCount="2"
+        android:rowCount="1">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nao_sei"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/fundo_botton_claro"
+            android:fontFamily="@font/kurale"
+            android:text="Não sei"
+            android:textAllCaps="false"
+            android:textColor="#8A50FF"
+            android:textSize="22sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_seguinte"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/fundo_botton_escuro"
+            android:fontFamily="@font/kurale"
+            android:text="Seguinte"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </GridLayout>
+</RelativeLayout>

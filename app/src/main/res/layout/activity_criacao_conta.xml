@@ -8,9 +8,9 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="188dp"
-        android:layout_height="206dp"
+        android:layout_height="154dp"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="120"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/logo" />
 
@@ -26,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="30dp"
             android:fontFamily="@font/kurale"
             android:text="Nome completo"
             android:textColor="#8C52FF"
@@ -36,9 +36,9 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -59,9 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="30dp"
             android:fontFamily="@font/kurale"
             android:text="Email"
             android:textColor="#8C52FF"
@@ -69,9 +69,9 @@
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:layout_width="match_parent"
-            android:layout_height="40"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -92,9 +92,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="30dp"
             android:fontFamily="@font/kurale"
             android:text="Celular"
             android:textColor="#8C52FF"
@@ -102,9 +102,9 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="40"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -125,9 +125,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="30dp"
             android:fontFamily="@font/kurale"
             android:text="Senha"
             android:textColor="#8C52FF"
@@ -135,9 +135,9 @@
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:layout_width="match_parent"
-            android:layout_height="40"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -158,9 +158,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="30dp"
             android:fontFamily="@font/kurale"
             android:text="Repetir Senha"
             android:textColor="#8C52FF"
@@ -168,19 +168,15 @@
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:layout_width="match_parent"
-            android:layout_height="40"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15sp"
             android:textSize="18sp" />
     </GridLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
 
     <GridLayout
         android:id="@+id/gridLayout7"
@@ -264,7 +260,7 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_gravity="center"
-            android:layout_marginLeft="150"
+            android:layout_marginLeft="150dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
             android:text="Cadastrar"
@@ -272,10 +268,9 @@
             android:textSize="17sp" />
 
     </GridLayout>
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="86dp"
-        android:layout_marginVertical="20"
+        android:layout_marginVertical="20dp"
         android:src="@drawable/elipse"></ImageView>
 </LinearLayout>

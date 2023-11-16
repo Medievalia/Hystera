@@ -4,18 +4,15 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:orientation="vertical">
-
     <!-- Logo -->
     <ImageView
-        android:layout_marginLeft="100"
+        android:layout_marginLeft="100dp"
         android:id="@+id/logo"
         android:layout_width="200dp"
         android:layout_height="210dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
         android:src="@drawable/logo" />
-
-
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
@@ -24,12 +21,11 @@
         android:columnCount="1"
         android:rowCount="2"
         >
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="30dp"
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
@@ -37,11 +33,10 @@
             android:textColor="#8C52FF"
             android:fontFamily="@font/kurale"
             android:textSize="18sp" />
-
         <EditText
             android:layout_width="match_parent"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -49,21 +44,19 @@
             android:background="@drawable/edit_text"
             android:textSize="18sp" />
     </GridLayout>
-
     <GridLayout
         android:id="@+id/gridLayout2"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:columnCount="1"
-        android:rowCount="2"
-        >
+        android:rowCount="2">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="30dp"
             android:layout_below="@id/logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
@@ -75,22 +68,23 @@
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15sp"
             android:background="@drawable/edit_text"
             android:textSize="18sp" />
-        <Button
-            android:id="@+id/tenho_uma_conta"
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/esqueceu"
             android:layout_width="280dp"
             android:layout_height="40dp"
             android:background="#00FFFFFF"
             android:fontFamily="@font/kurale"
             android:text="Esqueceu a senha? Clique aqui"
-            android:layout_marginLeft="30"
-            android:layout_marginRight="30"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:textColor="#8A50FF"
             android:textSize="12sp"
             />
@@ -104,7 +98,6 @@
         android:id="@+id/gridLayout3"
         android:layout_width="327dp"
         android:layout_height="46dp"
-        android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:columnCount="2"
         android:rowCount="1">
@@ -119,10 +112,9 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
-            android:scaleType=""
-            android:text="Gmail"
+            android:text="     Gmail"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <!-- Botão 2 -->
         <androidx.appcompat.widget.AppCompatButton
@@ -134,10 +126,9 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
-            android:scaleType=""
-            android:text="Login"
+            android:text="     Login"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
     </GridLayout>
 
     <View

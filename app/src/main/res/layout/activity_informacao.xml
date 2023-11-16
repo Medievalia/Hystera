@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="0dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/circular_button_background"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/person" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Informação"
+            android:textColor="#8A50FF"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+   </GridLayout>
+
+    <GridLayout
+        android:layout_width="365dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/fundo_botton_blue">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/coletor"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/fundo_botton_blue"
+            android:fontFamily="@font/kurale"
+            android:text="Coletor, absorvente ou O.B, qual o melhor?"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/absorvente"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/prototipo_tcc_1_2" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="360dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:radius="20dp"
+        android:background="@drawable/fundo_botton_roxo_claro">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/monitorar"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:background="@drawable/fundo_botton_roxo_claro"
+            android:fontFamily="@font/kurale"
+            android:text="Entenda mais sobre o ciclo mestrual "
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/prototipo_tcc_1_3" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="360dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:radius="20dp"
+        android:background="@drawable/fundo_botton_roxo_medio">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/reutilizavel"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/fundo_botton_roxo_medio"
+            android:fontFamily="@font/kurale"
+            android:text="Absorvente Descartavel ou reutilizável?"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/descartavel"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/prototipo_tcc_1_4" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="360dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:radius="20dp"
+        android:background="@drawable/fundo_botton_roxo_escuro">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/pilula"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:background="@drawable/fundo_botton_roxo_escuro"
+            android:fontFamily="@font/kurale"
+            android:text="Pílula do dia seguinte entenda seu uso e efeitos colaterais"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/pilula1"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/prototipo_tcc_1_5" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="360dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:radius="20dp"
+        android:background="@drawable/fundo_botton_blue">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/endrometriose"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:background="@drawable/fundo_botton_blue"
+            android:fontFamily="@font/kurale"
+            android:text="Você já ouviu falar sobre Endometriose? "
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/endrometriose1"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/prototipo_tcc_2_1" />
+    </GridLayout>
+
+
+    <GridLayout
+        android:layout_width="350dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/anota"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="2dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_anota" />
+
+        <ImageButton
+            android:id="@+id/calendario"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_calendario" />
+
+        <ImageButton
+            android:id="@+id/utero"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/utero"/>
+
+        <me.tankery.lib.circularseekbar.CircularSeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="65dp"
+            android:layout_height="54dp"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_marginTop="12dp"
+            app:cs_circle_color="#74C9FD"
+            app:cs_circle_fill="@color/white"
+            app:cs_circle_progress_color="#8A50FF"
+            app:cs_circle_stroke_width="3dp"
+            app:cs_disable_pointer="true"
+            app:cs_pointer_color="#8A50FF"
+            app:cs_progress="70"
+            app:cs_use_custom_radii="false" />
+
+        <ImageButton
+            android:id="@+id/menu"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="4"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_notifica" />
+    </GridLayout>
+</LinearLayout>
+
+
