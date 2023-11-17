@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F1F1"
-    android:layout_marginTop="0dp"
     android:orientation="vertical"
     android:gravity="center">
 
@@ -15,9 +14,10 @@
 
         <ImageButton
             android:id="@+id/back_button"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="left"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
             android:background="#F1F1F1"
@@ -60,7 +60,7 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp"
+
             android:text="Os dados do meu ciclo estão incorretos, como posso modificar??"
             android:textAlignment="center"
             android:textColor="#715CF8"
@@ -69,8 +69,8 @@
 
         <ImageButton
             android:id="@+id/baixo1"
-            android:layout_width="wrap_content"
-            android:layout_height="43dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_row="0"
             android:layout_column="1"
             android:layout_gravity="left"
@@ -91,7 +91,7 @@
         android:layout_row="1"
         android:layout_column="0"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
+
         android:background="#D9D9D9"
         android:fontFamily="@font/kurale"
         android:lineSpacingExtra="10sp"
@@ -99,6 +99,7 @@
         android:textAlignment="center"
         android:textColor="#715CF8"
         android:textSize="15dp"
+        android:layout_marginBottom="30dp"
         android:typeface="sans" />
 
     <GridLayout
@@ -108,9 +109,10 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
-            android:layout_height="108dp"
+            android:layout_height="114dp"
             android:layout_row="0"
             android:layout_column="0"
+
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/kurale"
             android:gravity="center"
@@ -136,6 +138,7 @@
             android:fontFamily="@font/kurale"
             android:gravity="center"
             android:lineSpacingExtra="8dp"
+
             android:text="Envie um email para hysteriaapp@gmail.com"
             android:textColor="#715CF8"
             android:textSize="26sp"
@@ -147,7 +150,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@drawable/elipse"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="115dp">
     </ImageView>
 
 

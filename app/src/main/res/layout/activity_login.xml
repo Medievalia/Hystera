@@ -6,10 +6,9 @@
     android:orientation="vertical">
     <!-- Logo -->
     <ImageView
-        android:layout_marginLeft="100dp"
         android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="210dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
         android:src="@drawable/logo" />
@@ -41,6 +40,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15sp"
+            android:textColor="@color/purple_500"
             android:background="@drawable/edit_text"
             android:textSize="18sp" />
     </GridLayout>
@@ -73,6 +73,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15sp"
+            android:textColor="@color/purple_500"
             android:background="@drawable/edit_text"
             android:textSize="18sp" />
 
@@ -86,7 +87,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:textColor="#8A50FF"
-            android:textSize="12sp"
+            android:textSize="14sp"
             />
     </GridLayout>
 
@@ -96,7 +97,7 @@
 
     <GridLayout
         android:id="@+id/gridLayout3"
-        android:layout_width="327dp"
+        android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_gravity="center"
         android:columnCount="2"
@@ -105,37 +106,35 @@
         <!-- Botão 1 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/gmail"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
             android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
-            android:text="     Gmail"
+            android:text="Gmail"
+            android:layout_gravity="center"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
 
         <!-- Botão 2 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_seguinte"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
             android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
-            android:text="     Login"
+            android:text="Login"
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
     </GridLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />
-
     <ImageView
+        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@drawable/elipse">

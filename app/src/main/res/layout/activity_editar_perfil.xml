@@ -7,76 +7,70 @@
     android:orientation="vertical">
 
     <GridLayout
-        android:layout_width="411dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="0dp">
+        android:layout_width="match_parent"
+        android:layout_marginTop="-40dp"
+        android:layout_height="52dp">
 
         <ImageButton
             android:id="@+id/voltar_button"
-            android:layout_width="56dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:layout_row="0"
-            android:layout_column="0"
+            android:layout_column="10"
             android:layout_gravity="left"
-            android:layout_margin="20dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
             android:background="@color/white"
             android:contentDescription="Voltar"
-            android:scaleType="fitCenter"
+            android:scaleType="center"
             android:src="@drawable/vector" />
 
         <ImageButton
             android:id="@+id/help_button"
             android:layout_width="50dp"
-            android:layout_height="40dp"
+            android:layout_height="match_parent"
             android:layout_row="0"
             android:layout_column="10"
             android:layout_gravity="right"
-            android:layout_margin="20dp"
-            android:layout_marginStart="200dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="0dp"
             android:background="@color/white"
             android:contentDescription="Ajuda"
-            android:scaleType="fitCenter"
+            android:scaleType="center"
             android:src="@drawable/btn_ajuda" />
     </GridLayout>
 
+
     <GridLayout
-        android:layout_width="146dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
         android:layout_height="215dp">
 
         <TextView
             android:id="@+id/txt_perfil"
-            android:layout_width="136dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:text="Perfil"
             android:textColor="#8C52FF"
             android:textSize="25sp" />
 
         <ImageButton
             android:id="@+id/btn_foto"
-            android:layout_width="137dp"
-            android:layout_height="127dp"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_margin="120dp"
             android:layout_row="0"
             android:layout_column="0"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="78dp"
-            android:background="@drawable/fundo_cicle" />
+            android:layout_marginTop="38dp"
+            android:background="@drawable/fundo_cicle"
+            android:gravity="center" />
 
     </GridLayout>
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp">
+        android:layout_height="64dp">
 
         <TextView
             android:id="@+id/txt_nome"
@@ -88,16 +82,17 @@
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
-            android:text="Nome Completo"
+            android:text=""
             android:textColor="#000000"
             android:textSize="17sp" />
 
         <View
             android:id="@+id/line_1"
-            android:layout_width="364dp"
-            android:layout_height="1dp"
+            android:layout_width="355dp"
+            android:layout_height="2dp"
             android:layout_row="1"
             android:layout_column="0"
+            android:layout_marginLeft="10dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:background="#000000"
@@ -127,7 +122,7 @@
         android:layout_height="53dp">
 
         <TextView
-            android:id="@+id/Atual"
+            android:id="@+id/txt_atual"
             android:layout_width="135dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -135,16 +130,17 @@
             android:layout_marginTop="2dp"
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
-            android:text=" Senha Atual"
+            android:text=""
             android:textColor="#000000"
             android:textSize="17sp" />
 
         <View
             android:id="@+id/line_2"
-            android:layout_width="364dp"
-            android:layout_height="1dp"
+            android:layout_width="355dp"
+            android:layout_height="2dp"
             android:layout_row="1"
             android:layout_column="0"
+            android:layout_marginLeft="10dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:background="#000000"
@@ -182,63 +178,17 @@
             android:layout_marginTop="2dp"
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
-            android:text=" Nova Senha"
+            android:text=""
             android:textColor="#000000"
             android:textSize="17sp" />
 
         <View
             android:id="@+id/line_3"
-            android:layout_width="364dp"
-            android:layout_height="1dp"
+            android:layout_width="355dp"
+            android:layout_height="2dp"
             android:layout_row="1"
             android:layout_column="0"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <ImageButton
-            android:id="@+id/olho1"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/olho" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="53dp">
-
-        <TextView
-            android:id="@+id/txt_repetir_senha"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:text=" Repetir Senha"
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <View
-            android:id="@+id/line_8"
-            android:layout_width="364dp"
-            android:layout_height="1dp"
-            android:layout_row="1"
-            android:layout_column="0"
+            android:layout_marginLeft="10dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:background="#000000"
@@ -265,6 +215,54 @@
 
     <GridLayout
         android:layout_width="match_parent"
+        android:layout_height="53dp">
+
+        <TextView
+            android:id="@+id/txt_repetirSenha"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginTop="2dp"
+            android:contextClickable="true"
+            android:fontFamily="@font/kurale"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <View
+            android:id="@+id/line_4"
+            android:layout_width="355dp"
+            android:layout_height="2dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_marginLeft="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:background="#000000"
+            android:contextClickable="true"
+            android:fontFamily="@font/kurale"
+            android:gravity="center_horizontal"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <ImageButton
+            android:id="@+id/olho4"
+            android:layout_width="41dp"
+            android:layout_height="37dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:background="@color/white"
+            android:contextClickable="true"
+            android:gravity="center_horizontal"
+            android:src="@drawable/olho" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
         android:layout_height="54dp">
 
         <TextView
@@ -273,23 +271,22 @@
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="0"
-
             android:layout_marginTop="2dp"
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
-            android:text=" email@hysteria.com"
+            android:text=""
             android:textColor="#000000"
             android:textSize="17sp" />
 
         <View
-            android:id="@+id/line_4"
-            android:layout_width="364dp"
+            android:id="@+id/line_5"
+            android:layout_width="355dp"
             android:layout_height="1dp"
             android:layout_row="1"
             android:layout_column="0"
             android:layout_centerHorizontal="true"
-
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:background="#000000"
             android:contextClickable="true"
@@ -326,16 +323,17 @@
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
-            android:text=" +55 (xx) xxxxx-xxxx"
+            android:text=""
             android:textColor="#000000"
             android:textSize="17sp" />
 
         <View
-            android:id="@+id/line_5"
-            android:layout_width="364dp"
-            android:layout_height="1dp"
+            android:id="@+id/line_6"
+            android:layout_width="355dp"
+            android:layout_height="2dp"
             android:layout_row="1"
             android:layout_column="0"
+            android:layout_marginLeft="10dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:background="#000000"
@@ -373,17 +371,18 @@
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
-            android:text="  Não utilizo um método"
+            android:text=""
             android:textColor="#000000"
             android:textSize="18sp" />
 
         <View
-            android:id="@+id/line_6"
-            android:layout_width="364dp"
+            android:id="@+id/line_7"
+            android:layout_width="354dp"
             android:layout_height="2dp"
             android:layout_row="1"
             android:layout_column="0"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:background="#000000"
             android:contextClickable="true"

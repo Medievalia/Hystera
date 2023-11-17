@@ -11,7 +11,8 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="left"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="-40dp"
         android:background="@drawable/circular_button_background"
         android:contentDescription="Voltar"
         android:onClick="onImageButtonClick"
@@ -23,18 +24,19 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
         android:lineSpacingExtra="8dp"
         android:text="Você utiliza algum método contraceptivo?"
         android:textColor="#8A50FF"
-        android:textSize="35sp" />
+        android:layout_marginEnd="20dp"
+        android:textSize="34sp" />
 
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="280dp"
-        android:layout_height="322dp"
+        android:layout_width="match_parent"
+        android:layout_height="383dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:columnCount="2"
@@ -42,84 +44,83 @@
 
         <!-- Botão 1 -->
         <ImageButton
+            android:layout_margin="20dp"
             android:id="@+id/botao1"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_marginEnd="20dp"
-            android:src="@drawable/camisinha"
-            android:scaleType="fitCenter"
-            android:background="@drawable/fundo_botton_claro"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
-            />
+            android:background="@drawable/fundo_botton_claro"
+            android:scaleType="fitCenter"
+            android:src="@drawable/camisinha" />
 
         <!-- Botão 2 -->
         <ImageButton
             android:id="@+id/botao2"
+            android:layout_margin="20dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/pilula"
-            android:scaleType="fitCenter"
-            android:background="@drawable/fundo_botton_claro"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
-            />
+            android:background="@drawable/fundo_botton_claro"
+            android:scaleType="fitCenter"
+            android:src="@drawable/pilula" />
 
         <!-- Botão 3 -->
         <ImageButton
+            android:layout_margin="20dp"
             android:id="@+id/botao3"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/diu"
-            android:scaleType="fitCenter"
             android:background="@drawable/fundo_botton_claro"
-            />
+            android:scaleType="fitCenter"
+            android:src="@drawable/diu" />
 
         <!-- Botão 4 -->
         <ImageButton
+            android:layout_margin="20dp"
             android:id="@+id/botao4"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/vacina"
-            android:scaleType="fitCenter"
             android:background="@drawable/fundo_botton_claro"
-            />
+            android:scaleType="fitCenter"
+            android:src="@drawable/vacina" />
 
         <!-- Botão 5 -->
         <ImageButton
+            android:layout_margin="20dp"
             android:id="@+id/botao5"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/chip"
-            android:scaleType="fitCenter"
             android:background="@drawable/fundo_botton_claro"
-            />
+            android:scaleType="fitCenter"
+            android:src="@drawable/chip" />
 
         <!-- Botão 6 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/botao6"
+            android:layout_margin="20dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/fundo_botton_claro"
+            android:fontFamily="@font/kurale"
             android:text="Outros"
             android:textAllCaps="false"
-            android:fontFamily="@font/kurale"
             android:textColor="#8A50FF"
-            android:background="@drawable/fundo_botton_claro"
-            android:textSize="25sp"
-            />
+            android:textSize="25sp" />
     </GridLayout>
 
     <View
@@ -128,8 +129,8 @@
 
     <GridLayout
         android:id="@+id/gridLayout2"
-        android:layout_width="327dp"
-        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:columnCount="2"
@@ -138,6 +139,7 @@
         <!-- Botão 1 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_n_utilizo"
+            android:layout_margin="20dp"
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_columnWeight="1"
@@ -153,10 +155,10 @@
         <!-- Botão 2 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_seguinte"
+            android:layout_margin="20dp"
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
             android:text="Seguinte"
             android:fontFamily="@font/kurale"
