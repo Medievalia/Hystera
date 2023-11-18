@@ -8,11 +8,10 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginVertical="20dp"
+        android:layout_height="210dp"
+
         android:layout_centerInParent="true"
-        android:layout_marginLeft="70dp"
+
         android:src="@drawable/logo" />
 
     <GridLayout
@@ -46,7 +45,7 @@
             android:maxLines="1"
             android:textColor="@color/purple_500"
             android:padding="15sp"
-            android:textSize="18sp" />
+            android:textSize="18dp" />
     </GridLayout>
 
     <GridLayout
@@ -189,73 +188,24 @@
             android:textSize="18sp" />
     </GridLayout>
 
-    <GridLayout
-        android:layout_marginTop="10dp"
-        android:id="@+id/gridLayout7"
+
+    <TextView
+        android:id="@+id/declaro_que_li_e_aceito_os_termos_de_uso_e_pol_tica_de_privacidade"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:columnCount="2"
-        android:rowCount="2">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/rectangle_10"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="31dp"
-            android:background="#8A50FF" />
-
-        <TextView
-            android:id="@+id/declaro_que_li_e_aceito_os_termos_de_uso_e_pol_tica_de_privacidade"
-            android:layout_height="18dp"
-            android:layout_gravity="start"
-            android:layout_marginStart="5dp"
-            android:fontFamily="serif"
-            android:text="Declaro que li e aceito os Termos de Uso e Política de Privacidade"
-            android:textColor="#000000"
-            android:textSize="11sp" />
-    </GridLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp" />
-
-    <GridLayout
-        android:id="@+id/gridLayout8"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="19dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:columnCount="2"
-        android:rowCount="2">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/rectangle_11"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="31dp"
-            android:background="#8A50FF" />
-
-        <TextView
-            android:id="@+id/aceito_receber_informa__es_e_notifica__es"
-            android:layout_height="18dp"
-            android:layout_gravity="start"
-            android:layout_marginStart="5dp"
-            android:fontFamily="serif"
-            android:text="Aceito receber informações e Notificações"
-            android:textColor="#000000"
-            android:textSize="12sp" />
-    </GridLayout>
+        android:layout_height="50dp"
+        android:fontFamily="serif"
+        android:text="Ao se cadastrar, você está de acordo com os nossos termos de serviço"
+        android:textColor="#000000"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:gravity="center"/>
 
     <GridLayout
         android:id="@+id/gridLayout9"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:columnCount="2"
         android:rowCount="2">
@@ -263,18 +213,18 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cadastrar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="match_parent"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_gravity="center"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:layout_marginTop="10dp"
+
+            android:layout_marginRight="70dp"
+            android:layout_marginLeft="70dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
             android:text="Cadastrar"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
     </GridLayout>
 </LinearLayout>

@@ -86,8 +86,6 @@
         android:id="@+id/esqueceu"
         android:layout_width="280dp"
         android:layout_height="40dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:background="#00FFFFFF"
         android:fontFamily="@font/kurale"
         android:text="Esqueceu a senha? Clique aqui"
@@ -99,47 +97,17 @@
         app:layout_constraintTop_toBottomOf="@id/editTextSenha" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/gmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/fundo_botton_escuro"
-        android:fontFamily="@font/kurale"
-        android:text="Gmail"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        app:layout_constraintTop_toBottomOf="@id/esqueceu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_seguinte"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="5dp" />
-
-    <!-- Login Button -->
-    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_seguinte"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+
         android:background="@drawable/fundo_botton_escuro"
         android:fontFamily="@font/kurale"
+        android:layout_margin="50dp"
         android:text="Login"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
-        app:layout_constraintTop_toBottomOf="@id/esqueceu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/gmail"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="20dp" />
-
-    <!-- Elipse Image -->
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/elipse"
-        app:layout_constraintTop_toBottomOf="@id/btn_seguinte"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/esqueceu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
