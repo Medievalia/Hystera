@@ -70,7 +70,7 @@
 
 
         <ImageButton
-            android:id="@+id/baixo1"
+            android:id="@+id/cima1"
             android:layout_width="wrap_content"
             android:layout_height="43dp"
             android:layout_row="0"
@@ -80,7 +80,7 @@
             android:layout_marginBottom="5dp"
             android:background="#F1F1F1"
             android:contentDescription="Voltar"
-            android:onClick="onImageButtonClick"
+            android:onClick="cima1"
             android:scaleType="fitCenter"
             android:src="@drawable/img_2" />
 

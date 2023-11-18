@@ -33,6 +33,7 @@
             android:layout_gravity="right"
             android:background="@color/white"
             android:contentDescription="Ajuda"
+            android:onClick="ajudaButtonClick"
             android:scaleType="center"
             android:src="@drawable/btn_ajuda" />
     </GridLayout>

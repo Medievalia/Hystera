@@ -3,6 +3,7 @@ package com.example.myapplication.navegabilidade;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -51,6 +52,15 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Perfil.this, Esqueceu1.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton ajuda =  findViewById(R.id.help_button);
+        ajuda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Ajuda.class);
                 startActivity(intent);
             }
         });
