@@ -2,24 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F1F1F1"
-    android:layout_marginTop="0dp"
     android:orientation="vertical"
     android:gravity="center">
 
     <GridLayout
-        android:layout_width="421dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginStart="0dp">
+        android:layout_marginStart="0dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/back_button"
-            android:layout_marginTop="15dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="left"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="15dp"
             android:background="#F1F1F1"
             android:contentDescription="Voltar"
             android:onClick="onImageButtonClick"
@@ -235,13 +235,6 @@
             android:textStyle="bold" />
 
     </GridLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/elipse"
-        android:layout_marginTop="85dp">
-    </ImageView>
 
 
 </LinearLayout>
