@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Cadastrar3;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,64 +18,94 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Cadastrar2 extends AppCompatActivity {
+    String metodo;
     String usuarioId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_2);
+        setContentView(R.layout.activity_cadastro_4);
 
+        ImageButton botao1 = findViewById(R.id.botao1);
+        ImageButton botao2 = findViewById(R.id.botao2);
+        ImageButton botao3 = findViewById(R.id.botao3);
+        ImageButton botao4 = findViewById(R.id.botao4);
+        ImageButton botao5 = findViewById(R.id.botao5);
+        AppCompatButton botao6 = findViewById(R.id.botao6);
+        AppCompatButton btn_n_utilizo = findViewById(R.id.btn_n_utilizo);
         ImageButton voltar = findViewById(R.id.back_button);
-        AppCompatButton seguinte = findViewById(R.id.btn_seguinte);
 
-        CalendarView calendarView = findViewById(R.id.calendarView);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String dataSelecionada = formatDate(year, month, dayOfMonth);
-                SalvarDados(dataSelecionada);
-            }
-        });
-
-        seguinte.setOnClickListener(new View.OnClickListener() {
+        botao1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // A ação de salvar agora ocorre dentro do listener do onSelectedDayChange
-                // portanto, não é necessário adicionar nada aqui.
+                metodo = "Camisinha";//Camisinha
+                SalvarDados(metodo);
             }
         });
-
-        voltar.setOnClickListener(new View.OnClickListener() {
+        botao2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Cadastrar2.this, Cadastrar.class);
-                startActivity(intent);
-                finish();
+                metodo = "Pílula";//Pilula
+                SalvarDados(metodo);
+            }
+        });
+        botao3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                metodo = "DIU"; //DIU
+                SalvarDados(metodo);
+            }
+        });
+        botao4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                metodo = "Injeção";//Injeção
+                SalvarDados(metodo);
+            }
+        });
+        botao5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                metodo = "CHIP"; //CHIP
+                SalvarDados(metodo);
+            }
+        });
+        botao6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                metodo = "Outros"; //Outros
+                SalvarDados(metodo);
+            }
+        });
+        btn_n_utilizo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                metodo = "Não utilizo";//Não utilizo
+                SalvarDados(metodo);
             }
         });
     }
 
-    private void SalvarDados(String dataSelecionada) {
+    private void SalvarDados(String metodo) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
-        dadosParaAtualizar.put("UltimaMenstruacao", dataSelecionada);
+
+        dadosParaAtualizar.put("metodo", metodo);
 
         usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
 
+        // Atualizar o documento com o novo campo usando merge para preservar os dados existentes
         documentReference.set(dadosParaAtualizar, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "Dados salvos com sucesso!");
+                        // Ação de sucesso ao salvar os dados
+                        Log.d("TAG", "Escolha salva com sucesso!");
                         Intent intent = new Intent(Cadastrar2.this, Cadastrar3.class);
                         startActivity(intent);
                         finish();
@@ -86,17 +114,9 @@ public class Cadastrar2 extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("TAG", "Erro ao salvar os dados.", e);
+                        // Lidar com falhas ao salvar os dados
+                        Log.e("TAG", "Erro ao salvar a escolha.", e);
                     }
                 });
-    }
-
-    // Método para formatar a data no formato desejado
-    private String formatDate(int year, int month, int dayOfMonth) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, dayOfMonth);
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        return dateFormat.format(calendar.getTime());
     }
 }
