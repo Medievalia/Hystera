@@ -13,6 +13,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="0dp">
 
+
         <ImageButton
             android:id="@+id/back_button"
             android:layout_width="55dp"
@@ -60,7 +61,7 @@
 
         <!-- Botão 1 -->
         <ImageButton
-            android:id="@+id/botao1"
+            android:id="@+id/nota1"
             android:layout_width="163dp"
             android:layout_height="140dp"
             android:layout_columnWeight="1"
@@ -72,7 +73,7 @@
 
         <!-- Botão 2 -->
         <ImageButton
-            android:id="@+id/botao2"
+            android:id="@+id/nota2"
             android:layout_width="163dp"
             android:layout_height="140dp"
             android:layout_columnWeight="1"
@@ -84,7 +85,7 @@
 
         <!-- Botão 3 -->
         <ImageButton
-            android:id="@+id/bota3"
+            android:id="@+id/nota3"
             android:layout_width="163dp"
             android:layout_height="140dp"
             android:layout_columnWeight="1"
@@ -96,7 +97,7 @@
 
         <!-- Botão 4 -->
         <ImageButton
-            android:id="@+id/botao4"
+            android:id="@+id/nota4"
             android:layout_width="163dp"
             android:layout_height="140dp"
             android:layout_columnWeight="1"
@@ -108,7 +109,7 @@
 
         <!-- Botão 5 -->
         <ImageButton
-            android:id="@+id/botao5"
+            android:id="@+id/nota5"
             android:layout_width="163dp"
             android:layout_height="140dp"
             android:layout_columnWeight="1"
@@ -120,7 +121,7 @@
 
         <!-- Botão 6 -->
         <ImageButton
-            android:id="@+id/botao6"
+            android:id="@+id/nota6"
             android:layout_width="163dp"
             android:layout_height="140dp"
             android:layout_columnWeight="1"
@@ -130,27 +131,6 @@
             android:scaleType="fitCenter"
             android:src="@drawable/rectangle" />
 
-        <ImageButton
-            android:id="@+id/botao7"
-            android:layout_width="163dp"
-            android:layout_height="140dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="#F1F1F1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/rectangle" />
-
-        <ImageButton
-            android:id="@+id/botao9"
-            android:layout_width="163dp"
-            android:layout_height="140dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="#F1F1F1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/rectangle" />
     </GridLayout>
     <GridLayout
         android:layout_width="350dp"
@@ -219,7 +199,9 @@
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:src="@drawable/bot_notifica" />
+
     </GridLayout>
+
 </LinearLayout>
 
 
