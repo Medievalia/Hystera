@@ -42,8 +42,6 @@ public class Cadastrar extends AppCompatActivity {
             public void onClick(View v) {
                 choice = false;
                 SalvarDados();
-                Intent intent = new Intent(Cadastrar.this, Cadastrar2.class);
-                startActivity(intent);
             }
         });
         engravidar.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +49,6 @@ public class Cadastrar extends AppCompatActivity {
             public void onClick(View v) {
                 choice = true;
                 SalvarDados();
-                Intent intent = new Intent(Cadastrar.this, Cadastrar2.class);
-                startActivity(intent);
             }
         });
     }
@@ -74,7 +70,9 @@ public class Cadastrar extends AppCompatActivity {
                         // Ação de sucesso ao salvar os dados
                         Log.d("TAG", "Escolha salva com sucesso!");
 
-                        // Após salvar a escolha, você pode navegar para a próxima tela se necessário
+                        Intent intent = new Intent(Cadastrar.this, Cadastrar2.class);
+                        startActivity(intent);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

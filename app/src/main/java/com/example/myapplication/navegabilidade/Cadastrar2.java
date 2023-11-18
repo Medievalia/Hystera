@@ -37,13 +37,10 @@ public class Cadastrar2 extends AppCompatActivity {
 
         CalendarView calendarView = findViewById(R.id.calendarView);
 
-
         seguinte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SalvarDados(calendarView);
-                Intent intent = new Intent(Cadastrar2.this, Cadastrar3.class);
-                startActivity(intent);
             }
         });
     }
@@ -65,8 +62,9 @@ public class Cadastrar2 extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao salvar os dados
                         Log.d("TAG", "Escolha salva com sucesso!");
-
-                        // Após salvar a escolha, você pode navegar para a próxima tela se necessário
+                        Intent intent = new Intent(Cadastrar2.this, Cadastrar4.class);
+                        startActivity(intent);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -94,12 +92,12 @@ public class Cadastrar2 extends AppCompatActivity {
         return dateFormat.format(selectedCalendar.getTime());
     }
 
-
     //botão voltar
     public void onImageButtonClick(View view) {
         // Este método é chamado quando o ImageButton é clicado
         Intent intent = new Intent(Cadastrar2.this, Cadastrar.class);
         startActivity(intent);
+        finish();
     }
 }
 

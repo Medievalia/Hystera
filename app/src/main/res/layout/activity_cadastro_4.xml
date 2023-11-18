@@ -123,14 +123,12 @@
             android:textSize="25sp" />
     </GridLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="70dp" />
+
 
     <GridLayout
         android:id="@+id/gridLayout2"
         android:layout_width="match_parent"
-        android:layout_height="76dp"
+        android:layout_height="130dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:columnCount="2"
@@ -140,31 +138,14 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_n_utilizo"
             android:layout_margin="20dp"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
             android:text="Não utilizo"
             android:fontFamily="@font/kurale"
             android:textColor="#8A50FF"
             android:textAllCaps="false"
             android:background="@drawable/fundo_botton_claro"
-            android:textSize="23sp"
-            />
-        <!-- Botão 2 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_seguinte"
-            android:layout_margin="20dp"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
-            android:layout_columnWeight="1"
-            android:layout_marginBottom="8dp"
-            android:text="Seguinte"
-            android:fontFamily="@font/kurale"
-            android:textColor="#FFFFFF"
-            android:textAllCaps="false"
-            android:background="@drawable/fundo_botton_escuro"
             android:textSize="23sp"
             />
     </GridLayout>
