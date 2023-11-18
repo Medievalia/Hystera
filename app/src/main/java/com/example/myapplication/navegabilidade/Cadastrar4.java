@@ -2,15 +2,13 @@ package com.example.myapplication.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.ImageButton;
-
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,86 +16,84 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-
+import android.support.annotation.NonNull;
 import java.util.HashMap;
 import java.util.Map;
+import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class Cadastrar4 extends AppCompatActivity {
-    String metodo;
+
+    private CircularSeekBar progressoCiclo;
+    private boolean longoMensagemMostrada = false;
+    private boolean curtoMensagemMostrada = false;
+
+    int diasDoCiclo = 0;
+
     String usuarioId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_4);
-
-        ImageButton botao1 = findViewById(R.id.botao1);
-        ImageButton botao2 = findViewById(R.id.botao2);
-        ImageButton botao3 = findViewById(R.id.botao3);
-        ImageButton botao4 = findViewById(R.id.botao4);
-        ImageButton botao5 = findViewById(R.id.botao5);
-        AppCompatButton botao6 = findViewById(R.id.botao6);
-        AppCompatButton btn_n_utilizo = findViewById(R.id.btn_n_utilizo);
+        setContentView(R.layout.activity_cadastro_3);
         ImageButton voltar = findViewById(R.id.back_button);
 
-        botao1.setOnClickListener(new View.OnClickListener() {
+        CircularSeekBar seekBar = findViewById(R.id.seekbar);
+        TextView diasTextView = findViewById(R.id.Dias);
+
+        seekBar.setOnSeekBarChangeListener(new CircularSeekBar.OnCircularSeekBarChangeListener() {
             @Override
-            public void onClick(View v) {
-                metodo = "Camisinha";//Camisinha
-                SalvarDados(metodo);
+            public void onProgressChanged(CircularSeekBar circularSeekBar, float progress, boolean fromUser) {
+                int dias = (int) ((progress / 100) * 50);
+                diasDoCiclo = dias;
+
+                if (dias >= 45 && !longoMensagemMostrada) {
+                    Toast.makeText(Cadastrar4.this, "Ciclo muito longo, é importante consultar um especialista", Toast.LENGTH_LONG).show();
+                    longoMensagemMostrada = true;
+                }
+
+                else if (dias < 14 && !curtoMensagemMostrada) {
+                    Toast.makeText(Cadastrar4.this, "Ciclo muito curto, é importante consultar um especialista", Toast.LENGTH_LONG).show();
+                    curtoMensagemMostrada = true;
+                } else {
+                    diasTextView.setText(dias + " dias");
+                }
+            }
+
+            @Override
+            public void onStopTrackingTouch(CircularSeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(CircularSeekBar seekBar) {
             }
         });
-        botao2.setOnClickListener(new View.OnClickListener() {
+
+        AppCompatButton naoSeiButton = findViewById(R.id.nao_sei);
+        naoSeiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "Pílula";//Pilula
-                SalvarDados(metodo);
+                // Define o texto como 28 dias quando "Não sei" é clicado
+                diasTextView.setText("28 dias");
             }
         });
-        botao3.setOnClickListener(new View.OnClickListener() {
+
+        AppCompatButton seguinte =  findViewById(R.id.btn_seguinte);
+        seguinte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "DIU"; //DIU
-                SalvarDados(metodo);
-            }
-        });
-        botao4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Injeção";//Injeção
-                SalvarDados(metodo);
-            }
-        });
-        botao5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "CHIP"; //CHIP
-                SalvarDados(metodo);
-            }
-        });
-        botao6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Outros"; //Outros
-                SalvarDados(metodo);
-            }
-        });
-        btn_n_utilizo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Não utilizo";//Não utilizo
-                SalvarDados(metodo);
+                // Salvar os dados na Firestore ao passar para a próxima tela
+                int dias = diasDoCiclo;
+                salvarDadosCiclo(dias);
             }
         });
     }
 
-    private void SalvarDados(String metodo) {
+    // Método para salvar os dados do ciclo na Firestore
+    private void salvarDadosCiclo(int dias) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
 
-        dadosParaAtualizar.put("metodo", metodo);
-
+        dadosParaAtualizar.put("diasCiclo", dias);
         usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
         DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
 
         // Atualizar o documento com o novo campo usando merge para preservar os dados existentes
@@ -106,7 +102,7 @@ public class Cadastrar4 extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao salvar os dados
-                        Log.d("TAG", "Escolha salva com sucesso!");
+                        Log.d("TAG", "Dias do ciclo salvos com sucesso!");
                         Intent intent = new Intent(Cadastrar4.this, LinhaDoTempo.class);
                         startActivity(intent);
                         finish();
@@ -116,8 +112,15 @@ public class Cadastrar4 extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Lidar com falhas ao salvar os dados
-                        Log.e("TAG", "Erro ao salvar a escolha.", e);
+                        Log.e("TAG", "Erro ao salvar dias do ciclo.", e);
                     }
                 });
     }
+
+    public void onImageButtonClick(View view) {
+        // Este método é chamado quando o ImageButton é clicado
+        Intent intent = new Intent(Cadastrar4.this, Cadastrar3.class);
+        startActivity(intent);
+    }
 }
+
