@@ -1,143 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF">
+
     <!-- Logo -->
     <ImageView
-        android:layout_marginLeft="100dp"
         android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="210dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/logo" />
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp"
-            android:layout_below="@id/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:text="Email"
-            android:textColor="#8C52FF"
-            android:fontFamily="@font/kurale"
-            android:textSize="18sp" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:padding="15sp"
-            android:background="@drawable/edit_text"
-            android:textSize="18sp" />
-    </GridLayout>
-    <GridLayout
-        android:id="@+id/gridLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2">
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="30dp"
-            android:layout_below="@id/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            android:text="Senha"
-            android:textColor="#8C52FF"
-            android:fontFamily="@font/kurale"
-            android:textSize="18sp" />
+    <!-- Email TextView -->
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="#8C52FF"
+        android:fontFamily="@font/kurale"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp" />
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:padding="15sp"
-            android:background="@drawable/edit_text"
-            android:textSize="18sp" />
+    <!-- Email EditText -->
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:padding="15sp"
+        android:textColor="@color/purple_500"
+        android:background="@drawable/edit_text"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/textViewEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/esqueceu"
-            android:layout_width="280dp"
-            android:layout_height="40dp"
-            android:background="#00FFFFFF"
-            android:fontFamily="@font/kurale"
-            android:text="Esqueceu a senha? Clique aqui"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:textColor="#8A50FF"
-            android:textSize="12sp"
-            />
-    </GridLayout>
+    <!-- Senha TextView -->
+    <TextView
+        android:id="@+id/textViewSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha"
+        android:textColor="#8C52FF"
+        android:fontFamily="@font/kurale"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/editTextEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
+    <!-- Senha EditText -->
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:id="@+id/editTextSenha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:padding="15sp"
+        android:textColor="@color/purple_500"
+        android:background="@drawable/edit_text"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/textViewSenha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
 
-    <GridLayout
-        android:id="@+id/gridLayout3"
-        android:layout_width="327dp"
-        android:layout_height="46dp"
-        android:layout_gravity="center"
-        android:columnCount="2"
-        android:rowCount="1">
+    <!-- Esqueceu a senha Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/esqueceu"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:background="#00FFFFFF"
+        android:fontFamily="@font/kurale"
+        android:text="Esqueceu a senha? Clique aqui"
+        android:textColor="#8A50FF"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/editTextSenha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp" />
 
-        <!-- Botão 1 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/gmail"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/fundo_botton_escuro"
-            android:fontFamily="@font/kurale"
-            android:text="     Gmail"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
+    <!-- Gmail Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/gmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fundo_botton_escuro"
+        android:fontFamily="@font/kurale"
+        android:text="Gmail"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/esqueceu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_seguinte"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="5dp" />
 
-        <!-- Botão 2 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_seguinte"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/fundo_botton_escuro"
-            android:fontFamily="@font/kurale"
-            android:text="     Login"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
-    </GridLayout>
+    <!-- Login Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_seguinte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/fundo_botton_escuro"
+        android:fontFamily="@font/kurale"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/esqueceu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/gmail"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="20dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />
-
+    <!-- Elipse Image -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:src="@drawable/elipse">
-    </ImageView>
-</LinearLayout>
+        android:src="@drawable/elipse"
+        app:layout_constraintTop_toBottomOf="@id/btn_seguinte"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

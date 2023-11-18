@@ -12,6 +12,7 @@
         android:layout_height="60dp"
         android:layout_gravity="left"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="-75dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/circular_button_background"
         android:onClick="onImageButtonClick"
@@ -21,7 +22,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
         android:lineSpacingExtra="-5dp"
@@ -39,7 +40,7 @@
         android:lineSpacingExtra="-5dp"
         android:text="Assim podemos calcular sua próxima \nmenstruação"
         android:textColor="#8A50FF"
-        android:textSize="16sp" />
+        android:textSize="18sp" />
 
     <GridLayout
         android:id="@+id/gridLayout"

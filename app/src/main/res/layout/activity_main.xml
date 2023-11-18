@@ -9,22 +9,14 @@
 
     <ImageView
         android:id="@+id/logo_removebg_preview_1"
-        android:layout_width="300dp"
-        android:layout_height="348dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:contentDescription="LOGO-removebg-preview 1"
         android:src="@drawable/logo" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
     <LinearLayout
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="79dp"
         android:orientation="vertical">

@@ -9,9 +9,11 @@
     android:gravity="center">
 
     <GridLayout
+        android:layout_marginTop="10dp"
         android:layout_width="421dp"
         android:layout_height="55dp"
-        android:layout_marginStart="0dp">
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="20dp">
 
         <ImageButton
             android:id="@+id/back_button"
@@ -147,10 +149,8 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@drawable/elipse"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="140dp">
     </ImageView>
-
-
 </LinearLayout>
 
 

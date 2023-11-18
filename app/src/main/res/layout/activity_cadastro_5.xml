@@ -1,64 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical"
-    android:gravity="center">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF">
 
     <ImageButton
         android:id="@+id/back_button"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/circular_button_background"
         android:contentDescription="Voltar"
         android:onClick="onImageButtonClick"
         android:scaleType="fitCenter"
-        android:src="@drawable/arrow_back" />
-
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Logo -->
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="210dp"
-        android:layout_centerInParent="true"
+        android:layout_width="290dp"
+        android:layout_height="290dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_button" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
         android:text="Como você deseja se cadastrar?"
-        android:textStyle="bold"
         android:textColor="#8A50FF"
-        android:textSize="35sp" />
-
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <GridLayout
         android:id="@+id/gridLayout3"
         android:layout_width="332dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
         android:columnCount="1"
-        android:gravity="center"
-        android:rowCount="2">
+        android:layout_marginTop="20dp"
+        android:rowCount="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView">
 
         <!-- Botão 1 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signInGoogle"
             android:layout_width="match_parent"
             android:layout_height="74dp"
-            android:layout_columnWeight="1"
             android:layout_marginBottom="30dp"
             android:background="@drawable/fundo_botton_blue"
             android:fontFamily="@font/kurale"
@@ -72,7 +75,6 @@
             android:id="@+id/signInEmail"
             android:layout_width="match_parent"
             android:layout_height="74dp"
-            android:layout_columnWeight="1"
             android:layout_marginBottom="30dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
@@ -81,11 +83,4 @@
             android:textColor="#FFFFFF"
             android:textSize="25sp" />
     </GridLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/elipse">
-    </ImageView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

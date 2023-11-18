@@ -13,6 +13,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="left"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/circular_button_background"
@@ -26,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
         android:lineSpacingExtra="8dp"
@@ -122,7 +124,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@drawable/elipse"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="140dp">
     </ImageView>
 
 </LinearLayout>
