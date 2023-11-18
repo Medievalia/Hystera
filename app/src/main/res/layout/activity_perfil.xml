@@ -73,17 +73,18 @@
 
         <TextView
             android:id="@+id/txt_nome"
-            android:layout_width="135dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="0"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="2dp"
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
             android:text=""
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textSize="20dp" />
 
         <View
             android:id="@+id/line_1"
@@ -118,61 +119,14 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="53dp">
-
-        <TextView
-            android:id="@+id/txt_senha"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:text=""
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <View
-            android:id="@+id/line_2"
-            android:layout_width="355dp"
-            android:layout_height="2dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_marginLeft="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <ImageButton
-            android:id="@+id/olho"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/olho" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
         android:layout_height="54dp">
 
         <TextView
             android:id="@+id/txt_email"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
+            android:layout_marginStart="5dp"
             android:layout_column="0"
             android:layout_marginTop="2dp"
             android:contextClickable="true"
@@ -180,7 +134,7 @@
             android:gravity="center_horizontal"
             android:text=""
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textSize="20dp" />
 
         <View
             android:id="@+id/line_3"
@@ -216,19 +170,20 @@
         android:layout_width="match_parent"
         android:layout_height="54dp">
 
-    <TextView
-        android:id="@+id/txt_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_marginTop="2dp"
-        android:contextClickable="true"
-        android:fontFamily="@font/kurale"
-        android:gravity="center_horizontal"
-        android:text=""
-        android:textColor="#000000"
-        android:textSize="17sp" />
+        <TextView
+            android:id="@+id/txt_num"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:contextClickable="true"
+            android:fontFamily="@font/kurale"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="20dp" />
 
     <View
         android:id="@+id/line_4"
@@ -266,17 +221,18 @@
 
         <TextView
             android:id="@+id/txt_metodo"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="0"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="2dp"
             android:contextClickable="true"
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
             android:text=""
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="20dp" />
 
         <View
             android:id="@+id/line_5"
@@ -341,6 +297,25 @@
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
             android:text="Editar Ciclo"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="23sp" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="250dp"
+        android:layout_height="59dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_alterar_senha"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:background="@drawable/fundo_botton_escuro"
+            android:fontFamily="@font/kurale"
+            android:text="Alterar Senha"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="23sp" />

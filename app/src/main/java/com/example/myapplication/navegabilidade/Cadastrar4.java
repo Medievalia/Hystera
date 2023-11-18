@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Cadastrar4 extends AppCompatActivity {
-    int metodo;
+    String metodo;
     String usuarioId;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,55 +42,55 @@ public class Cadastrar4 extends AppCompatActivity {
         botao1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = 1;//Camisinha
+                metodo = "Camisinha";//Camisinha
                 SalvarDados(metodo);
             }
         });
         botao2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = 2;//Pilula
+                metodo = "Pílula";//Pilula
                 SalvarDados(metodo);
             }
         });
         botao3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = 3; //DIU
+                metodo = "DIU"; //DIU
                 SalvarDados(metodo);
             }
         });
         botao4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = 4;//Injeção
+                metodo = "Injeção";//Injeção
                 SalvarDados(metodo);
             }
         });
         botao5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = 5; //CHIP
+                metodo = "CHIP"; //CHIP
                 SalvarDados(metodo);
             }
         });
         botao6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = 6; //Outros
+                metodo = "Outros"; //Outros
                 SalvarDados(metodo);
             }
         });
         btn_n_utilizo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = 7;//Não utilizo
+                metodo = "Não utilizo";//Não utilizo
                 SalvarDados(metodo);
             }
         });
     }
 
-    private void SalvarDados(int metodo) {
+    private void SalvarDados(String metodo) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
 
