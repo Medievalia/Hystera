@@ -1,8 +1,7 @@
 <!-- res/drawable/edittext_background.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/white" /> <!-- Cor de fundo do EditText -->
     <corners android:radius="10dp" /> <!-- Raio das bordas (bordas arredondadas) -->
     <stroke
-        android:width="4px"
+        android:width="10px"
         android:color="#8C52FF"/>
 </shape>

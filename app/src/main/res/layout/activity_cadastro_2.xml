@@ -44,8 +44,10 @@
 
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="330dp"
-        android:layout_height="330dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:background="@drawable/square_rounded_button_background"
@@ -59,8 +61,9 @@
             android:layout_row="0"
             android:layout_column="0"
             android:dateTextAppearance="@style/CalenderViewDateCustomText"
-            android:theme="@style/CalenderViewCustom"
+            android:theme="@style/CustomCalendarView"
             android:weekDayTextAppearance="@color/black" />
+
     </GridLayout>
 
     <GridLayout

@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
+import com.example.myapplication.navegabilidade.Cadastrar2;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,25 +19,23 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Cadastrar extends AppCompatActivity {
 
-    private Button monitorar;
-    private Button engravidar;
+    private AppCompatButton monitorar;
+    private AppCompatButton engravidar;
     private boolean choice;
     String usuarioId;
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_1);
 
-        AppCompatButton monitorar = findViewById(R.id.monitorar);
-        AppCompatButton engravidar = findViewById(R.id.engravidar);
-
-        IniciarComponentes();
+        monitorar = findViewById(R.id.monitorar);
+        engravidar = findViewById(R.id.engravidar);
 
         monitorar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +57,7 @@ public class Cadastrar extends AppCompatActivity {
         });
     }
 
-    private void SalvarDados(){
+    private void SalvarDados() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
         dadosParaAtualizar.put("escolha", choice);
@@ -74,19 +72,17 @@ public class Cadastrar extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao salvar os dados
-                        Log.d("TAG", "Dados salvos com sucesso!");
+                        Log.d("TAG", "Escolha salva com sucesso!");
+
+                        // Após salvar a escolha, você pode navegar para a próxima tela se necessário
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Lidar com falhas ao salvar os dados
-                        Log.e("TAG", "Erro ao salvar os dados.", e);
+                        Log.e("TAG", "Erro ao salvar a escolha.", e);
                     }
                 });
-    }
-    private void IniciarComponentes() {
-        monitorar = findViewById(R.id.monitorar);
-        engravidar = findViewById(R.id.engravidar);
     }
 }
