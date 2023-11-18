@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "955819728529",
-    "project_id": "hystera-1a6e7",
-    "storage_bucket": "hystera-1a6e7.appspot.com"
+    "project_number": "710436575539",
+    "project_id": "hystera-c69a9",
+    "storage_bucket": "hystera-c69a9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:955819728529:android:432607e24c69bdac29a930",
+        "mobilesdk_app_id": "1:710436575539:android:db12d29eafbd09d1498646",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDJY1cEnxgwKpWiF0fJlqb4YRFn9-uXk78"
+          "current_key": "AIzaSyAsM2YFYp6uzKqqRmp9Ep6Q6lusggxjGZ8"
         }
       ],
       "services": {

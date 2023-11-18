@@ -36,8 +36,9 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/edit_nome"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
@@ -70,8 +71,9 @@
             android:textSize="18sp" />
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/edit_email"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
@@ -104,8 +106,9 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/edit_celular"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
@@ -138,8 +141,9 @@
             android:textSize="18sp" />
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/edit_senha"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
@@ -172,8 +176,9 @@
             android:textSize="18sp" />
 
         <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/edit_repetir_senha"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/edit_text"
@@ -188,7 +193,7 @@
         android:layout_marginTop="10dp"
         android:id="@+id/gridLayout7"
         android:layout_width="match_parent"
-        android:layout_height="19dp"
+        android:layout_height="25dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:columnCount="2"
@@ -272,9 +277,4 @@
             android:textSize="20sp" />
 
     </GridLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:layout_marginVertical="13dp"
-        android:src="@drawable/elipse"></ImageView>
 </LinearLayout>

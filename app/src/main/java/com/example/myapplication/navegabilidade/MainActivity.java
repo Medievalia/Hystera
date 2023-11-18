@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
+import com.google.firebase.Firebase;
 
 public class MainActivity extends AppCompatActivity {
     @Override
