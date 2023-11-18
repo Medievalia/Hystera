@@ -19,9 +19,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Cadastrar2 extends AppCompatActivity {
@@ -45,7 +47,7 @@ public class Cadastrar2 extends AppCompatActivity {
             }
         });
     }
-    
+
     private void SalvarDados(CalendarView calendarView) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
@@ -75,8 +77,9 @@ public class Cadastrar2 extends AppCompatActivity {
                     }
                 });
     }
-    public Date GetDataSelecionada(CalendarView calendarView) {
+    public String GetDataSelecionada(CalendarView calendarView) {
         final Calendar selectedCalendar = Calendar.getInstance();
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -84,8 +87,13 @@ public class Cadastrar2 extends AppCompatActivity {
             }
         });
 
-        return selectedCalendar.getTime();
+        // Criar um objeto SimpleDateFormat para formatar a data
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        // Obter a data formatada no formato desejado (dia/mês/ano)
+        return dateFormat.format(selectedCalendar.getTime());
     }
+
 
     //botão voltar
     public void onImageButtonClick(View view) {
