@@ -72,9 +72,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
-
         if(usuarioAtual != null) {
             TelaPrincipal();
         }

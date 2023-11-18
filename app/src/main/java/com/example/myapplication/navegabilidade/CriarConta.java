@@ -63,9 +63,12 @@ public class CriarConta extends AppCompatActivity {
                 }else{
                     if(senha.equals(rSenha)) {
                         CadastrarUsuario(v);
+                        Intent intent = new Intent(CriarConta.this, Cadastrar.class);
+                        startActivity(intent);
+
                     }else {
                         Snackbar snackbar = Snackbar.make(v,"Senhas divergentes", Snackbar.LENGTH_SHORT);
-                    snackbar.setBackgroundTint(Color.WHITE);
+                        snackbar.setBackgroundTint(Color.WHITE);
                         snackbar.setTextColor(Color.BLACK);
                         snackbar.show();
                     }

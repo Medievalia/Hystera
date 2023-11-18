@@ -8,19 +8,6 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/circular_button_background"
-        android:contentDescription="Voltar"
-        android:onClick="onImageButtonClick"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow_back" />
 
     <TextView
         android:id="@+id/textView"
@@ -34,13 +21,15 @@
         android:text="O que você deseja?"
         android:textStyle="bold"
         android:textColor="#8A50FF"
-        android:textSize="35sp" />
+        android:textSize="40sp" />
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/monitorar"
-        android:layout_width="350dp"
-        android:layout_height="62dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_columnWeight="1"
         android:background="@drawable/fundo_botton_blue"
         android:fontFamily="@font/kurale"
@@ -50,14 +39,16 @@
         android:textSize="30sp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/logo"
         android:layout_centerHorizontal="true"
         android:text="Registre a menstruação para ter uma previsão dos próximos ciclos"
         android:textColor="#8C52FF"
         android:fontFamily="@font/kurale"
-        android:textSize="17sp"
+        android:textSize="22sp"
         android:gravity="center"/>
 
     <View
@@ -66,8 +57,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/engravidar"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_columnWeight="1"
         android:background="@drawable/fundo_botton_escuro"
         android:fontFamily="@font/kurale"
@@ -79,14 +72,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
         android:layout_below="@id/logo"
         android:layout_centerHorizontal="true"
         android:text="Receba informações sobre seu período fértil e dicas sobre tentativas de gravidez"
         android:textColor="#8C52FF"
         android:fontFamily="@font/kurale"
-        android:textSize="17sp"
+        android:textSize="22sp"
         android:gravity="center"/>
 
     <View
@@ -96,35 +89,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_below="@id/logo"
         android:layout_centerHorizontal="true"
         android:text="Não se preocupe, você pode alterar a qualquer momento"
         android:textColor="#8C52FF"
         android:fontFamily="@font/kurale"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:layout_marginBottom="30dp"
         android:gravity="center"/>
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_seguinte"
-        android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:background="@drawable/fundo_botton_escuro"
-        android:fontFamily="@font/kurale"
-        android:text="Seguinte"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="23sp" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/elipse"
-        android:layout_marginTop="140dp">
-    </ImageView>
 
 </LinearLayout>
