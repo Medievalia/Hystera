@@ -36,6 +36,7 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -45,6 +46,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15sp"
+            android:textColor="@color/purple_500"
             android:textSize="18sp" />
     </GridLayout>
 
@@ -59,7 +61,7 @@
         android:rowCount="1">
         <!-- Botão 2 -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_seguinte"
+            android:id="@+id/btn_enviar"
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_row="0"

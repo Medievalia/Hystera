@@ -22,9 +22,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    private TextView esqueceu;
     private EditText editTextEmail, editTextSenha;
     private Button btn_seguinte;
+    private Button esqueceu;
 
 
     @Override
@@ -33,6 +33,16 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         IniciarComponentes();
+
+        esqueceu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, Esqueceu1.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         btn_seguinte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,14 +79,14 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
-        if(usuarioAtual != null) {
-            TelaPrincipal();
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
+//        if(usuarioAtual != null) {
+//            TelaPrincipal();
+//        }
+//    }
 
     private void TelaPrincipal(){
         Intent intent = new Intent(Login.this, LinhaDoTempo.class);
