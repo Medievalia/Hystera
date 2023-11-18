@@ -20,6 +20,7 @@
             android:layout_gravity="left"
             android:background="@color/white"
             android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
             android:scaleType="center"
             android:src="@drawable/vector" />
 
@@ -70,12 +71,12 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="79dp">
 
-        <TextView
+        <EditText
             android:id="@+id/txt_nome"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
+            android:layout_width="358dp"
+            android:layout_height="59dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_marginTop="2dp"
@@ -83,17 +84,19 @@
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
             android:text=""
+            android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/line_1"
             android:layout_width="355dp"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:layout_row="1"
             android:layout_column="0"
-            android:layout_marginLeft="10dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:background="#000000"
             android:contextClickable="true"
@@ -110,8 +113,8 @@
             android:layout_column="1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="0dp"
-            android:contextClickable="true"
             android:background="@color/white"
+            android:contextClickable="true"
             android:gravity="center_horizontal"
             android:src="@drawable/perfil" />
 
@@ -119,156 +122,12 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="53dp">
+        android:layout_height="70dp">
 
-        <TextView
-            android:id="@+id/txt_atual"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:text=""
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <View
-            android:id="@+id/line_2"
-            android:layout_width="355dp"
-            android:layout_height="2dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_marginLeft="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <ImageButton
-            android:id="@+id/olho"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/olho" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="53dp">
-
-        <TextView
-            android:id="@+id/txt_senha"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:text=""
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <View
-            android:id="@+id/line_3"
-            android:layout_width="355dp"
-            android:layout_height="2dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_marginLeft="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <ImageButton
-            android:id="@+id/olho2"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/olho" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="53dp">
-
-        <TextView
-            android:id="@+id/txt_repetirSenha"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:text=""
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <View
-            android:id="@+id/line_4"
-            android:layout_width="355dp"
-            android:layout_height="2dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_marginLeft="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <ImageButton
-            android:id="@+id/olho4"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/olho" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="54dp">
-
-        <TextView
+        <EditText
             android:id="@+id/txt_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="358dp"
+            android:layout_height="59dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_marginTop="2dp"
@@ -276,13 +135,15 @@
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
             android:text=""
+            android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/line_5"
             android:layout_width="355dp"
-            android:layout_height="1dp"
+            android:layout_height="3dp"
             android:layout_row="1"
             android:layout_column="0"
             android:layout_centerHorizontal="true"
@@ -303,20 +164,20 @@
             android:layout_column="1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="0dp"
-            android:contextClickable="true"
             android:background="@color/white"
+            android:contextClickable="true"
             android:gravity="center_horizontal"
             android:src="@drawable/carta" />
     </GridLayout>
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp">
+        android:layout_height="86dp">
 
-        <TextView
+        <EditText
             android:id="@+id/txt_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="358dp"
+            android:layout_height="64dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_marginTop="2dp"
@@ -325,16 +186,17 @@
             android:gravity="center_horizontal"
             android:text=""
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/line_6"
             android:layout_width="355dp"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:layout_row="1"
             android:layout_column="0"
-            android:layout_marginLeft="10dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:background="#000000"
             android:contextClickable="true"
@@ -351,20 +213,20 @@
             android:layout_column="1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="0dp"
-            android:contextClickable="true"
             android:background="@color/white"
+            android:contextClickable="true"
             android:gravity="center_horizontal"
             android:src="@drawable/biriri" />
     </GridLayout>
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="47dp">
+        android:layout_height="74dp">
 
-        <TextView
+        <EditText
             android:id="@+id/txt_metodo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="358dp"
+            android:layout_height="59dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_marginTop="2dp"
@@ -372,13 +234,15 @@
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
             android:text=""
+            android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/line_7"
             android:layout_width="354dp"
-            android:layout_height="2dp"
+            android:layout_height="3dp"
             android:layout_row="1"
             android:layout_column="0"
             android:layout_centerHorizontal="true"
@@ -426,5 +290,7 @@
             android:textColor="#FFFFFF"
             android:textSize="23sp" />
     </GridLayout>
+
+
 
 </LinearLayout>

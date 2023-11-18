@@ -1,10 +1,14 @@
 package com.example.myapplication.navegabilidade;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,9 +27,34 @@ public class Perfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
         iniciarComponente();
+
+        AppCompatButton perfilEditar =  findViewById(R.id.btn_pefil_editar);
+        perfilEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, EditarPerfil.class);
+                startActivity(intent);
+            }
+        });
+
+        AppCompatButton cicloEditar =  findViewById(R.id.btn_ciclo_editar);
+        cicloEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Cadastrar4.class);
+                startActivity(intent);
+            }
+        });
+
+        AppCompatButton alterarSenha =  findViewById(R.id.btn_alterar_senha);
+        alterarSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Esqueceu1.class);
+                startActivity(intent);
+            }
+        });
     }
-
-
     @Override
     protected void onStart(){
         super.onStart();
@@ -48,9 +77,14 @@ public class Perfil extends AppCompatActivity {
     }
     private void iniciarComponente(){
         nomeUsuario = findViewById(R.id.txt_nome);
-        senhaUsuario = findViewById(R.id.txt_senha);
         emailUsuario = findViewById(R.id.txt_email);
         numeroUsuario = findViewById(R.id.txt_num);
         metodoContraUsuario = findViewById(R.id.txt_metodo);
+    }
+
+    public void onImageButtonClick(View view) {
+        // Este método é chamado quando o ImageButton é clicado
+        Intent intent = new Intent(Perfil.this, LinhaDoTempo.class);
+        startActivity(intent);
     }
 }
