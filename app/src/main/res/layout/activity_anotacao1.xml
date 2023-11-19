@@ -51,25 +51,25 @@
 
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="323dp"
-        android:layout_height="489dp"
-        android:layout_centerInParent="true"
+        android:layout_width="303dp"
+        android:layout_height="485dp"
         android:layout_gravity="center"
         android:background="#F1F1F1"
         android:columnCount="2"
         android:rowCount="3">
 
-        <ImageButton
-            android:id="@+id/botao1"
+        <EditText
+            android:id="@+id/anotacao"
             android:layout_width="match_parent"
-            android:layout_height="523dp"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="8dp"
-            android:background="#F1F1F1"
-            android:scaleType="fitCenter"
-            android:src="@drawable/retangulo"
-            android:text="Titulo" />
+            android:background="@color/white"
+            android:textSize="30dp"
+            android:textColor="#8A50FF" />
 
 
     </GridLayout>
@@ -83,7 +83,7 @@
         android:rowCount="1">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/nao_sei"
+            android:id="@+id/excluir"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
@@ -97,7 +97,7 @@
             android:textSize="22sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_seguinte"
+            android:id="@+id/btn_salvar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"

@@ -79,7 +79,6 @@ public class CriarConta extends AppCompatActivity {
     private void CadastrarUsuario(View v){
         String email = edit_email.getText().toString();
         String senha = edit_senha.getText().toString();
-        String rSenha = edit_repetir_senha.getText().toString();
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

@@ -27,5 +27,14 @@ public class LinhaDoTempo extends AppCompatActivity {
             }
         });
 
+        ImageButton anota = findViewById(R.id.anota);
+        anota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinhaDoTempo.this, Anotacoes.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

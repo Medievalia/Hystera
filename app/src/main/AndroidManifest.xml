@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="31">
+
         <activity
             android:name=".navegabilidade.MainActivity"
             android:exported="true">
@@ -32,6 +33,15 @@
 
         <activity
             android:name=".navegabilidade.Esqueceu2"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".navegabilidade.Anotacoes"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,6 +75,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".navegabilidade.ComeceAgora"
             android:exported="true">
@@ -73,6 +84,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".navegabilidade.CriarConta"
             android:exported="true">
@@ -81,6 +93,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".navegabilidade.Cadastrar"
             android:exported="true">
@@ -89,6 +102,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".navegabilidade.Cadastrar3"
             android:exported="true">
@@ -97,6 +111,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".navegabilidade.Cadastrar4"
             android:exported="true">
@@ -105,6 +120,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".navegabilidade.Cadastrar2"
             android:exported="true">
@@ -142,6 +158,15 @@
         </activity>
 
         <activity
+            android:name=".navegabilidade.Anotacoes1"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".navegabilidade.Ajuda2"
             android:exported="true">
             <intent-filter>
@@ -158,8 +183,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 </manifest>
