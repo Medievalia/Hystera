@@ -39,49 +39,37 @@ public class Anotacoes extends AppCompatActivity {
         nota1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
-                startActivity(intent);
+                abrirAnotacao(1);
             }
         });
-
-
         nota2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
-                startActivity(intent);
+                abrirAnotacao(2);
             }
         });
-
         nota3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
-                startActivity(intent);
+                abrirAnotacao(3);
             }
         });
-
         nota4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
-                startActivity(intent);
+                abrirAnotacao(4);
             }
         });
-
         nota5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
-                startActivity(intent);
+                abrirAnotacao(5);
             }
         });
-
         nota6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
-                startActivity(intent);
+                abrirAnotacao(6);
             }
         });
     }
@@ -96,13 +84,15 @@ public class Anotacoes extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot != null){
-                    notas1.setText(documentSnapshot.getString("anotacao"));
+                    notas1.setText(documentSnapshot.getString("anotacao1"));
                     notas2.setText(documentSnapshot.getString("anotacao2"));
+                    notas3.setText(documentSnapshot.getString("anotacao3"));
+                    notas4.setText(documentSnapshot.getString("anotacao4"));
+                    notas5.setText(documentSnapshot.getString("anotacao5"));
+                    notas6.setText(documentSnapshot.getString("anotacao6"));
                 }
             }
         });
-
-
 
         //barra inferior
         ImageButton anota = findViewById(R.id.anota);
@@ -160,5 +150,10 @@ public class Anotacoes extends AppCompatActivity {
         notas4 = findViewById(R.id.nota4);
         notas5 = findViewById(R.id.nota5);
         notas6 = findViewById(R.id.nota6);
+    }
+    private void abrirAnotacao(int notaId) {
+        Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
+        intent.putExtra("notaId", notaId);
+        startActivity(intent);
     }
 }
