@@ -68,13 +68,6 @@
         app:cs_progress="70"
         app:cs_use_custom_radii="false" />
 
-    <View
-        android:layout_width="13dp"
-        android:layout_height="23dp"
-        android:layout_marginLeft="195dp"
-        android:layout_marginTop="179dp"
-        android:background="#821d0d" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="180dp"
@@ -103,7 +96,7 @@
         android:layout_marginTop="450dp">
 
         <ImageButton
-            android:id="@+id/button1"
+            android:id="@+id/inicioMenst"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_row="0"
@@ -113,7 +106,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/circular_button_red_background"
+            android:background="@drawable/circular_button_background"
             android:contentDescription="Voltar"
             android:onClick="onImageButtonClick"
             android:scaleType="fitCenter"
@@ -136,7 +129,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/faseCiclo"
             android:layout_width="100dp"
             android:layout_height="97dp"
             android:layout_row="0"
