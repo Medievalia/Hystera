@@ -42,7 +42,7 @@ public class Perfil extends AppCompatActivity {
         cicloEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Cadastrar4.class);
+                Intent intent = new Intent(Perfil.this, Cadastrar3.class);
                 startActivity(intent);
             }
         });

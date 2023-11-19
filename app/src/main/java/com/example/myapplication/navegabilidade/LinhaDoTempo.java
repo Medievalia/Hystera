@@ -1,6 +1,5 @@
 package com.example.myapplication.navegabilidade;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,10 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,7 +23,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class LinhaDoTempo extends AppCompatActivity {
@@ -37,6 +31,7 @@ public class LinhaDoTempo extends AppCompatActivity {
     String proximaMenstruacao;
     String today;
     CircularSeekBar seekBar;
+    int diasDoCiclo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +79,6 @@ public class LinhaDoTempo extends AppCompatActivity {
             }
         });
 
-
-
         ImageButton menu = findViewById(R.id.menu);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +88,24 @@ public class LinhaDoTempo extends AppCompatActivity {
             }
         });
 
-        // Chamar método para buscar e calcular a próxima menstruação
+        ImageButton inicioMenst = findViewById(R.id.inicioMenst);
+        inicioMenst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinhaDoTempo.this, Cadastrar3.class);
+                startActivity(intent);
+            }
+        });
+
+        Button mediaCiclo = findViewById(R.id.mediaCiclo);
+        mediaCiclo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinhaDoTempo.this, Cadastrar4.class);
+                startActivity(intent);
+            }
+        });
+
         buscarDataUltimaMenstruacao();
     }
 
@@ -107,11 +117,16 @@ public class LinhaDoTempo extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
                             String ultimaMenstruacao = documentSnapshot.getString("UltimaMenstruacao");
-                            int diasDoCiclo = documentSnapshot.getLong("diasCiclo").intValue();
+                            diasDoCiclo = documentSnapshot.getLong("diasCiclo").intValue();
                             String stringDiasDoCiclo = Integer.toString(diasDoCiclo);
 
                             proximaMenstruacao = calcularProximaMenstruacao(ultimaMenstruacao, diasDoCiclo);
                             today = calcularDataDeHoje();
+                            String dia = calcularDiaDoCiclo(ultimaMenstruacao, today);
+
+                            String faseDoCiclo = determinarFaseDoCiclo(ultimaMenstruacao, proximaMenstruacao, today);
+                            Button buttonFaseCiclo = findViewById(R.id.faseCiclo);
+                            buttonFaseCiclo.setText(faseDoCiclo + "\n" + dia);
 
                             TextView textViewProximaMenstruacao = findViewById(R.id.proximaMenst);
                             TextView textViewDiasCiclo = findViewById(R.id.mediaCiclo);
@@ -171,15 +186,12 @@ public class LinhaDoTempo extends AppCompatActivity {
             long diferencaMilissegundos = proximaMenstruacaoDate.getTime() - hojeDate.getTime();
             long diferencaDias = diferencaMilissegundos / (1000 * 60 * 60 * 24); // Converte para dias
 
-            // Se a diferença for negativa, o período já começou
             if (diferencaDias >= 0) {
-                // Seu seekBar tem um máximo de 100, ajuste o progresso conforme necessário
                 int progresso = (int) (100 - diferencaDias);
                 seekBar.setProgress(progresso);
             }
         } catch (ParseException e) {
             e.printStackTrace();
-            // Lida com o erro de análise, se necessário
         }
     }
 
@@ -206,5 +218,58 @@ public class LinhaDoTempo extends AppCompatActivity {
 
         Date dataDeHoje = calendar.getTime();
         return dateFormat.format(dataDeHoje);
+    }
+
+    private String determinarFaseDoCiclo(String ultimaMenstruacao, String proximaMenstruacao, String today) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        try {
+            Date ultimaMenstruacaoDate = dateFormat.parse(ultimaMenstruacao);
+            Date proximaMenstruacaoDate = dateFormat.parse(proximaMenstruacao);
+            Date todayDate = dateFormat.parse(today);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(ultimaMenstruacaoDate);
+            cal.add(Calendar.DAY_OF_MONTH, diasDoCiclo - 14);
+            Date diaPeriodoFertil = cal.getTime();
+
+            cal.setTime(diaPeriodoFertil);
+            cal.add(Calendar.DAY_OF_MONTH, -1);
+            Date umDiaAntesPeriodoFertil = cal.getTime();
+            cal.add(Calendar.DAY_OF_MONTH, 3);
+            Date umDiaDepoisPeriodoFertil = cal.getTime();
+
+            if (todayDate.after(umDiaAntesPeriodoFertil) && todayDate.before(umDiaDepoisPeriodoFertil)) {
+                return "Período Fértil";
+            } else if (todayDate.after(umDiaDepoisPeriodoFertil) && todayDate.before(proximaMenstruacaoDate)) {
+                return "Fase Lútea";
+            } else {
+                return "Fase Folicular";
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Erro ao determinar a fase do ciclo";
+        }
+    }
+
+    private String calcularDiaDoCiclo(String ultimaMenstruacao, String today) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        try {
+            Date ultimaMenstruacaoDate = dateFormat.parse(ultimaMenstruacao);
+            Date todayDate = dateFormat.parse(today);
+
+            long diferencaMilissegundos = todayDate.getTime() - ultimaMenstruacaoDate.getTime();
+            long diferencaDias = diferencaMilissegundos / (1000 * 60 * 60 * 24);
+
+            int diaDoCiclo = (int) diferencaDias + 1;
+
+            String sufixo = "º";
+
+            return diaDoCiclo + sufixo + " dia do ciclo";
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Erro ao calcular o dia do ciclo";
+        }
     }
 }
