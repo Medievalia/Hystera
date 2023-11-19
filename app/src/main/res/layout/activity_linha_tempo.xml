@@ -11,13 +11,14 @@
 
         <ImageButton
             android:id="@+id/button_perfil"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_gravity="left"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/circular_button_background"
             android:contentDescription="Perfil"
             android:onClick="onImageButtonClick"
@@ -29,23 +30,23 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
-        android:lineSpacingExtra="8dp"
+        android:lineSpacingExtra="5dp"
         android:text="Seu ciclo"
         android:textColor="#8A50FF"
-        android:textSize="35sp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <me.tankery.lib.circularseekbar.CircularSeekBar
         android:id="@+id/seekbar"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        app:cs_circle_color="#74C9FD"
-        android:layout_marginTop="180dp"
+        android:layout_width="281dp"
+        android:layout_height="259dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        app:cs_circle_color="#74C9FD"
         app:cs_circle_fill="#F1F1F1"
         app:cs_circle_progress_color="#8A50FF"
         app:cs_circle_stroke_width="20dp"
@@ -69,11 +70,11 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="127dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="240dp"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="120dp"
+        android:layout_marginTop="215dp"
         android:src="@drawable/logo" />
 
     <TextView
@@ -96,14 +97,15 @@
 
         <ImageButton
             android:id="@+id/button1"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_gravity="left"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/circular_button_background"
             android:contentDescription="Voltar"
             android:onClick="onImageButtonClick"
@@ -112,18 +114,18 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="137dp"
+            android:layout_width="130dp"
             android:layout_height="61dp"
             android:layout_row="0"
             android:layout_column="0"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="55dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/kurale"
             android:gravity="center"
-            android:lineSpacingExtra="8dp"
+            android:lineSpacingExtra="0dp"
             android:text="Incio da mestruação"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <Button
@@ -132,47 +134,58 @@
             android:layout_height="97dp"
             android:layout_row="0"
             android:layout_column="2"
-            android:layout_gravity="left"
+            android:layout_gravity="top"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginTop="8dp"
+            android:text="Fase do ciclo:"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:gravity="top|center"
+            android:textStyle="bold"
             android:background="#F1F1F1"/>
 
         <Button
             android:id="@+id/mediaCiclo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_row="0"
-            android:layout_column="5"
+            android:layout_column="3"
             android:layout_gravity="left"
-            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/circular_button_background"
+            android:background="@drawable/circular_button_blue_background"
             android:contentDescription="Voltar"
             android:onClick="onImageButtonClick"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="124dp"
             android:layout_height="72dp"
             android:layout_row="0"
-            android:layout_column="5"
-            android:layout_marginTop="70dp"
+            android:layout_column="3"
+            android:layout_marginTop="55dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/kurale"
             android:gravity="center"
-            android:lineSpacingExtra="8dp"
-            android:text="Média do ciclo"
+            android:lineSpacingExtra="0dp"
+            android:text="Média do
+            ciclo"
             android:textColor="@color/black"
-            android:textSize="21sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </GridLayout>
 
     <GridLayout
-        android:layout_width="350dp"
-        android:layout_height="75dp"
+        android:layout_width="450dp"
+        android:layout_height="77dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="730dp"
+        android:layout_marginTop="660dp"
         android:background="@color/white"
         android:gravity="center">
 
@@ -184,7 +197,8 @@
             android:layout_column="0"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:background="@color/white"
             android:src="@drawable/bot_anota" />
 
@@ -195,6 +209,8 @@
             android:layout_row="0"
             android:layout_column="1"
             android:layout_centerInParent="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:src="@drawable/bot_calendario" />
@@ -206,6 +222,7 @@
             android:layout_row="0"
             android:layout_column="2"
             android:layout_centerInParent="true"
+            android:layout_marginLeft="7dp"
             android:layout_marginTop="10dp"
             android:background="@color/white"
             android:src="@drawable/utero"/>
@@ -217,6 +234,7 @@
             android:layout_row="0"
             android:layout_column="3"
             android:layout_marginTop="12dp"
+            android:layout_marginLeft="25dp"
             app:cs_circle_color="#74C9FD"
             app:cs_circle_fill="@color/white"
             app:cs_circle_progress_color="#8A50FF"
@@ -228,12 +246,13 @@
 
         <ImageButton
             android:id="@+id/menu"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
+            android:layout_width="75dp"
+            android:layout_height="60dp"
             android:layout_row="0"
             android:layout_column="4"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:background="@color/white"
             android:src="@drawable/bot_notifica" />
     </GridLayout>

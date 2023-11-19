@@ -10,8 +10,8 @@
         android:layout_height="100dp">
         <ImageButton
             android:id="@+id/back_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_row="0"
             android:layout_column="0"
             android:layout_gravity="left"
@@ -25,11 +25,50 @@
             android:src="@drawable/arrow_back" />
     </GridLayout>
 
+
+        <ImageButton
+            android:id="@+id/mais_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_marginLeft="100dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="500dp"
+            android:background="@drawable/bot_o_mais_"/>
+
+        <ImageButton
+            android:id="@+id/menos_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_marginLeft="270dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="500dp"
+            android:background="@drawable/bot_o_menos"/>
+
+        <ImageButton
+            android:id="@+id/diasmens_button"
+            android:layout_width="115dp"
+            android:layout_height="40dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="left"
+            android:layout_marginLeft="150dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="500dp"
+            android:background="#ffffff"
+            />
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="65dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
@@ -38,14 +77,61 @@
         android:layout_marginEnd="10dp"
         android:text="Quanto tempo dura o seu ciclo?"
         android:textColor="#8A50FF"
-        android:textSize="35sp"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:layout_marginStart="62dp"
+            android:text="Normalmente um ciclo dura de 24 a 38 dias"
+            android:textColor="#74C9FD"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="440dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="E sua menstruação?"
+            android:textColor="#8A50FF"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginBottom="0dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:layout_marginStart="50dp"
+        android:text="Normalmente a menstruação dura de 3 a 6 dias"
+        android:textColor="#74C9FD"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <me.tankery.lib.circularseekbar.CircularSeekBar
         android:id="@+id/seekbar"
         android:layout_width="240dp"
         android:layout_height="240dp"
-        android:layout_centerInParent="true"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="170dp"
         app:cs_circle_color="#74C9FD"
         app:cs_circle_fill="@color/white"
         app:cs_circle_progress_color="#8A50FF"
@@ -72,36 +158,19 @@
         android:id="@+id/Dias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="265dp"
+        android:layout_marginLeft="143dp"
         android:fontFamily="@font/kurale"
         android:text="28 dias"
         android:textColor="#8A50FF"
         android:textSize="40dp" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="550dp">
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/kurale"
-            android:gravity="center"
-            android:lineSpacingExtra="8dp"
-            android:text="Normalmente um ciclo dura de 24 a 38 dias"
-            android:textColor="#8A50FF"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-    </GridLayout>
 
     <GridLayout
         android:id="@+id/gridLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="650dp"
         android:columnCount="2"
         android:rowCount="1">
 
