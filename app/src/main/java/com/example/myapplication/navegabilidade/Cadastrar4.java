@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import android.support.annotation.NonNull;
@@ -27,25 +28,26 @@ public class Cadastrar4 extends AppCompatActivity {
     private CircularSeekBar progressoCiclo;
     private boolean longoMensagemMostrada = false;
     private boolean curtoMensagemMostrada = false;
-    int diasDoCiclo = 0;
+    int diasCiclo;
     String usuarioId;
-    private int diasMenstruais = 5;
+    int diasSangramento;
     private Button diasMenstruaisButton;
+    private TextView diasTextView;
+    private CircularSeekBar seekBar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_3);
         ImageButton voltar = findViewById(R.id.back_button);
 
-        CircularSeekBar seekBar = findViewById(R.id.seekbar);
-        TextView diasTextView = findViewById(R.id.Dias);
-
+        seekBar = findViewById(R.id.seekbar);
+        diasTextView = findViewById(R.id.Dias);
         diasMenstruaisButton = findViewById(R.id.diasmens_button);
         diasMenstruaisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Exibir mensagem com o número de dias menstruais
-                String mensagem = "Dias menstruais: " + diasMenstruais;
+                String mensagem = "Dias menstruais: " + diasSangramento;
                 Toast.makeText(getApplicationContext(), mensagem, Toast.LENGTH_SHORT).show();
             }
         });
@@ -54,14 +56,16 @@ public class Cadastrar4 extends AppCompatActivity {
             @Override
             public void onProgressChanged(CircularSeekBar circularSeekBar, float progress, boolean fromUser) {
                 int dias = (int) ((progress / 100) * 50);
-                diasDoCiclo = dias;
+                diasCiclo = dias;
 
                 if (dias >= 45 && !longoMensagemMostrada) {
                     Toast.makeText(Cadastrar4.this, "Ciclo muito longo, é importante consultar um especialista", Toast.LENGTH_LONG).show();
                     longoMensagemMostrada = true;
+                    diasTextView.setText(dias + " dias");
                 } else if (dias < 14 && !curtoMensagemMostrada) {
                     Toast.makeText(Cadastrar4.this, "Ciclo muito curto, é importante consultar um especialista", Toast.LENGTH_LONG).show();
                     curtoMensagemMostrada = true;
+                    diasTextView.setText(dias + " dias");
                 } else {
                     diasTextView.setText(dias + " dias");
                 }
@@ -88,19 +92,24 @@ public class Cadastrar4 extends AppCompatActivity {
         seguinte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int diasCiclo = diasDoCiclo;
-                int diasSangramento = diasMenstruais;
-                salvarDadosCiclo(diasCiclo, diasSangramento);
+
+                String textoDiasCiclo = diasTextView.getText().toString();
+                String textoDiasMenstruais = diasMenstruaisButton.getText().toString();
+
+                int diasDoCiclo = extrairApenasDigitos(textoDiasCiclo);
+                int diasMenstruais = extrairApenasDigitos(textoDiasMenstruais);
+
+                salvarDadosCiclo(diasDoCiclo, diasMenstruais);
             }
         });
     }
 
-    private void salvarDadosCiclo(int diasCiclo, int diasSangramento) {
+    private void salvarDadosCiclo(int diasDoCiclo, int diasMenstruais) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> dadosParaAtualizar = new HashMap<>();
 
-        dadosParaAtualizar.put("diasCiclo", diasCiclo);
-        dadosParaAtualizar.put("diasSangramento", diasSangramento);
+        Map<String, Object> dadosParaAtualizar = new HashMap<>();
+        dadosParaAtualizar.put("diasSangramento", diasMenstruais);
+        dadosParaAtualizar.put("diasCiclo", diasDoCiclo);
 
         usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
@@ -109,7 +118,7 @@ public class Cadastrar4 extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "Dados salvos com sucesso!");
+                        Log.d("TAG", "Dias do ciclo atualizados com sucesso!");
                         Intent intent = new Intent(Cadastrar4.this, LinhaDoTempo.class);
                         startActivity(intent);
                         finish();
@@ -118,7 +127,7 @@ public class Cadastrar4 extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("TAG", "Erro ao salvar os dados.", e);
+                        Log.e("TAG", "Erro ao atualizar os dias.", e);
                     }
                 });
     }
@@ -129,18 +138,23 @@ public class Cadastrar4 extends AppCompatActivity {
     }
 
     public void aumentarDiasMenstruais(View view) {
-        if (diasMenstruais < 10) {
-            diasMenstruais++;
-            // Atualizar o texto no Button
-            diasMenstruaisButton.setText(diasMenstruais + " dias");
+        if (diasSangramento < 10) {
+            diasSangramento++;
+            // Atualizar o texto no TextView
+            diasMenstruaisButton.setText(diasSangramento + " dias");
         }
     }
 
     public void diminuirDiasMenstruais(View view) {
-        if (diasMenstruais > 1) {
-            diasMenstruais--;
-            // Atualizar o texto no Button
-            diasMenstruaisButton.setText(diasMenstruais + " dias");
+        if (diasSangramento > 1) {
+            diasSangramento--;
+            // Atualizar o texto no TextView
+            diasMenstruaisButton.setText(diasSangramento + " dias");
         }
+    }
+
+    private int extrairApenasDigitos(String texto) {
+        String apenasDigitos = texto.replaceAll("[^0-9]", "");
+        return Integer.parseInt(apenasDigitos);
     }
 }
