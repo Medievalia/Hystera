@@ -67,7 +67,7 @@
         android:id="@+id/editTextSenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:maxLines="1"
         android:padding="15sp"
         android:textColor="@color/purple_500"

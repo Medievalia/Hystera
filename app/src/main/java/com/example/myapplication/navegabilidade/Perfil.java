@@ -78,7 +78,10 @@ public class Perfil extends AppCompatActivity {
                 if(documentSnapshot != null){
                     nomeUsuario.setText(documentSnapshot.getString("nome"));
                     emailUsuario.setText(email);
-                    numeroUsuario.setText(documentSnapshot.getString("celular"));
+
+                    String numeroTelefone = documentSnapshot.getString("celular");
+                    String numeroFormatado = Mask.addMask(numeroTelefone, "(##)####-####");
+                    numeroUsuario.setText(numeroFormatado);
                     metodoContraUsuario.setText(documentSnapshot.getString("metodo"));
 
                 }

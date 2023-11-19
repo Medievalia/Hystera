@@ -42,6 +42,9 @@ public class CriarConta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criacao_conta);
 
+        final EditText campo_celular = (EditText) findViewById(R.id.edit_celular);
+        campo_celular.addTextChangedListener(Mask.insert("(##)#####-####", campo_celular));
+
         AppCompatButton cadastrar =  findViewById(R.id.cadastrar);
 
         IniciarComponentes();

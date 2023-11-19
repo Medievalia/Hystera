@@ -135,6 +135,7 @@
             android:fontFamily="@font/kurale"
             android:gravity="center_horizontal"
             android:text=""
+            android:inputType="textEmailAddress"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="20dp"

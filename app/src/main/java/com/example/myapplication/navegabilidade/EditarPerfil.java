@@ -33,6 +33,9 @@ public class EditarPerfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
 
+        final EditText campo_celular = (EditText) findViewById(R.id.txt_num);
+        campo_celular.addTextChangedListener(Mask.insert("(##)#####-####", campo_celular));
+
         AppCompatButton salvar = findViewById(R.id.btn_pefil_salvar);
         IniciarComponentes();
 
