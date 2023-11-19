@@ -29,14 +29,21 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import me.tankery.lib.circularseekbar.CircularSeekBar;
+
 public class LinhaDoTempo extends AppCompatActivity {
     FirebaseFirestore db;
     String usuarioId;
+    String proximaMenstruacao;
+    String today;
+    CircularSeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linha_tempo);
+
+        seekBar = findViewById(R.id.seekbar);
 
         db = FirebaseFirestore.getInstance();
         usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -65,8 +72,8 @@ public class LinhaDoTempo extends AppCompatActivity {
                             int diasDoCiclo = documentSnapshot.getLong("diasCiclo").intValue();
                             String stringDiasDoCiclo = Integer.toString(diasDoCiclo);
 
-                            String proximaMenstruacao = calcularProximaMenstruacao(ultimaMenstruacao, diasDoCiclo);
-                            String today = calcularDataDeHoje();
+                            proximaMenstruacao = calcularProximaMenstruacao(ultimaMenstruacao, diasDoCiclo);
+                            today = calcularDataDeHoje();
 
                             TextView textViewProximaMenstruacao = findViewById(R.id.proximaMenst);
                             TextView textViewDiasCiclo = findViewById(R.id.mediaCiclo);
@@ -78,6 +85,8 @@ public class LinhaDoTempo extends AppCompatActivity {
 
                             if (proximaMenstruacao.compareTo(today) < 0) {
                                 atualizarDataUltimaMenstruacao(proximaMenstruacao);
+                            } else {
+                                atualizarSeekBar();
                             }
                         } else {
                             Log.d("TAG", "Documento não encontrado");
@@ -111,6 +120,29 @@ public class LinhaDoTempo extends AppCompatActivity {
                         Log.e("TAG", "Erro ao atualizar a última menstruação", e);
                     }
                 });
+    }
+
+    private void atualizarSeekBar() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Calendar calendar = Calendar.getInstance();
+
+        try {
+            Date proximaMenstruacaoDate = dateFormat.parse(proximaMenstruacao);
+            Date hojeDate = dateFormat.parse(today);
+
+            long diferencaMilissegundos = proximaMenstruacaoDate.getTime() - hojeDate.getTime();
+            long diferencaDias = diferencaMilissegundos / (1000 * 60 * 60 * 24); // Converte para dias
+
+            // Se a diferença for negativa, o período já começou
+            if (diferencaDias >= 0) {
+                // Seu seekBar tem um máximo de 100, ajuste o progresso conforme necessário
+                int progresso = (int) (100 - diferencaDias);
+                seekBar.setProgress(progresso);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Lida com o erro de análise, se necessário
+        }
     }
 
     private String calcularProximaMenstruacao(String ultimaMenstruacao, int diasDoCiclo) {

@@ -62,11 +62,18 @@
         app:cs_move_outside_circle="true"
         app:cs_negative_enabled="false"
         app:cs_pointer_angle="0"
-        app:cs_pointer_color="#8A50FF"
+        app:cs_pointer_color="#821d0d"
         app:cs_pointer_halo_width="40dp"
         app:cs_pointer_stroke_width="20dp"
         app:cs_progress="70"
         app:cs_use_custom_radii="false" />
+
+    <View
+        android:layout_width="13dp"
+        android:layout_height="23dp"
+        android:layout_marginLeft="195dp"
+        android:layout_marginTop="179dp"
+        android:background="#821d0d" />
 
     <ImageView
         android:id="@+id/logo"
@@ -106,7 +113,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/circular_button_background"
+            android:background="@drawable/circular_button_red_background"
             android:contentDescription="Voltar"
             android:onClick="onImageButtonClick"
             android:scaleType="fitCenter"
@@ -138,7 +145,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="8dp"
-            android:text="Fase do ciclo:"
+            android:text="Fase do ciclo"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:gravity="top|center"
