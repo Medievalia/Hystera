@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +27,10 @@ public class Cadastrar4 extends AppCompatActivity {
     private CircularSeekBar progressoCiclo;
     private boolean longoMensagemMostrada = false;
     private boolean curtoMensagemMostrada = false;
-
     int diasDoCiclo = 0;
-
     String usuarioId;
+    private int diasMenstruais = 5;
+    private Button diasMenstruaisButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,16 @@ public class Cadastrar4 extends AppCompatActivity {
 
         CircularSeekBar seekBar = findViewById(R.id.seekbar);
         TextView diasTextView = findViewById(R.id.Dias);
+
+        diasMenstruaisButton = findViewById(R.id.diasmens_button);
+        diasMenstruaisButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Exibir mensagem com o número de dias menstruais
+                String mensagem = "Dias menstruais: " + diasMenstruais;
+                Toast.makeText(getApplicationContext(), mensagem, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         seekBar.setOnSeekBarChangeListener(new CircularSeekBar.OnCircularSeekBarChangeListener() {
             @Override
@@ -48,9 +59,7 @@ public class Cadastrar4 extends AppCompatActivity {
                 if (dias >= 45 && !longoMensagemMostrada) {
                     Toast.makeText(Cadastrar4.this, "Ciclo muito longo, é importante consultar um especialista", Toast.LENGTH_LONG).show();
                     longoMensagemMostrada = true;
-                }
-
-                else if (dias < 14 && !curtoMensagemMostrada) {
+                } else if (dias < 14 && !curtoMensagemMostrada) {
                     Toast.makeText(Cadastrar4.this, "Ciclo muito curto, é importante consultar um especialista", Toast.LENGTH_LONG).show();
                     curtoMensagemMostrada = true;
                 } else {
@@ -71,38 +80,36 @@ public class Cadastrar4 extends AppCompatActivity {
         naoSeiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Define o texto como 28 dias quando "Não sei" é clicado
                 diasTextView.setText("28 dias");
             }
         });
 
-        AppCompatButton seguinte =  findViewById(R.id.btn_seguinte);
+        AppCompatButton seguinte = findViewById(R.id.btn_seguinte);
         seguinte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Salvar os dados na Firestore ao passar para a próxima tela
-                int dias = diasDoCiclo;
-                salvarDadosCiclo(dias);
+                int diasCiclo = diasDoCiclo;
+                int diasSangramento = diasMenstruais;
+                salvarDadosCiclo(diasCiclo, diasSangramento);
             }
         });
     }
 
-    // Método para salvar os dados do ciclo na Firestore
-    private void salvarDadosCiclo(int dias) {
+    private void salvarDadosCiclo(int diasCiclo, int diasSangramento) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
 
-        dadosParaAtualizar.put("diasCiclo", dias);
+        dadosParaAtualizar.put("diasCiclo", diasCiclo);
+        dadosParaAtualizar.put("diasSangramento", diasSangramento);
+
         usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
 
-        // Atualizar o documento com o novo campo usando merge para preservar os dados existentes
         documentReference.set(dadosParaAtualizar, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        // Ação de sucesso ao salvar os dados
-                        Log.d("TAG", "Dias do ciclo salvos com sucesso!");
+                        Log.d("TAG", "Dados salvos com sucesso!");
                         Intent intent = new Intent(Cadastrar4.this, LinhaDoTempo.class);
                         startActivity(intent);
                         finish();
@@ -111,16 +118,29 @@ public class Cadastrar4 extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Lidar com falhas ao salvar os dados
-                        Log.e("TAG", "Erro ao salvar dias do ciclo.", e);
+                        Log.e("TAG", "Erro ao salvar os dados.", e);
                     }
                 });
     }
 
     public void onImageButtonClick(View view) {
-        // Este método é chamado quando o ImageButton é clicado
         Intent intent = new Intent(Cadastrar4.this, Cadastrar3.class);
         startActivity(intent);
     }
-}
 
+    public void aumentarDiasMenstruais(View view) {
+        if (diasMenstruais < 10) {
+            diasMenstruais++;
+            // Atualizar o texto no Button
+            diasMenstruaisButton.setText(diasMenstruais + " dias");
+        }
+    }
+
+    public void diminuirDiasMenstruais(View view) {
+        if (diasMenstruais > 1) {
+            diasMenstruais--;
+            // Atualizar o texto no Button
+            diasMenstruaisButton.setText(diasMenstruais + " dias");
+        }
+    }
+}

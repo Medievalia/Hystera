@@ -26,42 +26,46 @@
     </GridLayout>
 
 
-        <ImageButton
-            android:id="@+id/mais_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginLeft="100dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="500dp"
-            android:background="@drawable/bot_o_mais_"/>
+    <ImageButton
+        android:id="@+id/mais_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_gravity="left"
+        android:layout_marginLeft="100dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/bot_o_mais_"
+        android:onClick="aumentarDiasMenstruais" />
 
-        <ImageButton
-            android:id="@+id/menos_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginLeft="270dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="500dp"
-            android:background="@drawable/bot_o_menos"/>
+    <ImageButton
+        android:id="@+id/menos_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_gravity="left"
+        android:layout_marginLeft="270dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="500dp"
+        android:background="@drawable/bot_o_menos"
+        android:onClick="diminuirDiasMenstruais" />
 
-        <ImageButton
-            android:id="@+id/diasmens_button"
-            android:layout_width="115dp"
-            android:layout_height="40dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginLeft="150dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="500dp"
-            android:background="#ffffff"
-            />
+    <Button
+        android:id="@+id/diasmens_button"
+        android:layout_width="115dp"
+        android:layout_height="40dp"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_gravity="left"
+        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="500dp"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:background="#ffffff" />
 
 
     <TextView
@@ -80,36 +84,36 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="400dp"
-            android:layout_marginBottom="0dp"
-            android:fontFamily="@font/kurale"
-            android:gravity="center"
-            android:lineSpacingExtra="8dp"
-            android:layout_marginStart="62dp"
-            android:text="Normalmente um ciclo dura de 24 a 38 dias"
-            android:textColor="#74C9FD"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="0dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:layout_marginStart="62dp"
+        android:text="Normalmente um ciclo dura de 24 a 38 dias"
+        android:textColor="#74C9FD"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="440dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/kurale"
-            android:gravity="center"
-            android:lineSpacingExtra="8dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="E sua menstruação?"
-            android:textColor="#8A50FF"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="440dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="E sua menstruação?"
+        android:textColor="#8A50FF"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView5"
