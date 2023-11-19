@@ -101,6 +101,57 @@ public class Anotacoes extends AppCompatActivity {
                 }
             }
         });
+
+
+
+        //barra inferior
+        ImageButton anota = findViewById(R.id.anota);
+        anota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Anotacoes.this, Anotacoes.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton calendario = findViewById(R.id.calendario);
+        calendario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Anotacoes.this, Calendario.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton utero = findViewById(R.id.utero);
+        utero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Anotacoes.this, Informacao.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        ImageButton menu = findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Anotacoes.this, Notificacoes.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton seekbar1 = findViewById(R.id.seekbar);
+        seekbar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Anotacoes.this, LinhaDoTempo.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     private void iniciarComponente(){
         notas1 = findViewById(R.id.nota1);

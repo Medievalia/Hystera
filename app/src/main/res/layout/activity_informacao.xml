@@ -249,21 +249,16 @@
             android:background="@color/white"
             android:src="@drawable/utero"/>
 
-        <me.tankery.lib.circularseekbar.CircularSeekBar
+        <ImageButton
             android:id="@+id/seekbar"
-            android:layout_width="65dp"
-            android:layout_height="54dp"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
             android:layout_row="0"
             android:layout_column="3"
-            android:layout_marginTop="12dp"
-            app:cs_circle_color="#74C9FD"
-            app:cs_circle_fill="@color/white"
-            app:cs_circle_progress_color="#8A50FF"
-            app:cs_circle_stroke_width="3dp"
-            app:cs_disable_pointer="true"
-            app:cs_pointer_color="#8A50FF"
-            app:cs_progress="70"
-            app:cs_use_custom_radii="false" />
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/seekbar"  />
 
         <ImageButton
             android:id="@+id/menu"

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="-5dp"
+        android:text="Calendário"
+        android:textColor="#8A50FF"
+        android:textSize="30sp" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@drawable/square_rounded_button_background"
+        android:columnCount="1"
+        android:rowCount="1">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:dateTextAppearance="@style/CalenderViewDateCustomText"
+            android:theme="@style/CustomCalendarView"
+            android:weekDayTextAppearance="@color/black" />
+
+    </GridLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/anota"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_anota" />
+
+        <ImageButton
+            android:id="@+id/calendario"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_calendario" />
+
+        <ImageButton
+            android:id="@+id/utero"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/utero"/>
+
+        <ImageButton
+            android:id="@+id/seekbar"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/seekbar"  />
+
+
+        <ImageButton
+            android:id="@+id/menu"
+            android:layout_width="75dp"
+            android:layout_height="60dp"
+            android:layout_row="0"
+            android:layout_column="4"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_notifica" />
+    </GridLayout>
+</LinearLayout>

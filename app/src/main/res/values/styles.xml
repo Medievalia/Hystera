@@ -10,4 +10,12 @@
         <item name="android:textColor">@color/calendar_date_selector</item>
     </style>
 
+    <style name="SelectedDateStyle">
+        <item name="android:textColor">#FF0000</item> <!-- Altere para a cor desejada -->
+    </style>
+
+    <style name="PeriodColorStyle">
+        <item name="android:textColor">#FF0000</item> <!-- Altere a cor conforme desejado -->
+    </style>
+
 </resources>

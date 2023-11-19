@@ -57,6 +57,44 @@ public class LinhaDoTempo extends AppCompatActivity {
             }
         });
 
+        ImageButton anota = findViewById(R.id.anota);
+        anota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinhaDoTempo.this, Anotacoes.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton calendario = findViewById(R.id.calendario);
+        calendario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinhaDoTempo.this, Calendario.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton utero = findViewById(R.id.utero);
+        utero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinhaDoTempo.this, Informacao.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        ImageButton menu = findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LinhaDoTempo.this, Notificacoes.class);
+                startActivity(intent);
+            }
+        });
+
         // Chamar método para buscar e calcular a próxima menstruação
         buscarDataUltimaMenstruacao();
     }
