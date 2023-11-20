@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +28,6 @@ import java.util.Map;
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class LinhaDoTempo extends AppCompatActivity {
-    Notificacoes notificacoes;
     FirebaseFirestore db;
     String usuarioId;
     String proximaMenstruacao;
@@ -190,8 +191,22 @@ public class LinhaDoTempo extends AppCompatActivity {
             if (diferencaDias >= 0) {
                 int progresso = (int) (100 - diferencaDias);
                 seekBar.setProgress(progresso);
-                notificacoes = new Notificacoes();
-                notificacoes.setDiasProxima(diferencaDias);
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                Map<String, Object> usuarios = new HashMap<>();
+
+                String diasProxima = String.valueOf(diferencaDias);
+                usuarios.put("diasProxima", diasProxima);
+
+                usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+                documentReference.set(usuarios, SetOptions.merge())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Ação de sucesso ao salvar os dados
+                                Log.d("TAG", "");
+                            }
+                        });
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -243,6 +258,21 @@ public class LinhaDoTempo extends AppCompatActivity {
             Date umDiaDepoisPeriodoFertil = cal.getTime();
 
             if (todayDate.after(umDiaAntesPeriodoFertil) && todayDate.before(umDiaDepoisPeriodoFertil)) {
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                Map<String, Object> usuarios = new HashMap<>();
+                String periodo = "Período Fértil";
+                usuarios.put("periodo", periodo);
+                usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+                documentReference.set(usuarios, SetOptions.merge())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Ação de sucesso ao salvar os dados
+                                Log.d("TAG", "");
+                            }
+                        });
                 return "Período Fértil";
             } else if (todayDate.after(umDiaDepoisPeriodoFertil) && todayDate.before(proximaMenstruacaoDate)) {
                 return "Fase Lútea";

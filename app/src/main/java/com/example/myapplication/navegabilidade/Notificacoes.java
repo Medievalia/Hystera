@@ -1,37 +1,56 @@
 package com.example.myapplication.navegabilidade;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.myapplication.R;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class Notificacoes extends AppCompatActivity {
-
-    private TextView notifica;
-
-    long diasProxima;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private TextView notifica, notifica2, ativar;
+    String diasProxima;
+    private boolean notificationsEnabled = true;
+    String usuarioID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notificacoes);
-        proximaMestruacao();
+
+        final Switch notificationSwitch = findViewById(R.id.notificationSwitch);
+        notificationSwitch.setChecked(notificationsEnabled);
+        notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                notificationsEnabled = isChecked;
+                if (notificationsEnabled == false) {
+                    notifica = findViewById(R.id.notifica);
+                    notifica.setText("");
+                    notifica2 = findViewById(R.id.notifica2);
+                    notifica2.setText("");
+                    ativar = findViewById(R.id.buttonShowNotification);
+                    ativar.setText("Ativar Notificações");
+                } else {
+                    ativar = findViewById(R.id.buttonShowNotification);
+                    ativar.setText("Desativar Notificações");
+                    onStart();
+                }
+            }
+        });
 
         ImageButton anota = findViewById(R.id.anota);
         anota.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +79,6 @@ public class Notificacoes extends AppCompatActivity {
             }
         });
 
-
         ImageButton menu = findViewById(R.id.menu);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,22 +97,31 @@ public class Notificacoes extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 
-    public void proximaMestruacao() {
-        diasProxima = getDiasProxima();
-        String notificaProxima = "Faltam " + diasProxima + " dias para a próxima menstruação";
-        notifica = findViewById(R.id.notifica);
-        notifica.setText(notificaProxima);
-    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-    public long getDiasProxima() {
-        return diasProxima;
-    }
+        DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                if (documentSnapshot != null) {
+                    diasProxima = (documentSnapshot.getString("diasProxima"));
+                    String notificaProxima = "Faltam " + diasProxima + " dias para a próxima menstruação";
+                    notifica = findViewById(R.id.notifica);
+                    notifica.setText(notificaProxima);
 
-    public void setDiasProxima(long diasProxima) {
-        this.diasProxima = diasProxima;
+                    String periodo = (documentSnapshot.getString("periodo"));
+                    if (periodo.equals("Período Fértil")) {
+                        notifica2 = findViewById(R.id.notifica2);
+                        notifica2.setText("Você está no seu periodo fértil");
+                    }
+                }
+            }
+        });
     }
 }
