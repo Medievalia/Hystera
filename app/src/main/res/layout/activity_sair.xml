@@ -53,7 +53,7 @@
 
         <!-- Botão 2 -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signInEmail"
+            android:id="@+id/continuar_acompanhando"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_columnWeight="1"

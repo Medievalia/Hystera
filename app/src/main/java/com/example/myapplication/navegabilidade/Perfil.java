@@ -29,6 +29,15 @@ public class Perfil extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
         iniciarComponente();
 
+        AppCompatButton sair = findViewById(R.id.btn_logoff);
+        sair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil.this, Sair.class);
+                startActivity(intent);
+            }
+        });
+
         AppCompatButton perfilEditar =  findViewById(R.id.btn_pefil_editar);
         perfilEditar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -26,7 +26,6 @@ import java.util.Map;
 
 public class EditarPerfil extends AppCompatActivity {
     private EditText edit_nome, edit_email, edit_celular, edit_metodo;
-    private Button btn_logoff;
     String[] mensagens = {"Preencha todos os campos", "Alteração realizada com sucesso!"};
     String usuarioId;
 
@@ -56,14 +55,6 @@ public class EditarPerfil extends AppCompatActivity {
                 } else {
                     salvarDados(v);
                 }
-            }
-        });
-
-        btn_logoff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfil.this, Sair.class);
-                startActivity(intent);
             }
         });
     }
@@ -111,7 +102,6 @@ public class EditarPerfil extends AppCompatActivity {
         edit_email = findViewById(R.id.txt_email);
         edit_celular = findViewById(R.id.txt_num);
         edit_metodo = findViewById(R.id.txt_metodo);
-        btn_logoff = findViewById(R.id.btn_logoff);
     }
 
     public void onImageButtonClick(View view) {
