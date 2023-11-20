@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -33,6 +34,24 @@ public class EditarPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
+
+        ImageButton ajuda = findViewById(R.id.help_button);
+        ajuda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditarPerfil.this, Ajuda.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton voltar = findViewById(R.id.voltar_button);
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditarPerfil.this, Perfil.class);
+                startActivity(intent);
+            }
+        });
 
         final EditText campo_celular = (EditText) findViewById(R.id.txt_num);
         campo_celular.addTextChangedListener(Mask.insert("(##)#####-####", campo_celular));

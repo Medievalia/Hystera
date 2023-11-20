@@ -33,6 +33,16 @@ public class Anotacoes1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anotacao1);
+        ImageButton voltar = findViewById(R.id.back_button);
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Anotacoes1.this, Anotacoes.class);
+                startActivity(intent);
+            }
+        });
+
 
         anotacaoEditText = findViewById(R.id.anotacao);
         int notaId = getIntent().getIntExtra("notaId", 0);

@@ -60,7 +60,7 @@
         android:layout_width="345dp"
         android:layout_height="75dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="750dp"
+        android:layout_marginTop="730dp"
         android:background="@color/white"
         android:gravity="center">
 
@@ -125,7 +125,7 @@
     <GridLayout
         android:id="@+id/component_2"
         android:layout_width="match_parent"
-        android:layout_height="104dp"
+        android:layout_height="92dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="626dp"
@@ -149,10 +149,10 @@
             android:layout_below="@id/notificationSwitch"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:textColor="#8A50FF"
             android:background="#F1F1F1"
-            android:textSize="20dp"
-            android:text="Desativar notificações" />
+            android:text="Desativar notificações"
+            android:textColor="#8A50FF"
+            android:textSize="20dp" />
 
         <ImageButton
             android:id="@+id/tic0"

@@ -44,7 +44,8 @@ public class Notificacoes extends AppCompatActivity {
                     notifica2.setText("");
                     ativar = findViewById(R.id.buttonShowNotification);
                     ativar.setText("Ativar Notificações");
-                } else {
+                }
+                else{
                     ativar = findViewById(R.id.buttonShowNotification);
                     ativar.setText("Desativar Notificações");
                     onStart();
@@ -125,3 +126,5 @@ public class Notificacoes extends AppCompatActivity {
         });
     }
 }
+
+

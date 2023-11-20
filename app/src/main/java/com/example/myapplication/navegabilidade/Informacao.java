@@ -33,6 +33,15 @@ public class Informacao extends AppCompatActivity {
         Button pilula;
         Button endrometriose;
 
+        ImageButton perfil =  findViewById(R.id.perfil);
+        perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Informacao.this, Anotacoes.class);
+                startActivity(intent);
+            }
+        });
+
         coletor = findViewById(R.id.coletor);
         coletor.setOnClickListener(new View.OnClickListener() {
             @Override
