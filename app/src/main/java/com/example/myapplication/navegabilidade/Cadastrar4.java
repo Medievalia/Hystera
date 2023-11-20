@@ -19,7 +19,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import android.support.annotation.NonNull;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
@@ -114,20 +120,41 @@ public class Cadastrar4 extends AppCompatActivity {
         usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
 
-        documentReference.set(dadosParaAtualizar, SetOptions.merge())
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "Dias do ciclo atualizados com sucesso!");
-                        Intent intent = new Intent(Cadastrar4.this, LinhaDoTempo.class);
-                        startActivity(intent);
-                        finish();
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            String ultimaMenstruacao = documentSnapshot.getString("UltimaMenstruacao");
+                            String proximaMenstruacao = calcularProximaMenstruacao(ultimaMenstruacao, diasDoCiclo);
+
+                            dadosParaAtualizar.put("ProximaMenstruacao", proximaMenstruacao);
+
+                            documentReference.set(dadosParaAtualizar, SetOptions.merge())
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d("TAG", "Dias do ciclo e próxima menstruação atualizados com sucesso!");
+                                            Intent intent = new Intent(Cadastrar4.this, LinhaDoTempo.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e("TAG", "Erro ao atualizar os dias e a próxima menstruação.", e);
+                                        }
+                                    });
+                        } else {
+                            Log.d("TAG", "Documento não encontrado");
+                        }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("TAG", "Erro ao atualizar os dias.", e);
+                        Log.e("TAG", "Erro ao buscar a última menstruação.", e);
                     }
                 });
     }
@@ -156,5 +183,28 @@ public class Cadastrar4 extends AppCompatActivity {
     private int extrairApenasDigitos(String texto) {
         String apenasDigitos = texto.replaceAll("[^0-9]", "");
         return Integer.parseInt(apenasDigitos);
+    }
+
+    private String calcularProximaMenstruacao(String ultimaMenstruacao, int diasDoCiclo) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        try {
+            // Convertendo a última menstruação para o formato Date
+            Date ultimaData = dateFormat.parse(ultimaMenstruacao);
+
+            // Usando um calendário para calcular a próxima menstruação
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(ultimaData);
+
+            // Adicionando a duração do ciclo à última menstruação
+            calendar.add(Calendar.DAY_OF_MONTH, diasDoCiclo);
+
+            // Convertendo a data calculada de volta para o formato String
+            return dateFormat.format(calendar.getTime());
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Erro ao calcular a próxima menstruação";
+        }
     }
 }
