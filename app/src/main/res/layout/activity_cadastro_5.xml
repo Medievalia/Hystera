@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
         android:text="Como você deseja se cadastrar?"
@@ -58,17 +59,6 @@
         app:layout_constraintTop_toBottomOf="@id/textView">
 
         <!-- Botão 1 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signInGoogle"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/fundo_botton_blue"
-            android:fontFamily="@font/kurale"
-            android:text="Inscreva-se com o Google"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
 
         <!-- Botão 2 -->
         <androidx.appcompat.widget.AppCompatButton
@@ -76,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="74dp"
             android:layout_marginBottom="30dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
             android:text="Inscreva-se com o e-mail"
