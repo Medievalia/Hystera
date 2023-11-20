@@ -70,8 +70,8 @@
         android:layout_width="411dp"
         android:layout_height="76dp">
 
-        <TextView
-            android:id="@+id/textView2"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sair"
             android:layout_width="412dp"
             android:layout_height="69dp"
             android:layout_row="0"
@@ -79,6 +79,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/kurale"
             android:gravity="center"
+            android:background="@color/white"
             android:text="Realmente sair"
             android:textColor="#8A50FF"
             android:textSize="25sp"
