@@ -15,11 +15,11 @@ import com.example.myapplication.R;
 
 public class Informacao extends AppCompatActivity {
 
-    String link1 = "pudim.com.br";
-    String link2 = "pudim.com.br";
-    String link3 = "pudim.com.br";
-    String link4 = "pudim.com.br";
-    String link5 = "pudim.com.br";
+    String link1 = "https://cinge.com.br/2022/08/08/coletor-menstrual-ou-absorvente-qual-o-melhor/";
+    String link2 = "https://mundoeducacao.uol.com.br/sexualidade/ciclo-menstrual.htm";
+    String link3 = "https://www.pantys.com.br/blogs/pantys/absorvente-ecologico-vs-descartavel-5-diferencas";
+    String link4 = "https://hilab.com.br/blog/pilula-dia-seguinte/";
+    String link5 = "https://bvsms.saude.gov.br/endometriose/#:~:text=A%20endometriose%20%C3%A9%20uma%20doen%C3%A7a,geral%2C%20devem%20ser%20retiradas%20cirurgicamente.";
 
 
     @Override
@@ -37,15 +37,12 @@ public class Informacao extends AppCompatActivity {
         coletor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(link1));
-
-                // Verificar se existe um aplicativo para abrir o link antes de iniciar o Intent
-                if (intent.resolveActivity(getPackageManager()) != null) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link1));
                     startActivity(intent);
-                } else {
-                    // Caso não haja nenhum aplicativo para abrir o link, você pode exibir uma mensagem ou tratar de outra maneira
-                    Toast.makeText(getApplicationContext(), "Nenhum aplicativo disponível para abrir o link.", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Erro ao abrir o link.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -54,15 +51,12 @@ public class Informacao extends AppCompatActivity {
         monitorar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(link2));
-
-                // Verificar se existe um aplicativo para abrir o link antes de iniciar o Intent
-                if (intent.resolveActivity(getPackageManager()) != null) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link2));
                     startActivity(intent);
-                } else {
-                    // Caso não haja nenhum aplicativo para abrir o link, você pode exibir uma mensagem ou tratar de outra maneira
-                    Toast.makeText(getApplicationContext(), "Nenhum aplicativo disponível para abrir o link.", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Erro ao abrir o link.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -71,15 +65,12 @@ public class Informacao extends AppCompatActivity {
         reutilizavel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(link3));
-
-                // Verificar se existe um aplicativo para abrir o link antes de iniciar o Intent
-                if (intent.resolveActivity(getPackageManager()) != null) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link3));
                     startActivity(intent);
-                } else {
-                    // Caso não haja nenhum aplicativo para abrir o link, você pode exibir uma mensagem ou tratar de outra maneira
-                    Toast.makeText(getApplicationContext(), "Nenhum aplicativo disponível para abrir o link.", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Erro ao abrir o link.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -88,15 +79,12 @@ public class Informacao extends AppCompatActivity {
         pilula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(link4));
-
-                // Verificar se existe um aplicativo para abrir o link antes de iniciar o Intent
-                if (intent.resolveActivity(getPackageManager()) != null) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link4));
                     startActivity(intent);
-                } else {
-                    // Caso não haja nenhum aplicativo para abrir o link, você pode exibir uma mensagem ou tratar de outra maneira
-                    Toast.makeText(getApplicationContext(), "Nenhum aplicativo disponível para abrir o link.", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Erro ao abrir o link.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -105,15 +93,12 @@ public class Informacao extends AppCompatActivity {
         endrometriose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(link5));
-
-                // Verificar se existe um aplicativo para abrir o link antes de iniciar o Intent
-                if (intent.resolveActivity(getPackageManager()) != null) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link5));
                     startActivity(intent);
-                } else {
-                    // Caso não haja nenhum aplicativo para abrir o link, você pode exibir uma mensagem ou tratar de outra maneira
-                    Toast.makeText(getApplicationContext(), "Nenhum aplicativo disponível para abrir o link.", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Erro ao abrir o link.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
