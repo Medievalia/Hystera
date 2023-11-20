@@ -4,31 +4,12 @@
     android:layout_height="match_parent"
     android:background="#F1F1F1">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp">
 
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="50dp"
-            android:background="@drawable/circular_button_background"
-            android:contentDescription="Voltar"
-            android:onClick="onImageButtonClick"
-            android:scaleType="fitCenter"
-            android:src="@drawable/arrow_back" />
-    </GridLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="40dp"
         android:fontFamily="@font/kurale"
@@ -42,7 +23,7 @@
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
-        android:layout_height="383dp"
+        android:layout_height="500dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:columnCount="1"
@@ -52,23 +33,21 @@
             android:id="@+id/notifica"
             android:layout_width="match_parent"
             android:layout_height="97dp"
+            android:layout_row="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_marginBottom="30dp"
             android:background="#D9D9D9"
             android:fontFamily="@font/kurale" />
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="375dp"
-        android:layout_height="110dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/notifica2"
             android:layout_width="match_parent"
             android:layout_height="97dp"
+            android:layout_row="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
+            android:layout_marginTop="120dp"
             android:layout_marginBottom="30dp"
             android:background="#D9D9D9"
             android:fontFamily="@font/kurale" />
@@ -77,7 +56,10 @@
             android:id="@+id/notifica3"
             android:layout_width="match_parent"
             android:layout_height="97dp"
+            android:layout_row="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
+            android:layout_marginTop="240dp"
             android:layout_marginBottom="30dp"
             android:background="#D9D9D9"
             android:fontFamily="@font/kurale" />
@@ -86,17 +68,20 @@
             android:id="@+id/notifica4"
             android:layout_width="match_parent"
             android:layout_height="97dp"
+            android:layout_row="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
+            android:layout_marginTop="360dp"
             android:layout_marginBottom="30dp"
             android:background="#D9D9D9"
             android:fontFamily="@font/kurale" />
     </GridLayout>
 
     <GridLayout
-        android:layout_width="350dp"
+        android:layout_width="345dp"
         android:layout_height="75dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="750dp"
         android:background="@color/white"
         android:gravity="center">
 
@@ -160,12 +145,11 @@
 
     <GridLayout
         android:id="@+id/component_2"
-        android:layout_width="374dp"
-        android:layout_height="84dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="564dp"
+        android:layout_marginTop="700dp"
         android:background="#F1F1F1">
 
         <ImageButton
@@ -211,36 +195,6 @@
             android:contentDescription="Voltar"
             android:onClick="onImageButtonClick"
             android:scaleType="fitCenter" />
-
-        <ImageButton
-            android:id="@+id/tic2"
-            android:layout_width="75dp"
-            android:layout_height="27dp"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="#F1F1F1"
-            android:contentDescription="Voltar"
-            android:onClick="onImageButtonClick"
-            android:scaleType="fitCenter"
-            android:src="@drawable/tic" />
-
-        <TextView
-            android:id="@+id/text5"
-            android:layout_width="204dp"
-            android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:layout_gravity="left"
-            android:fontFamily="@font/kurale"
-            android:gravity="center"
-            android:lineSpacingExtra="8dp"
-            android:text="Desativar envio por email"
-            android:textColor="#8A50FF"
-            android:textSize="15sp"
-            android:textStyle="bold" />
 
     </GridLayout>
 
