@@ -78,15 +78,14 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
-//        if(usuarioAtual != null) {
-//            TelaPrincipal();
-//        }
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
+        if(usuarioAtual != null) {
+            TelaPrincipal();
+        }
+    }
 
     private void TelaPrincipal(){
         Intent intent = new Intent(Login.this, LinhaDoTempo.class);

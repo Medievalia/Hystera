@@ -26,6 +26,7 @@ import java.util.Map;
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class LinhaDoTempo extends AppCompatActivity {
+    Notificacoes notificacoes;
     FirebaseFirestore db;
     String usuarioId;
     String proximaMenstruacao;
@@ -189,6 +190,8 @@ public class LinhaDoTempo extends AppCompatActivity {
             if (diferencaDias >= 0) {
                 int progresso = (int) (100 - diferencaDias);
                 seekBar.setProgress(progresso);
+                notificacoes = new Notificacoes();
+                notificacoes.setDiasProxima(diferencaDias);
             }
         } catch (ParseException e) {
             e.printStackTrace();
