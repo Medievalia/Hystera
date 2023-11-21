@@ -98,13 +98,18 @@ public class Cadastrar4 extends AppCompatActivity {
         seguinte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String textoDiasCiclo = diasTextView.getText().toString();
                 String textoDiasMenstruais = diasMenstruaisButton.getText().toString();
 
                 int diasDoCiclo = extrairApenasDigitos(textoDiasCiclo);
-                int diasMenstruais = extrairApenasDigitos(textoDiasMenstruais);
 
+                // Verificação se foi inserido um valor para os dias menstruais
+                if (textoDiasMenstruais.isEmpty()) {
+                    Toast.makeText(Cadastrar4.this, "Insira um valor para os dias menstruais", Toast.LENGTH_SHORT).show();
+                    return; // Impede que continue o processo de salvamento
+                }
+
+                int diasMenstruais = extrairApenasDigitos(textoDiasMenstruais);
                 salvarDadosCiclo(diasDoCiclo, diasMenstruais);
             }
         });
@@ -126,9 +131,12 @@ public class Cadastrar4 extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
                             String ultimaMenstruacao = documentSnapshot.getString("UltimaMenstruacao");
-                            String proximaMenstruacao = calcularProximaMenstruacao(ultimaMenstruacao, diasDoCiclo);
 
+                            String proximaMenstruacao = calcularProximaMenstruacao(ultimaMenstruacao, diasDoCiclo);
                             dadosParaAtualizar.put("ProximaMenstruacao", proximaMenstruacao);
+
+                            String penultimaMenstruacao = calcularPenultimaMenstruacao(ultimaMenstruacao, diasDoCiclo);
+                            dadosParaAtualizar.put("PenultimaMenstruacao", penultimaMenstruacao);
 
                             documentReference.set(dadosParaAtualizar, SetOptions.merge())
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -205,6 +213,29 @@ public class Cadastrar4 extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
             return "Erro ao calcular a próxima menstruação";
+        }
+    }
+
+    private String calcularPenultimaMenstruacao(String ultimaMenstruacao, int diasDoCiclo) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        try {
+            // Convertendo a última menstruação para o formato Date
+            Date ultimaData = dateFormat.parse(ultimaMenstruacao);
+
+            // Usando um calendário para calcular a penúltima menstruação
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(ultimaData);
+
+            // Subtraindo a duração do ciclo da última menstruação
+            calendar.add(Calendar.DAY_OF_MONTH, -diasDoCiclo);
+
+            // Convertendo a data calculada de volta para o formato String
+            return dateFormat.format(calendar.getTime());
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Erro ao calcular a penúltima menstruação";
         }
     }
 }

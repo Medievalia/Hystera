@@ -141,7 +141,7 @@
             android:text="Fase do ciclo"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:gravity="top|center"
+            android:gravity="center"
             android:textStyle="bold"
             android:background="#F1F1F1"/>
 
