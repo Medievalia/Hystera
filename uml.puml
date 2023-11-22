@@ -1,0 +1,202 @@
+@startuml
+class com.example.myapplication.navegabilidade.Notificacoes {
+~ FirebaseFirestore db
+- TextView notifica
+~ String diasProxima
+- boolean notificationsEnabled
+~ String usuarioID
+# void onCreate(Bundle)
+# void onStart()
+}
+class com.example.myapplication.navegabilidade.Cadastrar3 {
+~ String usuarioId
+# void onCreate(Bundle)
+- void SalvarDados(String)
+- String formatDate(int,int,int)
+}
+abstract class com.example.myapplication.navegabilidade.Mask {
++ {static} String unmask(String)
++ {static} TextWatcher insert(String,EditText)
++ {static} String addMask(String,String)
+}
+class com.example.myapplication.navegabilidade.Esqueceu1 {
+- EditText email
+- Button btn_enviar
+# void onCreate(Bundle)
+- void IniciarComponentes()
+}
+class com.example.myapplication.navegabilidade.Calendario {
+- CalendarView calendarView
+- long dataInicialMillis
+- int periodo
+# void onCreate(Bundle)
+- void marcarDiasNoCalendarView(String)
+}
+class com.example.myapplication.navegabilidade.Login {
+- EditText editTextEmail
+- Button btn_seguinte
+- Button esqueceu
+# void onCreate(Bundle)
+- void AutenticarUsuario()
+# void onStart()
+- void TelaPrincipal()
+- void IniciarComponentes()
+}
+class com.example.myapplication.navegabilidade.Sair {
+# void onCreate(Bundle)
+}
+class com.example.myapplication.navegabilidade.Ajuda2 {
+# void onCreate(Bundle)
++ void cima1(View)
+}
+class com.example.myapplication.navegabilidade.Informacao {
+~ String link1
+~ String link2
+~ String link3
+~ String link4
+~ String link5
+# void onCreate(Bundle)
+}
+class com.example.myapplication.navegabilidade.LinhaDoTempo {
+~ String usuarioId
+~ String totoday
+~ CircularSeekBar seekBar
+# void onCreate(Bundle)
+- void validacaoDatas()
+- void atualizaCampos(String,String,int,String,int)
+- void atualizarDataUltimaMenstruacao(String)
+- void atualizarDatasMenstruacao(String,String,String,int)
+- void atualizarSeekBar(String)
+- String determinarFaseDoCiclo(String,String,String,int,int)
+- String calcularDiaDoCiclo(String,String)
+- String calcularProximaMenstruacao(String,int)
+- int calcularIntervaloUltimaMenstruacao(String,String)
+}
+class com.example.myapplication.navegabilidade.CriarConta {
+- EditText edit_nome
+- Button cadastrar
+~ String[] mensagens
+~ String usuarioID
+# void onCreate(Bundle)
+- void CadastrarUsuario(View)
+- void SalvarDadosUsuario()
+- void IniciarComponentes()
+}
+class com.example.myapplication.navegabilidade.Perfil {
+- TextView nomeUsuario
+~ FirebaseFirestore db
+~ String usuarioID
+# void onCreate(Bundle)
+# void onStart()
+- void iniciarComponente()
++ void onImageButtonClick(View)
+}
+class com.example.myapplication.navegabilidade.MainActivity {
+# void onCreate(Bundle)
+}
+class com.example.myapplication.navegabilidade.Cadastrar4 {
+- CircularSeekBar progressoCiclo
+- boolean longoMensagemMostrada
+- boolean curtoMensagemMostrada
+~ int diasCiclo
+~ String usuarioId
+~ int diasSangramento
+- Button diasMenstruaisButton
+- TextView diasTextView
+- CircularSeekBar seekBar
+# void onCreate(Bundle)
+- void salvarDadosCiclo(int,int)
++ void onImageButtonClick(View)
++ void aumentarDiasMenstruais(View)
++ void diminuirDiasMenstruais(View)
+- int extrairApenasDigitos(String)
+- String calcularProximaMenstruacao(String,int)
+- String calcularPenultimaMenstruacao(String,int)
+}
+class com.example.myapplication.navegabilidade.Ajuda3 {
+# void onCreate(Bundle)
++ void cima1(View)
+}
+class com.example.myapplication.navegabilidade.ComeceAgora {
+# void onCreate(Bundle)
++ void onImageButtonClick(View)
+}
+class com.example.myapplication.navegabilidade.Anotacoes1 {
+- EditText anotacaoEditText
+~ String usuarioID
+# void onCreate(Bundle)
+- void salvarAnotacao()
+- void carregarAnotacao(int)
+- void confirmarExclusao()
+- void excluirAnotacao()
+}
+class com.example.myapplication.navegabilidade.Anotacoes {
+~ TextView notas1
+~ FirebaseFirestore db
+~ String usuarioID
+# void onCreate(Bundle)
+# void onStart()
+- void iniciarComponente()
+- void abrirAnotacao(int)
+}
+class com.example.myapplication.navegabilidade.Ajuda {
+# void onCreate(Bundle)
+}
+class com.example.myapplication.navegabilidade.Esqueceu2 {
+- Button btn_seguinte
+# void onCreate(Bundle)
+- void IniciarComponentes()
+}
+class com.example.myapplication.navegabilidade.Cadastrar2 {
+~ String metodo
+~ String usuarioId
+# void onCreate(Bundle)
+- void SalvarDados(String)
+}
+class com.example.myapplication.navegabilidade.EditarPerfil {
+- EditText edit_nome
+~ String[] mensagens
+~ String usuarioId
+# void onCreate(Bundle)
+- void salvarDados(View)
+- void IniciarComponentes()
++ void onImageButtonClick(View)
+}
+class com.example.myapplication.navegabilidade.Cadastrar {
+- AppCompatButton monitorar
+- AppCompatButton engravidar
+- boolean choice
+~ String usuarioId
+# void onCreate(Bundle)
+- void SalvarDados()
+}
+class com.example.myapplication.navegabilidade.Ajuda1 {
+# void onCreate(Bundle)
++ void cima1(View)
+}
+
+
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Notificacoes
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Cadastrar3
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Esqueceu1
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Calendario
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Login
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Sair
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Ajuda2
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Informacao
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.LinhaDoTempo
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.CriarConta
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Perfil
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.MainActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Cadastrar4
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Ajuda3
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.ComeceAgora
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Anotacoes1
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Anotacoes
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Ajuda
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Esqueceu2
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Cadastrar2
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.EditarPerfil
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Cadastrar
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Ajuda1
+@enduml
