@@ -279,7 +279,7 @@ public class LinhaDoTempo extends AppCompatActivity {
                             String stringDiasDoCiclo = Integer.toString(daysCicle);
                             String diacicliquinho = calcularDiaDoCiclo(last, newhoje);
 
-                            String faseDoCiclo = determinarFaseDoCiclo(last, next, newhoje, diasSangramento, daysCicle);
+                            String faseDoCiclo = determinarFaseDoCiclo(last, next, totoday, diasSangramento, daysCicle);
                             Button buttonFaseCiclo = findViewById(R.id.faseCiclo);
                             buttonFaseCiclo.setText(faseDoCiclo + "\n" + diacicliquinho);
 
@@ -402,36 +402,73 @@ public class LinhaDoTempo extends AppCompatActivity {
             Calendar cal = Calendar.getInstance();
             cal.setTime(ultimaMenstruacaoDate);
 
-            // Adiciona os dias de sangramento para determinar o fim do período menstrual
+            // Calcula o fim do período menstrual
             cal.add(Calendar.DAY_OF_MONTH, diasSangramento);
             Date fimSangramento = cal.getTime();
 
-            // Adiciona a metade do ciclo para determinar o início do período fértil
             cal.setTime(fimSangramento);
-            cal.add(Calendar.DAY_OF_MONTH, diasCiclo / 2);
-            Date inicioPeriodoFertil = cal.getTime();
+            cal.add(Calendar.DAY_OF_MONTH, 1); // Um dia após o término do sangramento
+            Date inicioFaseFolicular = cal.getTime();
 
-            // Adiciona 14 dias antes da próxima menstruação para determinar o fim do período fértil
-            cal.setTime(proximaMenstruacaoDate);
-            cal.add(Calendar.DAY_OF_MONTH, -14);
-            Date fimPeriodoFertil = cal.getTime();
-
-            // Adiciona um dia após a última menstruação para determinar o início do período folicular
+            // Calcula o início da fase fértil (dois dias antes do início da fase lútea)
             cal.setTime(ultimaMenstruacaoDate);
-            cal.add(Calendar.DAY_OF_MONTH, 1);
-            Date inicioPeriodoFolicular = cal.getTime();
+            cal.add(Calendar.DAY_OF_MONTH, (diasCiclo / 2) - 3); // Dois dias antes do início da fase lútea
+            Date inicioFaseFertil = cal.getTime();
 
-            // Adiciona um dia antes da próxima menstruação para determinar o fim do período lúteo
-            cal.setTime(proximaMenstruacaoDate);
-            cal.add(Calendar.DAY_OF_MONTH, -1);
-            Date fimPeriodoLuteo = cal.getTime();
+            // Calcula o início da fase lútea (meio do ciclo)
+            cal.setTime(ultimaMenstruacaoDate);
+            cal.add(Calendar.DAY_OF_MONTH, diasCiclo / 2); // Meio do ciclo
+            Date inicioFaseLutea = cal.getTime();
 
-            // Verifica em qual fase do ciclo ela se encontra
-            if (hojeDate.after(ultimaMenstruacaoDate) && hojeDate.before(fimSangramento)) {
+            if (hojeDate.after(ultimaMenstruacaoDate) && hojeDate.before(inicioFaseFolicular)) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                Map<String, Object> usuarios = new HashMap<>();
+                String periodo = "Período Menstrual";
+                usuarios.put("periodo", periodo);
+                usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+                documentReference.set(usuarios, SetOptions.merge())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Ação de sucesso ao salvar os dados
+                                Log.d("TAG", "");
+                            }
+                        });
                 return "Período Menstrual";
-            } else if (hojeDate.after(fimSangramento) && hojeDate.before(inicioPeriodoFertil)) {
+            } else if (hojeDate.equals(ultimaMenstruacaoDate)) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                Map<String, Object> usuarios = new HashMap<>();
+                String periodo = "Período Menstrual";
+                usuarios.put("periodo", periodo);
+                usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+                documentReference.set(usuarios, SetOptions.merge())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Ação de sucesso ao salvar os dados
+                                Log.d("TAG", "");
+                            }
+                        });
+                return "Período Menstrual";
+            } else if (hojeDate.after(fimSangramento) && hojeDate.before(inicioFaseFertil)) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                Map<String, Object> usuarios = new HashMap<>();
+                String periodo = "Fase Folicular";
+                usuarios.put("periodo", periodo);
+                usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+                documentReference.set(usuarios, SetOptions.merge())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Ação de sucesso ao salvar os dados
+                                Log.d("TAG", "");
+                            }
+                        });
                 return "Fase Folicular";
-            } else if (hojeDate.after(inicioPeriodoFertil) && hojeDate.before(fimPeriodoFertil)) {
+            } else if (hojeDate.after(inicioFaseFertil) && hojeDate.before(inicioFaseLutea)) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 Map<String, Object> usuarios = new HashMap<>();
                 String periodo = "Período Fértil";
@@ -447,7 +484,21 @@ public class LinhaDoTempo extends AppCompatActivity {
                             }
                         });
                 return "Período Fértil";
-            } else if (hojeDate.after(inicioPeriodoFolicular) && hojeDate.before(fimPeriodoLuteo)) {
+            } else if (hojeDate.after(inicioFaseLutea) && hojeDate.before(proximaMenstruacaoDate)) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                Map<String, Object> usuarios = new HashMap<>();
+                String periodo = "Fase Lútea";
+                usuarios.put("periodo", periodo);
+                usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+                documentReference.set(usuarios, SetOptions.merge())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Ação de sucesso ao salvar os dados
+                                Log.d("TAG", "");
+                            }
+                        });
                 return "Fase Lútea";
             } else {
                 return "Fora do ciclo";

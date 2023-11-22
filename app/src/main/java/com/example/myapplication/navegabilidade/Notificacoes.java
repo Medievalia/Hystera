@@ -120,6 +120,15 @@ public class Notificacoes extends AppCompatActivity {
                     if (periodo.equals("Período Fértil")) {
                         notifica2 = findViewById(R.id.notifica2);
                         notifica2.setText("Você está no seu periodo fértil");
+                    } else if (periodo.equals("Período Menstrual")){
+                        notifica2 = findViewById(R.id.notifica2);
+                        notifica2.setText("Você está no seu periodo menstrual");
+                    } else if (periodo.equals("Fase Folicular")){
+                        notifica2 = findViewById(R.id.notifica2);
+                        notifica2.setText("Você está no seu periodo folicular");
+                    } else {
+                        notifica2 = findViewById(R.id.notifica2);
+                        notifica2.setText("Você está no seu periodo lúteo");
                     }
                 }
             }
