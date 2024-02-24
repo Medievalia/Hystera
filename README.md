@@ -3,7 +3,7 @@
 **Hystera** é um app desenvolvido pela equipe Medievalia, que executará o acompanhamento do ciclo feminino, proporcionando às usuárias uma melhor compreensão do seu próprio corpo.
 
 ## Layout
-![Mobile 1](https://github.com/acenelio/assets/raw/main/sds1/mobile1.png) ![Mobile 2](https://github.com/acenelio/assets/raw/main/sds1/mobile2.png)
+![Mobile 1](https://github.com/Medievalia/assets/blob/main/01.png) ![Mobile 2](https://github.com/Medievalia/assets/blob/main/02.png)
 
 ## Modelo conceitual
 ![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
