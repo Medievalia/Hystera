@@ -37,7 +37,7 @@ cd backend
 android-studio Medievalia
 ```
 
-# Autor
+# Autores
 
 Medievalia
 
