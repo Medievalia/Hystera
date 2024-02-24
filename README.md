@@ -1,12 +1,20 @@
-# Sobre o projeto
+# Sobre o Hystera
 
 **Hystera** é um app desenvolvido pela equipe Medievalia, que executará o acompanhamento do ciclo feminino, proporcionando às usuárias uma melhor compreensão do seu próprio corpo.
 
 ## Layout
-![Mobile 1](https://github.com/Medievalia/assets/blob/main/01.png) ![Mobile 2](https://github.com/Medievalia/assets/blob/main/02.png)
 
-## Modelo conceitual
-![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
+Abaixo temos exemplos de algumas das telas principais do projeto:
+
+<div style="text-align:center;">
+<img src="https://github.com/Medievalia/assets/blob/main/01.png" alt="imagem 1" style="margin-right: 40px;width: 300px">
+<img src="https://github.com/Medievalia/assets/blob/main/02.png" alt="imagem 2" style="margin-right: 40px;width: 300px">
+<img src="https://github.com/Medievalia/assets/blob/main/03.png" alt="imagem 3" style="width: 300px;">
+</div>
+
+
+## Modelo de caso de uso
+![Modelo Conceitual](https://github.com/Medievalia/assets/blob/main/casoDeUso.png)
 
 # Tecnologias utilizadas
 ## Back end
@@ -24,14 +32,17 @@
 # Como executar o projeto
 
 ## Back end
-Pré-requisitos: Java 21
+Pré-requisitos:
+- Java 21
+- Android Studio
+- Grandle
 
 ```bash
 # clonar repositório
 git clone https://github.com/Medievalia/Medievalia
 
 # entrar na pasta do projeto back end
-cd backend
+cd Medievalia
 
 # executar o projeto
 android-studio Medievalia
@@ -48,5 +59,7 @@ https://www.linkedin.com/in/geovanna-do-carmo-gon%C3%A7alves-silva/
 https://www.linkedin.com/in/juliana-freitas-184aaa1ab/
 
 https://www.linkedin.com/in/milena-melotti-alves-8a1720149/
+
+https://www.linkedin.com/in/leticia-rocha-da-silva-ba4588149/
 
 
