@@ -42,7 +42,11 @@ android-studio Medievalia
 Medievalia
 
 https://www.linkedin.com/in/leonardo-reis-brito/
+
 https://www.linkedin.com/in/geovanna-do-carmo-gon%C3%A7alves-silva/
+
 https://www.linkedin.com/in/juliana-freitas-184aaa1ab/
+
 https://www.linkedin.com/in/milena-melotti-alves-8a1720149/
+
 
