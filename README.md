@@ -7,9 +7,9 @@
 Abaixo temos exemplos de algumas das telas principais do projeto:
 
 <div style="text-align:center;">
-<img src="https://github.com/Medievalia/assets/blob/main/01.png" alt="imagem 1" style="margin-right: 40px;width: 300px">
-<img src="https://github.com/Medievalia/assets/blob/main/02.png" alt="imagem 2" style="margin-right: 40px;width: 300px">
-<img src="https://github.com/Medievalia/assets/blob/main/03.png" alt="imagem 3" style="width: 300px;">
+<img src="https://github.com/Medievalia/assets/blob/main/01.png" alt="imagem 1" style="margin-right: 40px;width: 200px">
+<img src="https://github.com/Medievalia/assets/blob/main/02.png" alt="imagem 2" style="margin-right: 40px;width: 200px">
+<img src="https://github.com/Medievalia/assets/blob/main/03.png" alt="imagem 3" style="width: 200px;">
 </div>
 
 
