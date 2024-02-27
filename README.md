@@ -42,10 +42,10 @@ Pré-requisitos:
 git clone https://github.com/Medievalia/Hystera
 
 # entrar na pasta do projeto back end
-cd Medievalia
+cd Hystera
 
 # executar o projeto
-android-studio Medievalia
+android-studio Hystera
 ```
 
 # Autores
