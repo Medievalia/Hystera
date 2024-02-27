@@ -39,7 +39,7 @@ Pré-requisitos:
 
 ```bash
 # clonar repositório
-git clone https://github.com/Medievalia/Medievalia
+git clone https://github.com/Medievalia/Hystera
 
 # entrar na pasta do projeto back end
 cd Medievalia
