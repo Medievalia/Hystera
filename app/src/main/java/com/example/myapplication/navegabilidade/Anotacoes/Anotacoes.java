@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package com.example.myapplication.navegabilidade.Anotacoes;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +10,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.navegabilidade.Home.Calendario;
+import com.example.myapplication.navegabilidade.Home.Informacao;
+import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
+import com.example.myapplication.navegabilidade.Home.Notificacoes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-
-import org.w3c.dom.Text;
 
 
 public class Anotacoes extends AppCompatActivity {

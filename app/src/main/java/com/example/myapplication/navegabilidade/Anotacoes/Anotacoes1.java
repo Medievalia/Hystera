@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package com.example.myapplication.navegabilidade.Anotacoes;
 
 import android.content.DialogInterface;
 import android.content.Intent;

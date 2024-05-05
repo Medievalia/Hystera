@@ -16,7 +16,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".navegabilidade.MainActivity"
+            android:name=".navegabilidade.Principal.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Esqueceu1"
+            android:name=".navegabilidade.Esqueceu.Esqueceu1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Esqueceu2"
+            android:name=".navegabilidade.Esqueceu.Esqueceu2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Anotacoes"
+            android:name=".navegabilidade.Anotacoes.Anotacoes"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,7 +52,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Login"
+            android:name=".navegabilidade.Inicio.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,7 +61,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.LinhaDoTempo"
+            android:name=".navegabilidade.Home.LinhaDoTempo"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,7 +70,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Perfil"
+            android:name=".navegabilidade.Perfil.Perfil"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,7 +79,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.ComeceAgora"
+            android:name=".navegabilidade.Inicio.ComeceAgora"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -88,7 +88,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.CriarConta"
+            android:name=".navegabilidade.Cadastrar.CriarConta"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -97,7 +97,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Informacao"
+            android:name=".navegabilidade.Home.Informacao"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -106,7 +106,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Sair"
+            android:name=".navegabilidade.Principal.Sair"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -115,7 +115,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Notificacoes"
+            android:name=".navegabilidade.Home.Notificacoes"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -124,7 +124,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Calendario"
+            android:name=".navegabilidade.Home.Calendario"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -133,7 +133,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Cadastrar"
+            android:name=".navegabilidade.Cadastrar.Cadastrar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -142,7 +142,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Cadastrar3"
+            android:name=".navegabilidade.Cadastrar.Cadastrar3"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -151,7 +151,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Cadastrar4"
+            android:name=".navegabilidade.Cadastrar.Cadastrar4"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -160,7 +160,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Cadastrar2"
+            android:name=".navegabilidade.Cadastrar.Cadastrar2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -169,7 +169,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.EditarPerfil"
+            android:name=".navegabilidade.Perfil.EditarPerfil"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -178,7 +178,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Ajuda"
+            android:name=".navegabilidade.Ajuda.Ajuda"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -187,7 +187,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Ajuda1"
+            android:name=".navegabilidade.Ajuda.Ajuda1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -196,7 +196,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Anotacoes1"
+            android:name=".navegabilidade.Anotacoes.Anotacoes1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -205,7 +205,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Ajuda2"
+            android:name=".navegabilidade.Ajuda.Ajuda2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -214,7 +214,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Ajuda3"
+            android:name=".navegabilidade.Ajuda.Ajuda3"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package com.example.myapplication.navegabilidade.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.navegabilidade.Anotacoes.Anotacoes;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

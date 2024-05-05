@@ -1,11 +1,10 @@
-package com.example.myapplication.navegabilidade;
+package com.example.myapplication.navegabilidade.Perfil;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -13,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
+import com.example.myapplication.navegabilidade.Ajuda.Ajuda;
+import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
+import com.example.myapplication.navegabilidade.Mask;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
