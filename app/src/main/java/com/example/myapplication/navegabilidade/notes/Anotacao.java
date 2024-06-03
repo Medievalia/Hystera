@@ -32,7 +32,7 @@ public class Anotacao extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anotacao1);
+        setContentView(R.layout.activity_anotacao);
         ImageButton voltar = findViewById(R.id.back_button);
 
         voltar.setOnClickListener(new View.OnClickListener() {

@@ -15,7 +15,7 @@ public class AvisoReset extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_esqueceu_senha2);
+        setContentView(R.layout.activity_aviso_reset);
 
         IniciarComponentes();
 

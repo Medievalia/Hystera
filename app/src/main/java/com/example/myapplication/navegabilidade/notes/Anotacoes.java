@@ -29,7 +29,7 @@ public class Anotacoes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anotacao);
+        setContentView(R.layout.activity_anotacoes);
 
         TextView nota1 = findViewById(R.id.nota1);
         TextView nota2 = findViewById(R.id.nota2);

@@ -44,7 +44,7 @@ public class CadastroMetodo extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_3);
+        setContentView(R.layout.activity_cadastro_diasciclo);
         ImageButton voltar = findViewById(R.id.back_button);
 
         seekBar = findViewById(R.id.seekbar);

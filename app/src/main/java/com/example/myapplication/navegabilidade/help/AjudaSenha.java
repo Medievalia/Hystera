@@ -14,7 +14,7 @@ public class AjudaSenha extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajuda1);
+        setContentView(R.layout.activity_ajuda_senha);
 
         ImageButton back_button =  findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {

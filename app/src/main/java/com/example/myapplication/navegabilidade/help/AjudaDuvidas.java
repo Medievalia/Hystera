@@ -14,7 +14,7 @@ public class AjudaDuvidas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajuda);
+        setContentView(R.layout.activity_ajuda_duvidas);
 
         ImageButton baixo1 =  findViewById(R.id.baixo1); // Como alterar a minha senha
         baixo1.setOnClickListener(new View.OnClickListener() {

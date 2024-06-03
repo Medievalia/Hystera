@@ -25,7 +25,7 @@ public class ResetSenha extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_esqueceu_senha1);
+        setContentView(R.layout.activity_reset_senha);
 
         IniciarComponentes();
 

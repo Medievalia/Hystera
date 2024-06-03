@@ -14,7 +14,7 @@ import com.example.myapplication.navegabilidade.main.MainActivity;
 public class CadastroEmail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_5);
+        setContentView(R.layout.activity_cadastro_email);
         ImageButton voltar = findViewById(R.id.back_button);
 
         AppCompatButton signInEmail =  findViewById(R.id.signInEmail);

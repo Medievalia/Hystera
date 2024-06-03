@@ -14,7 +14,7 @@ public class AjudaCiclo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajuda2);
+        setContentView(R.layout.activity_ajuda_ciclo);
 
 
         ImageButton back_button =  findViewById(R.id.back_button);

@@ -29,7 +29,7 @@ public class CadastroMotivo extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_1);
+        setContentView(R.layout.activity_cadastro_motivo);
 
         monitorar = findViewById(R.id.monitorar);
         engravidar = findViewById(R.id.engravidar);

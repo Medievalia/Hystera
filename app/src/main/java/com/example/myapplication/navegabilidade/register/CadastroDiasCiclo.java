@@ -30,7 +30,7 @@ public class CadastroDiasCiclo extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_2);
+        setContentView(R.layout.activity_cadastro_menstrual);
 
         ImageButton voltar = findViewById(R.id.back_button);
         AppCompatButton seguinte = findViewById(R.id.btn_seguinte);
