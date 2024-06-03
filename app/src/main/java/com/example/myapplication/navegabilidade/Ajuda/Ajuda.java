@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package com.example.myapplication.navegabilidade.Ajuda;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.navegabilidade.Perfil.Perfil;
 
 public class Ajuda extends AppCompatActivity {
 
