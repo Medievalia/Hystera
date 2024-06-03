@@ -20,7 +20,7 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cadastrar extends AppCompatActivity {
+public class CadastroMotivo extends AppCompatActivity {
 
     private AppCompatButton monitorar;
     private AppCompatButton engravidar;
@@ -67,7 +67,7 @@ public class Cadastrar extends AppCompatActivity {
                         // Ação de sucesso ao salvar os dados
                         Log.d("TAG", "Escolha salva com sucesso!");
 
-                        Intent intent = new Intent(Cadastrar.this, Cadastrar2.class);
+                        Intent intent = new Intent(CadastroMotivo.this, CadastroMenstrual.class);
                         startActivity(intent);
                         finish();
                     }

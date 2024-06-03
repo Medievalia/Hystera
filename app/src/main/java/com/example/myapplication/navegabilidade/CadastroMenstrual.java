@@ -21,7 +21,7 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cadastrar2 extends AppCompatActivity {
+public class CadastroMenstrual extends AppCompatActivity {
     String metodo;
     String usuarioId;
 
@@ -106,7 +106,7 @@ public class Cadastrar2 extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao salvar os dados
                         Log.d("TAG", "Escolha salva com sucesso!");
-                        Intent intent = new Intent(Cadastrar2.this, Cadastrar3.class);
+                        Intent intent = new Intent(CadastroMenstrual.this, CadastroDiasCiclo.class);
                         startActivity(intent);
                         finish();
                     }

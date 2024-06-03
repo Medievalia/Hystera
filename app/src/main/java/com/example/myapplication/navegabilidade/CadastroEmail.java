@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
 
-public class ComeceAgora extends AppCompatActivity {
+public class CadastroEmail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_5);
@@ -20,14 +20,14 @@ public class ComeceAgora extends AppCompatActivity {
         signInEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ComeceAgora.this, CriarConta.class);
+                Intent intent = new Intent(CadastroEmail.this, CriarConta.class);
                 startActivity(intent);
             }
         });
     }
     public void onImageButtonClick(View view) {
         // Este método é chamado quando o ImageButton é clicado
-        Intent intent = new Intent(ComeceAgora.this, MainActivity.class);
+        Intent intent = new Intent(CadastroEmail.this, MainActivity.class);
         startActivity(intent);
     }
 }

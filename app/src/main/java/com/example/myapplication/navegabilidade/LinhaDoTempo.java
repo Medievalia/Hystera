@@ -344,7 +344,7 @@ public class LinhaDoTempo extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.e("TAG", "Datas da menstruação salvas com sucesso");
+                        Log.e("TAG", "Datas da menstruação salvas com sucesso!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

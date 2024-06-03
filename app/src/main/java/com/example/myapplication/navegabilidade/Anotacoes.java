@@ -17,8 +17,6 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import org.w3c.dom.Text;
-
 
 public class Anotacoes extends AppCompatActivity {
     TextView notas1,notas2,notas3,notas4,notas5,notas6;
@@ -152,7 +150,7 @@ public class Anotacoes extends AppCompatActivity {
         notas6 = findViewById(R.id.nota6);
     }
     private void abrirAnotacao(int notaId) {
-        Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
+        Intent intent = new Intent(Anotacoes.this, Anotacao.class);
         intent.putExtra("notaId", notaId);
         startActivity(intent);
     }

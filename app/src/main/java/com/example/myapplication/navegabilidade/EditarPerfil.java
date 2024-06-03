@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -39,7 +38,7 @@ public class EditarPerfil extends AppCompatActivity {
         ajuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfil.this, Ajuda.class);
+                Intent intent = new Intent(EditarPerfil.this, AjudaDuvidas.class);
                 startActivity(intent);
             }
         });

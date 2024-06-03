@@ -25,7 +25,7 @@ import java.util.Locale;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cadastrar3 extends AppCompatActivity {
+public class CadastroDiasCiclo extends AppCompatActivity {
     String usuarioId;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,7 @@ public class Cadastrar3 extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Cadastrar3.this, Cadastrar2.class);
+                Intent intent = new Intent(CadastroDiasCiclo.this, CadastroMenstrual.class);
                 startActivity(intent);
                 finish();
             }
@@ -77,7 +77,7 @@ public class Cadastrar3 extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("TAG", "Dados salvos com sucesso!");
-                        Intent intent = new Intent(Cadastrar3.this, Cadastrar4.class);
+                        Intent intent = new Intent(CadastroDiasCiclo.this, CadastroMetodo.class);
                         startActivity(intent);
                         finish();
                     }
