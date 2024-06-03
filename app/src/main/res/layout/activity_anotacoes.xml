@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Anotações"
+            android:textColor="#8A50FF"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="375dp"
+        android:layout_height="574dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="#F1F1F1"
+        android:columnCount="2"
+        android:rowCount="3">
+
+        <!-- Botão 1 -->
+        <TextView
+            android:id="@+id/nota1"
+            android:layout_width="163dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:textColor="#8A50FF"
+            android:contextClickable="true"
+            android:background="@color/white"
+            android:scaleType="fitCenter"
+            android:src="@drawable/rectangle" />
+
+        <!-- Botão 2 -->
+        <TextView
+            android:id="@+id/nota2"
+            android:layout_width="163dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"
+            android:scaleType="fitCenter"
+            android:contextClickable="true"
+            android:textColor="#8A50FF"
+            android:text=""
+            android:src="@drawable/rectangle" />
+
+        <!-- Botão 3 -->
+        <TextView
+            android:id="@+id/nota3"
+            android:layout_width="163dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:textColor="#8A50FF"
+            android:contextClickable="true"
+            android:background="@color/white"
+            android:scaleType="fitCenter"
+            android:src="@drawable/rectangle" />
+
+        <!-- Botão 4 -->
+        <TextView
+            android:id="@+id/nota4"
+            android:layout_width="163dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:textColor="#8A50FF"
+            android:background="@color/white"
+            android:scaleType="fitCenter"
+            android:contextClickable="true"
+            android:src="@drawable/rectangle" />
+
+        <!-- Botão 5 -->
+        <TextView
+            android:id="@+id/nota5"
+            android:layout_width="163dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"
+            android:text=""
+            android:textColor="#8A50FF"
+            android:scaleType="fitCenter"
+            android:contextClickable="true"
+            android:src="@drawable/rectangle" />
+
+        <!-- Botão 6 -->
+        <TextView
+            android:id="@+id/nota6"
+            android:layout_width="163dp"
+            android:layout_height="140dp"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"
+            android:text=""
+            android:textColor="#8A50FF"
+            android:scaleType="fitCenter"
+            android:src="@drawable/rectangle" />
+
+    </GridLayout>
+    <GridLayout
+        android:layout_width="350dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/anota"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="2dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_anota" />
+
+        <ImageButton
+            android:id="@+id/calendario"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_calendario" />
+
+        <ImageButton
+            android:id="@+id/utero"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/utero"/>
+
+        <ImageButton
+            android:id="@+id/seekbar"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/seekbar"  />
+
+        <ImageButton
+            android:id="@+id/menu"
+            android:layout_width="72dp"
+            android:layout_height="58dp"
+            android:layout_row="0"
+            android:layout_column="4"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:src="@drawable/bot_notifica" />
+
+    </GridLayout>
+
+</LinearLayout>
+
+
