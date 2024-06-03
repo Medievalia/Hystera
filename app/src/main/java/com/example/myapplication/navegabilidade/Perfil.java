@@ -51,7 +51,7 @@ public class Perfil extends AppCompatActivity {
         cicloEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, CadastroDiasCiclo.class);
+                Intent intent = new Intent(Perfil.this, Cadastrar3.class);
                 startActivity(intent);
             }
         });
@@ -60,7 +60,7 @@ public class Perfil extends AppCompatActivity {
         alterarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, ResetSenha.class);
+                Intent intent = new Intent(Perfil.this, Esqueceu1.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +69,7 @@ public class Perfil extends AppCompatActivity {
         ajuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, AjudaDuvidas.class);
+                Intent intent = new Intent(Perfil.this, Ajuda.class);
                 startActivity(intent);
             }
         });

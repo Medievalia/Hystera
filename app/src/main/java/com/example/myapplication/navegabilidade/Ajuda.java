@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 
-public class AjudaDuvidas extends AppCompatActivity {
+public class Ajuda extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class AjudaDuvidas extends AppCompatActivity {
         baixo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AjudaDuvidas.this, AjudaSenha.class);
+                Intent intent = new Intent(Ajuda.this, Ajuda1.class);
                 startActivity(intent);
             }
         });
@@ -28,7 +28,7 @@ public class AjudaDuvidas extends AppCompatActivity {
         baixo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AjudaDuvidas.this, AjudaCiclo.class);
+                Intent intent = new Intent(Ajuda.this, Ajuda2.class);
                 startActivity(intent);
             }
         });
@@ -37,7 +37,7 @@ public class AjudaDuvidas extends AppCompatActivity {
         baixo3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AjudaDuvidas.this, AjudaContracepcao.class);
+                Intent intent = new Intent(Ajuda.this, Ajuda3.class);
                 startActivity(intent);
             }
         });
@@ -46,7 +46,7 @@ public class AjudaDuvidas extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AjudaDuvidas.this, Perfil.class);
+                Intent intent = new Intent(Ajuda.this, Perfil.class);
                 startActivity(intent);
             }
         });

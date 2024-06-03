@@ -9,25 +9,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
-public class AjudaSenha extends AppCompatActivity {
+public class Ajuda2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajuda1);
+        setContentView(R.layout.activity_ajuda2);
+
 
         ImageButton back_button =  findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AjudaSenha.this, AjudaDuvidas.class);
+                Intent intent = new Intent(Ajuda2.this, Ajuda.class);
                 startActivity(intent);
             }
         });
     }
 
     public void cima1(View view) {
-        Intent intent = new Intent(AjudaSenha.this, AjudaDuvidas.class);
+        Intent intent = new Intent(Ajuda2.this, Ajuda.class);
         startActivity(intent);
     }
 }

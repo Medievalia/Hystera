@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ResetSenha extends AppCompatActivity {
+public class Esqueceu1 extends AppCompatActivity {
 
     private EditText email;
     private Button btn_enviar;
@@ -49,7 +49,7 @@ public class ResetSenha extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         // Email de redefinição de senha enviado com sucesso
-                                        Intent intent = new Intent(ResetSenha.this, AvisoReset.class);
+                                        Intent intent = new Intent(Esqueceu1.this, Esqueceu2.class);
                                         startActivity(intent);
                                         finish();
                                     } else {

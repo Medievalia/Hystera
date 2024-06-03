@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
-public class AjudaContracepcao extends AppCompatActivity {
+public class Ajuda3 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +22,14 @@ public class AjudaContracepcao extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AjudaContracepcao.this, AjudaDuvidas.class);
+                Intent intent = new Intent(Ajuda3.this, Ajuda.class);
                 startActivity(intent);
             }
         });
     }
 
     public void cima1(View view) {
-        Intent intent = new Intent(AjudaContracepcao.this, AjudaDuvidas.class);
+        Intent intent = new Intent(Ajuda3.this, Ajuda.class);
         startActivity(intent);
     }
 }

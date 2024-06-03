@@ -8,7 +8,7 @@ class com.example.myapplication.navegabilidade.Notificacoes {
 # void onCreate(Bundle)
 # void onStart()
 }
-class com.example.myapplication.navegabilidade.CadastroDiasCiclo {
+class com.example.myapplication.navegabilidade.Cadastrar3 {
 ~ String usuarioId
 # void onCreate(Bundle)
 - void SalvarDados(String)
@@ -19,7 +19,7 @@ abstract class com.example.myapplication.navegabilidade.Mask {
 + {static} TextWatcher insert(String,EditText)
 + {static} String addMask(String,String)
 }
-class com.example.myapplication.navegabilidade.ResetSenha {
+class com.example.myapplication.navegabilidade.Esqueceu1 {
 - EditText email
 - Button btn_enviar
 # void onCreate(Bundle)
@@ -45,7 +45,7 @@ class com.example.myapplication.navegabilidade.Login {
 class com.example.myapplication.navegabilidade.Sair {
 # void onCreate(Bundle)
 }
-class com.example.myapplication.navegabilidade.AjudaCiclo {
+class com.example.myapplication.navegabilidade.Ajuda2 {
 # void onCreate(Bundle)
 + void cima1(View)
 }
@@ -94,7 +94,7 @@ class com.example.myapplication.navegabilidade.Perfil {
 class com.example.myapplication.navegabilidade.MainActivity {
 # void onCreate(Bundle)
 }
-class com.example.myapplication.navegabilidade.CadastroMetodo {
+class com.example.myapplication.navegabilidade.Cadastrar4 {
 - CircularSeekBar progressoCiclo
 - boolean longoMensagemMostrada
 - boolean curtoMensagemMostrada
@@ -113,15 +113,15 @@ class com.example.myapplication.navegabilidade.CadastroMetodo {
 - String calcularProximaMenstruacao(String,int)
 - String calcularPenultimaMenstruacao(String,int)
 }
-class com.example.myapplication.navegabilidade.AjudaContracepcao {
+class com.example.myapplication.navegabilidade.Ajuda3 {
 # void onCreate(Bundle)
 + void cima1(View)
 }
-class com.example.myapplication.navegabilidade.CadastroEmail {
+class com.example.myapplication.navegabilidade.ComeceAgora {
 # void onCreate(Bundle)
 + void onImageButtonClick(View)
 }
-class com.example.myapplication.navegabilidade.Anotacao {
+class com.example.myapplication.navegabilidade.Anotacoes1 {
 - EditText anotacaoEditText
 ~ String usuarioID
 # void onCreate(Bundle)
@@ -139,15 +139,15 @@ class com.example.myapplication.navegabilidade.Anotacoes {
 - void iniciarComponente()
 - void abrirAnotacao(int)
 }
-class com.example.myapplication.navegabilidade.AjudaDuvidas {
+class com.example.myapplication.navegabilidade.Ajuda {
 # void onCreate(Bundle)
 }
-class com.example.myapplication.navegabilidade.AvisoReset {
+class com.example.myapplication.navegabilidade.Esqueceu2 {
 - Button btn_seguinte
 # void onCreate(Bundle)
 - void IniciarComponentes()
 }
-class com.example.myapplication.navegabilidade.CadastroMenstrual {
+class com.example.myapplication.navegabilidade.Cadastrar2 {
 ~ String metodo
 ~ String usuarioId
 # void onCreate(Bundle)
@@ -162,7 +162,7 @@ class com.example.myapplication.navegabilidade.EditarPerfil {
 - void IniciarComponentes()
 + void onImageButtonClick(View)
 }
-class com.example.myapplication.navegabilidade.CadastroMotivo {
+class com.example.myapplication.navegabilidade.Cadastrar {
 - AppCompatButton monitorar
 - AppCompatButton engravidar
 - boolean choice
@@ -170,33 +170,33 @@ class com.example.myapplication.navegabilidade.CadastroMotivo {
 # void onCreate(Bundle)
 - void SalvarDados()
 }
-class com.example.myapplication.navegabilidade.AjudaSenha {
+class com.example.myapplication.navegabilidade.Ajuda1 {
 # void onCreate(Bundle)
 + void cima1(View)
 }
 
 
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Notificacoes
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.CadastroDiasCiclo
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.ResetSenha
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Cadastrar3
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Esqueceu1
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Calendario
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Login
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Sair
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.AjudaCiclo
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Ajuda2
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Informacao
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.LinhaDoTempo
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.CriarConta
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Perfil
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.MainActivity
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.CadastroMetodo
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.AjudaContracepcao
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.CadastroEmail
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Anotacao
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Cadastrar4
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Ajuda3
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.ComeceAgora
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Anotacoes1
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Anotacoes
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.AjudaDuvidas
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.AvisoReset
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.CadastroMenstrual
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Ajuda
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Esqueceu2
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Cadastrar2
 androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.EditarPerfil
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.CadastroMotivo
-androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.AjudaSenha
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Cadastrar
+androidx.appcompat.app.AppCompatActivity <|-- com.example.myapplication.navegabilidade.Ajuda1
 @enduml

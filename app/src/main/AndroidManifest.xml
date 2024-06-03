@@ -25,7 +25,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.ResetSenha"
+            android:name=".navegabilidade.Esqueceu1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.AvisoReset"
+            android:name=".navegabilidade.Esqueceu2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,7 +79,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.CadastroEmail"
+            android:name=".navegabilidade.ComeceAgora"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -133,7 +133,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.CadastroMotivo"
+            android:name=".navegabilidade.Cadastrar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -142,7 +142,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.CadastroDiasCiclo"
+            android:name=".navegabilidade.Cadastrar3"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -151,7 +151,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.CadastroMetodo"
+            android:name=".navegabilidade.Cadastrar4"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -160,7 +160,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.CadastroMenstrual"
+            android:name=".navegabilidade.Cadastrar2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -178,7 +178,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.AjudaDuvidas"
+            android:name=".navegabilidade.Ajuda"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -187,7 +187,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.AjudaSenha"
+            android:name=".navegabilidade.Ajuda1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -196,7 +196,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.Anotacao"
+            android:name=".navegabilidade.Anotacoes1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -205,7 +205,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.AjudaCiclo"
+            android:name=".navegabilidade.Ajuda2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -214,7 +214,7 @@
         </activity>
 
         <activity
-            android:name=".navegabilidade.AjudaContracepcao"
+            android:name=".navegabilidade.Ajuda3"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
