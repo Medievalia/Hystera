@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.main;
+package com.example.myapplication.navegabilidade.Principal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.register.CriarConta;
-import com.example.myapplication.navegabilidade.auth.Login;
+import com.example.myapplication.navegabilidade.Cadastrar.CriarConta;
+import com.example.myapplication.navegabilidade.Inicio.Login;
 
 public class MainActivity extends AppCompatActivity {
     @Override

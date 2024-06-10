@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.register;
+package com.example.myapplication.navegabilidade.Inicio;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,26 +9,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.main.MainActivity;
+import com.example.myapplication.navegabilidade.Cadastrar.CriarConta;
+import com.example.myapplication.navegabilidade.Principal.MainActivity;
 
-public class CadastroEmail extends AppCompatActivity {
+public class ComeceAgora extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_email);
+        setContentView(R.layout.activity_cadastro_5);
         ImageButton voltar = findViewById(R.id.back_button);
 
         AppCompatButton signInEmail =  findViewById(R.id.signInEmail);
         signInEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CadastroEmail.this, CriarConta.class);
+                Intent intent = new Intent(ComeceAgora.this, CriarConta.class);
                 startActivity(intent);
             }
         });
     }
     public void onImageButtonClick(View view) {
         // Este método é chamado quando o ImageButton é clicado
-        Intent intent = new Intent(CadastroEmail.this, MainActivity.class);
+        Intent intent = new Intent(ComeceAgora.this, MainActivity.class);
         startActivity(intent);
     }
 }

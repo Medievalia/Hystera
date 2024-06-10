@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.register;
+package com.example.myapplication.navegabilidade.Cadastrar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.home.LinhaDoTempo;
+import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +30,7 @@ import java.util.Locale;
 import java.util.Map;
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
-public class CadastroMetodo extends AppCompatActivity {
+public class Cadastrar4 extends AppCompatActivity {
 
     private CircularSeekBar progressoCiclo;
     private boolean longoMensagemMostrada = false;
@@ -44,7 +44,7 @@ public class CadastroMetodo extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_diasciclo);
+        setContentView(R.layout.activity_cadastro_3);
         ImageButton voltar = findViewById(R.id.back_button);
 
         seekBar = findViewById(R.id.seekbar);
@@ -66,11 +66,11 @@ public class CadastroMetodo extends AppCompatActivity {
                 diasCiclo = dias;
 
                 if (dias >= 45 && !longoMensagemMostrada) {
-                    Toast.makeText(CadastroMetodo.this, "Ciclo muito longo, é importante consultar um especialista", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Cadastrar4.this, "Ciclo muito longo, é importante consultar um especialista", Toast.LENGTH_LONG).show();
                     longoMensagemMostrada = true;
                     diasTextView.setText(dias + " dias");
                 } else if (dias < 14 && !curtoMensagemMostrada) {
-                    Toast.makeText(CadastroMetodo.this, "Ciclo muito curto, é importante consultar um especialista", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Cadastrar4.this, "Ciclo muito curto, é importante consultar um especialista", Toast.LENGTH_LONG).show();
                     curtoMensagemMostrada = true;
                     diasTextView.setText(dias + " dias");
                 } else {
@@ -106,7 +106,7 @@ public class CadastroMetodo extends AppCompatActivity {
 
                 // Verificação se foi inserido um valor para os dias menstruais
                 if (textoDiasMenstruais.isEmpty()) {
-                    Toast.makeText(CadastroMetodo.this, "Insira um valor para os dias menstruais", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Cadastrar4.this, "Insira um valor para os dias menstruais", Toast.LENGTH_SHORT).show();
                     return; // Impede que continue o processo de salvamento
                 }
 
@@ -144,7 +144,7 @@ public class CadastroMetodo extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Log.d("TAG", "Dias do ciclo e próxima menstruação atualizados com sucesso!");
-                                            Intent intent = new Intent(CadastroMetodo.this, LinhaDoTempo.class);
+                                            Intent intent = new Intent(Cadastrar4.this, LinhaDoTempo.class);
                                             startActivity(intent);
                                             finish();
                                         }
@@ -169,7 +169,7 @@ public class CadastroMetodo extends AppCompatActivity {
     }
 
     public void onImageButtonClick(View view) {
-        Intent intent = new Intent(CadastroMetodo.this, CadastroDiasCiclo.class);
+        Intent intent = new Intent(Cadastrar4.this, Cadastrar3.class);
         startActivity(intent);
     }
 

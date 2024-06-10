@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    android:layout_marginTop="0dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="0dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/circular_button_background"
+            android:contentDescription="Voltar"
+            android:onClick="onImageButtonClick"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrow_back" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:layout_width="421dp"
+        android:layout_height="59dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Anotações"
+            android:textColor="#8A50FF"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="303dp"
+        android:layout_height="485dp"
+        android:layout_gravity="center"
+        android:background="#F1F1F1"
+        android:columnCount="2"
+        android:rowCount="3">
+
+        <EditText
+            android:id="@+id/anotacao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"
+            android:textSize="30dp"
+            android:textColor="#8A50FF" />
+
+
+    </GridLayout>
+
+    <GridLayout
+        android:id="@+id/gridLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:columnCount="2"
+        android:rowCount="1">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/excluir"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/fundo_botton_claro"
+            android:fontFamily="@font/kurale"
+            android:text="Excluir"
+            android:textAllCaps="false"
+            android:textColor="#8A50FF"
+            android:textSize="22sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_salvar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:background="@drawable/fundo_botton_escuro"
+            android:fontFamily="@font/kurale"
+            android:text="Salvar"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+    </GridLayout>
+
+</LinearLayout>
+
+

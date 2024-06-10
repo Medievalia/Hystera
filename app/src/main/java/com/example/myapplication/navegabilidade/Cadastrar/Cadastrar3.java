@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.register;
+package com.example.myapplication.navegabilidade.Cadastrar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,12 +25,12 @@ import java.util.Locale;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CadastroDiasCiclo extends AppCompatActivity {
+public class Cadastrar3 extends AppCompatActivity {
     String usuarioId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_menstrual);
+        setContentView(R.layout.activity_cadastro_2);
 
         ImageButton voltar = findViewById(R.id.back_button);
         AppCompatButton seguinte = findViewById(R.id.btn_seguinte);
@@ -56,7 +56,7 @@ public class CadastroDiasCiclo extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CadastroDiasCiclo.this, CadastroMenstrual.class);
+                Intent intent = new Intent(Cadastrar3.this, Cadastrar2.class);
                 startActivity(intent);
                 finish();
             }
@@ -77,7 +77,7 @@ public class CadastroDiasCiclo extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("TAG", "Dados salvos com sucesso!");
-                        Intent intent = new Intent(CadastroDiasCiclo.this, CadastroMetodo.class);
+                        Intent intent = new Intent(Cadastrar3.this, Cadastrar4.class);
                         startActivity(intent);
                         finish();
                     }

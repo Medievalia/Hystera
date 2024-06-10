@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.profile;
+package com.example.myapplication.navegabilidade.Perfil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.help.AjudaDuvidas;
-import com.example.myapplication.navegabilidade.register.CadastroDiasCiclo;
-import com.example.myapplication.navegabilidade.auth.ResetSenha;
-import com.example.myapplication.navegabilidade.home.LinhaDoTempo;
-import com.example.myapplication.navegabilidade.main.Sair;
+import com.example.myapplication.navegabilidade.Ajuda.Ajuda;
+import com.example.myapplication.navegabilidade.Cadastrar.Cadastrar3;
+import com.example.myapplication.navegabilidade.Esqueceu.Esqueceu1;
+import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
+import com.example.myapplication.navegabilidade.Principal.Sair;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -56,7 +56,7 @@ public class Perfil extends AppCompatActivity {
         cicloEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, CadastroDiasCiclo.class);
+                Intent intent = new Intent(Perfil.this, Cadastrar3.class);
                 startActivity(intent);
             }
         });
@@ -65,7 +65,7 @@ public class Perfil extends AppCompatActivity {
         alterarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, ResetSenha.class);
+                Intent intent = new Intent(Perfil.this, Esqueceu1.class);
                 startActivity(intent);
             }
         });
@@ -74,7 +74,7 @@ public class Perfil extends AppCompatActivity {
         ajuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, AjudaDuvidas.class);
+                Intent intent = new Intent(Perfil.this, Ajuda.class);
                 startActivity(intent);
             }
         });

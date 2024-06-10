@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.auth;
+package com.example.myapplication.navegabilidade.Inicio;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,7 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.home.LinhaDoTempo;
+import com.example.myapplication.navegabilidade.Esqueceu.Esqueceu1;
+import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -37,7 +38,7 @@ public class Login extends AppCompatActivity {
         esqueceu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, ResetSenha.class);
+                Intent intent = new Intent(Login.this, Esqueceu1.class);
                 startActivity(intent);
                 finish();
             }
