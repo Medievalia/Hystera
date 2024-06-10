@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.register;
+package com.example.myapplication.navegabilidade.Cadastrar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,13 +21,13 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CadastroMenstrual extends AppCompatActivity {
+public class Cadastrar2 extends AppCompatActivity {
     String metodo;
     String usuarioId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_metodo);
+        setContentView(R.layout.activity_cadastro_4);
 
         ImageButton botao1 = findViewById(R.id.botao1);
         ImageButton botao2 = findViewById(R.id.botao2);
@@ -106,7 +106,7 @@ public class CadastroMenstrual extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao salvar os dados
                         Log.d("TAG", "Escolha salva com sucesso!");
-                        Intent intent = new Intent(CadastroMenstrual.this, CadastroDiasCiclo.class);
+                        Intent intent = new Intent(Cadastrar2.this, Cadastrar3.class);
                         startActivity(intent);
                         finish();
                     }

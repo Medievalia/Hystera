@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.auth;
+package com.example.myapplication.navegabilidade.Esqueceu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,21 +8,22 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.navegabilidade.Inicio.Login;
 
-public class AvisoReset extends AppCompatActivity {
+public class Esqueceu2 extends AppCompatActivity {
     private Button btn_seguinte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aviso_reset);
+        setContentView(R.layout.activity_esqueceu_senha2);
 
         IniciarComponentes();
 
         btn_seguinte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AvisoReset.this, Login.class);
+                Intent intent = new Intent(Esqueceu2.this, Login.class);
                 startActivity(intent);
                 finish();
             }

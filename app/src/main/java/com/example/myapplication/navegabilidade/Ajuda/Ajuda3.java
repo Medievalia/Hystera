@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.help;
+package com.example.myapplication.navegabilidade.Ajuda;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,25 +9,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
-public class AjudaSenha extends AppCompatActivity {
+public class Ajuda3 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajuda_senha);
+        setContentView(R.layout.activity_ajuda3);
+
+
 
         ImageButton back_button =  findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AjudaSenha.this, AjudaDuvidas.class);
+                Intent intent = new Intent(Ajuda3.this, Ajuda.class);
                 startActivity(intent);
             }
         });
     }
 
     public void cima1(View view) {
-        Intent intent = new Intent(AjudaSenha.this, AjudaDuvidas.class);
+        Intent intent = new Intent(Ajuda3.this, Ajuda.class);
         startActivity(intent);
     }
 }

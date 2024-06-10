@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.profile;
+package com.example.myapplication.navegabilidade.Perfil;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.help.AjudaDuvidas;
-import com.example.myapplication.navegabilidade.home.LinhaDoTempo;
-import com.example.myapplication.navegabilidade.support.Mask;
+import com.example.myapplication.navegabilidade.Ajuda.Ajuda;
+import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
+import com.example.myapplication.navegabilidade.Mask;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -41,7 +41,7 @@ public class EditarPerfil extends AppCompatActivity {
         ajuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfil.this, AjudaDuvidas.class);
+                Intent intent = new Intent(EditarPerfil.this, Ajuda.class);
                 startActivity(intent);
             }
         });

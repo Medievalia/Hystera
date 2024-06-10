@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.main;
+package com.example.myapplication.navegabilidade.Principal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import com.example.myapplication.navegabilidade.home.LinhaDoTempo;
+import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.myapplication.R;
 
