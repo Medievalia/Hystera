@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Ajuda;
+package com.example.myapplication.navegabilidade.help;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,20 +7,20 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Perfil.Perfil;
+import com.example.myapplication.navegabilidade.profile.Perfil;
 
-public class Ajuda extends AppCompatActivity {
+public class AjudaDuvidas extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajuda);
+        setContentView(R.layout.activity_ajuda_duvidas);
 
         ImageButton baixo1 =  findViewById(R.id.baixo1); // Como alterar a minha senha
         baixo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Ajuda.this, Ajuda1.class);
+                Intent intent = new Intent(AjudaDuvidas.this, AjudaSenha.class);
                 startActivity(intent);
             }
         });
@@ -29,7 +29,7 @@ public class Ajuda extends AppCompatActivity {
         baixo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Ajuda.this, Ajuda2.class);
+                Intent intent = new Intent(AjudaDuvidas.this, AjudaCiclo.class);
                 startActivity(intent);
             }
         });
@@ -38,7 +38,7 @@ public class Ajuda extends AppCompatActivity {
         baixo3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Ajuda.this, Ajuda3.class);
+                Intent intent = new Intent(AjudaDuvidas.this, AjudaContracepcao.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +47,7 @@ public class Ajuda extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Ajuda.this, Perfil.class);
+                Intent intent = new Intent(AjudaDuvidas.this, Perfil.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Esqueceu;
+package com.example.myapplication.navegabilidade.auth;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Esqueceu1 extends AppCompatActivity {
+public class ResetSenha extends AppCompatActivity {
 
     private EditText email;
     private Button btn_enviar;
@@ -25,7 +25,7 @@ public class Esqueceu1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_esqueceu_senha1);
+        setContentView(R.layout.activity_reset_senha);
 
         IniciarComponentes();
 
@@ -49,7 +49,7 @@ public class Esqueceu1 extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         // Email de redefinição de senha enviado com sucesso
-                                        Intent intent = new Intent(Esqueceu1.this, Esqueceu2.class);
+                                        Intent intent = new Intent(ResetSenha.this, AvisoReset.class);
                                         startActivity(intent);
                                         finish();
                                     } else {

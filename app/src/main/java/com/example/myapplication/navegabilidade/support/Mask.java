@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package com.example.myapplication.navegabilidade.support;
 
 import android.text.Editable;
 import android.text.TextWatcher;

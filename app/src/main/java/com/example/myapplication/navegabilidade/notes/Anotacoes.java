@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Anotacoes;
+package com.example.myapplication.navegabilidade.notes;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Home.Calendario;
-import com.example.myapplication.navegabilidade.Home.Informacao;
-import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
-import com.example.myapplication.navegabilidade.Home.Notificacoes;
+import com.example.myapplication.navegabilidade.home.Calendario;
+import com.example.myapplication.navegabilidade.home.Informacao;
+import com.example.myapplication.navegabilidade.home.LinhaDoTempo;
+import com.example.myapplication.navegabilidade.home.Notificacoes;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,7 +29,7 @@ public class Anotacoes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anotacao);
+        setContentView(R.layout.activity_anotacoes);
 
         TextView nota1 = findViewById(R.id.nota1);
         TextView nota2 = findViewById(R.id.nota2);
@@ -154,7 +154,7 @@ public class Anotacoes extends AppCompatActivity {
         notas6 = findViewById(R.id.nota6);
     }
     private void abrirAnotacao(int notaId) {
-        Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
+        Intent intent = new Intent(Anotacoes.this, Anotacao.class);
         intent.putExtra("notaId", notaId);
         startActivity(intent);
     }

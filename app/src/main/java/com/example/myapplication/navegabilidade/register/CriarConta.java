@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Cadastrar;
+package com.example.myapplication.navegabilidade.register;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Mask;
+import com.example.myapplication.navegabilidade.support.Mask;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -65,7 +65,7 @@ public class CriarConta extends AppCompatActivity {
                 }else{
                     if(senha.equals(rSenha)) {
                         CadastrarUsuario(v);
-                        Intent intent = new Intent(CriarConta.this, Cadastrar.class);
+                        Intent intent = new Intent(CriarConta.this, CadastroMotivo.class);
                         startActivity(intent);
 
                     }else {

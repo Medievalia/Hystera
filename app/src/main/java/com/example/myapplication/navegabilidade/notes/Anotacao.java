@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Anotacoes;
+package com.example.myapplication.navegabilidade.notes;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,20 +25,20 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Anotacoes1 extends AppCompatActivity {
+public class Anotacao extends AppCompatActivity {
     private EditText anotacaoEditText;
     String usuarioID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anotacao1);
+        setContentView(R.layout.activity_anotacao);
         ImageButton voltar = findViewById(R.id.back_button);
 
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes1.this, Anotacoes.class);
+                Intent intent = new Intent(Anotacao.this, Anotacoes.class);
                 startActivity(intent);
             }
         });
@@ -87,7 +87,7 @@ public class Anotacoes1 extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             Log.d("TAG", "Anotação alterada com sucesso!");
 
-                            Intent intent = new Intent(Anotacoes1.this, Anotacoes.class);
+                            Intent intent = new Intent(Anotacao.this, Anotacoes.class);
                             startActivity(intent);
                             finish();
                         }
@@ -128,7 +128,7 @@ public class Anotacoes1 extends AppCompatActivity {
                                     public void onSuccess(Void aVoid) {
                                         Log.d("TAG", "Nova anotação salva com sucesso!");
 
-                                        Intent intent = new Intent(Anotacoes1.this, Anotacoes.class);
+                                        Intent intent = new Intent(Anotacao.this, Anotacoes.class);
                                         startActivity(intent);
                                         finish();
                                     }
@@ -200,7 +200,7 @@ public class Anotacoes1 extends AppCompatActivity {
                         // Ação de sucesso ao excluir a anotação
                         Log.d("TAG", "Anotação excluída com sucesso!");
 
-                        Intent intent = new Intent(Anotacoes1.this, Anotacoes.class);
+                        Intent intent = new Intent(Anotacao.this, Anotacoes.class);
                         startActivity(intent);
                         finish();
                     }

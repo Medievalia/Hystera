@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Home;
+package com.example.myapplication.navegabilidade.home;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,8 +12,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Anotacoes.Anotacoes;
-import com.example.myapplication.navegabilidade.Perfil.Perfil;
+import com.example.myapplication.navegabilidade.notes.Anotacoes;
+import com.example.myapplication.navegabilidade.profile.Perfil;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
