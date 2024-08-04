@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Inicio;
+package com.example.myapplication.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Cadastrar.CriarConta;
-import com.example.myapplication.navegabilidade.Principal.MainActivity;
 
 public class ComeceAgora extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Cadastrar;
+package com.example.myapplication.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;

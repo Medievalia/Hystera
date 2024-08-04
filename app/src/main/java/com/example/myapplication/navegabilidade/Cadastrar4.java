@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Cadastrar;
+package com.example.myapplication.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

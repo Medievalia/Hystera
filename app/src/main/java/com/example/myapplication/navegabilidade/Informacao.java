@@ -1,7 +1,8 @@
-package com.example.myapplication.navegabilidade.Home;
+package com.example.myapplication.navegabilidade;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.net.wifi.ScanResult;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Anotacoes.Anotacoes;
 
 public class Informacao extends AppCompatActivity {
 

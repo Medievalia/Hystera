@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Perfil;
+package com.example.myapplication.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.example.myapplication.navegabilidade.Ajuda.Ajuda;
-import com.example.myapplication.navegabilidade.Cadastrar.Cadastrar3;
-import com.example.myapplication.navegabilidade.Esqueceu.Esqueceu1;
-import com.example.myapplication.navegabilidade.Home.LinhaDoTempo;
-import com.example.myapplication.navegabilidade.Principal.Sair;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;

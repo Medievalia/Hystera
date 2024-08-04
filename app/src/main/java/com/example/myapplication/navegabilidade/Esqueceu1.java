@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade.Esqueceu;
+package com.example.myapplication.navegabilidade;
 
 import android.content.Intent;
 import android.graphics.Color;
