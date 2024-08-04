@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.myapplication.R;
-import com.google.firebase.Firebase;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -16,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppCompatButton tenhoUmaConta =  findViewById(R.id.tenho_uma_conta);
+        AppCompatButton tenhoUmaConta = findViewById(R.id.tenho_uma_conta);
         tenhoUmaConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        AppCompatButton comeceAgora =  findViewById(R.id.comece_agora);
+        AppCompatButton comeceAgora = findViewById(R.id.comece_agora);
         comeceAgora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

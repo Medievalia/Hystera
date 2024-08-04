@@ -1,7 +1,8 @@
-<!-- res/drawable/edittext_background.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="10dp" /> <!-- Raio das bordas (bordas arredondadas) -->
+    <solid android:color="#FFFFFF"/> <!-- Cor de fundo branca -->
     <stroke
-        android:width="10px"
-        android:color="#8C52FF"/>
+        android:color="#8C52FF"
+        android:width="2dp"/>
+    <corners android:radius="100dp"/> <!-- Ajuste o raio conforme necessário -->
 </shape>

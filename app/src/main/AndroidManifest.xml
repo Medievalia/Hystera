@@ -12,9 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
 
+        <!-- MainActivity configurada como a atividade de lançamento -->
         <activity
             android:name=".navegabilidade.MainActivity"
             android:exported="true">
@@ -24,203 +25,29 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".navegabilidade.Esqueceu1"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Esqueceu2"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Anotacoes"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Login"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.LinhaDoTempo"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Perfil"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.ComeceAgora"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.CriarConta"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Informacao"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Sair"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Notificacoes"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Calendario"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Cadastrar"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Cadastrar3"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Cadastrar4"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Cadastrar2"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.EditarPerfil"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Ajuda"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Ajuda1"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Anotacoes1"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Ajuda2"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".navegabilidade.Ajuda3"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!-- Outras atividades -->
+        <activity android:name=".navegabilidade.Esqueceu1" android:exported="true" />
+        <activity android:name=".navegabilidade.Esqueceu2" android:exported="true" />
+        <activity android:name=".navegabilidade.Anotacoes" android:exported="true" />
+        <activity android:name=".navegabilidade.Login" android:exported="true" />
+        <activity android:name=".navegabilidade.LinhaDoTempo" android:exported="true" />
+        <activity android:name=".navegabilidade.Perfil" android:exported="true" />
+        <activity android:name=".navegabilidade.ComeceAgora" android:exported="true" />
+        <activity android:name=".navegabilidade.CriarConta" android:exported="true" />
+        <activity android:name=".navegabilidade.Informacao" android:exported="true" />
+        <activity android:name=".navegabilidade.Sair" android:exported="true" />
+        <activity android:name=".navegabilidade.Notificacoes" android:exported="true" />
+        <activity android:name=".navegabilidade.Calendario" android:exported="true" />
+        <activity android:name=".navegabilidade.Cadastrar" android:exported="true" />
+        <activity android:name=".navegabilidade.Cadastrar3" android:exported="true" />
+        <activity android:name=".navegabilidade.Cadastrar4" android:exported="true" />
+        <activity android:name=".navegabilidade.Cadastrar2" android:exported="true" />
+        <activity android:name=".navegabilidade.EditarPerfil" android:exported="true" />
+        <activity android:name=".navegabilidade.Ajuda" android:exported="true" />
+        <activity android:name=".navegabilidade.Ajuda1" android:exported="true" />
+        <activity android:name=".navegabilidade.Anotacoes1" android:exported="true" />
+        <activity android:name=".navegabilidade.Ajuda2" android:exported="true" />
+        <activity android:name=".navegabilidade.Ajuda3" android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

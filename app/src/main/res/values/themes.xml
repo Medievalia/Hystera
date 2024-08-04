@@ -19,5 +19,12 @@
         <item name="colorAccent">@android:color/holo_blue_dark</item>
     </style>
 
+    <style name="Botao_borda_roja" parent="Widget.MaterialComponents.Button">
+        <item name="strokeColor">#8C52FF</item> <!-- Cor da borda -->
+        <item name="strokeWidth">2dp</item> <!-- Largura da borda -->
+        <item name="cornerRadius">100dp</item> <!-- Raio do canto -->
+        <item name="backgroundTint">@color/white</item> <!-- Cor de fundo branca -->
+    </style>
+
 
 </resources>
