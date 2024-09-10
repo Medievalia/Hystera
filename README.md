@@ -1,10 +1,16 @@
-# Sobre o Hystera
+# Hystera Application
 
-**Hystera** é um app desenvolvido pela equipe Medievalia, que executará o acompanhamento do ciclo feminino, proporcionando às usuárias uma melhor compreensão do seu próprio corpo.
+Hystera is an app designed to provide users with comprehensive control over their menstrual cycle, offering a deeper understanding and freedom regarding their own body. The app enables users to track their menstrual cycles, including the follicular phase, ovulation, luteal phase, and bleeding.
+
+Additional features include:
+
+- Monitoring the last six cycles through a graphical representation for medical or personal tracking.
+- Medication management and reminder notifications.
+- Note-taking capabilities.
+- A personalized calendar.
+- Valuable information on fertility, science, and health.
 
 ## Layout
-
-Abaixo temos exemplos de algumas das telas principais do projeto:
 
 <div style="text-align:center;">
 <img src="https://github.com/Medievalia/assets/blob/main/01.png" alt="imagem 1" style="margin-right: 40px;width: 200px">
@@ -12,54 +18,47 @@ Abaixo temos exemplos de algumas das telas principais do projeto:
 <img src="https://github.com/Medievalia/assets/blob/main/03.png" alt="imagem 3" style="width: 200px;">
 </div>
 
+## Application Architecture
+![Modelo Conceitual](https://github.com/Medievalia/assets/blob/main/arch.jpg)
 
-## Modelo de caso de uso
-![Modelo Conceitual](https://github.com/Medievalia/assets/blob/main/casoDeUso.png)
-
-# Tecnologias utilizadas
-## Back end
+# Technologies
+## Back-end
 - Java
 - Grandle
 - FireBase
-## Front end
+## Front-end
 - XML
 - CSS
-## Implantação em produção
-- Back end: Geovanna do Carmo / Juliana de Freitas / Leonardo Reis
-- Front end: Milena Melotti / Leticia Rocha
-- Banco de dados: Marcos Vinicius
 
-# Como executar o projeto
-
-## Back end
-Pré-requisitos:
+  
+# Build and Execute
+Prerequisites:
 - Java 21
 - Android Studio
 - Grandle
 
 ```bash
-# clonar repositório
+# clone repository
 git clone https://github.com/Medievalia/Hystera
 
-# entrar na pasta do projeto back end
+# enter the back end project folder
 cd Hystera
 
-# executar o projeto
+# execute the project
 android-studio Hystera
 ```
 
-# Autores
+# Authors and Developers
 
-Medievalia
-
-https://www.linkedin.com/in/leonardo-reis-brito/
+- Back-end: Geovanna do Carmo / Juliana de Freitas / Leonardo Reis
+- Front-end: Milena Melotti / Leticia Rocha
 
 https://www.linkedin.com/in/geovanna-do-carmo-gon%C3%A7alves-silva/
 
 https://www.linkedin.com/in/juliana-freitas-184aaa1ab/
 
-https://www.linkedin.com/in/milena-melotti-alves-8a1720149/
-
 https://www.linkedin.com/in/leticia-rocha-da-silva-ba4588149/
 
+https://www.linkedin.com/in/leonardo-reis-brito/
 
+https://www.linkedin.com/in/milena-melotti-alves-8a1720149/
