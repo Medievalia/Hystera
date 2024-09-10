@@ -1,95 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical"
-    android:gravity="center">
-    <!-- Logo -->
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/circular_button_background"
-        android:contentDescription="Voltar"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow_back" />
+    android:background="#FFFFFF">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="290dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <!-- Back Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/voltar_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Voltar"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <!-- Logo -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/logo"
+        android:layout_width="0dp"
+        android:layout_height="290dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/logo"
+        app:layout_constraintTop_toBottomOf="@id/voltar_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Title TextView -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
         android:text="O que você deseja?"
         android:textStyle="bold"
         android:textColor="#8A50FF"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
-    <GridLayout
-        android:id="@+id/gridLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:gravity="center"
-        android:rowCount="2">
+    <!-- Continue Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continuar_acompanhando"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Continuar acompanhando meu ciclo"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        app:backgroundTint="#8A50FF"
+        app:cornerRadius="8dp"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- Botão 2 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/continuar_acompanhando"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_columnWeight="1"
-            android:background="@drawable/fundo_botton_escuro"
-            android:fontFamily="@font/kurale"
-            android:text="Continuar acompanhando meu ciclo"
-            android:textAllCaps="false"
-            android:layout_margin="20dp"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp" />
-    </GridLayout>
+    <!-- Logout Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sair"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Realmente sair"
+        android:textAllCaps="false"
+        android:textColor="#8A50FF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="8dp"
+        app:layout_constraintTop_toBottomOf="@id/continuar_acompanhando"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <GridLayout
-        android:layout_width="411dp"
-        android:layout_height="76dp">
+    <!-- Decorative ImageView -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/decorative_image"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/elipse"
+        app:layout_constraintTop_toBottomOf="@id/sair"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/sair"
-            android:layout_width="412dp"
-            android:layout_height="69dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/kurale"
-            android:gravity="center"
-            android:background="@color/white"
-            android:text="Realmente sair"
-            android:textColor="#8A50FF"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-    </GridLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/elipse">
-    </ImageView>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

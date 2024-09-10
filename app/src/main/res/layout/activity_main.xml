@@ -26,7 +26,7 @@
         style="@style/Botao_borda_roja"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/kurale"
         android:text="Tenho uma conta"
         android:textColor="#6750A4"
@@ -35,20 +35,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_removebg_preview_1"
-        app:layout_constraintWidth_percent="0.75" />
+        app:layout_constraintWidth_percent="0.80" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/comece_agora"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_button"
         android:fontFamily="@font/kurale"
         android:text="COMECE AGORA"
         android:textColor="#ffffff"
         android:textSize="16sp"
+        android:backgroundTint="#8A50FF"
+        app:cornerRadius="18dp"
+        app:iconTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tenho_uma_conta"
-        app:layout_constraintWidth_percent="0.75" /> <!-- Use a cor diretamente aqui -->
+        app:layout_constraintWidth_percent="0.80" />
+>
 </androidx.constraintlayout.widget.ConstraintLayout>
