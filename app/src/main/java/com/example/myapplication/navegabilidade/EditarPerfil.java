@@ -109,7 +109,7 @@ public class EditarPerfil extends AppCompatActivity {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@android.support.annotation.NonNull Exception e) {
+                    public void onFailure(@androidx.annotation.NonNull Exception e) {
                         // Lidar com falhas ao salvar os dados
                         Log.e("TAG", "Erro ao salvar as alterações", e);
                     }
