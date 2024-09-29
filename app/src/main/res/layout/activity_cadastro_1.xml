@@ -1,105 +1,106 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="#FFFFFF">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_pergunta"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/kurale"
-        android:gravity="center"
-        android:lineSpacingExtra="8dp"
         android:text="O que você deseja?"
-        android:textStyle="bold"
         android:textColor="#8A50FF"
-        android:textSize="40sp" />
+        android:textSize="30sp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
+    <!-- Botão Monitorar -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/monitorar"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_columnWeight="1"
-        android:background="@drawable/fundo_botton_blue"
-        android:fontFamily="@font/kurale"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
         android:text="Monitorar a Menstruação"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:fontFamily="@font/kurale"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
+        app:cornerRadius="8dp"
+        app:backgroundTint="#61C3EF"
+        app:strokeColor="#8A50FF"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_pergunta" />
 
-    <TextView
-        android:layout_width="match_parent"
+    <!-- Texto Monitorar -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_monitorar"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/logo"
-        android:layout_centerHorizontal="true"
+        android:layout_margin="0dp"
+        android:fontFamily="@font/kurale"
         android:text="Registre a menstruação para ter uma previsão dos próximos ciclos"
-        android:textColor="#8C52FF"
-        android:fontFamily="@font/kurale"
-        android:textSize="22sp"
-        android:gravity="center"/>
+        android:textColor="#61C3EF"
+        android:textSize="15sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/monitorar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
+    <!-- Botão Gravidez-->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/engravidar"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_columnWeight="1"
-        android:background="@drawable/fundo_botton_escuro"
-        android:fontFamily="@font/kurale"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
         android:text="Tentar Engravidar"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:fontFamily="@font/kurale"
         android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
+        app:cornerRadius="8dp"
+        app:backgroundTint="#8A50FF"
+        app:strokeColor="#8A50FF"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_monitorar" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Texto Gravidez -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_engravidar"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/logo"
-        android:layout_centerHorizontal="true"
+        android:layout_margin="0dp"
+        android:fontFamily="@font/kurale"
         android:text="Receba informações sobre seu período fértil e dicas sobre tentativas de gravidez"
-        android:textColor="#8C52FF"
-        android:fontFamily="@font/kurale"
-        android:textSize="22sp"
-        android:gravity="center"/>
+        android:textColor="#8A50FF"
+        android:textSize="15sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/engravidar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/logo"
-        android:layout_centerHorizontal="true"
-        android:text="Não se preocupe, você pode alterar a qualquer momento"
-        android:textColor="#8C52FF"
-        android:fontFamily="@font/kurale"
-        android:textSize="24sp"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"/>
+    <!-- Decorative ImageView -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/decorative_image"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        android:src="@drawable/elipse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

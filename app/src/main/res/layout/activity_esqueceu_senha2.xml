@@ -1,60 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:background="#FFFFFF">
 
     <!-- Logo -->
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_marginTop="100dp"
-        android:layout_height="210dp"
-        android:src="@drawable/logo" />
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        app:strokeWidth="2dp" />
 
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_redefinicao"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2">
+        android:layout_margin="50dp"
+        android:fontFamily="@font/kurale"
+        android:text="Link de redefinição enviado por email!"
+        android:textColor="@color/purple_500"
+        android:textSize="30sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/logo"
-            android:layout_margin="55dp"
-            android:fontFamily="@font/kurale"
-            android:text="Link de redefinição enviado por email!"
-            android:textColor="#8C52FF"
-            android:layout_gravity="center"
-            android:textSize="35sp" />
 
-    </GridLayout>
-
-    <GridLayout
-        android:id="@+id/gridLayout3"
-        android:layout_width="327dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:columnCount="2"
-        android:rowCount="1">
-        <!-- Botão 2 -->
-        <androidx.appcompat.widget.AppCompatButton
+        <!-- Botão Enviar -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_seguinte"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
-            android:layout_columnWeight="1"
-            android:layout_margin="50dp"
-            android:background="@drawable/fundo_botton_escuro"
-            android:fontFamily="@font/kurale"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
             android:text="Seguinte"
-            android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
-    </GridLayout>
+            android:textSize="25sp"
+            android:fontFamily="@font/kurale"
+            android:layout_margin="80dp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#8A50FF"
+            app:strokeColor="#8A50FF"
+            app:strokeWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_redefinicao" />
 
-</LinearLayout>
+    <!-- Decorative ImageView -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/decorative_image"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        android:src="@drawable/elipse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

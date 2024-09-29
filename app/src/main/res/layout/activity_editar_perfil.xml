@@ -1,297 +1,201 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:background="#FFFFFF">
 
-    <GridLayout
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/voltar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Voltar"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/help_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="310dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Ajuda"
+        app:icon="@drawable/btn_ajuda"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perfil"
+        android:textSize="25sp"
+        android:textColor="@color/purple_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/voltar_button"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"/>
+
+    <!-- Imagem do perfil -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btn_foto"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/fundo_cicle"
+        app:layout_constraintTop_toBottomOf="@id/txt_perfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_changeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="190dp"
+        android:backgroundTint="@android:color/white"
+        android:contentDescription="Alterar foto"
+        app:icon="@drawable/btn_changeimage"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/voltar_button"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutNome"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:endIconDrawable="@drawable/perfil"
+        app:endIconMode="custom"
+        app:layout_constraintTop_toBottomOf="@+id/btn_changeImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txt_nome"
         android:layout_width="match_parent"
-        android:layout_marginTop="-40dp"
-        android:layout_height="52dp">
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/kurale"
+        android:hint="Nome"
+        android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/voltar_button"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="10"
-            android:layout_gravity="left"
-            android:background="@color/white"
-            android:contentDescription="Voltar"
-            android:onClick="onImageButtonClick"
-            android:scaleType="center"
-            android:src="@drawable/vector" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageButton
-            android:id="@+id/help_button"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="10"
-            android:layout_gravity="right"
-            android:background="@color/white"
-            android:contentDescription="Ajuda"
-            android:scaleType="center"
-            android:src="@drawable/btn_ajuda" />
-    </GridLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutCelular"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:endIconDrawable="@drawable/biriri"
+        app:endIconMode="custom"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:layout_height="215dp">
-
-        <TextView
-            android:id="@+id/txt_perfil"
-            android:layout_width="match_parent"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_centerHorizontal="true"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center"
-            android:text="Perfil"
-            android:textColor="#8C52FF"
-            android:textSize="25sp" />
-
-        <ImageButton
-            android:id="@+id/btn_foto"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_margin="120dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="38dp"
-            android:background="@drawable/fundo_cicle"
-            android:gravity="center" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="79dp">
-
-        <EditText
-            android:id="@+id/txt_nome"
-            android:layout_width="358dp"
-            android:layout_height="59dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/line_1"
-            android:layout_width="355dp"
-            android:layout_height="3dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <ImageButton
-            android:id="@+id/foto"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/perfil" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
-
-        <EditText
-            android:id="@+id/txt_email"
-            android:layout_width="358dp"
-            android:layout_height="59dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:text=""
-            android:inputType="textEmailAddress"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/line_5"
-            android:layout_width="355dp"
-            android:layout_height="3dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:textColor="#000000"
-            android:textSize="15sp" />
-
-        <ImageButton
-            android:id="@+id/carta"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/carta" />
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="86dp">
-
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txt_num"
-            android:layout_width="358dp"
-            android:layout_height="64dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:text=""
+            android:hint="Celular"
+            android:inputType="textPersonName"
             android:textColor="#000000"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-        <View
-            android:id="@+id/line_6"
-            android:layout_width="355dp"
-            android:layout_height="3dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutEmail"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:endIconDrawable="@drawable/carta"
+        app:endIconMode="custom"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCelular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_email"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
+            android:hint="Email"
+            android:inputType="textPersonName"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/num"
-            android:layout_width="41dp"
-            android:layout_height="37dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/biriri" />
-    </GridLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="74dp">
 
-        <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutMetodo"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:endIconDrawable="@drawable/baseline_medical_services_24"
+        app:endIconMode="custom"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txt_metodo"
-            android:layout_width="358dp"
-            android:layout_height="59dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="2dp"
-            android:contextClickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:text=""
-            android:textAlignment="center"
+            android:hint="Metodo"
+            android:inputType="textPersonName"
             android:textColor="#000000"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-        <View
-            android:id="@+id/line_7"
-            android:layout_width="354dp"
-            android:layout_height="3dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:background="#000000"
-            android:contextClickable="true"
-            android:fontFamily="@font/kurale"
-            android:gravity="center_horizontal"
-            android:textColor="#000000"
-            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageButton
-            android:id="@+id/pilula"
-            android:layout_width="33dp"
-            android:layout_height="30dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:background="@color/white"
-            android:contextClickable="true"
-            android:gravity="center_horizontal"
-            android:src="@drawable/pilula1" />
-    </GridLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <GridLayout
-        android:layout_width="250dp"
-        android:layout_height="53dp">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_pefil_salvar"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:background="@drawable/fundo_botton_escuro"
-            android:fontFamily="@font/kurale"
-            android:text="Salvar"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="23sp" />
-    </GridLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_pefil_salvar"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:text="Salvar"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#8A50FF"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutMetodo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cornerRadius="8dp"/>
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

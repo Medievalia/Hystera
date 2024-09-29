@@ -1,86 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical">
-    <!-- Logo -->
-    <ImageView
-        android:layout_marginLeft="100dp"
+    android:background="#FFFFFF">
+
+<!-- Logo -->
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="210dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/logo" />
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        app:strokeWidth="2dp" />
 
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
+
+    <!-- Email TextView -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2">
+        android:text="Email"
+        android:textColor="#8C52FF"
+        android:fontFamily="@font/kurale"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="30dp"
-            android:fontFamily="@font/kurale"
-            android:text="Digite o seu e-mail"
-            android:textColor="#8C52FF"
-            android:textSize="18sp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editTextEmailLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Ex: hystera@gmail.com"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/purple_500"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintTop_toBottomOf="@id/textViewEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <EditText
-            android:id="@+id/email"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15sp"
             android:textColor="@color/purple_500"
             android:textSize="18sp" />
-    </GridLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <GridLayout
-        android:id="@+id/gridLayout3"
-        android:layout_width="327dp"
-        android:layout_height="66dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:columnCount="2"
-        android:rowCount="1">
-        <!-- Botão 2 -->
-        <androidx.appcompat.widget.AppCompatButton
+
+        <!-- Botão Enviar -->
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_enviar"
-            android:layout_width="20dp"
-            android:layout_height="40dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/fundo_botton_escuro"
-            android:fontFamily="@font/kurale"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
             android:text="Enviar"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
-    </GridLayout>
+            android:textSize="25sp"
+            android:fontFamily="@font/kurale"
+            android:layout_margin="80dp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#8A50FF"
+            app:strokeColor="#8A50FF"
+            app:strokeWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailLayout" />
 
-    <ImageView
-        android:layout_marginTop="260dp"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@drawable/elipse">
-    </ImageView>
-</LinearLayout>
+    <!-- Decorative ImageView -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/decorative_image"
+        android:layout_width="400dp"
+        android:layout_height="120dp"
+        android:src="@drawable/elipse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

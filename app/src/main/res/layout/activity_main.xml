@@ -8,17 +8,18 @@
     android:background="@color/white"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/logo_removebg_preview_1"
-        android:layout_width="381dp"
-        android:layout_height="440dp"
-        android:layout_marginTop="60dp"
-        android:contentDescription="LOGO-removebg-preview 1"
+    <!-- Logo -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="2dp" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -26,7 +27,7 @@
         style="@style/Botao_borda_roja"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/kurale"
         android:text="Tenho uma conta"
         android:textColor="#6750A4"
@@ -34,7 +35,7 @@
         app:iconTint="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_removebg_preview_1"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintWidth_percent="0.80" />
 
     <com.google.android.material.button.MaterialButton
@@ -53,5 +54,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tenho_uma_conta"
         app:layout_constraintWidth_percent="0.80" />
->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

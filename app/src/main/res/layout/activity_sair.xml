@@ -60,7 +60,7 @@
         android:id="@+id/continuar_acompanhando"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="Continuar acompanhando meu ciclo"
@@ -97,10 +97,10 @@
         android:id="@+id/decorative_image"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        android:layout_marginTop="10dp"
         android:src="@drawable/elipse"
-        app:layout_constraintTop_toBottomOf="@id/sair"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

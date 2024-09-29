@@ -48,14 +48,14 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:padding="15sp"
             android:textColor="@color/purple_500"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -100,8 +100,6 @@
 
 
     <!-- Esqueceu a senha Button -->
-
-    <!-- Gmail Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/esqueceu"
         android:layout_width="wrap_content"

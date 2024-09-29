@@ -1,77 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF">
 
-    <ImageButton
+    <!-- Botão Voltar -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/back_button"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/circular_button_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/transparent"
         android:contentDescription="Voltar"
-        android:onClick="onImageButtonClick"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow_back"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <!-- Logo -->
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo"
-        android:layout_width="290dp"
-        android:layout_height="290dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/back_button" />
-
-    <TextView
-        android:id="@+id/textView"
         android:layout_width="0dp"
+        android:layout_height="280dp"
+        android:src="@drawable/logo"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="70dp"
+        app:strokeWidth="2dp" />
+
+
+    <!-- Texto  -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_cadastro"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_margin="30dp"
         android:fontFamily="@font/kurale"
-        android:gravity="center"
         android:text="Como você deseja se cadastrar?"
         android:textColor="#8A50FF"
         android:textSize="35sp"
+        android:gravity="center"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <GridLayout
-        android:id="@+id/gridLayout3"
-        android:layout_width="332dp"
-        android:layout_height="wrap_content"
-        android:columnCount="1"
-        android:layout_marginTop="20dp"
-        android:rowCount="2"
-        app:layout_constraintEnd_toEndOf="parent"
+
+        <!-- Botão Email -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signInEmail"
+        android:layout_width="350dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#8A50FF"
+        android:fontFamily="@font/kurale"
+        android:text="Inscreva-se com o e-mail"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        app:backgroundTint="#8A50FF"
+        app:strokeColor="#8A50FF"
+        app:strokeWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cadastro" />
 
-        <!-- Botão 1 -->
-
-        <!-- Botão 2 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/signInEmail"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/fundo_botton_escuro"
-            android:fontFamily="@font/kurale"
-            android:text="Inscreva-se com o e-mail"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
-    </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

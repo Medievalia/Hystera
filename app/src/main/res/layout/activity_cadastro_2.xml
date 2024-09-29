@@ -1,109 +1,132 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="#FFFFFF">
 
-    <ImageButton
+    <!-- Botão Voltar -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/back_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="left"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/circular_button_background"
-        android:onClick="onImageButtonClick"
-        android:scaleType="fitCenter"
-        android:src="@drawable/arrow_back" />
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Voltar"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Pergunta -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_pergunta_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/kurale"
-        android:gravity="center"
-        android:lineSpacingExtra="-5dp"
         android:text="Qual foi a data da sua última menstruação?"
         android:textColor="#8A50FF"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/kurale"
+        android:textSize="25sp"
         android:gravity="center"
-        android:lineSpacingExtra="-5dp"
-        android:text="Assim podemos calcular sua próxima \nmenstruação"
-        android:textColor="#8A50FF"
-        android:textSize="18sp" />
+        app:layout_constraintTop_toBottomOf="@+id/back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <GridLayout
-        android:id="@+id/gridLayout"
+    <!-- Descrição Pergunta -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_descricao"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/kurale"
+        android:text="Assim podemos calcular sua próxima menstruação"
+        android:textColor="#8A50FF"
+        android:textSize="15sp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/txt_pergunta_data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:background="@drawable/square_rounded_button_background"
-        android:columnCount="1"
-        android:rowCount="1">
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="50dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_descricao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <CalendarView
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="0"
             android:dateTextAppearance="@style/CalenderViewDateCustomText"
-            android:theme="@style/CustomCalendarView"
-            android:weekDayTextAppearance="@color/black" />
+            android:weekDayTextAppearance="@color/black"/>
 
-    </GridLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
     <GridLayout
         android:id="@+id/gridLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="60dp"
         android:columnCount="2"
         android:rowCount="1">
 
-        <!-- Botão 1 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/nao_sei"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="35dp"
-            android:layout_marginStart="35dp"
-            android:background="@drawable/fundo_botton_claro"
-            android:fontFamily="@font/kurale"
-            android:text="Não sei"
-            android:textAllCaps="false"
-            android:textColor="#8A50FF"
-            android:textSize="22sp" />
+            <!-- Botão 1 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nao_sei"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginEnd="35dp"
+                android:layout_marginStart="35dp"
+                app:backgroundTint="#F6F6F6"
+                android:fontFamily="@font/kurale"
+                android:text="Não sei"
+                android:textAllCaps="false"
+                android:textColor="@color/purple_500"
+                android:textSize="22sp" />
 
-        <!-- Botão 2 -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_seguinte"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/fundo_botton_escuro"
-            android:fontFamily="@font/kurale"
-            android:text="Seguinte"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp" />
+            <!-- Botão 2 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_seguinte"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                app:backgroundTint="#8A50FF"
+                android:fontFamily="@font/kurale"
+                android:text="Seguinte"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp" />
 
-    </GridLayout>
-</LinearLayout>
+        </GridLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

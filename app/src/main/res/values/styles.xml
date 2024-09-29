@@ -8,8 +8,9 @@
     </style>
 
     <!-- Estilo para a aparência do texto no calendário -->
-    <style name="CalenderViewDateCustomText" parent="TextAppearance.MaterialComponents.Body2">
-        <item name="android:textColor">@color/calendar_date_selector</item>
+    <style name="CalenderViewDateCustomText">
+        <item name="android:textColor">#8C52FF</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <!-- Estilo para a data selecionada -->
@@ -21,5 +22,11 @@
     <style name="PeriodColorStyle">
         <item name="android:textColor">#FF0000</item> <!-- Altere a cor conforme desejado -->
     </style>
+
+    <!-- Estilo personalizado para ImageViews circulares -->
+    <style name="CircularImageView">
+        <item name="shapeAppearanceOverlay">"@style/ShapeAppearanceOverlay.MaterialComponents.Shape.Circular"</item>
+    </style>
+
 
 </resources>

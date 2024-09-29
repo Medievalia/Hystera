@@ -1,209 +1,231 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#FFFFFF">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/circular_button_background"
-            android:contentDescription="Voltar"
-            android:onClick="onImageButtonClick"
-            android:scaleType="fitCenter"
-            android:src="@drawable/arrow_back" />
-    </GridLayout>
-
-
-    <ImageButton
-        android:id="@+id/mais_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_gravity="left"
-        android:layout_marginLeft="100dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="500dp"
-        android:background="@drawable/bot_o_mais_"
-        android:onClick="aumentarDiasMenstruais" />
-
-    <ImageButton
-        android:id="@+id/menos_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_gravity="left"
-        android:layout_marginLeft="270dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="500dp"
-        android:background="@drawable/bot_o_menos"
-        android:onClick="diminuirDiasMenstruais" />
-
-    <Button
-        android:id="@+id/diasmens_button"
-        android:layout_width="115dp"
-        android:layout_height="40dp"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_gravity="left"
-        android:layout_marginLeft="150dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="500dp"
-        android:textColor="@color/black"
-        android:textSize="12dp"
-        android:textStyle="bold"
-        android:background="#ffffff" />
-
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <!-- Botão Voltar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Voltar"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <!-- Texto Principal -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
         android:lineSpacingExtra="8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:text="Quanto tempo dura o seu ciclo?"
         android:textColor="#8A50FF"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_button" />
 
-    <TextView
+    <!-- Texto Informativo -->
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/kurale"
         android:gravity="center"
         android:lineSpacingExtra="8dp"
-        android:layout_marginStart="62dp"
         android:text="Normalmente um ciclo dura de 24 a 38 dias"
         android:textColor="#74C9FD"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="440dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/kurale"
-        android:gravity="center"
-        android:lineSpacingExtra="8dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="E sua menstruação?"
-        android:textColor="#8A50FF"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginBottom="0dp"
-        android:fontFamily="@font/kurale"
-        android:gravity="center"
-        android:lineSpacingExtra="8dp"
-        android:layout_marginStart="50dp"
-        android:text="Normalmente a menstruação dura de 3 a 6 dias"
-        android:textColor="#74C9FD"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
+    <!-- SeekBar Circular -->
     <me.tankery.lib.circularseekbar.CircularSeekBar
         android:id="@+id/seekbar"
         android:layout_width="240dp"
         android:layout_height="240dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="30dp"
         app:cs_circle_color="#74C9FD"
         app:cs_circle_fill="@color/white"
         app:cs_circle_progress_color="#8A50FF"
         app:cs_circle_stroke_width="20dp"
-        app:cs_circle_style="round"
-        app:cs_circle_x_radius="140dp"
-        app:cs_circle_y_radius="140dp"
-        app:cs_disable_pointer="false"
-        app:cs_disable_progress_glow="true"
-        app:cs_hide_progress_when_empty="true"
-        app:cs_lock_enabled="true"
-        app:cs_maintain_equal_circle="true"
-        app:cs_max="100"
-        app:cs_move_outside_circle="true"
-        app:cs_negative_enabled="false"
-        app:cs_pointer_angle="0"
-        app:cs_pointer_color="#000000"
-        app:cs_pointer_halo_width="10dp"
-        app:cs_pointer_stroke_width="25dp"
-        app:cs_progress="70"
-        app:cs_use_custom_radii="false" />
+        app:layout_constraintTop_toBottomOf="@id/textView1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
+    <!-- Dias -->
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/Dias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="265dp"
-        android:layout_marginLeft="143dp"
+        android:layout_marginTop="-150dp"
         android:fontFamily="@font/kurale"
         android:text="28 dias"
         android:textColor="#8A50FF"
-        android:textSize="40dp" />
+        android:textSize="40sp"
+        app:layout_constraintTop_toBottomOf="@id/seekbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Texto de Menstruação -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="E sua menstruação?"
+        android:textColor="#8A50FF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar" />
 
 
-    <GridLayout
-        android:id="@+id/gridLayout2"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_botao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="650dp"
-        android:columnCount="2"
-        android:rowCount="1">
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <!-- Botão de Menos -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/menos_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="40dp"
+            android:background="@drawable/bot_o_menos"
+            android:onClick="diminuirDiasMenstruais"
+            android:contentDescription="Remover dias menstruais"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/diasmens_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Botão Dias Menstruais -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/diasmens_button"
+            android:layout_width="115dp"
+            android:layout_height="60dp"
+            android:text="28 dias"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/menos_button"
+            app:layout_constraintEnd_toStartOf="@id/mais_button"
+            app:layout_constraintHorizontal_chainStyle="spread_inside" />
+
+        <!-- Botão de Mais -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mais_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="40dp"
+            android:onClick="aumentarDiasMenstruais"
+            android:background="@drawable/bot_o_mais_"
+            android:contentDescription="Adicionar dias menstruais"
+            app:layout_constraintStart_toEndOf="@id/diasmens_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Texto Informativo -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="Normalmente a menstruação dura de 3 a 6 dias"
+        android:textColor="#74C9FD"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/layout_botao"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Botão 'Não sei' -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/nao_sei"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
             android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
-            android:background="@drawable/fundo_botton_claro"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="#998A50FF"
             android:fontFamily="@font/kurale"
             android:text="Não sei"
             android:textAllCaps="false"
-            android:textColor="#8A50FF"
-            android:textSize="22sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_seguinte"
+            app:layout_constraintHorizontal_chainStyle="spread" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <!-- Botão 'Seguinte' -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_seguinte"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="35dp"
-            android:background="@drawable/fundo_botton_escuro"
+            android:backgroundTint="#8A50FF"
             android:fontFamily="@font/kurale"
             android:text="Seguinte"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="22sp" />
-    </GridLayout>
-</RelativeLayout>
+            android:textSize="22sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/nao_sei" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
