@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_anota"
+        android:icon="@drawable/notes_menu2"
+        android:title="Anotação"/>
+
+    <item
+        android:id="@+id/nav_calendario"
+        android:icon="@drawable/calendar_menu"
+        android:title="Calendário" />
+
+    <item
+        android:id="@+id/nav_utero"
+        android:icon="@drawable/utero_menu"
+        android:title="Útero" />
+
+    <item
+        android:id="@+id/nav_seekbar"
+        android:icon="@drawable/linha_do_tempo_menu"
+        android:title="Linha do Tempo" />
+
+
+    <item
+        android:id="@+id/nav_medicacao"
+        android:icon="@drawable/medicamento_menu"
+        android:title="Medicação" />
+
+</menu>

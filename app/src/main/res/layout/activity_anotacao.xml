@@ -1,198 +1,156 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F1F1"
-    android:layout_marginTop="0dp"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="#F1F1F1">
+
+    <!-- Botão de perfil no topo -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Ajuda"
+        app:icon="@drawable/person"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="1dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <GridLayout
-        android:layout_width="421dp"
-        android:layout_height="80dp">
+    <!-- CardView com o título "Anotações" -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/textViewTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/button_perfil">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:fontFamily="@font/kurale"
             android:gravity="center"
-            android:lineSpacingExtra="8dp"
             android:text="Anotações"
             android:textColor="#8A50FF"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:textStyle="bold" />
+    </com.google.android.material.card.MaterialCardView>
 
-    </GridLayout>
-
+    <!-- GridLayout centralizado -->
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="375dp"
-        android:layout_height="574dp"
-        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#F1F1F1"
+        android:layout_margin="30dp"
+        android:layout_marginTop="10dp"
         android:columnCount="2"
-        android:rowCount="3">
+        android:rowCount="3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Botão 1 -->
-        <TextView
+        <!-- Cartões de Anotações -->
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/nota1"
             android:layout_width="163dp"
             android:layout_height="140dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:text=""
-            android:textColor="#8A50FF"
-            android:contextClickable="true"
-            android:background="@color/white"
-            android:scaleType="fitCenter"
-            android:src="@drawable/rectangle" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp" />
 
-        <!-- Botão 2 -->
-        <TextView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/nota2"
             android:layout_width="163dp"
             android:layout_height="140dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white"
-            android:scaleType="fitCenter"
-            android:contextClickable="true"
-            android:textColor="#8A50FF"
-            android:text=""
-            android:src="@drawable/rectangle" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp" />
 
-        <!-- Botão 3 -->
-        <TextView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/nota3"
             android:layout_width="163dp"
             android:layout_height="140dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:text=""
-            android:textColor="#8A50FF"
-            android:contextClickable="true"
-            android:background="@color/white"
-            android:scaleType="fitCenter"
-            android:src="@drawable/rectangle" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp" />
 
-        <!-- Botão 4 -->
-        <TextView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/nota4"
             android:layout_width="163dp"
             android:layout_height="140dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:text=""
-            android:textColor="#8A50FF"
-            android:background="@color/white"
-            android:scaleType="fitCenter"
-            android:contextClickable="true"
-            android:src="@drawable/rectangle" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp" />
 
-        <!-- Botão 5 -->
-        <TextView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/nota5"
             android:layout_width="163dp"
             android:layout_height="140dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white"
-            android:text=""
-            android:textColor="#8A50FF"
-            android:scaleType="fitCenter"
-            android:contextClickable="true"
-            android:src="@drawable/rectangle" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp" />
 
-        <!-- Botão 6 -->
-        <TextView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/nota6"
             android:layout_width="163dp"
             android:layout_height="140dp"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white"
-            android:text=""
-            android:textColor="#8A50FF"
-            android:scaleType="fitCenter"
-            android:src="@drawable/rectangle" />
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/nota7"
+            android:layout_width="163dp"
+            android:layout_height="140dp"
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/nota8"
+            android:layout_width="163dp"
+            android:layout_height="140dp"
+            android:layout_margin="4dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp" />
 
     </GridLayout>
-    <GridLayout
-        android:layout_width="350dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="40dp"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:gravity="center">
+        app:menu="@menu/navigation_menu"
+        app:itemIconTint="@color/selector_bottom_nav_colors"
+        app:itemTextColor="@color/selector_bottom_nav_colors"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageButton
-            android:id="@+id/anota"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="2dp"
-            android:background="@color/white"
-            android:src="@drawable/bot_anota" />
 
-        <ImageButton
-            android:id="@+id/calendario"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:src="@drawable/bot_calendario" />
 
-        <ImageButton
-            android:id="@+id/utero"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:src="@drawable/utero"/>
-
-        <ImageButton
-            android:id="@+id/seekbar"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
-            android:layout_row="0"
-            android:layout_column="3"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:src="@drawable/seekbar"  />
-
-        <ImageButton
-            android:id="@+id/menu"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
-            android:layout_row="0"
-            android:layout_column="4"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:src="@drawable/bot_notifica" />
-
-    </GridLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 

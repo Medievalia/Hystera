@@ -4,91 +4,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F1F1"
-    android:layout_marginTop="0dp"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:orientation="vertical">
+
+
+    <!-- Botão Voltar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Voltar"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
 
-    <GridLayout
-        android:layout_width="421dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="0dp">
+    <!-- CardView com o título "Anotações" -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/textViewTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/back_button">
 
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/circular_button_background"
-            android:contentDescription="Voltar"
-            android:onClick="onImageButtonClick"
-            android:scaleType="fitCenter"
-            android:src="@drawable/arrow_back" />
-
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="421dp"
-        android:layout_height="59dp">
-
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:fontFamily="@font/kurale"
             android:gravity="center"
-            android:lineSpacingExtra="8dp"
-            android:text="Anotações"
+            android:text="Anotação"
             android:textColor="#8A50FF"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:textStyle="bold" />
+    </com.google.android.material.card.MaterialCardView>
 
-    </GridLayout>
-
+    <!-- Campo de anotação -->
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="303dp"
-        android:layout_height="485dp"
-        android:layout_gravity="center"
-        android:background="#F1F1F1"
-        android:columnCount="2"
-        android:rowCount="3">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:columnCount="1"
+        android:rowCount="1">
 
-        <EditText
-            android:id="@+id/anotacao"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white"
-            android:textSize="30dp"
-            android:textColor="#8A50FF" />
+            android:layout_height="wrap_content"
+            android:hint="Escreva sua anotação"
+            app:boxBackgroundColor="@color/white">
 
-
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/anotacao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:textColor="#8A50FF"
+                android:background="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
     </GridLayout>
 
+    <!-- Botões de Ação (Salvar e Excluir) -->
     <GridLayout
         android:id="@+id/gridLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:columnCount="2"
-        android:rowCount="1">
+        android:rowCount="1"
+        android:columnOrderPreserved="false">
 
+        <!-- Botão de Excluir -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/excluir"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/fundo_botton_claro"
             android:fontFamily="@font/kurale"
             android:text="Excluir"
@@ -96,13 +104,13 @@
             android:textColor="#8A50FF"
             android:textSize="22sp" />
 
+        <!-- Botão de Salvar -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_salvar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginStart="16dp"
             android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
             android:text="Salvar"
@@ -112,5 +120,3 @@
     </GridLayout>
 
 </LinearLayout>
-
-
