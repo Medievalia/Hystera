@@ -27,9 +27,9 @@ public class Anotacoes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anotacao);
+        setContentView(R.layout.activity_anotacao);}
 
-        TextView nota1 = findViewById(R.id.nota1);
+/*        TextView nota1 = findViewById(R.id.nota1);
         TextView nota2 = findViewById(R.id.nota2);
         TextView nota3 = findViewById(R.id.nota3);
         TextView nota4 = findViewById(R.id.nota4);
@@ -155,5 +155,5 @@ public class Anotacoes extends AppCompatActivity {
         Intent intent = new Intent(Anotacoes.this, Anotacoes1.class);
         intent.putExtra("notaId", notaId);
         startActivity(intent);
-    }
+    } */
 }
