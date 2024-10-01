@@ -22,11 +22,11 @@ public class Calendario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendario);
+        setContentView(R.layout.activity_calendario);}
 
-        calendarView = findViewById(R.id.calendarView);
+  /*    calendarView = findViewById(R.id.calendarView);
 
-        // Definir um listener para o CalendarView
+       // Definir um listener para o CalendarView
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
@@ -110,7 +110,7 @@ public class Calendario extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-    }
+    } */
 
 
 }
