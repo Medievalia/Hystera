@@ -63,13 +63,13 @@
     <!-- SeekBar Circular -->
     <me.tankery.lib.circularseekbar.CircularSeekBar
         android:id="@+id/seekbar"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginTop="30dp"
         app:cs_circle_color="#74C9FD"
         app:cs_circle_fill="@color/white"
         app:cs_circle_progress_color="#8A50FF"
-        app:cs_circle_stroke_width="20dp"
+        app:cs_circle_stroke_width="15dp"
         app:layout_constraintTop_toBottomOf="@id/textView1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -105,23 +105,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekbar" />
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_botao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <!-- Botão de Menos -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/menos_button"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="40dp"
-            android:background="@drawable/bot_o_menos"
+            android:backgroundTint="#998A50FF"
             android:onClick="diminuirDiasMenstruais"
             android:contentDescription="Remover dias menstruais"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/remove"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/diasmens_button"
             app:layout_constraintTop_toTopOf="parent"
@@ -143,15 +142,16 @@
             app:layout_constraintEnd_toStartOf="@id/mais_button"
             app:layout_constraintHorizontal_chainStyle="spread_inside" />
 
-        <!-- Botão de Mais -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mais_button"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="40dp"
+            android:backgroundTint="#998A50FF"
             android:onClick="aumentarDiasMenstruais"
-            android:background="@drawable/bot_o_mais_"
             android:contentDescription="Adicionar dias menstruais"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/adicionar"
             app:layout_constraintStart_toEndOf="@id/diasmens_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
