@@ -1,230 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:background="#FFFFFF">
 
-    <ImageView
-        android:id="@+id/logo"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="wrap_content">
 
-        android:layout_centerInParent="true"
 
-        android:src="@drawable/logo" />
+        <!-- Logo -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:src="@drawable/logo"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="0dp"
+            app:strokeWidth="2dp" />
 
-    <GridLayout
-        android:id="@+id/gridLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2">
-
-        <TextView
+        <!-- Nome TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="30dp"
-            android:fontFamily="@font/kurale"
-            android:text="Nome completo"
+            android:text="Nome"
             android:textColor="#8C52FF"
-            android:textSize="18sp" />
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="0dp" />
 
-        <EditText
-            android:id="@+id/edit_nome"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:textColor="@color/purple_500"
-            android:padding="15sp"
-            android:textSize="18dp" />
-    </GridLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/example_nome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="Ex: Hystera "
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@id/nome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <GridLayout
-        android:id="@+id/gridLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <!-- Email TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="30dp"
-            android:fontFamily="@font/kurale"
             android:text="Email"
             android:textColor="#8C52FF"
-            android:textSize="18sp" />
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/example_nome"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp" />
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/edit_email"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:textColor="@color/purple_500"
-            android:padding="15sp"
-            android:textSize="18sp" />
-    </GridLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/example_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="Ex: hystera@gmail.com"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <GridLayout
-        android:id="@+id/gridLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <!-- Celular TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/celular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="30dp"
-            android:fontFamily="@font/kurale"
             android:text="Celular"
             android:textColor="#8C52FF"
-            android:textSize="18sp" />
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/example_email"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp" />
 
-        <EditText
-            android:id="@+id/edit_celular"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text"
-            android:inputType="textPhonetic"
-            android:maxLines="1"
-            android:padding="15sp"
-            android:textColor="@color/purple_500"
-            android:textSize="18sp" />
-    </GridLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/example_celular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="(XX) XXXXX-XXXX"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/celular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <GridLayout
-        android:id="@+id/gridLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_celular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPhonetic"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <!-- Senha TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/senha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="30dp"
-            android:fontFamily="@font/kurale"
             android:text="Senha"
             android:textColor="#8C52FF"
-            android:textSize="18sp" />
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/example_celular"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp" />
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/edit_senha"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:padding="15sp"
-            android:textColor="@color/purple_500"
-            android:textSize="18sp" />
-    </GridLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/example_senha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="*********"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/senha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <GridLayout
-        android:id="@+id/gridLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:columnCount="1"
-        android:rowCount="2">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+
+        <!--Repetir Senha TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/repetir_senha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginRight="30dp"
-            android:fontFamily="@font/kurale"
             android:text="Repetir Senha"
             android:textColor="#8C52FF"
-            android:textSize="18sp" />
-
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/edit_repetir_senha"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/edit_text"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:padding="15sp"
-            android:textColor="@color/purple_500"
-            android:textSize="18sp" />
-    </GridLayout>
-
-
-    <TextView
-        android:id="@+id/declaro_que_li_e_aceito_os_termos_de_uso_e_pol_tica_de_privacidade"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:fontFamily="serif"
-        android:text="Ao se cadastrar, você está de acordo com os nossos termos de serviço"
-        android:textColor="#000000"
-        android:layout_marginTop="5dp"
-        android:textSize="20sp"
-        android:gravity="center"/>
-
-    <GridLayout
-        android:id="@+id/gridLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:columnCount="2"
-        android:rowCount="2">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/cadastrar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="center"
-
-            android:layout_marginRight="70dp"
-            android:layout_marginLeft="70dp"
-            android:background="@drawable/fundo_botton_escuro"
             android:fontFamily="@font/kurale"
-            android:text="Cadastrar"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp" />
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/example_senha"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp" />
 
-    </GridLayout>
-</LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/example_repetir_senha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="*********"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/repetir_senha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_repetir_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <!--Check Box termos de uso  -->
+
+        <LinearLayout
+            android:id="@+id/terms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/example_repetir_senha">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"/>
+
+            <TextView
+                android:id="@+id/declaro_que_li_e_aceito_os_termos_de_uso_e_pol_tica_de_privacidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kurale"
+                android:text="Concordo com os Termos de Uso"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+        <!-- Botão Casdatrar-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cadastrar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:fontFamily="@font/kurale"
+            android:layout_margin="0dp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#8A50FF"
+            app:strokeColor="#8A50FF"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/terms"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

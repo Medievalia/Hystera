@@ -29,4 +29,23 @@
     </style>
 
 
+    <!-- Estilo personalizado para MaterialSwitch -->
+    <style name="CustomSwitchStyle">
+        <!-- Cor do pole (thumb) quando ativado -->
+        <item name="thumbTint">#8A50FF</item>
+
+        <!-- Cor do trilho (track) quando ativado -->
+        <item name="trackTint">#A7A4AF</item>
+
+        <!-- Cor do texto -->
+        <item name="android:textColor">#8A50FF</item>
+
+        <!-- Tamanho do texto -->
+        <item name="android:textSize">18sp</item>
+
+        <!-- Usar cores temáticas do Material -->
+        <item name="useMaterialThemeColors">true</item>
+    </style>
+
+
 </resources>

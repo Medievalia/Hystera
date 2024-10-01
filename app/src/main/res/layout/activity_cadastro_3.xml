@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@android:color/transparent"
+        android:backgroundTint="#FFFFFF"
         android:contentDescription="Voltar"
         app:icon="@drawable/vector"
         app:iconTint="#8A50FF"
@@ -182,7 +182,7 @@
         android:id="@+id/button_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="30dp"
         app:layout_constraintTop_toBottomOf="@+id/layout_botao"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -190,7 +190,7 @@
         <!-- Botão 'Não sei' -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/nao_sei"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="10dp"
@@ -209,7 +209,7 @@
         <!-- Botão 'Seguinte' -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_seguinte"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="35dp"

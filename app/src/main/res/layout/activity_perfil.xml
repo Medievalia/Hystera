@@ -25,23 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/help_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="310dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Ajuda"
-        app:icon="@drawable/btn_ajuda"
-        app:iconTint="#8A50FF"
-        app:iconGravity="textStart"
-        app:iconPadding="5dp"
-        app:cornerRadius="100dp"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_changeImage"
