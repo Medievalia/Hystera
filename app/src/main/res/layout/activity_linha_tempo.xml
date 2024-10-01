@@ -1,259 +1,241 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F1F1">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp">
+    <!-- Botão de gráfico no topo -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_grafico"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#F1F1F1"
+        android:contentDescription="Gráfico"
+        app:icon="@drawable/grafico"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="1dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_menstruacao"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.30" />
 
-        <ImageButton
-            android:id="@+id/button_perfil"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/circular_button_background"
-            android:contentDescription="Perfil"
-            android:onClick="onImageButtonClick"
-            android:scaleType="fitCenter"
-            android:src="@drawable/person" />
-    </GridLayout>
+    <!-- Botão de menstruação no topo -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_menstruacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="#F1F1F1"
+        android:contentDescription="Inicio Menstruação"
+        app:icon="@drawable/gota1"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="1dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toEndOf="@id/button_grafico"
+        app:layout_constraintEnd_toStartOf="@id/button_perfil"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.30" />
 
-    <TextView
-        android:id="@+id/textView"
+
+    <!-- Botão de perfil no topo -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_perfil"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#F1F1F1"
+        android:contentDescription="Ajuda"
+        app:icon="@drawable/person"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="1dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toEndOf="@id/button_menstruacao"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.30" />
+
+    <!-- TextInputLayout para a data da menstruação -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout_menstruacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/kurale"
-        android:gravity="center"
-        android:lineSpacingExtra="5dp"
-        android:text="Seu ciclo"
-        android:textColor="#8A50FF"
-        android:textSize="40sp"
-        android:textStyle="bold" />
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/button_menstruacao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextDataMenstruacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Insira a data de início da menstruação" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- CardView com o título "Seu Ciclo" -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/textViewTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/button_perfil">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:text="Seu Ciclo"
+            android:textColor="#8A50FF"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+    </com.google.android.material.card.MaterialCardView>
 
     <me.tankery.lib.circularseekbar.CircularSeekBar
         android:id="@+id/seekbar"
-        android:layout_width="281dp"
-        android:layout_height="259dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
-        app:cs_circle_color="#74C9FD"
-        app:cs_circle_fill="#F1F1F1"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        app:cs_circle_color="#C2D2DC"
+        app:cs_circle_fill="@color/white"
         app:cs_circle_progress_color="#8A50FF"
-        app:cs_circle_stroke_width="20dp"
-        app:cs_circle_style="round"
-        app:cs_circle_x_radius="0dp"
-        app:cs_circle_y_radius="0dp"
-        app:cs_disable_pointer="true"
-        app:cs_disable_progress_glow="true"
-        app:cs_hide_progress_when_empty="true"
-        app:cs_lock_enabled="true"
-        app:cs_maintain_equal_circle="true"
-        app:cs_max="100"
-        app:cs_move_outside_circle="true"
-        app:cs_negative_enabled="false"
-        app:cs_pointer_angle="0"
-        app:cs_pointer_color="#821d0d"
-        app:cs_pointer_halo_width="40dp"
-        app:cs_pointer_stroke_width="20dp"
-        app:cs_progress="70"
-        app:cs_use_custom_radii="false" />
+        app:cs_circle_stroke_width="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"/>
 
+    <!-- Imagem dentro do SeekBar -->
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="180dp"
-        android:layout_height="130dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="215dp"
-        android:src="@drawable/logo" />
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        app:layout_constraintTop_toTopOf="@+id/seekbar"
+        app:layout_constraintBottom_toBottomOf="@+id/seekbar"
+        app:layout_constraintStart_toStartOf="@+id/seekbar"
+        app:layout_constraintEnd_toEndOf="@+id/seekbar"
+        android:scaleType="centerInside" />
 
-    <TextView
-        android:id="@+id/proximaMenst"
+    <!-- Duração do Ciclo -->
+    <LinearLayout
+        android:id="@+id/layout_duracao_ciclo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
-        android:fontFamily="@font/kurale"
-        android:text="Próxima menstruação:"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/layout_duracao_menstruacao"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar"
+        android:layout_marginTop="5dp">
 
-    <GridLayout
-        android:layout_width="367dp"
-        android:layout_height="185dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="450dp">
-
-        <ImageButton
-            android:id="@+id/inicioMenst"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_gravity="left"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/circular_button_background"
-            android:contentDescription="Voltar"
-            android:onClick="onImageButtonClick"
-            android:scaleType="fitCenter"
-            android:src="@drawable/gota"/>
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="130dp"
-            android:layout_height="61dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_marginTop="55dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/kurale"
-            android:gravity="center"
-            android:lineSpacingExtra="0dp"
-            android:text="Início da mestruação"
+        <!-- Título do cartão -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duração do ciclo"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/faseCiclo"
-            android:layout_width="100dp"
-            android:layout_height="97dp"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_gravity="top"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="8dp"
-            android:text="Fase do ciclo"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:background="#F1F1F1"/>
-
-        <Button
-            android:id="@+id/mediaCiclo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_row="0"
-            android:layout_column="3"
-            android:layout_gravity="left"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/circular_button_blue_background"
-            android:contentDescription="Voltar"
-            android:onClick="onImageButtonClick"
-            android:scaleType="fitCenter"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="124dp"
-            android:layout_height="72dp"
-            android:layout_row="0"
-            android:layout_column="3"
-            android:layout_marginTop="55dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/kurale"
-            android:gravity="center"
-            android:lineSpacingExtra="0dp"
-            android:text="Média do
-            ciclo"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="450dp"
-        android:layout_height="77dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="660dp"
-        android:background="@color/white"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/anota"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:background="@color/white"
-            android:src="@drawable/bot_anota" />
-
-        <ImageButton
-            android:id="@+id/calendario"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:src="@drawable/bot_calendario" />
-
-        <ImageButton
-            android:id="@+id/utero"
-            android:layout_width="72dp"
-            android:layout_height="58dp"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="7dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:src="@drawable/utero"/>
-
+        <!-- Circular SeekBar -->
         <me.tankery.lib.circularseekbar.CircularSeekBar
-            android:id="@+id/seekbar1"
-            android:layout_width="65dp"
-            android:layout_height="54dp"
-            android:layout_row="0"
-            android:layout_column="3"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="25dp"
-            app:cs_circle_color="#74C9FD"
+            android:id="@+id/seekbar_duration"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cs_circle_color="#C2D2DC"
             app:cs_circle_fill="@color/white"
             app:cs_circle_progress_color="#8A50FF"
-            app:cs_circle_stroke_width="3dp"
-            app:cs_disable_pointer="true"
-            app:cs_pointer_color="#8A50FF"
-            app:cs_progress="70"
-            app:cs_use_custom_radii="false" />
+            app:cs_circle_stroke_width="8dp"
+            android:layout_marginTop="8dp" />
 
-        <ImageButton
-            android:id="@+id/menu"
-            android:layout_width="75dp"
-            android:layout_height="60dp"
-            android:layout_row="0"
-            android:layout_column="4"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/white"
-            android:src="@drawable/bot_notifica" />
-    </GridLayout>
-</RelativeLayout>
+        <!-- Texto do resultado -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/result_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- dia"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Duração da Menstruação -->
+    <LinearLayout
+        android:id="@+id/layout_duracao_menstruacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/layout_duracao_ciclo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar"
+        android:layout_marginTop="5dp">
+
+        <!-- Título do cartão -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Próxima Menstruação"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- Circular SeekBar -->
+        <me.tankery.lib.circularseekbar.CircularSeekBar
+            android:id="@+id/seekbar_duration1"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cs_circle_color="#C2D2DC"
+            app:cs_circle_fill="@color/white"
+            app:cs_circle_progress_color="#D84242"
+            app:cs_circle_stroke_width="8dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Texto do resultado -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/result_duration1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="em - dia"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:menu="@menu/navigation_menu"
+        app:itemIconTint="@color/selector_bottom_nav_colors"
+        app:itemTextColor="@color/selector_bottom_nav_colors"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

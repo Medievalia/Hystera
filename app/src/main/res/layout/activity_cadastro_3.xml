@@ -132,7 +132,7 @@
             android:id="@+id/diasmens_button"
             android:layout_width="115dp"
             android:layout_height="60dp"
-            android:text="28 dias"
+            android:text="5 dias"
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold"
