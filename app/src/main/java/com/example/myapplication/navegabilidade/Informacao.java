@@ -26,8 +26,9 @@ public class Informacao extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacao);
+    }
 
-        Button coletor;
+  /*      Button coletor;
         Button monitorar;
         Button reutilizavel;
         Button pilula;
@@ -147,5 +148,5 @@ public class Informacao extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
+    } */
 }
