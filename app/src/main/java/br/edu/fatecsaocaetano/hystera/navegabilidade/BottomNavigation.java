@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.app.Activity;
 
