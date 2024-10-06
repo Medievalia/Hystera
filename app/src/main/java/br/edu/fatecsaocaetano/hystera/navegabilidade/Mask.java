@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.text.Editable;
 import android.text.TextWatcher;

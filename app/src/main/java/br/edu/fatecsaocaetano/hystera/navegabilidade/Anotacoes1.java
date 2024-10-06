@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.DialogInterface;
 import android.content.Intent;

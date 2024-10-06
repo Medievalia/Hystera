@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;

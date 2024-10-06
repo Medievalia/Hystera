@@ -1,4 +1,4 @@
-package com.example.myapplication.navegabilidade;
+package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.graphics.Color;
 import android.os.Bundle;
