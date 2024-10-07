@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECECEC"
-    tools:context=".BottomNavigation">
+    tools:context="br.edu.fatecsaocaetano.hystera.navegabilidade.BottomNavigation">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
