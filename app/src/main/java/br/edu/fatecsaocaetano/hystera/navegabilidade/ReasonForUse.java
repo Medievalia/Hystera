@@ -16,13 +16,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Cadastrar extends AppCompatActivity {
+public class ReasonForUse extends AppCompatActivity {
 
+    private static final Logger logger = LoggerUtils.configurarLogger(ReasonForUse.class.getName());
     private AppCompatButton monitorar;
     private AppCompatButton engravidar;
     private boolean choice;
-    String usuarioId;
+    String userID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,26 +38,29 @@ public class Cadastrar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 choice = false;
-                SalvarDados();
+                salvarMotivo();
             }
         });
         engravidar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 choice = true;
-                SalvarDados();
+                salvarMotivo();
             }
         });
     }
 
-    private void SalvarDados() {
+    private void salvarMotivo() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
-        dadosParaAtualizar.put("escolha", choice);
+        dadosParaAtualizar.put("GetPregnant", choice);
 
-        usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+        try {
+            userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        } catch (NullPointerException e) {
+            logger.log(Level.SEVERE, "ID do usuário não encontrado!");
+        }
+        DocumentReference documentReference = db.collection("Usuarios").document(userID);
 
         // Atualizar o documento com o novo campo usando merge para preservar os dados existentes
         documentReference.set(dadosParaAtualizar, SetOptions.merge())
@@ -62,18 +68,18 @@ public class Cadastrar extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao salvar os dados
-                        Log.d("TAG", "Escolha salva com sucesso!");
-
-                        Intent intent = new Intent(Cadastrar.this, Cadastrar2.class);
+                        Log.d("TAG", "Motivo do uso do aplicativo salvo com sucesso!");
+                        logger.log(Level.INFO, "Motivo do uso do aplicativo salvo com sucesso: " + userID);
+                        Intent intent = new Intent(ReasonForUse.this, MethodUse.class);
                         startActivity(intent);
-                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Lidar com falhas ao salvar os dados
-                        Log.e("TAG", "Erro ao salvar a escolha.", e);
+                        Log.e("TAG", "Erro ao salvar motivo do uso do aplicativo. ", e);
+                        logger.log(Level.SEVERE, "Erro ao salvar motivo do uso do aplicativo. " + e);
                     }
                 });
     }

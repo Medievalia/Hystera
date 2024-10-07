@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -17,7 +18,7 @@
 
         <!-- MainActivity configurada como a atividade de lançamento -->
         <activity
-            android:name=".navegabilidade.MainActivity"
+            android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,28 +27,25 @@
         </activity>
 
         <!-- Outras atividades -->
-        <activity android:name=".navegabilidade.Esqueceu1" android:exported="true" />
-        <activity android:name=".navegabilidade.Esqueceu2" android:exported="true" />
-        <activity android:name=".navegabilidade.Anotacoes" android:exported="true" />
-        <activity android:name=".navegabilidade.Login" android:exported="true" />
-        <activity android:name=".navegabilidade.LinhaDoTempo" android:exported="true" />
-        <activity android:name=".navegabilidade.Perfil" android:exported="true" />
-        <activity android:name=".navegabilidade.ComeceAgora" android:exported="true" />
-        <activity android:name=".navegabilidade.CriarConta" android:exported="true" />
-        <activity android:name=".navegabilidade.Informacao" android:exported="true" />
-        <activity android:name=".navegabilidade.Sair" android:exported="true" />
-        <activity android:name=".navegabilidade.Notificacoes" android:exported="true" />
-        <activity android:name=".navegabilidade.Calendario" android:exported="true" />
-        <activity android:name=".navegabilidade.Cadastrar" android:exported="true" />
-        <activity android:name=".navegabilidade.Cadastrar3" android:exported="true" />
-        <activity android:name=".navegabilidade.Cadastrar4" android:exported="true" />
-        <activity android:name=".navegabilidade.Cadastrar2" android:exported="true" />
-        <activity android:name=".navegabilidade.EditarPerfil" android:exported="true" />
-        <activity android:name=".navegabilidade.Ajuda" android:exported="true" />
-        <activity android:name=".navegabilidade.Ajuda1" android:exported="true" />
-        <activity android:name=".navegabilidade.Anotacoes1" android:exported="true" />
-        <activity android:name=".navegabilidade.Ajuda2" android:exported="true" />
-        <activity android:name=".navegabilidade.Ajuda3" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ResetPassword" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.PasswordRedefined" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Anotacoes" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Login" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.LinhaDoTempo" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Perfil" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ComeceAgora" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.CreateAccount" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Informacao" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Sair" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notificacoes" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Calendario" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ReasonForUse" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.MethodUse" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.FirstCycle" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditarPerfil" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Ajuda" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Anotacoes1" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.DUM" android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

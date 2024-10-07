@@ -15,22 +15,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnTenhoUmaConta();
+        btnComeceAgora();
+    }
+
+    private void btnTenhoUmaConta() {
         AppCompatButton tenhoUmaConta = findViewById(R.id.tenho_uma_conta);
         tenhoUmaConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                startActivity(intent);
+                login();
             }
         });
+    }
 
+    private void btnComeceAgora() {
         AppCompatButton comeceAgora = findViewById(R.id.comece_agora);
         comeceAgora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CriarConta.class);
-                startActivity(intent);
+                createAccount();
             }
         });
+    }
+
+    private void login() {
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
+    }
+
+    private void createAccount() {
+        Intent intent = new Intent(MainActivity.this, CreateAccount.class);
+        startActivity(intent);
     }
 }

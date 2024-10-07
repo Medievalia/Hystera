@@ -47,32 +47,32 @@ public class Perfil extends AppCompatActivity {
             }
         });
 
-        AppCompatButton cicloEditar =  findViewById(R.id.btn_ciclo_editar);
-        cicloEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Cadastrar3.class);
-                startActivity(intent);
-            }
-        });
+//        AppCompatButton cicloEditar =  findViewById(R.id.btn_ciclo_editar);
+//        cicloEditar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Cadastrar3.class);
+//                startActivity(intent);
+//            }
+//        });
 
         AppCompatButton alterarSenha =  findViewById(R.id.btn_alterar_senha);
         alterarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Esqueceu1.class);
+                Intent intent = new Intent(Perfil.this, ResetPassword.class);
                 startActivity(intent);
             }
         });
-
-        ImageButton ajuda =  findViewById(R.id.help_button);
-        ajuda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Ajuda.class);
-                startActivity(intent);
-            }
-        });
+//
+//        ImageButton ajuda =  findViewById(R.id.help_button);
+//        ajuda.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Perfil.this, Ajuda.class);
+//                startActivity(intent);
+//            }
+//        });
     }
     @Override
     protected void onStart(){

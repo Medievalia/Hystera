@@ -17,11 +17,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Cadastrar2 extends AppCompatActivity {
-    String metodo;
-    String usuarioId;
+public class MethodUse extends AppCompatActivity {
+    private String userID;
+    private String metodo;
+    private static final Logger logger = LoggerUtils.configurarLogger(MethodUse.class.getName());
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_4);
@@ -38,72 +42,86 @@ public class Cadastrar2 extends AppCompatActivity {
         botao1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "Camisinha";//Camisinha
-                SalvarDados(metodo);
+                metodo = "Preservativo";
+                salvarMetodo(metodo);
             }
         });
         botao2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "Pílula";//Pilula
-                SalvarDados(metodo);
+                metodo = "Pílula";
+                salvarMetodo(metodo);
             }
         });
         botao3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "DIU"; //DIU
-                SalvarDados(metodo);
+                metodo = "DIU";
+                salvarMetodo(metodo);
             }
         });
         botao4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "Injeção";//Injeção
-                SalvarDados(metodo);
+                metodo = "Injeção";
+                salvarMetodo(metodo);
             }
         });
         botao5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "CHIP"; //CHIP
-                SalvarDados(metodo);
+                metodo = "Implante Hormonal";
+                salvarMetodo(metodo);
             }
         });
         botao6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "Outros"; //Outros
-                SalvarDados(metodo);
+                metodo = "Outros";
+                salvarMetodo(metodo);
             }
         });
         btn_n_utilizo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo = "Não utilizo";//Não utilizo
-                SalvarDados(metodo);
+                metodo = "Não utiliza";
+                salvarMetodo(metodo);
             }
         });
     }
 
-    private void SalvarDados(String metodo) {
+    private void salvarMetodo(String metodo) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
+        dadosParaAtualizar.put("Method", metodo);
 
-        dadosParaAtualizar.put("metodo", metodo);
+        if(metodo.equals("Não utiliza")){
+            dadosParaAtualizar.put("UseMethod", true);
+        } else {
+            dadosParaAtualizar.put("UseMethod", false);
+        }
 
-        usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        try {
+            userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        } catch (NullPointerException e) {
+            logger.log(Level.SEVERE, "ID do usuário não encontrado!");
+        }
 
-        DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+        if (metodo.equals("Pílula")) {
+            dadosParaAtualizar.put("Pill", true);
+        } else {
+            dadosParaAtualizar.put("Pill", false);
+        }
 
-        // Atualizar o documento com o novo campo usando merge para preservar os dados existentes
+        DocumentReference documentReference = db.collection("Usuarios").document(userID);
+
         documentReference.set(dadosParaAtualizar, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        // Ação de sucesso ao salvar os dados
-                        Log.d("TAG", "Escolha salva com sucesso!");
-                        Intent intent = new Intent(Cadastrar2.this, Cadastrar3.class);
+                        Log.d("TAG", "Método anticoncepcional salvo com sucesso!");
+                        logger.log(Level.INFO, "Método anticoncepcional salvo com sucesso! " + userID);
+                        Intent intent = new Intent(MethodUse.this, DUM.class);
                         startActivity(intent);
                         finish();
                     }
@@ -111,8 +129,8 @@ public class Cadastrar2 extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Lidar com falhas ao salvar os dados
-                        Log.e("TAG", "Erro ao salvar a escolha.", e);
+                        Log.e("TAG", "Erro ao salvar o método anticoncepcional. ", e);
+                        logger.log(Level.SEVERE, "Erro ao salvar o método anticoncepcional para o usuário: " + userID + " " + e);
                     }
                 });
     }

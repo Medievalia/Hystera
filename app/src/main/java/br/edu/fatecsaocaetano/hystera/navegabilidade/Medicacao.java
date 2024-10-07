@@ -17,7 +17,7 @@ public class Medicacao extends AppCompatActivity {
 
         // Adiciona o listener de clique
         fab_add_medicamento.setOnClickListener(v -> {
-            Intent intent = new Intent(Medicacao.this, AddMedicamentoActivity.class); // Use Medicacao.this
+            Intent intent = new Intent(Medicacao.this, Medicine.class); // Use Medicacao.this
             startActivity(intent);
         });
     }

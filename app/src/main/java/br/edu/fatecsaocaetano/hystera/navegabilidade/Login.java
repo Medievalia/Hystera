@@ -19,29 +19,29 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Login extends AppCompatActivity {
 
+    private static final Logger logger = LoggerUtils.configurarLogger(Login.class.getName());
     private EditText editTextEmail, editTextSenha;
     private Button btn_seguinte;
     private Button esqueceu;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        IniciarComponentes();
+        iniciarComponentes();
 
         esqueceu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Esqueceu1.class);
-                startActivity(intent);
-                finish();
+                resetPassword();
             }
         });
-
 
         btn_seguinte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,19 +49,25 @@ public class Login extends AppCompatActivity {
                 String email = editTextEmail.getText().toString();
                 String senha = editTextSenha.getText().toString();
 
-                if(email.isEmpty() || senha.isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v,"Preencha todos os campos", Snackbar.LENGTH_SHORT);
+                if (email.isEmpty() || senha.isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Preencha todos os campos!", Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
                     snackbar.setTextColor(Color.BLACK);
                     snackbar.show();
-                } else{
-                    AutenticarUsuario();
+                } else {
+                    autenticarUsuario();
                 }
             }
         });
     }
 
-    private void AutenticarUsuario(){
+    private void resetPassword() {
+        Intent intent = new Intent(Login.this, ResetPassword.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void autenticarUsuario(){
         String email = editTextEmail.getText().toString();
         String senha = editTextSenha.getText().toString();
 
@@ -70,9 +76,11 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()){
-                    TelaPrincipal();
+                    telaPrincipal();
+                    logger.log(Level.INFO, "Autenticação com sucesso para o e-mail: " + email);
                 } else {
                     Toast.makeText(Login.this, "Falha na autenticação: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    logger.log(Level.SEVERE, "Falha na autenticação para o e-mail: " + email);
                 }
             }
         });
@@ -82,16 +90,16 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
         if(usuarioAtual != null) {
-            TelaPrincipal();
+            telaPrincipal();
         }
     }
 
-    private void TelaPrincipal(){
+    private void telaPrincipal(){
         Intent intent = new Intent(Login.this, LinhaDoTempo.class);
         startActivity(intent);
         finish();
     }
-    private void IniciarComponentes() {
+    private void iniciarComponentes() {
         esqueceu = findViewById(R.id.esqueceu);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextSenha = findViewById(R.id.editTextSenha);
