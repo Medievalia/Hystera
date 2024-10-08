@@ -3,6 +3,7 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 import android.util.Log;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -70,6 +71,44 @@ public class Cycle {
         cycleRef.set(this)
                 .addOnSuccessListener(aVoid -> Log.i(tag, "Ciclo salvo com sucesso! " + userID))
                 .addOnFailureListener(e -> Log.e(tag,"Erro ao salvar ciclo. " + e));
+    }
+
+    public Cycle simularProximoCiclo(Cycle cicloAtual) {
+        Timestamp proximoInicio = calcularData(cicloAtual.getEndDate(), 1);
+
+        return new Cycle(proximoInicio, cicloAtual.getDuration(), cicloAtual.isNatural(), cicloAtual.getBleeding(), cicloAtual.getUserID());
+    }
+
+    public void calcularMediaDuracaoCiclos(String userID) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Usuarios").document(userID)
+                .collection("Ciclos")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        int somaDuracoes = 0;
+                        int quantidadeCiclos = 0;
+
+                        for (DocumentSnapshot cicloDoc : queryDocumentSnapshots.getDocuments()) {
+                            if (cicloDoc.contains("duration")) {
+                                int duracao = cicloDoc.getLong("duration").intValue();
+                                somaDuracoes += duracao;
+                                quantidadeCiclos++;
+                            }
+                        }
+
+                        if (quantidadeCiclos > 0) {
+                            double mediaDuracao = (double) somaDuracoes / quantidadeCiclos;
+                            Log.i(tag, "Média da duração dos ciclos: " + mediaDuracao);
+                        } else {
+                            Log.e(tag, "Nenhum ciclo encontrado com duração.");
+                        }
+                    } else {
+                        Log.e(tag, "Nenhum ciclo encontrado para o usuário.");
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("CycleClass", "Erro ao buscar ciclos.", e));
     }
 
     public Timestamp getStartDate() { return startDate; }

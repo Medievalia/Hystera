@@ -29,7 +29,7 @@ import java.util.Map;
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class LinhaDoTempo extends AppCompatActivity {
-    String usuarioId;
+    String userID;
     String totoday = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
     CircularSeekBar seekBar;
 

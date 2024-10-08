@@ -74,7 +74,7 @@ public class Login extends AppCompatActivity {
 
                 if(task.isSuccessful()){
                     telaPrincipal();
-                    Log.i(tag, "Autenticação realizada com sucesso: " + email);
+                    Log.i(tag, "Autenticação realizada com sucesso! " + email);
                 } else {
                     Toast.makeText(Login.this, "Falha na autenticação: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                    Log.e(tag, "Falha na autenticação para o e-mail: " + email);
