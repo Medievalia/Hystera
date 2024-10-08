@@ -28,7 +28,7 @@ public class FirstCycle extends AppCompatActivity {
     private CircularSeekBar progressoCiclo;
     private boolean longoMensagemMostrada = false;
     private boolean curtoMensagemMostrada = false;
-    private int duracaoCiclo;
+    private int duracaoCiclo = 28;
     private String userID;
     private boolean natural = true;
     private int diasSangramento = 5;
@@ -39,8 +39,6 @@ public class FirstCycle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_3);
-        MaterialButton voltar = findViewById(R.id.back_button);
-
         seekBar = findViewById(R.id.seekbar);
         diasTextView = findViewById(R.id.Dias);
         diasMenstruaisButton = findViewById(R.id.diasmens_button);
@@ -105,6 +103,16 @@ public class FirstCycle extends AppCompatActivity {
 
                 int diasMenstruais = extrairApenasDigitos(textoDiasMenstruais);
                 createFirstCycle(diasDoCiclo, diasMenstruais);
+            }
+        });
+
+        AppCompatButton voltar = findViewById(R.id.back_button);
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstCycle.this, DUM.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

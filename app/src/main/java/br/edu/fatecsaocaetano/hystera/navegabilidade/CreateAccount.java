@@ -32,8 +32,9 @@ public class CreateAccount extends AppCompatActivity {
     private String tag = "CreateAccountClass";
     private EditText edit_nome, edit_email, edit_celular, edit_senha, edit_repetir_senha;
     private Button cadastrar;
+    private Button voltar;
     private MaterialCheckBox checkboxTerms;
-    String[] mensagens = {"Preencha todos os campos!", "Cadastro realizado com sucesso!", "Para prosseguir é necessário aceitar os Termos de Uso"};
+    String[] mensagens = {"Preencha todos os campos!", "Cadastro realizado com sucesso!", "Para prosseguir é necessário aceitar os Termos de Uso!"};
     private String userID;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,16 @@ public class CreateAccount extends AppCompatActivity {
                 if (validarCampos(v)) {
                     cadastrarUsuario(v);
                 }
+            }
+        });
+
+        AppCompatButton voltar = findViewById(R.id.back_button);
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateAccount.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -84,7 +95,7 @@ public class CreateAccount extends AppCompatActivity {
             return false;
         }
 
-        return true; // Todos os campos são válidos
+        return true;
     }
 
     private void cadastrarUsuario(View v) {
@@ -185,5 +196,6 @@ public class CreateAccount extends AppCompatActivity {
         edit_repetir_senha = findViewById(R.id.edit_repetir_senha);
         cadastrar = findViewById(R.id.cadastrar);
         checkboxTerms = findViewById(R.id.checkbox_terms);
+        voltar = findViewById(R.id.back_button);
     }
 }

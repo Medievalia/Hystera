@@ -10,7 +10,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -33,8 +32,6 @@ public class DUM extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_2);
-
-        MaterialButton voltar = findViewById(R.id.back_button);
         AppCompatButton seguinte = findViewById(R.id.btn_seguinte);
         MaterialCalendarView calendarView = findViewById(R.id.calendarView);
 
@@ -58,6 +55,7 @@ public class DUM extends AppCompatActivity {
             }
         });
 
+        AppCompatButton voltar = findViewById(R.id.back_button);
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

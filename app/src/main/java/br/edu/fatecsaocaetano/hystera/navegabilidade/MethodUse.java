@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -50,7 +50,16 @@ public class MethodUse extends AppCompatActivity {
 
         AppCompatButton botao6 = findViewById(R.id.botao6);
         AppCompatButton btn_n_utilizo = findViewById(R.id.btn_n_utilizo);
-        MaterialButton voltar = findViewById(R.id.back_button);
+
+        AppCompatButton voltar = findViewById(R.id.back_button);
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MethodUse.this, ReasonForUse.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Configurando o clique de forma genérica
         for (int i = 0; i < imageButtons.length; i++) {
