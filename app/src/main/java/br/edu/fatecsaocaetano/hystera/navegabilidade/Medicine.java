@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;

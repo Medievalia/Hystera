@@ -4,55 +4,42 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 import androidx.annotation.NonNull;
-
-import org.checkerframework.checker.units.qual.C;
-import org.checkerframework.checker.units.qual.Time;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class FirstCycle extends AppCompatActivity {
 
-    private static final Logger logger = LoggerUtils.configurarLogger(FirstCycle.class.getName());
+    private String tag = "FirstCycleClass";
     private CircularSeekBar progressoCiclo;
     private boolean longoMensagemMostrada = false;
     private boolean curtoMensagemMostrada = false;
     private int duracaoCiclo;
     private String userID;
-    private int diasSangramento;
-    private Button diasMenstruaisButton;
-    private TextView diasTextView;
+    private boolean natural = true;
+    private int diasSangramento = 5;
+    private MaterialButton diasMenstruaisButton;
+    private MaterialTextView diasTextView;
     private CircularSeekBar seekBar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_3);
-        ImageButton voltar = findViewById(R.id.back_button);
+        MaterialButton voltar = findViewById(R.id.back_button);
 
         seekBar = findViewById(R.id.seekbar);
         diasTextView = findViewById(R.id.Dias);
@@ -60,7 +47,6 @@ public class FirstCycle extends AppCompatActivity {
         diasMenstruaisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Exibir mensagem com o número de dias menstruais
                 String mensagem = "Dias menstruais: " + diasSangramento;
                 Toast.makeText(getApplicationContext(), mensagem, Toast.LENGTH_SHORT).show();
             }
@@ -118,12 +104,12 @@ public class FirstCycle extends AppCompatActivity {
                 }
 
                 int diasMenstruais = extrairApenasDigitos(textoDiasMenstruais);
-                salvarDadosCiclo(diasDoCiclo, diasMenstruais);
+                createFirstCycle(diasDoCiclo, diasMenstruais);
             }
         });
     }
 
-    private void salvarDadosCiclo(int diasDoCiclo, int diasMenstruais) {
+    private void createFirstCycle(int diasDoCiclo, int diasMenstruais) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
         dadosParaAtualizar.put("Bleeding", diasMenstruais);
@@ -132,7 +118,7 @@ public class FirstCycle extends AppCompatActivity {
         try {
             userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         } catch (NullPointerException e) {
-            logger.log(Level.SEVERE, "ID do usuário não encontrado!");
+            Log.e(tag, "ID do usuário não encontrado!");
             return;
         }
 
@@ -143,24 +129,28 @@ public class FirstCycle extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
                             Timestamp DUM = documentSnapshot.getTimestamp("DUM");
-                            boolean natural = documentSnapshot.getBoolean("Pill");
+                            Log.i(tag, DUM.toString());
+
+                            String method = documentSnapshot.getString("Method");
+
+                            if(method.equals("PILULA") || method.equals("IMPLANTE_HORMONAL") || method.equals("INJECAO")){
+                                natural = false;
+                            }
 
                             // Cria o ciclo
-                            Cycle ciclo = new Cycle(DUM, diasDoCiclo, natural, diasSangramento);
+                            Cycle ciclo = new Cycle(DUM, diasDoCiclo, natural, diasSangramento, userID);
 
                             // Salvar o ciclo no Firestore
                             saveCycle(ciclo);
                         } else {
-                            Log.d("TAG", "Documento não encontrado");
-                            logger.log(Level.SEVERE, "Documento não encontrado! " + userID);
+                            Log.e(tag, "Documento não encontrado! " + userID);
                         }
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("TAG", "Erro ao buscar a última menstruação.", e);
-                        logger.log(Level.SEVERE, "Erro ao buscar a última menstruação! " + userID);
+                        Log.e(tag, "Erro ao buscar a última menstruação.", e);
                     }
                 });
     }
@@ -179,13 +169,12 @@ public class FirstCycle extends AppCompatActivity {
         // Salvar o ciclo
         cycleRef.set(ciclo)
                 .addOnSuccessListener(aVoid -> {
-                    Log.d("TAG", "Ciclo salvo com sucesso!");
-                    logger.log(Level.INFO, "Ciclo salvo com sucesso! " + userID);
+                    Log.i(tag, "Ciclo salvo com sucesso! " + userID);
                     Intent intent = new Intent(FirstCycle.this, LinhaDoTempo.class);
                     startActivity(intent);
                     finish();
                 })
-                .addOnFailureListener(e -> logger.log(Level.INFO, "Erro ao salvar ciclo! " + userID + " " + e));
+                .addOnFailureListener(e -> Log.e(tag, "Erro ao salvar ciclo! " + userID + " " + e));
     }
 
     public void onImageButtonClick(View view) {
@@ -211,50 +200,4 @@ public class FirstCycle extends AppCompatActivity {
         String apenasDigitos = texto.replaceAll("[^0-9]", "");
         return Integer.parseInt(apenasDigitos);
     }
-
-//    private String calcularProximaMenstruacao(String ultimaMenstruacao, int diasDoCiclo) {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-//
-//        try {
-//            // Convertendo a última menstruação para o formato Date
-//            Date ultimaData = dateFormat.parse(ultimaMenstruacao);
-//
-//            // Usando um calendário para calcular a próxima menstruação
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.setTime(ultimaData);
-//
-//            // Adicionando a duração do ciclo à última menstruação
-//            calendar.add(Calendar.DAY_OF_MONTH, diasDoCiclo);
-//
-//            // Convertendo a data calculada de volta para o formato String
-//            return dateFormat.format(calendar.getTime());
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//            return "Erro ao calcular a próxima menstruação";
-//        }
-//    }
-
-//    private String calcularPenultimaMenstruacao(String ultimaMenstruacao, int diasDoCiclo) {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-//
-//        try {
-//            // Convertendo a última menstruação para o formato Date
-//            Date ultimaData = dateFormat.parse(ultimaMenstruacao);
-//
-//            // Usando um calendário para calcular a penúltima menstruação
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.setTime(ultimaData);
-//
-//            // Subtraindo a duração do ciclo da última menstruação
-//            calendar.add(Calendar.DAY_OF_MONTH, -diasDoCiclo);
-//
-//            // Convertendo a data calculada de volta para o formato String
-//            return dateFormat.format(calendar.getTime());
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//            return "Erro ao calcular a penúltima menstruação";
-//        }
-//    }
 }

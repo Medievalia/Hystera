@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;

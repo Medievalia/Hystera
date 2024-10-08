@@ -3,11 +3,9 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 
 public class MainActivity extends AppCompatActivity {
     @Override

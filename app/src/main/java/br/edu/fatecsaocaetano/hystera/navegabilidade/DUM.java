@@ -2,44 +2,59 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import android.widget.CalendarView;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-import com.google.firebase.Timestamp;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public class DUM extends AppCompatActivity {
-    private String userID;
-    private static final Logger logger = LoggerUtils.configurarLogger(DUM.class.getName());
 
+public class DUM extends AppCompatActivity {
+
+    private String userID;
+    private String tag = "DUMClass";
+    private Timestamp dataSelecionada;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_2);
 
-        ImageButton voltar = findViewById(R.id.back_button);
+        MaterialButton voltar = findViewById(R.id.back_button);
         AppCompatButton seguinte = findViewById(R.id.btn_seguinte);
-        CalendarView calendarView = findViewById(R.id.calendarView);
+        MaterialCalendarView calendarView = findViewById(R.id.calendarView);
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        // Listener para captura de data
+        calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 // Salvar a data como Timestamp
-                Timestamp dataSelecionada = getTimestamp(year, month, dayOfMonth);
-                salvarDUM(dataSelecionada);
+                dataSelecionada = getTimestamp(date.getYear(), date.getMonth(), date.getDay() + 1);
+            }
+        });
+
+        seguinte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dataSelecionada != null) {
+                    salvarDUM(dataSelecionada);
+                } else {
+                    Log.e(tag, "Nenhuma data foi selecionada.");
+                }
             }
         });
 
@@ -61,7 +76,7 @@ public class DUM extends AppCompatActivity {
         try {
             userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         } catch (NullPointerException e) {
-            logger.log(Level.SEVERE, "ID do usuário não encontrado!");
+            Log.e(tag, "ID do usuário não encontrado!");
         }
 
         DocumentReference documentReference = db.collection("Usuarios").document(userID);
@@ -70,8 +85,7 @@ public class DUM extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "Data da última menstruação salva com sucesso!");
-                        logger.log(Level.INFO, "Data da última menstruação salva com sucesso! " + userID);
+                        Log.i(tag, "Data da última menstruação salva com sucesso!");
                         Intent intent = new Intent(DUM.this, FirstCycle.class);
                         startActivity(intent);
                     }
@@ -79,8 +93,7 @@ public class DUM extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("TAG", "Erro ao salvar a data da última menstruação.", e);
-                        logger.log(Level.SEVERE, "Erro ao salvar a data da última menstruação. " + userID + " " + e);
+                        Log.e(tag, "Erro ao salvar a data da última menstruação.", e);
                     }
                 });
     }

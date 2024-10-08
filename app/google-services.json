@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:710436575539:android:db12d29eafbd09d1498646",
         "android_client_info": {
-          "package_name": "com.example.myapplication"
+          "package_name": "br.edu.fatecsaocaetano.hystera"
         }
       },
       "oauth_client": [],

@@ -3,7 +3,7 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Medicacao extends AppCompatActivity {

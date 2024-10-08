@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 
 public class PasswordRedefined extends AppCompatActivity {
     private Button btn_seguinte;

@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 
 public class Ajuda extends AppCompatActivity {
 

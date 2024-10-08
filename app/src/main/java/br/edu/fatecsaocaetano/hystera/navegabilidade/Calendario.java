@@ -7,7 +7,7 @@ import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

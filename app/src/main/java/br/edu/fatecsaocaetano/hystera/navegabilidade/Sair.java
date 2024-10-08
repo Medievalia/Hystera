@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 
 
 

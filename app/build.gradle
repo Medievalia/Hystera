@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.myapplication'
+    namespace 'br.edu.fatecsaocaetano.hystera'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "br.edu.fatecsaocaetano.hystera"
         minSdk 30
         targetSdk 33
         versionCode 1

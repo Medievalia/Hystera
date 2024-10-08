@@ -10,7 +10,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,17 +26,15 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CreateAccount extends AppCompatActivity {
 
-    private static final Logger logger = LoggerUtils.configurarLogger(CreateAccount.class.getName());
+    private String tag = "CreateAccountClass";
     private EditText edit_nome, edit_email, edit_celular, edit_senha, edit_repetir_senha;
     private Button cadastrar;
     private MaterialCheckBox checkboxTerms;
     String[] mensagens = {"Preencha todos os campos!", "Cadastro realizado com sucesso!", "Para prosseguir é necessário aceitar os Termos de Uso"};
-    String userID;
+    private String userID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +80,7 @@ public class CreateAccount extends AppCompatActivity {
 
         if (!senha.equals(rSenha)) {
             mostrarSnackbar(v, "Senhas divergentes");
-            logger.log(Level.SEVERE, "Senha divergente para tentativa de criação de usuário: " + email);
+            Log.e(tag, "Senha divergente para tentativa de criação de usuário: " + email);
             return false;
         }
 
@@ -116,16 +114,12 @@ public class CreateAccount extends AppCompatActivity {
             throw e;
         } catch (FirebaseAuthWeakPasswordException ex) {
             erro = "Digite uma senha com no mínimo 8 caracteres";
-            logger.log(Level.SEVERE, "Senha inserida com caracteres incorretos para o email: " + email + ", " + ex);
         } catch (FirebaseAuthUserCollisionException ex) {
-            erro = "Conta já cadastrada anteriormente";
-            logger.log(Level.SEVERE, "Conta já cadastrada anteriormente: " + email + ", " + ex);
+            erro = "Conta já cadastrada anteriormente!";
         } catch (FirebaseAuthInvalidCredentialsException ex) {
-            erro = "E-mail inválido";
-            logger.log(Level.SEVERE, "E-mail inválido: " + email + ", " + ex);
+            erro = "E-mail inválido!";
         } catch (Exception ex) {
-            erro = "Erro ao cadastrar usuário";
-            logger.log(Level.SEVERE, "Erro ao cadastrar usuário: " + email + ", " + ex);
+            erro = "Erro ao cadastrar usuário!";
         }
         return erro;
     }
@@ -144,21 +138,19 @@ public class CreateAccount extends AppCompatActivity {
         try {
             userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         } catch (NullPointerException e) {
-            logger.log(Level.INFO, "ID do usuário não encontrado para o e-mail: " + email);
+            Log.e(tag, String.format("ID do usuário não encontrado para o e-mail: %s" , email));
         }
 
         DocumentReference documentReference = db.collection("Usuarios").document(userID);
         documentReference.set(usuarios).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Log.d("db", "Sucesso ao salvar os dados!");
-                logger.log(Level.INFO, "Sucesso ao salvar os dados do usuário: " + userID);
+                Log.i(tag, String.format("Sucesso ao salvar os dados do usuário %s" , userID));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("db error", "Erro ao salvar os dados " + e);
-                logger.log(Level.SEVERE, "Erro ao salvar os dados " + e);
+                Log.e(tag, "Erro ao salvar os dados " + e);
             }
         });
     }

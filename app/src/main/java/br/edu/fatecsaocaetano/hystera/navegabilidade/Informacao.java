@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 
 public class Informacao extends AppCompatActivity {
 

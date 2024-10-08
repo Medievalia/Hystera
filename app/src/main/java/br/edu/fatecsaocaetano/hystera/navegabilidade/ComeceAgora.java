@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 
 public class ComeceAgora extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {

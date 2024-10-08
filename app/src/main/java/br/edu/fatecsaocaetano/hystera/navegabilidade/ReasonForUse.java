@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,16 +16,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ReasonForUse extends AppCompatActivity {
 
-    private static final Logger logger = LoggerUtils.configurarLogger(ReasonForUse.class.getName());
+    private String tag = "ReasonForUseClass";
     private AppCompatButton monitorar;
     private AppCompatButton engravidar;
     private boolean choice;
-    String userID;
+    private String userID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +56,7 @@ public class ReasonForUse extends AppCompatActivity {
         try {
             userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         } catch (NullPointerException e) {
-            logger.log(Level.SEVERE, "ID do usuário não encontrado!");
+            Log.e(tag, "ID do usuário não encontrado!");
         }
         DocumentReference documentReference = db.collection("Usuarios").document(userID);
 
@@ -68,8 +66,7 @@ public class ReasonForUse extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao salvar os dados
-                        Log.d("TAG", "Motivo do uso do aplicativo salvo com sucesso!");
-                        logger.log(Level.INFO, "Motivo do uso do aplicativo salvo com sucesso: " + userID);
+                        Log.i(tag, "Motivo do uso do aplicativo salvo com sucesso! " + userID);
                         Intent intent = new Intent(ReasonForUse.this, MethodUse.class);
                         startActivity(intent);
                     }
@@ -78,8 +75,7 @@ public class ReasonForUse extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // Lidar com falhas ao salvar os dados
-                        Log.e("TAG", "Erro ao salvar motivo do uso do aplicativo. ", e);
-                        logger.log(Level.SEVERE, "Erro ao salvar motivo do uso do aplicativo. " + e);
+                        Log.e(tag, "Erro ao salvar motivo do uso do aplicativo. ", e);
                     }
                 });
     }

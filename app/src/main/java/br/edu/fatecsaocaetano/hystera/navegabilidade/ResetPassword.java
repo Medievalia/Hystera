@@ -9,17 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ResetPassword extends AppCompatActivity {
 
-    private static final Logger logger = LoggerUtils.configurarLogger(ResetPassword.class.getName());
+    private String tag = "ResetPasswordClass";
     private EditText email;
     private Button btn_enviar;
 
@@ -55,17 +53,16 @@ public class ResetPassword extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // Email de redefinição de senha enviado com sucesso
                                 Intent intent = new Intent(ResetPassword.this, PasswordRedefined.class);
-                                logger.log(Level.INFO, "Email de redefinição de senha enviado com sucesso ao e-mail: " + txtemail);
+                                Log.i(tag, "Email de redefinição de senha enviado com sucesso ao e-mail: " + txtemail);
                                 startActivity(intent);
                                 finish();
                             } else {
                                 // Falha ao enviar o email de redefinição de senha
                                 Snackbar errorSnackbar = Snackbar.make(v, "Falha ao enviar email para redefinição de senha.", Snackbar.LENGTH_SHORT);
-                                logger.log(Level.INFO, "Falha ao enviar o email de redefinição de senha ao e-mail: " + txtemail);
                                 errorSnackbar.setBackgroundTint(Color.WHITE);
                                 errorSnackbar.setTextColor(Color.BLACK);
                                 errorSnackbar.show();
-                                Log.e("TAG", "Erro ao enviar email para redefinição de senha.", task.getException());
+                                Log.e(tag, "Erro ao enviar email para redefinição de senha.", task.getException());
                             }
                         }
                     });

@@ -4,113 +4,87 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import com.example.myapplication.R;
+import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MethodUse extends AppCompatActivity {
+
+    private boolean methoduse = false;
+    private boolean usepill = false;
+    private String tag = "MethodUseClass";
     private String userID;
-    private String metodo;
-    private static final Logger logger = LoggerUtils.configurarLogger(MethodUse.class.getName());
+
+    private enum Metodo {
+        PRESERVATIVO, PILULA, DIU, INJECAO, IMPLANTE_HORMONAL, OUTROS, NAO_UTILIZA
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_4);
 
-        ImageButton botao1 = findViewById(R.id.botao1);
-        ImageButton botao2 = findViewById(R.id.botao2);
-        ImageButton botao3 = findViewById(R.id.botao3);
-        ImageButton botao4 = findViewById(R.id.botao4);
-        ImageButton botao5 = findViewById(R.id.botao5);
+        // Referências aos botões
+        ShapeableImageView[] imageButtons = {
+                findViewById(R.id.botao1), findViewById(R.id.botao2),
+                findViewById(R.id.botao3), findViewById(R.id.botao4),
+                findViewById(R.id.botao5)
+        };
+
+        // Lista de métodos correspondentes aos botões
+        Metodo[] metodos = {
+                Metodo.PRESERVATIVO, Metodo.PILULA,
+                Metodo.DIU, Metodo.INJECAO,
+                Metodo.IMPLANTE_HORMONAL
+        };
+
         AppCompatButton botao6 = findViewById(R.id.botao6);
         AppCompatButton btn_n_utilizo = findViewById(R.id.btn_n_utilizo);
-        ImageButton voltar = findViewById(R.id.back_button);
+        MaterialButton voltar = findViewById(R.id.back_button);
 
-        botao1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Preservativo";
-                salvarMetodo(metodo);
-            }
-        });
-        botao2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Pílula";
-                salvarMetodo(metodo);
-            }
-        });
-        botao3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "DIU";
-                salvarMetodo(metodo);
-            }
-        });
-        botao4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Injeção";
-                salvarMetodo(metodo);
-            }
-        });
-        botao5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Implante Hormonal";
-                salvarMetodo(metodo);
-            }
-        });
-        botao6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Outros";
-                salvarMetodo(metodo);
-            }
-        });
-        btn_n_utilizo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metodo = "Não utiliza";
-                salvarMetodo(metodo);
-            }
-        });
+        // Configurando o clique de forma genérica
+        for (int i = 0; i < imageButtons.length; i++) {
+            final Metodo metodo = metodos[i];
+            imageButtons[i].setOnClickListener(v -> salvarMetodo(metodo));
+        }
+
+        // Clique para o botão 'Outros'
+        botao6.setOnClickListener(v -> salvarMetodo(Metodo.OUTROS));
+
+        // Clique para o botão 'Não utiliza'
+        btn_n_utilizo.setOnClickListener(v -> salvarMetodo(Metodo.NAO_UTILIZA));
     }
 
-    private void salvarMetodo(String metodo) {
+    private void salvarMetodo(Metodo metodo) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> dadosParaAtualizar = new HashMap<>();
         dadosParaAtualizar.put("Method", metodo);
 
-        if(metodo.equals("Não utiliza")){
-            dadosParaAtualizar.put("UseMethod", true);
-        } else {
-            dadosParaAtualizar.put("UseMethod", false);
+        if(!metodo.toString().equals("NAO_UTILIZA")){
+            methoduse = true;
         }
+
+        if (metodo.toString().equals("PILULA")) {
+            usepill = true;
+        }
+
+        dadosParaAtualizar.put("UseMethod", methoduse);
+        dadosParaAtualizar.put("Pill", usepill);
 
         try {
             userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         } catch (NullPointerException e) {
-            logger.log(Level.SEVERE, "ID do usuário não encontrado!");
-        }
-
-        if (metodo.equals("Pílula")) {
-            dadosParaAtualizar.put("Pill", true);
-        } else {
-            dadosParaAtualizar.put("Pill", false);
+            Log.e(tag, "ID do usuário não encontrado!");
         }
 
         DocumentReference documentReference = db.collection("Usuarios").document(userID);
@@ -119,18 +93,15 @@ public class MethodUse extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "Método anticoncepcional salvo com sucesso!");
-                        logger.log(Level.INFO, "Método anticoncepcional salvo com sucesso! " + userID);
+                        Log.i(tag, "Método anticoncepcional salvo com sucesso!" + userID);
                         Intent intent = new Intent(MethodUse.this, DUM.class);
                         startActivity(intent);
-                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e("TAG", "Erro ao salvar o método anticoncepcional. ", e);
-                        logger.log(Level.SEVERE, "Erro ao salvar o método anticoncepcional para o usuário: " + userID + " " + e);
+                        Log.e(tag, "Erro ao salvar o método anticoncepcional. " + userID + e);
                     }
                 });
     }
