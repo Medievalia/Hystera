@@ -7,6 +7,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -14,15 +15,18 @@ import java.util.Map;
 public class Cycle {
 
     private final String tag = "CycleClass";
-    private final String userID;
-    private final String id;
-    private final Timestamp startDate;
-    private final Timestamp endDate;
-    private final int duration;
-    private final boolean natural;
-    private final int bleeding;
-    private final Timestamp ovulation;
+    private String userID;
+    private String id;
+    private Timestamp startDate;
+    private Timestamp endDate;
+    private int duration;
+    private boolean natural;
+    private int bleeding;
+    private Timestamp ovulation;
     private final Map<String, Map<String, Timestamp>> fases = new HashMap<>();
+
+    public Cycle() {
+    }
 
     public Cycle(Timestamp startDate, int duration, boolean natural, int bleeding, String userID) {
         this.startDate = startDate;
@@ -38,6 +42,7 @@ public class Cycle {
         adicionarFase("Menstrual", startDate, calcularData(startDate, bleeding - 1));
         adicionarFase("Folicular", calcularData(startDate, bleeding), calcularData(ovulation, -1));
         adicionarFase("Lutea", calcularData(ovulation, 1), endDate);
+        adicionarFase("Ovulacao", calcularOvulacao(), calcularOvulacao());
     }
 
     private Timestamp calcularData(Timestamp data, int dias) {
@@ -60,7 +65,9 @@ public class Cycle {
 
     private String gerarIdCiclo() {
         SimpleDateFormat sdf = new SimpleDateFormat("MMyyyy", Locale.getDefault());
-        return sdf.format(startDate.toDate());
+        String baseId = sdf.format(startDate.toDate());
+        String timestamp = String.valueOf(startDate.getSeconds());  // Usar o timestamp de segundos para garantir unicidade
+        return baseId + "-" + timestamp;
     }
 
     public void salvarCicloNoFirebase() {
@@ -108,7 +115,69 @@ public class Cycle {
                         Log.e(tag, "Nenhum ciclo encontrado para o usuário.");
                     }
                 })
-                .addOnFailureListener(e -> Log.e("CycleClass", "Erro ao buscar ciclos.", e));
+                .addOnFailureListener(e -> Log.e(tag, "Erro ao buscar ciclos.", e));
+    }
+
+    public Map<String, String> obterInformacoesDoCicloAtual() {
+        Calendar hoje = Calendar.getInstance();
+        hoje.setTime(new Date());
+
+        // Criar um Map para armazenar os resultados
+        Map<String, String> informacoesCiclo = new HashMap<>();
+
+        // Obter o dia do ciclo atual
+        long diasDesdeInicio = (hoje.getTimeInMillis() - startDate.toDate().getTime()) / (1000 * 60 * 60 * 24);
+        int diaDoCiclo = (int) diasDesdeInicio + 1;
+
+        // Determinar a fase atual
+        String faseAtual = "Sangramento";
+        for (Map.Entry<String, Map<String, Timestamp>> entry : fases.entrySet()) {
+            String nomeFase = entry.getKey();
+            Timestamp inicioFase = entry.getValue().get("inicio");
+            Timestamp fimFase = entry.getValue().get("fim");
+
+            if (hoje.getTimeInMillis() >= inicioFase.toDate().getTime() && hoje.getTimeInMillis() <= fimFase.toDate().getTime()) {
+                faseAtual = nomeFase;
+                break;
+            }
+        }
+        // Adicionar informações ao Map
+        informacoesCiclo.put("faseAtual", faseAtual);
+        informacoesCiclo.put("diaDoCiclo", String.valueOf(diaDoCiclo));
+
+        return informacoesCiclo;
+    }
+
+    public Map<String, Integer> calcularDiasRestantes() {
+
+        Calendar hoje = Calendar.getInstance();
+        hoje.setTime(new Date());
+        Map<String, Integer> diasRestantesMap = new HashMap<>();
+
+        // Calcular dias até a próxima menstruação
+        long diasRestantesParaMenstruacao = (endDate.toDate().getTime() - hoje.getTimeInMillis()) / (1000 * 60 * 60 * 24);
+        diasRestantesMap.put("diasProximaMenstruacao", (int) diasRestantesParaMenstruacao);
+
+        // Calcular dias restantes até a próxima fase
+        String faseAtual = "Sangramento";
+        int diasRestantesParaFase = -1;
+
+        for (Map.Entry<String, Map<String, Timestamp>> entry : fases.entrySet()) {
+            String nomeFase = entry.getKey();
+            Timestamp inicioFase = entry.getValue().get("inicio");
+            Timestamp fimFase = entry.getValue().get("fim");
+
+            // Verifica se a data atual está dentro da fase
+            if (hoje.getTimeInMillis() >= inicioFase.toDate().getTime() && hoje.getTimeInMillis() <= fimFase.toDate().getTime()) {
+                faseAtual = nomeFase;
+                break;
+            } else if (hoje.getTimeInMillis() < inicioFase.toDate().getTime()) {
+                diasRestantesParaFase = (int) ((inicioFase.toDate().getTime() - hoje.getTimeInMillis()) / (1000 * 60 * 60 * 24));
+                break;
+            }
+        }
+        diasRestantesMap.put("diasProximaFase", diasRestantesParaFase);
+        return diasRestantesMap;
     }
 
     public Timestamp getStartDate() { return startDate; }

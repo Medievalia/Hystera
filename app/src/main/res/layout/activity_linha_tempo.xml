@@ -160,7 +160,7 @@
 
         <!-- Circular SeekBar -->
         <me.tankery.lib.circularseekbar.CircularSeekBar
-            android:id="@+id/seekbar_duration"
+            android:id="@+id/seekbar_period"
             android:layout_width="120dp"
             android:layout_height="120dp"
             app:cs_circle_color="#C2D2DC"
