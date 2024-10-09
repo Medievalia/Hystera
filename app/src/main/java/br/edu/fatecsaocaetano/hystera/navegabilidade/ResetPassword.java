@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPassword extends AppCompatActivity {
 
-    private String tag = "ResetPasswordClass";
+    private final String tag = "ResetPasswordClass";
     private EditText email;
     private Button btn_enviar;
 

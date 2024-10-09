@@ -18,17 +18,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.annotation.NonNull;
-import java.util.HashMap;
-import java.util.Map;
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class FirstCycle extends AppCompatActivity {
 
-    private String tag = "FirstCycleClass";
-    private CircularSeekBar progressoCiclo;
-    private boolean longoMensagemMostrada = false;
-    private boolean curtoMensagemMostrada = false;
-    private int duracaoCiclo = 28;
+    private final String tag = "FirstCycleClass";
+    private boolean longoMensagem = false;
+    private boolean curtoMensagem = false;
     private String userID;
     private boolean natural = true;
     private int diasSangramento = 5;
@@ -40,8 +36,11 @@ public class FirstCycle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_3);
         seekBar = findViewById(R.id.seekbar);
+        float progressoInicial = (28f / 50f) * 100;
+        seekBar.setProgress(progressoInicial);
         diasTextView = findViewById(R.id.Dias);
         diasMenstruaisButton = findViewById(R.id.diasmens_button);
+
         diasMenstruaisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,15 +53,13 @@ public class FirstCycle extends AppCompatActivity {
             @Override
             public void onProgressChanged(CircularSeekBar circularSeekBar, float progress, boolean fromUser) {
                 int dias = (int) ((progress / 100) * 50);
-                duracaoCiclo = dias;
-
-                if (dias > 35 && !longoMensagemMostrada) {
+                if (dias > 38 && !longoMensagem) {
                     Toast.makeText(FirstCycle.this, "Ciclo muito longo, é importante consultar um especialista", Toast.LENGTH_LONG).show();
-                    longoMensagemMostrada = true;
+                    longoMensagem = true;
                     diasTextView.setText(dias + " dias");
-                } else if (dias < 24 && !curtoMensagemMostrada) {
+                } else if (dias < 15 && !curtoMensagem) {
                     Toast.makeText(FirstCycle.this, "Ciclo muito curto, é importante consultar um especialista", Toast.LENGTH_LONG).show();
-                    curtoMensagemMostrada = true;
+                    curtoMensagem = true;
                     diasTextView.setText(dias + " dias");
                 } else {
                     diasTextView.setText(dias + " dias");
@@ -83,6 +80,9 @@ public class FirstCycle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 diasTextView.setText("28 dias");
+                String textoDiasCiclo = diasTextView.getText().toString();
+                int diasDoCiclo = extrairApenasDigitos(textoDiasCiclo);
+                createFirstCycle(diasDoCiclo);
             }
         });
 
@@ -91,18 +91,8 @@ public class FirstCycle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String textoDiasCiclo = diasTextView.getText().toString();
-                String textoDiasMenstruais = diasMenstruaisButton.getText().toString();
-
                 int diasDoCiclo = extrairApenasDigitos(textoDiasCiclo);
-
-                // Verificação se foi inserido um valor para os dias menstruais
-                if (textoDiasMenstruais.isEmpty()) {
-                    Toast.makeText(FirstCycle.this, "Insira um valor para os dias menstruais", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                int diasMenstruais = extrairApenasDigitos(textoDiasMenstruais);
-                createFirstCycle(diasDoCiclo, diasMenstruais);
+                createFirstCycle(diasDoCiclo);
             }
         });
 
@@ -117,12 +107,8 @@ public class FirstCycle extends AppCompatActivity {
         });
     }
 
-    private void createFirstCycle(int diasDoCiclo, int diasMenstruais) {
+    private void createFirstCycle(int diasDoCiclo) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> dadosParaAtualizar = new HashMap<>();
-        dadosParaAtualizar.put("Bleeding", diasMenstruais);
-        dadosParaAtualizar.put("Average", diasDoCiclo);
-
         try {
             userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         } catch (NullPointerException e) {
@@ -137,19 +123,14 @@ public class FirstCycle extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
                             Timestamp DUM = documentSnapshot.getTimestamp("DUM");
-                            Log.i(tag, DUM.toString());
-
                             String method = documentSnapshot.getString("Method");
 
                             if(method.equals("PILULA") || method.equals("IMPLANTE_HORMONAL") || method.equals("INJECAO")){
                                 natural = false;
                             }
-
-                            // Cria o ciclo
                             Cycle ciclo = new Cycle(DUM, diasDoCiclo, natural, diasSangramento, userID);
-
-                            // Salvar o ciclo no Firestore
                             saveCycle(ciclo);
+
                         } else {
                             Log.e(tag, "Documento não encontrado! " + userID);
                         }
@@ -158,7 +139,7 @@ public class FirstCycle extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.e(tag, "Erro ao buscar a última menstruação.", e);
+                        Log.e(tag, "Erro ao buscar a última menstruação. ", e);
                     }
                 });
     }
@@ -183,11 +164,6 @@ public class FirstCycle extends AppCompatActivity {
                     finish();
                 })
                 .addOnFailureListener(e -> Log.e(tag, "Erro ao salvar ciclo! " + userID + " " + e));
-    }
-
-    public void onImageButtonClick(View view) {
-        Intent intent = new Intent(FirstCycle.this, DUM.class);
-        startActivity(intent);
     }
 
     public void aumentarDiasMenstruais(View view) {

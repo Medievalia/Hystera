@@ -16,7 +16,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Grafico extends AppCompatActivity {
+public class Graph extends AppCompatActivity {
 
     private LineChart lineChart;
 

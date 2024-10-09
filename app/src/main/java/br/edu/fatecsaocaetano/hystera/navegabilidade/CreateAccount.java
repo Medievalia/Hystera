@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class CreateAccount extends AppCompatActivity {
 
-    private String tag = "CreateAccountClass";
+    private final String tag = "CreateAccountClass";
     private EditText edit_nome, edit_email, edit_celular, edit_senha, edit_repetir_senha;
     private Button cadastrar;
     private Button voltar;

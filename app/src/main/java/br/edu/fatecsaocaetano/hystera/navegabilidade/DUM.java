@@ -25,7 +25,7 @@ import java.util.Map;
 public class DUM extends AppCompatActivity {
 
     private String userID;
-    private String tag = "DUMClass";
+    private final String tag = "DUMClass";
     private Timestamp dataSelecionada;
 
     @Override
@@ -35,7 +35,6 @@ public class DUM extends AppCompatActivity {
         AppCompatButton seguinte = findViewById(R.id.btn_seguinte);
         MaterialCalendarView calendarView = findViewById(R.id.calendarView);
 
-        // Listener para captura de data
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {

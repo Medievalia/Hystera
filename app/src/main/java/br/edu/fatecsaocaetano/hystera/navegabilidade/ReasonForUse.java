@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class ReasonForUse extends AppCompatActivity {
 
-    private String tag = "ReasonForUseClass";
+    private final String tag = "ReasonForUseClass";
     private AppCompatButton monitorar;
     private AppCompatButton engravidar;
     private boolean choice;

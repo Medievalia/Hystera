@@ -22,7 +22,7 @@ public class MethodUse extends AppCompatActivity {
 
     private boolean methoduse = false;
     private boolean usepill = false;
-    private String tag = "MethodUseClass";
+    private final String tag = "MethodUseClass";
     private String userID;
 
     private enum Metodo {

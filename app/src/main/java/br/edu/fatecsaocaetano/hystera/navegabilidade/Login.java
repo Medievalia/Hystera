@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    private String tag = "LoginClass";
+    private final String tag = "LoginClass";
     private EditText editTextEmail, editTextSenha;
     private Button btn_seguinte;
     private Button esqueceu;
