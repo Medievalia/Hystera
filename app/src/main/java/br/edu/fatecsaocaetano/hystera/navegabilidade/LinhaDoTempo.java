@@ -66,43 +66,51 @@ public class LinhaDoTempo extends AppCompatActivity {
                     if (!queryDocumentSnapshots.isEmpty()) {
                         DocumentSnapshot currentCycle = queryDocumentSnapshots.getDocuments().get(0);
                         Cycle ultimoCiclo = currentCycle.toObject(Cycle.class);
-                        Map<String, String> informacoesCiclo = ultimoCiclo.obterInformacoesDoCicloAtual();
 
-                        int duracaoCiclo = ultimoCiclo.getDuration();
-                        int diasMenstruacao = ultimoCiclo.getBleeding();
+                        // Verificar se o ciclo atual terminou
+                        if (isCicloAtualTerminado(ultimoCiclo)) {
+                            Cycle novoCiclo = ultimoCiclo.simularProximoCiclo(ultimoCiclo);
+                            novoCiclo.salvarCicloNoFirebase(); // Salvar o novo ciclo no Firebase
+                        } else {
+                            // Continue com a lógica existente
+                            Map<String, String> informacoesCiclo = ultimoCiclo.obterInformacoesDoCicloAtual();
 
-                        String nomeFase = informacoesCiclo.get("faseAtual");
-                        String diaDoCiclo = informacoesCiclo.get("diaDoCiclo");
+                            int duracaoCiclo = ultimoCiclo.getDuration();
+                            int diasMenstruacao = ultimoCiclo.getBleeding();
 
-                        Map<String, Integer> diasRestantes = ultimoCiclo.calcularDiasRestantes();
-                        int diasProximaMenstruacao = diasRestantes.get("diasProximaMenstruacao");
-                        int diasProximaFase = diasRestantes.get("diasProximaFase");
+                            String nomeFase = informacoesCiclo.get("faseAtual");
+                            String diaDoCiclo = informacoesCiclo.get("diaDoCiclo");
 
-                        float progressoSeekBarDiaDoCiclo = (Float.parseFloat(diaDoCiclo) / duracaoCiclo) * 100;
+                            Map<String, Integer> diasRestantes = ultimoCiclo.calcularDiasRestantes();
+                            int diasProximaMenstruacao = diasRestantes.get("diasProximaMenstruacao");
+                            int diasProximaFase = diasRestantes.get("diasProximaFase");
 
-                        int diasFaltandoParaProximaFase = diasProximaFase;
-                        int duracaoFaseAtual = 0;
+                            float progressoSeekBarDiaDoCiclo = (Float.parseFloat(diaDoCiclo) / duracaoCiclo) * 100;
 
-                        for (Map.Entry<String, Map<String, Timestamp>> entry : ultimoCiclo.getFases().entrySet()) {
-                            String fase = entry.getKey();
-                            Map<String, Timestamp> datasFase = entry.getValue();
-                            Timestamp inicioFase = datasFase.get("inicio");
-                            Timestamp fimFase = datasFase.get("fim");
+                            int diasFaltandoParaProximaFase = diasProximaFase;
+                            int duracaoFaseAtual = 0;
 
-                            if (fase.equals(nomeFase)) {
-                                duracaoFaseAtual = (int) ((fimFase.toDate().getTime() - inicioFase.toDate().getTime()) / (1000 * 60 * 60 * 24)) + 1;
-                                break;
+                            for (Map.Entry<String, Map<String, Timestamp>> entry : ultimoCiclo.getFases().entrySet()) {
+                                String fase = entry.getKey();
+                                Map<String, Timestamp> datasFase = entry.getValue();
+                                Timestamp inicioFase = datasFase.get("inicio");
+                                Timestamp fimFase = datasFase.get("fim");
+
+                                if (fase.equals(nomeFase)) {
+                                    duracaoFaseAtual = (int) ((fimFase.toDate().getTime() - inicioFase.toDate().getTime()) / (1000 * 60 * 60 * 24)) + 1;
+                                    break;
+                                }
                             }
+
+                            float progressoSeekBarProximaFase = ((duracaoFaseAtual - diasFaltandoParaProximaFase) / (float) duracaoFaseAtual) * 100;
+                            float progressoSeekBarProximoSangramento = ((duracaoCiclo - diasProximaMenstruacao) / (float) duracaoCiclo) * 100;
+
+                            seekBar.setProgress(progressoSeekBarDiaDoCiclo);
+                            seekBarPeriod.setProgress(progressoSeekBarProximaFase);
+                            seekBarNextBleeding.setProgress(progressoSeekBarProximoSangramento);
+
+                            Log.i(tag, "Último ciclo recuperado: " + ultimoCiclo.getId());
                         }
-
-                        float progressoSeekBarProximaFase = ((duracaoFaseAtual - diasFaltandoParaProximaFase) / (float) duracaoFaseAtual) * 100;
-                        float progressoSeekBarProximoSangramento = ((duracaoCiclo - diasProximaMenstruacao) / (float) duracaoCiclo) * 100;
-
-                        seekBar.setProgress(progressoSeekBarDiaDoCiclo);
-                        seekBarPeriod.setProgress(progressoSeekBarProximaFase);
-                        seekBarNextBleeding.setProgress(progressoSeekBarProximoSangramento);
-
-                        Log.i(tag, "Último ciclo recuperado: " + ultimoCiclo.getId());
                     } else {
                         Log.e(tag, "Nenhum ciclo encontrado.");
                     }
@@ -112,123 +120,8 @@ public class LinhaDoTempo extends AppCompatActivity {
                 });
     }
 
-        // ImageButton inicioMenst = findViewById(R.id.inicioMenst);
-        //inicioMenst.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Criação do diálogo de confirmação
-//                AlertDialog.Builder builder = new AlertDialog.Builder(LinhaDoTempo.this);
-//                builder.setTitle("Atualizar data de menstruação");
-//                builder.setMessage("Deseja atualizar a data da última menstruação para hoje?");
-//                builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        atualizarDataUltimaMenstruacao(totoday);
-//
-//                    }
-//                });
-//                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                AlertDialog dialog = builder.create();
-//                dialog.show();
-//            }
-//        });
-
-//        Button mediaCiclo = findViewById(R.id.mediaCiclo);
-//        mediaCiclo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseFirestore db = FirebaseFirestore.getInstance();
-//                DocumentReference docRef = db.collection("Usuarios").document(usuarioId);
-//
-//                docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        if (documentSnapshot.exists()) {
-//                            String penultimaMenstruacaoinfo = documentSnapshot.getString("PenultimaMenstruacao");
-//                            String ultimaMenstruacaoinfo = documentSnapshot.getString("UltimaMenstruacao");
-//                            String proximaMenstruacaoinfo = documentSnapshot.getString("ProximaMenstruacao");
-//
-//                            AlertDialog.Builder builder = new AlertDialog.Builder(LinhaDoTempo.this);
-//                            builder.setTitle("Informações de Ciclo Menstrual");
-//
-//                            String mensagem = "Penúltima Menstruação: " + penultimaMenstruacaoinfo + "\n" +
-//                                    "Última Menstruação: " + ultimaMenstruacaoinfo + "\n" +
-//                                    "Próxima Menstruação: " + proximaMenstruacaoinfo;
-//
-//                            builder.setMessage(mensagem);
-//
-//                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    dialog.dismiss(); // Fecha a caixa de mensagem ao clicar em OK
-//                                }
-//                            });
-//
-//                            AlertDialog dialog = builder.create();
-//                            dialog.show();
-//                        } else {
-//                            Log.d("TAG", "O documento não existe");
-//                        }
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.e("TAG", "Falha ao obter informações do Firestore", e);
-//                    }
-//                });
-//            }
-//        });
-//    }
-
-//    private void atualizarSeekBar(String newProx) {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-//        Calendar calendar = Calendar.getInstance();
-//
-//        try {
-//            Date proximaMenstruacaoDate = dateFormat.parse(newProx);
-//            Date hojeDate = dateFormat.parse(today);
-//
-//            long diferencaMilissegundos = proximaMenstruacaoDate.getTime() - hojeDate.getTime();
-//            long diferencaDias = diferencaMilissegundos / (1000 * 60 * 60 * 24); // Converte para dias
-//
-//            if (diferencaDias >= 0) {
-//                int progresso = (int) (100 - diferencaDias);
-//                seekBar.setProgress(progresso);
-//                FirebaseFirestore db = FirebaseFirestore.getInstance();
-//                Map<String, Object> usuarios = new HashMap<>();
-//
-//                String diasProxima = String.valueOf(diferencaDias);
-//                usuarios.put("diasProxima", diasProxima);
-//
-//                userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//                DocumentReference documentReference = db.collection("Usuarios").document(userID);
-//                documentReference.set(usuarios, SetOptions.merge())
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                // Ação de sucesso ao salvar os dados
-//                                Log.d("TAG", "");
-//                            }
-//                        });
-//            }
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-
-    private void configurarBotao(int botaoId, Class<?> destino) {
-        ImageButton botao = findViewById(botaoId);
-        botao.setOnClickListener(v -> {
-            Intent intent = new Intent(LinhaDoTempo.this, destino);
-            startActivity(intent);
-//        configurarBotao(R.id.button_perfil, Perfil.class);
-//        configurarBotao(R.id.button_grafico, Graph.class);
-        });
+    private boolean isCicloAtualTerminado(Cycle ciclo) {
+        Calendar hoje = Calendar.getInstance();
+        return hoje.getTimeInMillis() > ciclo.getEndDate().toDate().getTime();
     }
 }
