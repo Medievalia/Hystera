@@ -1,32 +1,15 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.SetOptions;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
@@ -34,10 +17,10 @@ public class LinhaDoTempo extends AppCompatActivity {
 
     private final String tag = "LinhaDoTempoClass";
     private String userID;
-    private Timestamp today;
     private CircularSeekBar seekBar;
     private CircularSeekBar seekBarPeriod;
     private CircularSeekBar seekBarNextBleeding;
+    private Cycle currentCycle;
 
 
     @Override
@@ -64,24 +47,24 @@ public class LinhaDoTempo extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
-                        DocumentSnapshot currentCycle = queryDocumentSnapshots.getDocuments().get(0);
-                        Cycle ultimoCiclo = currentCycle.toObject(Cycle.class);
+                        DocumentSnapshot actualCycle = queryDocumentSnapshots.getDocuments().get(0);
+                        Cycle ultimoCiclo = actualCycle.toObject(Cycle.class);
 
-                        // Verificar se o ciclo atual terminou
                         if (isCicloAtualTerminado(ultimoCiclo)) {
-                            Cycle novoCiclo = ultimoCiclo.simularProximoCiclo(ultimoCiclo);
-                            novoCiclo.salvarCicloNoFirebase(); // Salvar o novo ciclo no Firebase
+                            currentCycle = ultimoCiclo.simularProximoCiclo(ultimoCiclo);
+                            currentCycle.salvarCicloNoFirebase();
                         } else {
-                            // Continue com a lógica existente
-                            Map<String, String> informacoesCiclo = ultimoCiclo.obterInformacoesDoCicloAtual();
+                            currentCycle = ultimoCiclo;
+                        }
+                            Map<String, String> informacoesCiclo = currentCycle.obterInformacoesDoCicloAtual();
 
-                            int duracaoCiclo = ultimoCiclo.getDuration();
-                            int diasMenstruacao = ultimoCiclo.getBleeding();
+                            int duracaoCiclo = currentCycle.getDuration();
+                            int diasMenstruacao = currentCycle.getBleeding();
 
                             String nomeFase = informacoesCiclo.get("faseAtual");
                             String diaDoCiclo = informacoesCiclo.get("diaDoCiclo");
 
-                            Map<String, Integer> diasRestantes = ultimoCiclo.calcularDiasRestantes();
+                            Map<String, Integer> diasRestantes = currentCycle.calcularDiasRestantes();
                             int diasProximaMenstruacao = diasRestantes.get("diasProximaMenstruacao");
                             int diasProximaFase = diasRestantes.get("diasProximaFase");
 
@@ -90,7 +73,7 @@ public class LinhaDoTempo extends AppCompatActivity {
                             int diasFaltandoParaProximaFase = diasProximaFase;
                             int duracaoFaseAtual = 0;
 
-                            for (Map.Entry<String, Map<String, Timestamp>> entry : ultimoCiclo.getFases().entrySet()) {
+                            for (Map.Entry<String, Map<String, Timestamp>> entry : currentCycle.getFases().entrySet()) {
                                 String fase = entry.getKey();
                                 Map<String, Timestamp> datasFase = entry.getValue();
                                 Timestamp inicioFase = datasFase.get("inicio");
@@ -109,8 +92,8 @@ public class LinhaDoTempo extends AppCompatActivity {
                             seekBarPeriod.setProgress(progressoSeekBarProximaFase);
                             seekBarNextBleeding.setProgress(progressoSeekBarProximoSangramento);
 
-                            Log.i(tag, "Último ciclo recuperado: " + ultimoCiclo.getId());
-                        }
+                            Log.i(tag, "Ciclo atual recuperado: " + currentCycle.getId());
+
                     } else {
                         Log.e(tag, "Nenhum ciclo encontrado.");
                     }

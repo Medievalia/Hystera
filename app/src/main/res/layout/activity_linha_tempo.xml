@@ -23,20 +23,20 @@
         app:strokeColor="@android:color/transparent"
         app:strokeWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_menstruacao"
+        app:layout_constraintEnd_toStartOf="@id/button_agendamento"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.30" />
 
     <!-- Botão de menstruação no topo -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_menstruacao"
+        android:id="@+id/button_agendamento"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="#F1F1F1"
         android:contentDescription="Inicio Menstruação"
-        app:icon="@drawable/gota1"
+        app:icon="@drawable/planner"
         app:iconTint="#8A50FF"
         app:iconGravity="textStart"
         app:iconPadding="1dp"
@@ -64,7 +64,7 @@
         app:cornerRadius="100dp"
         app:strokeColor="@android:color/transparent"
         app:strokeWidth="0dp"
-        app:layout_constraintStart_toEndOf="@id/button_menstruacao"
+        app:layout_constraintStart_toEndOf="@id/button_agendamento"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.30" />
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/button_menstruacao"
+        app:layout_constraintTop_toBottomOf="@id/button_agendamento"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -157,17 +157,34 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
 
-        <!-- Circular SeekBar -->
-        <me.tankery.lib.circularseekbar.CircularSeekBar
-            android:id="@+id/seekbar_period"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            app:cs_circle_color="#C2D2DC"
-            app:cs_circle_fill="@color/white"
-            app:cs_circle_progress_color="#8A50FF"
-            app:cs_circle_stroke_width="8dp"
-            android:layout_marginTop="8dp" />
+            <!-- Circular SeekBar -->
+            <me.tankery.lib.circularseekbar.CircularSeekBar
+                android:id="@+id/seekbar_period"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cs_circle_color="#C2D2DC"
+                app:cs_circle_fill="@color/white"
+                app:cs_circle_progress_color="#61C3EF"
+                app:cs_circle_stroke_width="8dp" />
+
+            <!-- ImageButton no centro do SeekBar -->
+            <ImageButton
+                android:id="@+id/button_periodo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/cicle"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                android:contentDescription="Período Atual"
+                app:tint="#61C3EF" />
+
+        </FrameLayout>
 
         <!-- Texto do resultado -->
         <com.google.android.material.textview.MaterialTextView
@@ -204,16 +221,35 @@
             android:textSize="15sp"
             android:textStyle="bold" />
 
-        <!-- Circular SeekBar -->
-        <me.tankery.lib.circularseekbar.CircularSeekBar
-            android:id="@+id/seekbar_next"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            app:cs_circle_color="#C2D2DC"
-            app:cs_circle_fill="@color/white"
-            app:cs_circle_progress_color="#D84242"
-            app:cs_circle_stroke_width="8dp"
-            android:layout_marginTop="8dp" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <!-- Circular SeekBar -->
+            <me.tankery.lib.circularseekbar.CircularSeekBar
+                android:id="@+id/seekbar_next"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cs_circle_color="#C2D2DC"
+                app:cs_circle_fill="@color/white"
+                app:cs_circle_progress_color="#D84242"
+                app:cs_circle_stroke_width="8dp" />
+
+            <!-- ImageView no centro do SeekBar -->
+            <ImageButton
+                android:id="@+id/button_menstruacao"
+                android:backgroundTint="#FFFFFF"
+                android:contentDescription="Inicio Menstruação"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:src="@drawable/gota2"
+                app:iconTint="#D84242"
+                app:iconGravity="textStart"
+                android:layout_gravity="center"
+                android:scaleType="centerInside" />
+
+        </FrameLayout>
 
         <!-- Texto do resultado -->
         <com.google.android.material.textview.MaterialTextView
