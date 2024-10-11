@@ -47,7 +47,7 @@ public class EditarPerfil extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfil.this, Perfil.class);
+                Intent intent = new Intent(EditarPerfil.this, Profile.class);
                 startActivity(intent);
             }
         });
@@ -124,7 +124,7 @@ public class EditarPerfil extends AppCompatActivity {
 
     public void onImageButtonClick(View view) {
         // Este método é chamado quando o ImageButton é clicado
-        Intent intent = new Intent(EditarPerfil.this, Perfil.class);
+        Intent intent = new Intent(EditarPerfil.this, Profile.class);
         startActivity(intent);
     }
 

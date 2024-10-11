@@ -1,19 +1,12 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.net.wifi.ScanResult;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.edu.fatecsaocaetano.hystera.R;
 
-public class Informacao extends AppCompatActivity {
+public class Informations extends AppCompatActivity {
 
     String link1 = "https://cinge.com.br/2022/08/08/coletor-menstrual-ou-absorvente-qual-o-melhor/";
     String link2 = "https://mundoeducacao.uol.com.br/sexualidade/ciclo-menstrual.htm";

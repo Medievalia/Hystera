@@ -3,13 +3,10 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-
 import br.edu.fatecsaocaetano.hystera.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -18,11 +15,15 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class Perfil extends AppCompatActivity {
+public class Profile extends AppCompatActivity {
 
-    private TextView nomeUsuario, senhaUsuario, emailUsuario, numeroUsuario, metodoContraUsuario;
+    private TextView nomeUsuario;
+    private TextView emailUsuario;
+    private TextView numeroUsuario;
+    private TextView metodoContraUsuario;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String usuarioID;
+    String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,7 @@ public class Perfil extends AppCompatActivity {
         sair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, Sair.class);
+                Intent intent = new Intent(Profile.this, Sair.class);
                 startActivity(intent);
             }
         });
@@ -42,45 +43,28 @@ public class Perfil extends AppCompatActivity {
         perfilEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, EditarPerfil.class);
+                Intent intent = new Intent(Profile.this, EditarPerfil.class);
                 startActivity(intent);
             }
         });
-
-//        AppCompatButton cicloEditar =  findViewById(R.id.btn_ciclo_editar);
-//        cicloEditar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Perfil.this, Cadastrar3.class);
-//                startActivity(intent);
-//            }
-//        });
 
         AppCompatButton alterarSenha =  findViewById(R.id.btn_alterar_senha);
         alterarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Perfil.this, ResetPassword.class);
+                Intent intent = new Intent(Profile.this, ResetPassword.class);
                 startActivity(intent);
             }
         });
-//
-//        ImageButton ajuda =  findViewById(R.id.help_button);
-//        ajuda.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Perfil.this, Ajuda.class);
-//                startActivity(intent);
-//            }
-//        });
+
     }
     @Override
     protected void onStart(){
         super.onStart();
-        usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+        DocumentReference documentReference = db.collection("Usuarios").document(userID);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -102,7 +86,7 @@ public class Perfil extends AppCompatActivity {
 
     public void onImageButtonClick(View view) {
         // Este método é chamado quando o ImageButton é clicado
-        Intent intent = new Intent(Perfil.this, LinhaDoTempo.class);
+        Intent intent = new Intent(Profile.this, LinhaDoTempo.class);
         startActivity(intent);
     }
 }

@@ -29,16 +29,16 @@
         <!-- Outras atividades -->
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ResetPassword" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.PasswordRedefined" android:exported="true" />
-        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Anotacoes" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notes" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Login" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.LinhaDoTempo" android:exported="true" />
-        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Perfil" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Profile" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ComeceAgora" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.CreateAccount" android:exported="true" />
-        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Informacao" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Informations" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Sair" android:exported="true" />
-        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notificacoes" android:exported="true" />
-        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Calendario" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notifications" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.CalendaryCycle" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ReasonForUse" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.MethodUse" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.FirstCycle" android:exported="true" />

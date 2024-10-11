@@ -2,19 +2,35 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import br.edu.fatecsaocaetano.hystera.R;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final String tag = "MainActivityClass";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnTenhoUmaConta();
-        btnComeceAgora();
+        FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
+        if (usuarioAtual != null) {
+            Intent intent = new Intent(MainActivity.this, LinhaDoTempo.class);
+            startActivity(intent);
+            Log.i(tag, "Usuário já autenticado, inicializando tela de linha do tempo!");
+            finish();
+        } else {
+            btnTenhoUmaConta();
+            btnComeceAgora();
+        }
     }
 
     private void btnTenhoUmaConta() {

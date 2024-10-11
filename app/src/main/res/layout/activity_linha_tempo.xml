@@ -192,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="fase do ciclo"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -256,7 +256,7 @@
             android:id="@+id/result_duration1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="em - dias"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="18sp"
             android:layout_marginTop="8dp"

@@ -122,14 +122,11 @@ public class Cycle {
         Calendar hoje = Calendar.getInstance();
         hoje.setTime(new Date());
 
-        // Criar um Map para armazenar os resultados
         Map<String, String> informacoesCiclo = new HashMap<>();
 
-        // Obter o dia do ciclo atual
         long diasDesdeInicio = (hoje.getTimeInMillis() - startDate.toDate().getTime()) / (1000 * 60 * 60 * 24);
         int diaDoCiclo = (int) diasDesdeInicio + 1;
 
-        // Determinar a fase atual
         String faseAtual = "Sangramento";
         for (Map.Entry<String, Map<String, Timestamp>> entry : fases.entrySet()) {
             String nomeFase = entry.getKey();
@@ -141,7 +138,6 @@ public class Cycle {
                 break;
             }
         }
-        // Adicionar informações ao Map
         informacoesCiclo.put("faseAtual", faseAtual);
         informacoesCiclo.put("diaDoCiclo", String.valueOf(diaDoCiclo));
 
@@ -154,11 +150,9 @@ public class Cycle {
         hoje.setTime(new Date());
         Map<String, Integer> diasRestantesMap = new HashMap<>();
 
-        // Calcular dias até a próxima menstruação
         long diasRestantesParaMenstruacao = (endDate.toDate().getTime() - hoje.getTimeInMillis()) / (1000 * 60 * 60 * 24);
         diasRestantesMap.put("diasProximaMenstruacao", (int) diasRestantesParaMenstruacao);
 
-        // Calcular dias restantes até a próxima fase
         String faseAtual = "Sangramento";
         int diasRestantesParaFase = -1;
 
@@ -167,7 +161,6 @@ public class Cycle {
             Timestamp inicioFase = entry.getValue().get("inicio");
             Timestamp fimFase = entry.getValue().get("fim");
 
-            // Verifica se a data atual está dentro da fase
             if (hoje.getTimeInMillis() >= inicioFase.toDate().getTime() && hoje.getTimeInMillis() <= fimFase.toDate().getTime()) {
                 faseAtual = nomeFase;
                 break;

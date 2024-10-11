@@ -1,19 +1,12 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.CalendarView;
-import android.widget.ImageButton;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
-public class Calendario extends AppCompatActivity {
+public class CalendaryCycle extends AppCompatActivity {
 
     private CalendarView calendarView;
     private long dataInicialMillis;

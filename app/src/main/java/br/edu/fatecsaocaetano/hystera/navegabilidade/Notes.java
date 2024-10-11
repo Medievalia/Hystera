@@ -1,26 +1,16 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.edu.fatecsaocaetano.hystera.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
+
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-
-import org.w3c.dom.Text;
 
 
-public class Anotacoes extends AppCompatActivity {
+public class Notes extends AppCompatActivity {
     TextView notas1,notas2,notas3,notas4,notas5,notas6;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String usuarioID;

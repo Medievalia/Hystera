@@ -1,25 +1,12 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.ImageButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import br.edu.fatecsaocaetano.hystera.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class Notificacoes extends AppCompatActivity {
+public class Notifications extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView notifica, notifica2, ativar;
     String diasProxima;
