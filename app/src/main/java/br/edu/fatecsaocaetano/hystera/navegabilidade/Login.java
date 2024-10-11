@@ -92,7 +92,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void telaPrincipal(){
-        Intent intent = new Intent(Login.this, LinhaDoTempo.class);
+        Intent intent = new Intent(Login.this, TimeLine.class);
         startActivity(intent);
         finish();
     }

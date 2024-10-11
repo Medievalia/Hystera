@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class EditarPerfil extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
     private EditText edit_nome, edit_email, edit_celular, edit_metodo;
     String[] mensagens = {"Preencha todos os campos", "Alteração realizada com sucesso!"};
     String usuarioId;
@@ -38,7 +38,7 @@ public class EditarPerfil extends AppCompatActivity {
         ajuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfil.this, Ajuda.class);
+                Intent intent = new Intent(EditProfile.this, Ajuda.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +47,7 @@ public class EditarPerfil extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditarPerfil.this, Profile.class);
+                Intent intent = new Intent(EditProfile.this, Profile.class);
                 startActivity(intent);
             }
         });
@@ -101,7 +101,7 @@ public class EditarPerfil extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao salvar os dados
                         Log.d("TAG", "Perfil Alterado com Sucesso!");
-                        Intent intent = new Intent(EditarPerfil.this, LinhaDoTempo.class);
+                        Intent intent = new Intent(EditProfile.this, TimeLine.class);
                         startActivity(intent);
                         finish();
                     }
@@ -124,7 +124,7 @@ public class EditarPerfil extends AppCompatActivity {
 
     public void onImageButtonClick(View view) {
         // Este método é chamado quando o ImageButton é clicado
-        Intent intent = new Intent(EditarPerfil.this, Profile.class);
+        Intent intent = new Intent(EditProfile.this, Profile.class);
         startActivity(intent);
     }
 

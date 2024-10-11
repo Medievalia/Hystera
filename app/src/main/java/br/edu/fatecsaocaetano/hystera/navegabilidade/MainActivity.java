@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
         if (usuarioAtual != null) {
-            Intent intent = new Intent(MainActivity.this, LinhaDoTempo.class);
+            Intent intent = new Intent(MainActivity.this, TimeLine.class);
             startActivity(intent);
             Log.i(tag, "Usuário já autenticado, inicializando tela de linha do tempo!");
             finish();

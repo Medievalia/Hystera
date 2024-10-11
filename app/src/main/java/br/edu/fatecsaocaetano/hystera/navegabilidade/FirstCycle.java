@@ -159,7 +159,7 @@ public class FirstCycle extends AppCompatActivity {
         cycleRef.set(ciclo)
                 .addOnSuccessListener(aVoid -> {
                     Log.i(tag, "Ciclo salvo com sucesso! " + userID);
-                    Intent intent = new Intent(FirstCycle.this, LinhaDoTempo.class);
+                    Intent intent = new Intent(FirstCycle.this, TimeLine.class);
                     startActivity(intent);
                     finish();
                 })

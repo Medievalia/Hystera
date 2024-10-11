@@ -12,7 +12,7 @@ import br.edu.fatecsaocaetano.hystera.R;
 
 
 
-public class Sair extends AppCompatActivity {
+public class Logout extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +24,7 @@ public class Sair extends AppCompatActivity {
         acompanhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Sair.this, LinhaDoTempo.class);
+                Intent intent = new Intent(Logout.this, TimeLine.class);
                 startActivity(intent);
             }
         });
@@ -33,7 +33,7 @@ public class Sair extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(Sair.this, MainActivity.class);
+                Intent intent = new Intent(Logout.this, MainActivity.class);
                 startActivity(intent);
 
             }

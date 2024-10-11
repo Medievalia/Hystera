@@ -22,7 +22,7 @@ import java.util.Calendar;
 import java.util.Map;
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
-public class LinhaDoTempo extends AppCompatActivity {
+public class TimeLine extends AppCompatActivity {
 
     private final String tag = "LinhaDoTempoClass";
     private String userID;
@@ -90,19 +90,19 @@ public class LinhaDoTempo extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if (id == R.id.nav_anota) {
-                    startActivity(new Intent(LinhaDoTempo.this, Notes.class));
+                    startActivity(new Intent(TimeLine.this, Notes.class));
                     return true;
                 } else if (id == R.id.nav_calendario) {
-                    startActivity(new Intent(LinhaDoTempo.this, CalendaryCycle.class));
+                    startActivity(new Intent(TimeLine.this, CalendaryCycle.class));
                     return true;
                 } else if (id == R.id.nav_utero) {
-                    startActivity(new Intent(LinhaDoTempo.this, Informations.class));
+                    startActivity(new Intent(TimeLine.this, Informations.class));
                     return true;
                 } else if (id == R.id.nav_seekbar) {
-                    startActivity(new Intent(LinhaDoTempo.this, LinhaDoTempo.class));
+                    startActivity(new Intent(TimeLine.this, TimeLine.class));
                     return true;
                 } else if (id == R.id.nav_medicacao) {
-                    startActivity(new Intent(LinhaDoTempo.this, Medicine.class));
+                    startActivity(new Intent(TimeLine.this, Medicine.class));
                     return true;
                 }
                 return false;
@@ -174,7 +174,7 @@ public class LinhaDoTempo extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LinhaDoTempo.this, targetActivity);
+                Intent intent = new Intent(TimeLine.this, targetActivity);
                 startActivity(intent);
                 finish();
             }
@@ -186,7 +186,7 @@ public class LinhaDoTempo extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LinhaDoTempo.this, targetActivity);
+                Intent intent = new Intent(TimeLine.this, targetActivity);
                 startActivity(intent);
                 finish();
             }
