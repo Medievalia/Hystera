@@ -47,6 +47,7 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Ajuda" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Anotacoes1" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.DUM" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Graph" android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
