@@ -28,7 +28,6 @@
         <item name="shapeAppearanceOverlay">"@style/ShapeAppearanceOverlay.MaterialComponents.Shape.Circular"</item>
     </style>
 
-
     <!-- Estilo personalizado para MaterialSwitch -->
     <style name="CustomSwitchStyle">
         <!-- Cor do pole (thumb) quando ativado -->
@@ -46,6 +45,5 @@
         <!-- Usar cores temáticas do Material -->
         <item name="useMaterialThemeColors">true</item>
     </style>
-
 
 </resources>
