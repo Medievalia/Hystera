@@ -84,6 +84,9 @@ public class Graph extends AppCompatActivity {
         seekbarDuration = findViewById(R.id.seekbar_duration);
         seekbarBleeding = findViewById(R.id.seekbar_duration1);
 
+        // Definindo o máximo da seekbar de sangramento
+        seekbarBleeding.setMax(15);
+
         // Desabilitando a interação do usuário nas seekBars
         seekbarDuration.setEnabled(false);
         seekbarBleeding.setEnabled(false);
@@ -198,11 +201,12 @@ public class Graph extends AppCompatActivity {
         Log.d(TAG, "Número de entradas: " + cycleEntries.size());
 
         LineDataSet lineDataSet = new LineDataSet(cycleEntries, "Últimos 6 ciclos");
-        lineDataSet.setColor(Color.parseColor("#8A50FF"));
-        lineDataSet.setValueTextColor(Color.BLACK);
-        lineDataSet.setLineWidth(2f);
-        lineDataSet.setCircleColor(Color.BLACK);
-        lineDataSet.setCircleRadius(5f);
+        lineDataSet.setColor(Color.parseColor("#FF4081")); // Alterando a cor da linha
+        lineDataSet.setValueTextColor(Color.WHITE); // Mudando a cor do texto dos valores para branco
+        lineDataSet.setLineWidth(3f); // Aumentando a largura da linha
+        lineDataSet.setCircleColor(Color.RED); // Alterando a cor dos círculos
+        lineDataSet.setCircleRadius(6f); // Aumentando o tamanho dos círculos
+        lineDataSet.setDrawValues(true); // Para mostrar os valores acima dos pontos
 
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
@@ -219,13 +223,14 @@ public class Graph extends AppCompatActivity {
         xAxis.setLabelCount(monthLabels.size());
 
         Description description = new Description();
-        description.setText("Ciclos Mensais");
+        description.setText("Ciclos nos últimos meses");
         lineChart.setDescription(description);
+
         lineChart.invalidate(); // Atualiza o gráfico
     }
 
     private void updateSeekBarWithAverage(int averageDuration, int averageBleeding) {
-        // Atualizando os seekBars com as médias
+        // Atualizando as seekbars com as médias
         seekbarDuration.setProgress(averageDuration);
         seekbarBleeding.setProgress(averageBleeding);
     }
