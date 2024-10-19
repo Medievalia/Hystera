@@ -28,6 +28,4 @@
         <item name="cornerRadius">100dp</item> <!-- Raio do canto -->
         <item name="backgroundTint">@color/white</item> <!-- Cor de fundo branca -->
     </style>
-
-
 </resources>
