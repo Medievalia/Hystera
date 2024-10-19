@@ -39,6 +39,11 @@ public class TimeLine extends AppCompatActivity {
         seekBarPeriod = findViewById(R.id.seekbar_period);
         seekBarNextBleeding = findViewById(R.id.seekbar_next);
 
+        // Desabilitando a interação com as seekbars
+        seekBar.setEnabled(false);
+        seekBarPeriod.setEnabled(false);
+        seekBarNextBleeding.setEnabled(false);
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         try {
             userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -58,8 +63,8 @@ public class TimeLine extends AppCompatActivity {
                         DocumentSnapshot actualCycle = queryDocumentSnapshots.getDocuments().get(0);
                         Cycle ultimoCiclo = actualCycle.toObject(Cycle.class);
 
-                        if (ultimoCiclo != null){
-                            if(isCicloAtualTerminado(ultimoCiclo)) {
+                        if (ultimoCiclo != null) {
+                            if (isCicloAtualTerminado(ultimoCiclo)) {
                                 currentCycle = ultimoCiclo.simularProximoCiclo(ultimoCiclo);
                                 currentCycle.salvarCicloNoFirebase();
                             } else {
@@ -110,7 +115,7 @@ public class TimeLine extends AppCompatActivity {
         });
     }
 
-    private void atualizandoSeekBar(Cycle currentCycle){
+    private void atualizandoSeekBar(Cycle currentCycle) {
         Map<String, String> informacoesCiclo = currentCycle.obterInformacoesDoCicloAtual();
 
         Log.i(tag, "Iniciando atualização dos componentes SeekBar " + userID);
@@ -122,7 +127,7 @@ public class TimeLine extends AppCompatActivity {
         Log.i(tag, "Dia do ciclo: " + diaDoCiclo + "º, " + userID);
 
         MaterialTextView resultDuration = findViewById(R.id.result_duration);
-        if(nomeFase.equals("Ovulacao")){
+        if (nomeFase.equals("Ovulacao")) {
             resultDuration.setText("Fase Ovulatória");
         } else {
             resultDuration.setText(String.format("Fase %s", nomeFase));

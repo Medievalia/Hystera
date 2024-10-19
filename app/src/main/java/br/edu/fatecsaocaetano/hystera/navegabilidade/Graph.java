@@ -1,5 +1,6 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +14,9 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -27,7 +28,9 @@ import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class Graph extends AppCompatActivity {
 
+    private static final String TAG = "Graph"; // Tag para logging
     private LineChart lineChart;
+    private MaterialButton voltarButton; // Adicione esta variável
     private CircularSeekBar seekbarDuration; // CircularSeekBar para duração
     private CircularSeekBar seekbarBleeding; // CircularSeekBar para sangramento
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -37,16 +40,33 @@ public class Graph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafic);
 
+        // Inicializando o botão "Voltar"
+        voltarButton = findViewById(R.id.voltar_button);
+
+        // Definindo o listener de clique
+        voltarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Graph.this, TimeLine.class);
+                startActivity(intent);
+                finish(); // Finaliza a Activity atual (opcional)
+            }
+        });
+
         // Inicializando o LineChart
         lineChart = findViewById(R.id.chart);
         if (lineChart == null) {
-            Log.e("Grafico", "LineChart não foi inicializado.");
+            Log.e(TAG, "LineChart não foi inicializado.");
             return;
         }
 
         // Inicializando o CircularSeekBar
         seekbarDuration = findViewById(R.id.seekbar_duration); // Obtenha a referência
         seekbarBleeding = findViewById(R.id.seekbar_duration1); // Obtenha a referência para sangramento
+
+        // Desabilitando a interação do usuário nas seekBars
+        seekbarDuration.setEnabled(false);
+        seekbarBleeding.setEnabled(false);
 
         // Inicializando a lista de entradas do gráfico
         List<Entry> cycleEntries = new ArrayList<>();
@@ -71,12 +91,10 @@ public class Graph extends AppCompatActivity {
                         int count = 0; // Contador para o número de ciclos
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            // Pegando o campo 'duration' de cada ciclo
                             Long duration = document.getLong("duration");
                             Long bleeding = document.getLong("bleeding"); // Pegando o campo 'bleeding'
 
                             if (duration != null) {
-                                // Adicionando o valor de 'duration' à lista de entradas do gráfico
                                 cycleEntries.add(new Entry(index, duration));
                                 sumDuration += duration; // Adiciona à soma das durações
                                 count++; // Incrementa o contador
@@ -93,18 +111,18 @@ public class Graph extends AppCompatActivity {
                         int averageBleeding = (count > 0) ? (int) (sumBleeding / count) : 0; // Calcular média de bleeding
 
                         // Usar a média na seekbar
-                        updateSeekBarWithAverage(averageDuration, averageBleeding); // Passar média de bleeding
+                        updateSeekBarWithAverage(averageDuration, averageBleeding);
 
                         // Criar e configurar o gráfico após adicionar as entradas
                         setupChart(cycleEntries);
                     } else {
-                        Log.e("Firestore", "Erro ao buscar documentos: ", task.getException());
+                        Log.e(TAG, "Erro ao buscar documentos: ", task.getException());
                     }
                 });
     }
 
     private void setupChart(List<Entry> cycleEntries) {
-        Log.d("Grafico", "Número de entradas: " + cycleEntries.size());
+        Log.d(TAG, "Número de entradas: " + cycleEntries.size());
 
         // Criando o LineDataSet e configurando sua aparência
         LineDataSet lineDataSet = new LineDataSet(cycleEntries, "Últimos 6 ciclos");
@@ -127,14 +145,13 @@ public class Graph extends AppCompatActivity {
 
         // Atualiza o gráfico para refletir as configurações
         lineChart.invalidate();
-        Log.d("Grafico", "Gráfico atualizado.");
+        Log.d(TAG, "Gráfico atualizado.");
 
         // Descrição do gráfico
         Description description = new Description();
         description.setText("Duração dos ciclos menstruais");
         lineChart.setDescription(description);
     }
-
 
     private void updateSeekBarWithAverage(int averageDuration, int averageBleeding) {
         // Atualiza os CircularSeekBars com a média calculada
