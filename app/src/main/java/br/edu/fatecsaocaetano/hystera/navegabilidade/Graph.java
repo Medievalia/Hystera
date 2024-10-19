@@ -124,6 +124,7 @@ public class Graph extends AppCompatActivity {
                             calendar.add(Calendar.MONTH, -1);
                         }
 
+                        // Inicializa os meses no mapa
                         for (String month : allMonths) {
                             monthlyData.put(month, 0);
                         }
@@ -149,10 +150,13 @@ public class Graph extends AppCompatActivity {
                             }
                         }
 
+                        // Adiciona entradas ao gráfico apenas para meses que têm dados
                         for (int index = 0; index < allMonths.size(); index++) {
                             int durationValue = monthlyData.get(allMonths.get(index));
-                            cycleEntries.add(new Entry(index, durationValue));
-                            monthLabels.add(allMonths.get(index));
+                            if (durationValue > 0) { // Adiciona apenas se a duração for maior que zero
+                                cycleEntries.add(new Entry(index, durationValue));
+                                monthLabels.add(allMonths.get(index));
+                            }
                         }
 
                         // Logando o total para verificação
@@ -217,12 +221,11 @@ public class Graph extends AppCompatActivity {
         Description description = new Description();
         description.setText("Ciclos Mensais");
         lineChart.setDescription(description);
-
-        lineChart.invalidate();
+        lineChart.invalidate(); // Atualiza o gráfico
     }
 
     private void updateSeekBarWithAverage(int averageDuration, int averageBleeding) {
-        Log.d(TAG, "Atualizando SeekBars com as médias.");
+        // Atualizando os seekBars com as médias
         seekbarDuration.setProgress(averageDuration);
         seekbarBleeding.setProgress(averageBleeding);
     }
