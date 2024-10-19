@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class Profile extends AppCompatActivity {
 
     private final String tag = "ProfileClass";
+    private MaterialButton voltarButton;
     private TextView nomeUsuario;
     private TextView emailUsuario;
     private String userID;
@@ -43,6 +44,16 @@ public class Profile extends AppCompatActivity {
             Log.e(tag, "ID do usuário não encontrado!");
             return;
         }
+
+        voltarButton = findViewById(R.id.voltar_button);
+        voltarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, TimeLine.class);
+                startActivity(intent);
+                finish(); // Finaliza a Activity atual
+            }
+        });
 
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         DocumentReference documentReference = db.collection("Usuarios").document(userID);
