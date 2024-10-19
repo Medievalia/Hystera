@@ -93,7 +93,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Média dos ciclos"
+            android:text="Média dos Ciclos"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -114,10 +114,10 @@
             android:id="@+id/result_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="- dias"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:layout_marginTop="8dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -139,7 +139,7 @@
             android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Média de sangramento"
+            android:text="Média de Sangramento"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />

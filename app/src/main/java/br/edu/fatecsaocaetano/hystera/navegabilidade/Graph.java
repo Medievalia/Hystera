@@ -119,7 +119,13 @@ public class Graph extends AppCompatActivity {
         lineChart.setData(lineData);
         lineChart.setVisibility(View.VISIBLE); // Garante que o gráfico esteja visível
 
-        // Atualiza e valida o gráfico
+        // Configurando o eixo Y para exibir apenas números inteiros
+        lineChart.getAxisLeft().setGranularity(1f); // Define a granularidade para 1
+        lineChart.getAxisLeft().setAxisMaximum(80f); // Define o máximo do eixo Y
+        lineChart.getAxisLeft().setAxisMinimum(0f); // Define o mínimo do eixo Y
+        lineChart.getAxisRight().setEnabled(false); // Desabilita o eixo Y da direita
+
+        // Atualiza o gráfico para refletir as configurações
         lineChart.invalidate();
         Log.d("Grafico", "Gráfico atualizado.");
 
@@ -128,6 +134,7 @@ public class Graph extends AppCompatActivity {
         description.setText("Duração dos ciclos menstruais");
         lineChart.setDescription(description);
     }
+
 
     private void updateSeekBarWithAverage(int averageDuration, int averageBleeding) {
         // Atualiza os CircularSeekBars com a média calculada
