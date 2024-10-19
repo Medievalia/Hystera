@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.edu.fatecsaocaetano.hystera.R;
@@ -14,6 +13,7 @@ import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,10 +23,15 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.tankery.lib.circularseekbar.CircularSeekBar;
+
 public class Graph extends AppCompatActivity {
 
     private LineChart lineChart;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance(); // Conectando ao Firestore
+    private CircularSeekBar seekbarDuration; // CircularSeekBar para duração
+    private CircularSeekBar seekbarBleeding; // CircularSeekBar para sangramento
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,10 @@ public class Graph extends AppCompatActivity {
             Log.e("Grafico", "LineChart não foi inicializado.");
             return;
         }
+
+        // Inicializando o CircularSeekBar
+        seekbarDuration = findViewById(R.id.seekbar_duration); // Obtenha a referência
+        seekbarBleeding = findViewById(R.id.seekbar_duration1); // Obtenha a referência para sangramento
 
         // Inicializando a lista de entradas do gráfico
         List<Entry> cycleEntries = new ArrayList<>();
@@ -57,15 +66,34 @@ public class Graph extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         int index = 0;
+                        long sumDuration = 0; // Variável para armazenar a soma das durações
+                        long sumBleeding = 0; // Variável para armazenar a soma dos sangramentos
+                        int count = 0; // Contador para o número de ciclos
+
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             // Pegando o campo 'duration' de cada ciclo
                             Long duration = document.getLong("duration");
+                            Long bleeding = document.getLong("bleeding"); // Pegando o campo 'bleeding'
+
                             if (duration != null) {
                                 // Adicionando o valor de 'duration' à lista de entradas do gráfico
                                 cycleEntries.add(new Entry(index, duration));
+                                sumDuration += duration; // Adiciona à soma das durações
+                                count++; // Incrementa o contador
                                 index++;
                             }
+
+                            if (bleeding != null) {
+                                sumBleeding += bleeding; // Adiciona à soma dos sangramentos
+                            }
                         }
+
+                        // Calcular a média como um número inteiro
+                        int averageDuration = (count > 0) ? (int) (sumDuration / count) : 0;
+                        int averageBleeding = (count > 0) ? (int) (sumBleeding / count) : 0; // Calcular média de bleeding
+
+                        // Usar a média na seekbar
+                        updateSeekBarWithAverage(averageDuration, averageBleeding); // Passar média de bleeding
 
                         // Criar e configurar o gráfico após adicionar as entradas
                         setupChart(cycleEntries);
@@ -99,5 +127,18 @@ public class Graph extends AppCompatActivity {
         Description description = new Description();
         description.setText("Duração dos ciclos menstruais");
         lineChart.setDescription(description);
+    }
+
+    private void updateSeekBarWithAverage(int averageDuration, int averageBleeding) {
+        // Atualiza os CircularSeekBars com a média calculada
+        seekbarDuration.setProgress(averageDuration); // Define o progresso da seekbar de duração
+        seekbarBleeding.setProgress(averageBleeding); // Define o progresso da seekbar de sangramento
+
+        // Mostrando as médias no TextView
+        MaterialTextView resultDuration = findViewById(R.id.result_duration);
+        resultDuration.setText(averageDuration + " dias");
+
+        MaterialTextView resultBleeding = findViewById(R.id.result_duration1);
+        resultBleeding.setText(averageBleeding + " dias"); // Exibindo média de bleeding
     }
 }
