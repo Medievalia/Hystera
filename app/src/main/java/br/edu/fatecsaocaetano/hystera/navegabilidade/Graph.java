@@ -36,7 +36,7 @@ import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class Graph extends AppCompatActivity {
 
-    private static final String TAG = "Graph"; // Tag para logging
+    private static final String tag = "GraphClass"; // Tag para logging
     private LineChart lineChart;
     private MaterialButton voltarButton;
     private MaterialButton perfilButton;
@@ -78,7 +78,7 @@ public class Graph extends AppCompatActivity {
         // Inicializando o LineChart
         lineChart = findViewById(R.id.chart);
         if (lineChart == null) {
-            Log.e(TAG, "LineChart não foi inicializado.");
+            Log.e(tag, "LineChart não foi inicializado.");
             return;
         }
 
@@ -148,7 +148,7 @@ public class Graph extends AppCompatActivity {
                                 sumDuration += duration;
                                 count++;
                             } else {
-                                Log.w(TAG, "Duração ou data não disponível para o documento: " + document.getId());
+                                Log.w(tag, "Duração ou data não disponível para o documento: " + document.getId());
                             }
 
                             if (bleeding != null) {
@@ -156,7 +156,7 @@ public class Graph extends AppCompatActivity {
                                 monthlyDataBleeding.put(monthYearLabel, monthlyDataBleeding.get(monthYearLabel) + bleeding.intValue());
                                 sumBleeding += bleeding;
                             } else {
-                                Log.w(TAG, "Sangramento não disponível para o documento: " + document.getId());
+                                Log.w(tag, "Sangramento não disponível para o documento: " + document.getId());
                             }
                         }
 
@@ -172,21 +172,21 @@ public class Graph extends AppCompatActivity {
                         }
 
                         // Logando o total para verificação
-                        Log.d(TAG, "Soma de Duração: " + sumDuration + ", Contagem: " + count);
-                        Log.d(TAG, "Soma de Sangramento: " + sumBleeding);
+                        Log.d(tag, "Soma de Duração: " + sumDuration + ", Contagem: " + count);
+                        Log.d(tag, "Soma de Sangramento: " + sumBleeding);
 
                         int averageDuration = (count > 0) ? (int) (sumDuration / count) : 0;
                         int averageBleeding = (count > 0) ? (int) (sumBleeding / count) : 0;
 
-                        Log.d(TAG, "Média de Duração: " + averageDuration);
-                        Log.d(TAG, "Média de Sangramento: " + averageBleeding);
+                        Log.d(tag, "Média de Duração: " + averageDuration);
+                        Log.d(tag, "Média de Sangramento: " + averageBleeding);
 
                         // Atualizando os TextViews com as médias
                         updateSeekBarWithAverage(averageDuration, averageBleeding);
                         updateResultTextViews(averageDuration, averageBleeding);
                         setupChart(cycleEntries, bleedingEntries, monthLabels);
                     } else {
-                        Log.e(TAG, "Erro ao buscar documentos: ", task.getException());
+                        Log.e(tag, "Erro ao buscar documentos: ", task.getException());
                     }
                 });
     }
@@ -207,7 +207,7 @@ public class Graph extends AppCompatActivity {
     }
 
     private void setupChart(List<Entry> cycleEntries, List<Entry> bleedingEntries, List<String> monthLabels) {
-        Log.d(TAG, "Número de entradas: " + cycleEntries.size());
+        Log.d(tag, "Número de entradas: " + cycleEntries.size());
 
         // Configurando o gráfico para a duração (linha roxa)
         LineDataSet lineDataSetDuration = new LineDataSet(cycleEntries, "Duração");
