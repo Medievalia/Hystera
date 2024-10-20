@@ -11,11 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -95,15 +97,16 @@ public class Graph extends AppCompatActivity {
         resultDuration = findViewById(R.id.result_duration); // Para a média de duração
         resultBleeding = findViewById(R.id.result_duration1); // Para a média de sangramento
 
-        // Inicializando a lista de entradas do gráfico
+        // Inicializando as listas de entradas do gráfico
         List<Entry> cycleEntries = new ArrayList<>();
+        List<Entry> bleedingEntries = new ArrayList<>();
         List<String> monthLabels = new ArrayList<>();
 
         // Chamando o método para buscar dados do Firestore
-        getLastSixCycles(cycleEntries, monthLabels);
+        getLastSixCycles(cycleEntries, bleedingEntries, monthLabels);
     }
 
-    private void getLastSixCycles(List<Entry> cycleEntries, List<String> monthLabels) {
+    private void getLastSixCycles(List<Entry> cycleEntries, List<Entry> bleedingEntries, List<String> monthLabels) {
         db.collection("Usuarios")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("Ciclos")
@@ -116,7 +119,8 @@ public class Graph extends AppCompatActivity {
                         long sumBleeding = 0;
                         int count = 0;
 
-                        Map<String, Integer> monthlyData = new HashMap<>();
+                        Map<String, Integer> monthlyDataDuration = new HashMap<>();
+                        Map<String, Integer> monthlyDataBleeding = new HashMap<>();
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(new Date());
                         List<String> allMonths = new ArrayList<>();
@@ -129,7 +133,8 @@ public class Graph extends AppCompatActivity {
 
                         // Inicializa os meses no mapa
                         for (String month : allMonths) {
-                            monthlyData.put(month, 0);
+                            monthlyDataDuration.put(month, 0);
+                            monthlyDataBleeding.put(month, 0);
                         }
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
@@ -139,7 +144,7 @@ public class Graph extends AppCompatActivity {
 
                             if (duration != null && startDate != null) {
                                 String monthYearLabel = getMonthYearLabel(startDate);
-                                monthlyData.put(monthYearLabel, monthlyData.get(monthYearLabel) + duration.intValue());
+                                monthlyDataDuration.put(monthYearLabel, monthlyDataDuration.get(monthYearLabel) + duration.intValue());
                                 sumDuration += duration;
                                 count++;
                             } else {
@@ -147,6 +152,8 @@ public class Graph extends AppCompatActivity {
                             }
 
                             if (bleeding != null) {
+                                String monthYearLabel = getMonthYearLabel(startDate);
+                                monthlyDataBleeding.put(monthYearLabel, monthlyDataBleeding.get(monthYearLabel) + bleeding.intValue());
                                 sumBleeding += bleeding;
                             } else {
                                 Log.w(TAG, "Sangramento não disponível para o documento: " + document.getId());
@@ -155,9 +162,11 @@ public class Graph extends AppCompatActivity {
 
                         // Adiciona entradas ao gráfico apenas para meses que têm dados
                         for (int index = 0; index < allMonths.size(); index++) {
-                            int durationValue = monthlyData.get(allMonths.get(index));
-                            if (durationValue > 0) { // Adiciona apenas se a duração for maior que zero
+                            int durationValue = monthlyDataDuration.get(allMonths.get(index));
+                            int bleedingValue = monthlyDataBleeding.get(allMonths.get(index));
+                            if (durationValue > 0 || bleedingValue > 0) { // Adiciona apenas se a duração ou sangramento for maior que zero
                                 cycleEntries.add(new Entry(index, durationValue));
+                                bleedingEntries.add(new Entry(index, bleedingValue));
                                 monthLabels.add(allMonths.get(index));
                             }
                         }
@@ -175,7 +184,7 @@ public class Graph extends AppCompatActivity {
                         // Atualizando os TextViews com as médias
                         updateSeekBarWithAverage(averageDuration, averageBleeding);
                         updateResultTextViews(averageDuration, averageBleeding);
-                        setupChart(cycleEntries, monthLabels);
+                        setupChart(cycleEntries, bleedingEntries, monthLabels);
                     } else {
                         Log.e(TAG, "Erro ao buscar documentos: ", task.getException());
                     }
@@ -197,40 +206,94 @@ public class Graph extends AppCompatActivity {
         return String.format("%02d %s", month + 1, months[month]);
     }
 
-    private void setupChart(List<Entry> cycleEntries, List<String> monthLabels) {
+    private void setupChart(List<Entry> cycleEntries, List<Entry> bleedingEntries, List<String> monthLabels) {
         Log.d(TAG, "Número de entradas: " + cycleEntries.size());
 
-        LineDataSet lineDataSet = new LineDataSet(cycleEntries, "Últimos 6 ciclos");
-        lineDataSet.setColor(Color.parseColor("#FF4081")); // Alterando a cor da linha
-        lineDataSet.setValueTextColor(Color.WHITE); // Mudando a cor do texto dos valores para branco
-        lineDataSet.setLineWidth(3f); // Aumentando a largura da linha
-        lineDataSet.setCircleColor(Color.RED); // Alterando a cor dos círculos
-        lineDataSet.setCircleRadius(6f); // Aumentando o tamanho dos círculos
-        lineDataSet.setDrawValues(true); // Para mostrar os valores acima dos pontos
+        // Configurando o gráfico para a duração (linha roxa)
+        LineDataSet lineDataSetDuration = new LineDataSet(cycleEntries, "Duração");
+        lineDataSetDuration.setColor(Color.parseColor("#FFBB86FC")); // Linha roxa
+        lineDataSetDuration.setCircleColor(Color.parseColor("#800080"));
+        lineDataSetDuration.setLineWidth(2f);
+        lineDataSetDuration.setCircleRadius(4f);
+        lineDataSetDuration.setDrawCircleHole(true);
+        lineDataSetDuration.setValueTextSize(12f);
+        lineDataSetDuration.setValueTextColor(Color.BLACK);
 
-        LineData lineData = new LineData(lineDataSet);
+        // Configurando o gráfico para o sangramento (linha vermelha)
+        LineDataSet lineDataSetBleeding = new LineDataSet(bleedingEntries, "Sangramento");
+        lineDataSetBleeding.setColor(Color.RED); // Linha vermelha
+        lineDataSetBleeding.setCircleColor(Color.RED);
+        lineDataSetBleeding.setLineWidth(2f);
+        lineDataSetBleeding.setCircleRadius(4f);
+        lineDataSetBleeding.setDrawCircleHole(true);
+        lineDataSetBleeding.setValueTextSize(12f);
+        lineDataSetBleeding.setValueTextColor(Color.BLACK);
+
+        // Usando ValueFormatter personalizado para mostrar os valores inteiros
+        lineDataSetDuration.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getPointLabel(Entry entry) {
+                return String.valueOf((int) entry.getY()); // Exibe o valor como inteiro
+            }
+        });
+
+        lineDataSetBleeding.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getPointLabel(Entry entry) {
+                return String.valueOf((int) entry.getY()); // Exibe o valor como inteiro
+            }
+        });
+
+        // Configurando os dados do gráfico
+        LineData lineData = new LineData(lineDataSetDuration, lineDataSetBleeding);
         lineChart.setData(lineData);
-        lineChart.setVisibility(View.VISIBLE);
 
-        lineChart.getAxisLeft().setGranularity(1f);
-        lineChart.getAxisLeft().setAxisMaximum(80f); // Ajuste conforme necessário
-        lineChart.getAxisLeft().setAxisMinimum(0f);
-
+        // Configurando o eixo X com os nomes dos meses
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(monthLabels));
         xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setLabelCount(monthLabels.size());
+        xAxis.setDrawLabels(true);
+        xAxis.setTextSize(12f);
+        xAxis.setAxisMinimum(0f); // Define o valor mínimo do eixo X
+        xAxis.setTextColor(Color.BLACK);
+        xAxis.setDrawAxisLine(true);
+        xAxis.setAxisLineColor(Color.BLACK);
+        xAxis.setDrawGridLines(false); // Desabilita as linhas de grade do eixo X
+        xAxis.setLabelCount(monthLabels.size(), true); // Certifique-se de que há um rótulo para cada mês
 
+        // Adicionando rótulo ao eixo X
+        xAxis.setDrawLabels(true);
+        lineChart.getXAxis().setLabelCount(monthLabels.size());
+
+        // Configurando o eixo Y (durante e sangramento em dias)
+        YAxis leftAxis = lineChart.getAxisLeft();
+        leftAxis.setLabelCount(6, true);
+        leftAxis.setDrawLabels(true);
+        leftAxis.setDrawAxisLine(true);
+        leftAxis.setAxisLineColor(Color.BLACK);
+        leftAxis.setTextColor(Color.BLACK);
+        leftAxis.setTextSize(12f);
+        leftAxis.setAxisMinimum(0f); // Definir o mínimo de dias como 0
+        leftAxis.setGranularity(1f); // Define a granularidade para mostrar os números inteiros
+        leftAxis.setDrawGridLines(true); // Exibe as linhas de grade no eixo Y
+
+        // Oculta o eixo Y da direita
+        YAxis rightAxis = lineChart.getAxisRight();
+        rightAxis.setEnabled(false);
+
+        // Removendo a descrição do gráfico
         Description description = new Description();
-        description.setText("Ciclos nos últimos meses");
+        description.setText(""); // Define o texto da descrição como vazio
         lineChart.setDescription(description);
 
-        lineChart.invalidate(); // Atualiza o gráfico
+        // Atualizando o gráfico
+        lineChart.invalidate(); // Redesenha o gráfico
     }
 
     private void updateSeekBarWithAverage(int averageDuration, int averageBleeding) {
-        // Atualizando as seekbars com as médias
+        // Atualiza os CircularSeekBars com as médias
         seekbarDuration.setProgress(averageDuration);
         seekbarBleeding.setProgress(averageBleeding);
     }
