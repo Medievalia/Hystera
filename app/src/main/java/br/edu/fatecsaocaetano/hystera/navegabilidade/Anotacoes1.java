@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class Anotacoes1 extends AppCompatActivity {
     private EditText anotacaoEditText;
-    String usuarioID;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +70,8 @@ public class Anotacoes1 extends AppCompatActivity {
     private void salvarAnotacao() {
         String anotacao = anotacaoEditText.getText().toString();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = db.collection("Usuarios").document(userID);
 
         int notaId = getIntent().getIntExtra("notaId", 0);
 
@@ -150,8 +150,8 @@ public class Anotacoes1 extends AppCompatActivity {
 
     private void carregarAnotacao(int notaId) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = db.collection("Usuarios").document(userID);
 
         documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -183,8 +183,8 @@ public class Anotacoes1 extends AppCompatActivity {
 
     private void excluirAnotacao() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference documentReference = db.collection("Usuarios").document(userID);
         int notaId = getIntent().getIntExtra("notaId", 0);
 
         // Use o ID da nota para excluir a anotação correspondente
