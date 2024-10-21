@@ -61,7 +61,7 @@
             android:layout_margin="20dp"
             android:fontFamily="@font/kurale"
             android:gravity="center"
-            android:text="Gráficos"
+            android:text="Gráfico Menstrual"
             android:textColor="#8A50FF"
             android:textSize="35sp"
             android:textStyle="bold" />
