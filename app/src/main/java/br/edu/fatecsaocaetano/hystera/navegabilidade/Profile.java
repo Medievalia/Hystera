@@ -7,14 +7,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import br.edu.fatecsaocaetano.hystera.R;
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
@@ -24,7 +21,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -74,7 +70,7 @@ public class Profile extends AppCompatActivity {
                 if (documentSnapshot != null && !isFinishing()) { // Verifica se a atividade ainda está ativa
                     nomeUsuario.setText(documentSnapshot.getString("Name"));
                     emailUsuario.setText(email);
-                    String base64Image = documentSnapshot.getString("ProfileImage");
+                    String base64Image = documentSnapshot.getString("UserImage");
                     if (base64Image != null) {
                         byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
                         Glide.with(Profile.this).load(decodedString).into(fotoPerfil);
@@ -130,7 +126,7 @@ public class Profile extends AppCompatActivity {
                 DocumentReference userRef = db.collection("Usuarios").document(userID);
 
                 // Atualizar a string Base64 no Firestore
-                userRef.update("ProfileImage", base64Image)
+                userRef.update("UserImage", base64Image)
                         .addOnSuccessListener(aVoid -> {
                             Log.d(tag, "Imagem salva com sucesso!");
                             showToast("Imagem atualizada com sucesso!");

@@ -34,8 +34,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     // Adicionando dependências do Glide e Firebase Storage
-    implementation 'com.github.bumptech.glide:glide:4.15.0' // Glide
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0' // Glide Compiler
+    implementation 'com.github.bumptech.glide:glide:4.15.1' // Glide
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1' // Glide Compiler
     implementation 'com.google.firebase:firebase-storage-ktx' // Firebase Storage
 
     implementation 'com.akaita.android:circular-seek-bar:1.0'
