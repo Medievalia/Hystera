@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,7 +35,7 @@ public class EditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
 
-        ImageButton ajuda = findViewById(R.id.help_button);
+        MaterialButton ajuda = findViewById(R.id.help_button); // Mudou para MaterialButton
         ajuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +44,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
-        ImageButton voltar = findViewById(R.id.voltar_button);
+        MaterialButton voltar = findViewById(R.id.voltar_button); // Mudou para MaterialButton
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
