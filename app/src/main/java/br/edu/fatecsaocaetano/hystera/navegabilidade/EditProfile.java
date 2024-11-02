@@ -53,12 +53,12 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_editar_perfil);
         inicializarComponentes();
 
+        carregarDadosUsuario(); // Carregar dados do usuário ao abrir a tela
         configurarBotaoAjuda();
         configurarBotaoVoltar();
         configurarSpinner();
         configurarBotaoSalvar();
         configurarBotaoChangeImage();
-
         carregarFotoPerfil();
     }
 
@@ -68,7 +68,7 @@ public class EditProfile extends AppCompatActivity {
         editCelular = findViewById(R.id.edit_celular);
         spinnerMetodoContraceptivo = findViewById(R.id.spinner_metodo_contraceptivo);
         imgFotoPerfil = findViewById(R.id.img_foto_perfil);
-        changeImageButton = findViewById(R.id.btn_changeImage); // Adicione esta linha
+        changeImageButton = findViewById(R.id.btn_changeImage);
     }
 
     private void configurarBotaoAjuda() {
@@ -115,13 +115,40 @@ public class EditProfile extends AppCompatActivity {
                 snackbar.setTextColor(Color.BLACK);
                 snackbar.show();
             } else {
-                salvarDados(v, nome, email, celular, metodo);
+                salvarDados(v, nome, email, celular, converterMetodoParaSalvar(metodo));
             }
         });
     }
 
     private void configurarBotaoChangeImage() {
         changeImageButton.setOnClickListener(v -> openGallery());
+    }
+
+    private void carregarDadosUsuario() {
+        usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
+
+        documentReference.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                editNome.setText(documentSnapshot.getString("Name"));
+                editEmail.setText(documentSnapshot.getString("Email"));
+                editCelular.setText(documentSnapshot.getString("Phone"));
+                String metodo = documentSnapshot.getString("Method");
+
+                // Converte o método armazenado para o formato exibido no Spinner
+                String metodoParaExibir = converterMetodoParaExibir(metodo);
+
+                // Define o método contraceptivo no Spinner
+                if (metodoParaExibir != null) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                            R.array.metodos_contraceptivos, android.R.layout.simple_spinner_item);
+                    spinnerMetodoContraceptivo.setAdapter(adapter);
+                    int position = adapter.getPosition(metodoParaExibir);
+                    spinnerMetodoContraceptivo.setSelection(position);
+                }
+            }
+        }).addOnFailureListener(e -> Log.e("EditProfile", "Erro ao carregar os dados do usuário", e));
     }
 
     private void carregarFotoPerfil() {
@@ -144,10 +171,10 @@ public class EditProfile extends AppCompatActivity {
     private void salvarDados(View v, String nome, String email, String celular, String metodo) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> usuarios = new HashMap<>();
-        usuarios.put("nome", nome);
-        usuarios.put("email", email);
-        usuarios.put("celular", celular);
-        usuarios.put("metodo", metodo);
+        usuarios.put("Name", nome);
+        usuarios.put("Email", email);
+        usuarios.put("Phone", celular);
+        usuarios.put("Method", metodo);
 
         usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);
@@ -160,10 +187,6 @@ public class EditProfile extends AppCompatActivity {
                     finish();
                 })
                 .addOnFailureListener(e -> Log.e("TAG", "Erro ao salvar as alterações", e));
-    }
-
-    public void onImageButtonClick(View view) {
-        openGallery();
     }
 
     private void openGallery() {
@@ -203,42 +226,68 @@ public class EditProfile extends AppCompatActivity {
                             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                             Glide.with(EditProfile.this).load(decodedByte).into(imgFotoPerfil);
                         })
-                        .addOnFailureListener(e -> {
-                            Log.e("EditProfile", "Erro ao salvar imagem", e);
-                        });
-            } else {
-                Log.e("EditProfile", "Falha na conversão da imagem para Base64.");
+                        .addOnFailureListener(e -> Log.e("EditProfile", "Erro ao atualizar a imagem", e));
             }
-        } else {
-            Log.e("EditProfile", "A URI da imagem está nula.");
         }
     }
 
-    private String convertImageUriToBase64(Uri imageUri) {
+    private String convertImageUriToBase64(Uri uri) {
         try {
-            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+            InputStream inputStream = getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-
-            // Reduzir o tamanho da imagem
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos); // Ajuste a qualidade aqui (0-100)
-            byte[] bytes = baos.toByteArray();
-
-            // Verifica se o tamanho é menor que 1MB
-            if (bytes.length > 1048576) { // 1MB em bytes
-                Log.e("EditProfile", "Imagem ainda é maior que 1MB após compressão.");
-                showToast("É necessário uma imagem mais leve.");
-                return null; // Retorna null se a imagem não couber
-            }
-
-            return Base64.encodeToString(bytes, Base64.DEFAULT);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            return Base64.encodeToString(byteArray, Base64.DEFAULT);
         } catch (IOException e) {
             Log.e("EditProfile", "Erro ao converter a imagem para Base64", e);
             return null;
         }
     }
 
+    private String converterMetodoParaSalvar(String metodo) {
+        switch (metodo) {
+            case "PRESERVATIVO":
+                return "PRESERVATIVO";
+            case "PÍLULA":
+                return "PILULA";
+            case "DIU":
+                return "DIU";
+            case "INJEÇÃO":
+                return "INJECAO";
+            case "IMPLANTE HORMONAL":
+                return "IMPLANTE_HORMONAL";
+            case "OUTROS":
+                return "OUTROS";
+            case "NÃO UTILIZA":
+                return "NAO_UTILIZA"; //
+            default:
+                return null;
+        }
+    }
+
+    private String converterMetodoParaExibir(String metodo) {
+        switch (metodo) {
+            case "PRESERVATIVO":
+                return "PRESERVATIVO";
+            case "PÍLULA":
+                return "PILULA";
+            case "DIU":
+                return "DIU";
+            case "INJECAO":
+                return "INJEÇÃO";
+            case "IMPLANTE_HORMONAL":
+                return "IMPLANTE HORMONAL"; // Observe o espaço
+            case "OUTROS":
+                return "OUTROS";
+            case "NAO_UTILIZA":
+                return "NÃO UTILIZA"; // Observe o espaço
+            default:
+                return null; // Retorna nulo se o método não for reconhecido
+        }
+    }
+
     private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditProfile.this, message, Toast.LENGTH_SHORT).show();
     }
 }
