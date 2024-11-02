@@ -5,208 +5,203 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <!-- Botão Voltar -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#FFFFFF"
-        android:contentDescription="Voltar"
-        app:icon="@drawable/vector"
-        app:iconTint="#8A50FF"
-        app:iconGravity="textStart"
-        app:iconPadding="5dp"
-        app:cornerRadius="100dp"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <!-- Texto  -->
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_duvidas"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:fontFamily="@font/kurale"
-        android:text="Dúvidas Frequentes"
-        android:textColor="#8A50FF"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/back_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Pergunta 1 -->
         <LinearLayout
-            android:id="@+id/pergunta1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/txt_duvidas">
+            android:orientation="vertical">
 
+            <!-- Botão Voltar -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#FFFFFF"
+                android:contentDescription="Voltar"
+                app:icon="@drawable/vector"
+                app:iconTint="#8A50FF"
+                app:iconGravity="textStart"
+                app:iconPadding="5dp"
+                app:cornerRadius="100dp"
+                app:strokeColor="@android:color/transparent"
+                app:strokeWidth="0dp"/>
+
+            <!-- Texto  -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_duvidas"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:fontFamily="@font/kurale"
+                android:text="Dúvidas Frequentes"
+                android:textColor="#8A50FF"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <!-- Pergunta 1 -->
             <LinearLayout
-                android:id="@+id/layout_question"
+                android:id="@+id/pergunta1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:padding="16dp"
-                android:clickable="true"
-                android:focusable="true">
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_question1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/txt_question1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Como alterar minha senha?"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/arrow_icon1"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_1" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txt_question1"
-                    android:layout_width="0dp"
+                    android:id="@+id/txt_answer1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Como alterar minha senha?"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:id="@+id/arrow_icon"
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/img_1" />
+                    android:visibility="gone"
+                    android:padding="16dp"
+                    android:text="Para alterar sua senha é só clicar em Perfil e depois em Alterar a senha"
+                    android:textSize="14sp" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txt_answer1"
+            <!-- Pergunta 2 -->
+            <LinearLayout
+                android:id="@+id/pergunta2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:padding="16dp"
-                android:text="Para alterar sua senha é só clicar em Perfil e depois em Alterar a senha"
-                android:textSize="14sp" />
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_question2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/txt_question2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Os dados do meu ciclo estão incorretos, como posso modificar?"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/arrow_icon2"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_answer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:padding="16dp"
+                    android:text="Para modificar os dados do seu ciclo, volte na página perfil e selecione a opção alterar ciclo"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Pergunta 3 -->
+            <LinearLayout
+                android:id="@+id/pergunta3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_question3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center_vertical"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/txt_question3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Como alterar o meu método contraceptivo?"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/arrow_icon3"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/img_1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txt_answer3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:padding="16dp"
+                    android:text="Para modificar os dados do seu método, volte na página perfil e selecione a opção alterar método"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- Texto Mais informações -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_maisInformacoes"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:fontFamily="@font/kurale"
+                android:text="Não achou o que estava procurando?"
+                android:textColor="#8A50FF"
+                android:textSize="25sp"
+                android:gravity="center" />
+
+            <!-- Texto Email -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_maisInformacoes2"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/kurale"
+                android:text="Mande um email para hysteriaapp@gmail.com"
+                android:textColor="#8A50FF"
+                android:textSize="25sp"
+                android:gravity="center" />
+
+            <!-- Decorative ImageView -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/decorative_image"
+                android:layout_width="400dp"
+                android:layout_height="120dp"
+                android:src="@drawable/elipse" />
+
         </LinearLayout>
-
-    <!-- Pergunta 2 -->
-    <LinearLayout
-        android:id="@+id/pergunta2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/pergunta1">
-
-        <LinearLayout
-            android:id="@+id/layout_question2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <TextView
-                android:id="@+id/txt_question2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Os dados do meu ciclo estão incorretos, como posso modificar?"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/arrow_icon2"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_1" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txt_answer2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:padding="16dp"
-            android:text="Para modficar os dados do seu ciclo, volte na página perfil e selecione a opção alterar ciclo"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <!-- Pergunta 3 -->
-    <LinearLayout
-        android:id="@+id/pergunta3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/pergunta2">
-
-        <LinearLayout
-            android:id="@+id/layout_question3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <TextView
-                android:id="@+id/txt_question3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Como alterar o meu método contraceptivo?"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/arrow_icon3"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img_1" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/txt_answer3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:padding="16dp"
-            android:text="Para modficar os dados o seu método, volte na página perfil e selecione a opção alterar método"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <!-- Texto Mais informações -->
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_maisInformacoes"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:fontFamily="@font/kurale"
-        android:text="Não achou o que estava procurando?"
-        android:textColor="#8A50FF"
-        android:textSize="25sp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/pergunta3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Texto Email -->
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_maisInformacoes2"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:fontFamily="@font/kurale"
-        android:text="Mande um email para hysteriaapp@gmail.com"
-        android:textColor="#8A50FF"
-        android:textSize="25sp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/txt_maisInformacoes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Decorative ImageView -->
-    <com.google.android.material.imageview.ShapeableImageView
-    android:id="@+id/decorative_image"
-    android:layout_width="400dp"
-    android:layout_height="120dp"
-    android:src="@drawable/elipse"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
