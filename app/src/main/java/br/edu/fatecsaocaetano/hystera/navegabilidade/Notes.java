@@ -12,20 +12,36 @@ public class Notes {
     private String title; // Título da anotação
     private FirebaseFirestore db; // Instância do Firestore
 
-    // Construtor
+    // Construtor padrão
     public Notes() {
         this.userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         this.db = FirebaseFirestore.getInstance(); // Inicializando o Firestore
     }
 
-    // Método para salvar a nota
-    public void saveNote(String description, String title) {
-        this.description = description;
+    // Novo construtor
+    public Notes(String userID, String title, String description, Date annotationDate) {
+        this.userID = userID;
         this.title = title;
-        this.annotationDate = new Date(); // Data da anotação é a data atual
+        this.description = description;
+        this.annotationDate = annotationDate;
+        this.db = FirebaseFirestore.getInstance();
+    }
 
+    public void editNoteInFirestore(String noteId) {
+        DocumentReference noteRef = db.collection("Usuarios").document(userID).collection("Notes").document(noteId);
+        noteRef.set(this)
+                .addOnSuccessListener(aVoid -> {
+                    System.out.println("Nota editada com sucesso!");
+                })
+                .addOnFailureListener(e -> {
+                    System.err.println("Erro ao editar a nota: " + e.getMessage());
+                });
+    }
+
+    // Método para salvar a nota
+    public void saveNote() {
         // Criando um novo documento na coleção "Notes"
-        DocumentReference noteRef = db.collection("Notes").document(userID).collection("UserNotes").document();
+        DocumentReference noteRef = db.collection("Usuarios").document(userID).collection("UserNotes").document();
         noteRef.set(this)
                 .addOnSuccessListener(aVoid -> {
                     // A anotação foi salva com sucesso
@@ -43,13 +59,17 @@ public class Notes {
         return "Nota editada com sucesso!";
     }
 
-    public void deleteNote(Notes note) {
+    public void deleteNote() {
         // Lógica para deletar a nota
     }
 
     // Getters e Setters (se necessário)
     public String getUserID() {
         return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getDescription() {

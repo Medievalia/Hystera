@@ -21,20 +21,6 @@
             android:orientation="vertical">
 
             <!-- Botão de perfil no topo -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_perfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#F1F1F1"
-                android:contentDescription="Ajuda"
-                app:icon="@drawable/person"
-                app:iconTint="#8A50FF"
-                app:iconGravity="textStart"
-                app:iconPadding="1dp"
-                app:cornerRadius="100dp"
-                app:strokeColor="@android:color/transparent"
-                app:strokeWidth="0dp" />
 
             <!-- CardView com o título "Anotações" -->
             <com.google.android.material.card.MaterialCardView
@@ -68,28 +54,14 @@
                 android:layout_marginTop="10dp"
                 android:columnCount="2"
                 android:rowCount="1">
-
-                <!-- Cartão de anotações -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/nota1"
-                    android:layout_width="163dp"
-                    android:layout_height="140dp"
-                    android:layout_margin="4dp"
-                    android:backgroundTint="@color/white"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp" />
-
-                <!-- Botão de adicionar nova anotação -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_add"
-                    android:layout_width="163dp"
-                    android:layout_height="140dp"
-                    android:layout_margin="4dp"
-                    android:text="+"
-                    android:backgroundTint="#8A50FF"
-                    android:textColor="@android:color/white"
-                    app:cornerRadius="16dp" />
+                <!-- O botão de adição foi removido do XML -->
             </GridLayout>
+
+            <!-- Espaço extra para permitir mais deslize -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp" /> <!-- Ajuste a altura conforme necessário -->
+
         </LinearLayout>
     </ScrollView>
 
