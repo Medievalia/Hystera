@@ -1,43 +1,55 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.DocumentReference;
 import java.util.Date;
 
 public class Notes {
-    private String userID; // User ID como uma String
-    private String description;
-    private Date annotationDate;
-    private String title;
+    private String userID; // Para armazenar o ID do usuário
+    private String description; // Descrição da anotação
+    private Date annotationDate; // Data da anotação
+    private String title; // Título da anotação
+    private FirebaseFirestore db; // Instância do Firestore
 
     // Construtor
-    public Notes(String userID, String description, Date annotationDate, String title) {
-        this.userID = userID;
+    public Notes() {
+        this.userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        this.db = FirebaseFirestore.getInstance(); // Inicializando o Firestore
+    }
+
+    // Método para salvar a nota
+    public void saveNote(String description, String title) {
         this.description = description;
-        this.annotationDate = annotationDate;
         this.title = title;
+        this.annotationDate = new Date(); // Data da anotação é a data atual
+
+        // Criando um novo documento na coleção "Notes"
+        DocumentReference noteRef = db.collection("Notes").document(userID).collection("UserNotes").document();
+        noteRef.set(this)
+                .addOnSuccessListener(aVoid -> {
+                    // A anotação foi salva com sucesso
+                    System.out.println("Nota salva com sucesso!");
+                })
+                .addOnFailureListener(e -> {
+                    // Ocorreu um erro ao salvar a anotação
+                    System.err.println("Erro ao salvar a nota: " + e.getMessage());
+                });
     }
 
-    // Métodos
-    public String saveNote(String userID, String description, Date annotationDate, String title) {
-        // Lógica para salvar a nota
-        return "Nota salva com sucesso"; // Placeholder
-    }
-
-    public String editNote(String userID, String description, Date annotationDate, String title) {
+    // Métodos para editar e deletar notas
+    public String editNote(String description, Date annotationDate, String title) {
         // Lógica para editar a nota
-        return "Nota editada com sucesso"; // Placeholder
+        return "Nota editada com sucesso!";
     }
 
-    public void deleteNote(String userID, Notes note) {
+    public void deleteNote(Notes note) {
         // Lógica para deletar a nota
     }
 
-    // Getters e Setters (opcionais, mas geralmente recomendados)
+    // Getters e Setters (se necessário)
     public String getUserID() {
         return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
     }
 
     public String getDescription() {

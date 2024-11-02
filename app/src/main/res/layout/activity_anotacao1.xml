@@ -6,7 +6,6 @@
     android:background="#F1F1F1"
     android:orientation="vertical">
 
-
     <!-- Botão Voltar -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/back_button"
@@ -22,11 +21,7 @@
         app:iconPadding="5dp"
         app:cornerRadius="100dp"
         app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
+        app:strokeWidth="0dp"/>
 
     <!-- CardView com o título "Anotações" -->
     <com.google.android.material.card.MaterialCardView
@@ -35,8 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/back_button">
+        app:cardElevation="8dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView"
@@ -45,38 +39,66 @@
             android:layout_margin="20dp"
             android:fontFamily="@font/kurale"
             android:gravity="center"
-            android:text="Anotação"
+            android:text="Anotações"
             android:textColor="#8A50FF"
             android:textSize="35sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Campo de anotação -->
-    <GridLayout
-        android:id="@+id/gridLayout"
+    <!-- Campo de Título -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titulo_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:hint="Título da Anotação"
+        app:boxBackgroundColor="@color/white"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:columnCount="1"
-        android:rowCount="1">
+        android:layout_marginTop="20dp">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Escreva sua anotação"
-            app:boxBackgroundColor="@color/white">
+            android:textSize="20sp"
+            android:textColor="#8A50FF"
+            android:background="@color/white"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/anotacao"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="20sp"
-                android:textColor="#8A50FF"
-                android:background="@color/white" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </GridLayout>
+    <!-- Campo de Descrição -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/anotacao_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Escreva sua anotação"
+        app:boxBackgroundColor="@color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/anotacao"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+        android:textSize="20sp"
+        android:textColor="#8A50FF"
+        android:background="@color/white"
+        android:gravity="top|start"
+        android:ellipsize="end"
+        android:scrollbars="vertical"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Campo de Data de Criação -->
+    <TextView
+        android:id="@+id/dataCriacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Data de Criação: 01/01/2024"
+    android:textSize="18sp"
+    android:textColor="#8A50FF"/>
 
     <!-- Botões de Ação (Salvar e Excluir) -->
     <GridLayout
@@ -102,7 +124,7 @@
             android:text="Excluir"
             android:textAllCaps="false"
             android:textColor="#8A50FF"
-            android:textSize="22sp" />
+            android:textSize="22sp"/>
 
         <!-- Botão de Salvar -->
         <androidx.appcompat.widget.AppCompatButton
@@ -116,7 +138,7 @@
             android:text="Salvar"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="22sp" />
+            android:textSize="22sp"/>
     </GridLayout>
 
 </LinearLayout>
