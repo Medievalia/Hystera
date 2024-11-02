@@ -1,201 +1,258 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/voltar_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#FFFFFF"
-        android:contentDescription="Voltar"
-        app:icon="@drawable/vector"
-        app:iconTint="#8A50FF"
-        app:iconGravity="textStart"
-        app:iconPadding="5dp"
-        app:cornerRadius="100dp"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/help_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="310dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Ajuda"
-        app:icon="@drawable/btn_ajuda"
-        app:iconTint="#8A50FF"
-        app:iconGravity="textStart"
-        app:iconPadding="5dp"
-        app:cornerRadius="100dp"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Perfil"
-        android:textSize="25sp"
-        android:textColor="@color/purple_500"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/voltar_button"
-        android:fontFamily="@font/kurale"
-        android:gravity="center"/>
-
-    <!-- Imagem do perfil -->
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_foto"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/fundo_cicle"
-        app:layout_constraintTop_toBottomOf="@id/txt_perfil"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_changeImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="190dp"
-        android:backgroundTint="@android:color/white"
-        android:contentDescription="Alterar foto"
-        app:icon="@drawable/btn_changeimage"
-        app:iconTint="#8A50FF"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:cornerRadius="100dp"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/voltar_button"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutNome"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        app:endIconDrawable="@drawable/perfil"
-        app:endIconMode="custom"
-        app:layout_constraintTop_toBottomOf="@+id/btn_changeImage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/txt_nome"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/kurale"
-        android:hint="Nome"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/voltar_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FFFFFF"
+            android:contentDescription="Voltar"
+            app:icon="@drawable/vector"
+            app:iconTint="#8A50FF"
+            app:iconGravity="textStart"
+            app:iconPadding="5dp"
+            app:cornerRadius="100dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutCelular"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        app:endIconDrawable="@drawable/biriri"
-        app:endIconMode="custom"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNome"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/help_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="Ajuda"
+            app:icon="@drawable/btn_ajuda"
+            app:iconTint="#8A50FF"
+            app:iconGravity="textStart"
+            app:iconPadding="5dp"
+            app:cornerRadius="100dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txt_num"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:textSize="25sp"
+            android:textColor="@color/purple_500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/voltar_button"
             android:fontFamily="@font/kurale"
-            android:hint="Celular"
-            android:inputType="textPersonName"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:gravity="center"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <!-- Imagem do perfil -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_foto_perfil"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/fundo_cicle"
+            app:layout_constraintTop_toBottomOf="@id/txt_perfil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:shapeAppearanceOverlay="@style/CircularImageViewStyle" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutEmail"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        app:endIconDrawable="@drawable/carta"
-        app:endIconMode="custom"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCelular"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_changeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="190dp"
+            android:backgroundTint="@android:color/white"
+            android:contentDescription="Alterar foto"
+            app:icon="@drawable/btn_changeimage"
+            app:iconTint="#8A50FF"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:cornerRadius="100dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/voltar_button"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txt_email"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
+        <!-- Nome TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textColor="#8C52FF"
             android:fontFamily="@font/kurale"
-            android:hint="Email"
-            android:inputType="textPersonName"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/img_foto_perfil"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="0dp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/example_nome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="Ex: Hystera "
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@id/nome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutMetodo"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        app:endIconDrawable="@drawable/baseline_medical_services_24"
-        app:endIconMode="custom"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txt_metodo"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="30dp"
+        <!-- Email TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="#8C52FF"
             android:fontFamily="@font/kurale"
-            android:hint="Metodo"
-            android:inputType="textPersonName"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/example_nome"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/example_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="Ex: hystera@gmail.com"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_pefil_salvar"
-        android:layout_width="300dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="30dp"
-        android:text="Salvar"
-        android:textAllCaps="true"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="#8A50FF"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutMetodo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cornerRadius="8dp"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Celular TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/celular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Celular"
+            android:textColor="#8C52FF"
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/example_email"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="5dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/example_celular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="(XX) XXXXX-XXXX"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@+id/celular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_celular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:inputType="number"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Lista suspensa para Método Contraceptivo -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/metodo_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Método Contraceptivo"
+            android:textColor="#8C52FF"
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/example_celular"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp" />
+
+        <Spinner
+            android:id="@+id/spinner_metodo_contraceptivo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/metodo_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:spinnerMode="dropdown" />
+
+        <!-- Botão Enviar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_enviar"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:fontFamily="@font/kurale"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#8A50FF"
+            app:strokeColor="#8A50FF"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_metodo_contraceptivo"
+            app:layout_constraintHorizontal_bias="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

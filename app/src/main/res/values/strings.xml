@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Hystera</string>
+
+    <string-array name="metodos_contraceptivos">
+        <item>PRESERVATIVO</item>
+        <item>PÍLULA</item>
+        <item>DIU</item>
+        <item>INJEÇÃO</item>
+        <item>IMPLANTE HORMONAL</item>
+        <item>OUTROS</item>
+        <item>NAO UTILIZO</item>
+    </string-array>
 </resources>

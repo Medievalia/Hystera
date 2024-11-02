@@ -25,25 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_changeImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="190dp"
-        android:backgroundTint="@android:color/white"
-        android:contentDescription="Alterar foto"
-        app:icon="@drawable/btn_changeimage"
-        app:iconTint="#8A50FF"
-        app:iconGravity="textStart"
-        app:iconPadding="0dp"
-        app:cornerRadius="100dp"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/voltar_button"/>
-
     <!-- Título Perfil -->
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_perfil"
