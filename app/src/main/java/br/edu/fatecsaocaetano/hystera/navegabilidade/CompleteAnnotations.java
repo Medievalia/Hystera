@@ -25,8 +25,9 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Anotacoes1 extends AppCompatActivity {
+public class CompleteAnnotations extends AppCompatActivity {
     private EditText anotacaoEditText;
+    private String tag = "CompleteAnnotationsClass";
     private String userID;
 
     @Override
@@ -38,7 +39,7 @@ public class Anotacoes1 extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes1.this, Annotations.class);
+                Intent intent = new Intent(CompleteAnnotations.this, Annotations.class);
                 startActivity(intent);
             }
         });
@@ -85,9 +86,9 @@ public class Anotacoes1 extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Log.d("TAG", "Anotação alterada com sucesso!");
+                            Log.d(tag, "Anotação alterada com sucesso!");
 
-                            Intent intent = new Intent(Anotacoes1.this, Annotations.class);
+                            Intent intent = new Intent(CompleteAnnotations.this, Annotations.class);
                             startActivity(intent);
                             finish();
                         }
@@ -95,7 +96,7 @@ public class Anotacoes1 extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d("db error", "Erro ao alterar a anotação" + e.toString());
+                            Log.d(tag, "Erro ao alterar a anotação" + e.toString());
                         }
                     });
         } else {
@@ -126,9 +127,9 @@ public class Anotacoes1 extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        Log.d("TAG", "Nova anotação salva com sucesso!");
+                                        Log.d(tag, "Nova anotação salva com sucesso!");
 
-                                        Intent intent = new Intent(Anotacoes1.this, Annotations.class);
+                                        Intent intent = new Intent(CompleteAnnotations.this, Annotations.class);
                                         startActivity(intent);
                                         finish();
                                     }
@@ -136,12 +137,12 @@ public class Anotacoes1 extends AppCompatActivity {
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Log.d("db error", "Erro ao salvar a nova anotação" + e.toString());
+                                        Log.d(tag, "Erro ao salvar a nova anotação" + e.toString());
                                     }
                                 });
                     } else {
                         // Se não houver espaço para mais anotações
-                        Log.d("TAG", "Não é possível adicionar mais anotações. Limite atingido.");
+                        Log.d(tag, "Não é possível adicionar mais anotações. Limite atingido.");
                     }
                 }
             });
@@ -198,9 +199,9 @@ public class Anotacoes1 extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         // Ação de sucesso ao excluir a anotação
-                        Log.d("TAG", "Anotação excluída com sucesso!");
+                        Log.d(tag, "Anotação excluída com sucesso!");
 
-                        Intent intent = new Intent(Anotacoes1.this, Annotations.class);
+                        Intent intent = new Intent(CompleteAnnotations.this, Annotations.class);
                         startActivity(intent);
                         finish();
                     }
@@ -208,7 +209,7 @@ public class Anotacoes1 extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d("db error", "Erro ao excluir a anotação" + e.toString());
+                        Log.d(tag, "Erro ao excluir a anotação" + e.toString());
                     }
                 });
     }
