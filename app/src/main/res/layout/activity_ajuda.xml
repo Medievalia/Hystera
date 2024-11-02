@@ -20,7 +20,7 @@
                 android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="#FFFFFF"
                 android:contentDescription="Voltar"
@@ -30,20 +30,26 @@
                 app:iconPadding="5dp"
                 app:cornerRadius="100dp"
                 app:strokeColor="@android:color/transparent"
-                app:strokeWidth="0dp"/>
+                app:strokeWidth="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <!-- Texto  -->
+            <!-- Texto Dúvidas Frequentes -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_duvidas"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:fontFamily="@font/kurale"
-                android:text="Dúvidas Frequentes"
-                android:textColor="#8A50FF"
-                android:textSize="30sp"
-                android:gravity="center"
-                android:textStyle="bold"/>
+                android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/kurale"
+            android:text="Dúvidas Frequentes"
+            android:textColor="#8A50FF"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/back_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
             <!-- Pergunta 1 -->
             <LinearLayout
@@ -84,7 +90,8 @@
                     android:visibility="gone"
                     android:padding="16dp"
                     android:text="Para alterar sua senha é só clicar em Perfil e depois em Alterar a senha"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:gravity="start" />
             </LinearLayout>
 
             <!-- Pergunta 2 -->
@@ -126,7 +133,8 @@
                     android:visibility="gone"
                     android:padding="16dp"
                     android:text="Para modificar os dados do seu ciclo, volte na página perfil e selecione a opção alterar ciclo"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:gravity="start" />
             </LinearLayout>
 
             <!-- Pergunta 3 -->
@@ -168,13 +176,14 @@
                     android:visibility="gone"
                     android:padding="16dp"
                     android:text="Para modificar os dados do seu método, volte na página perfil e selecione a opção alterar método"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:gravity="start" />
             </LinearLayout>
 
             <!-- Texto Mais informações -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_maisInformacoes"
-                android:layout_width="350dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
                 android:fontFamily="@font/kurale"
@@ -186,7 +195,7 @@
             <!-- Texto Email -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_maisInformacoes2"
-                android:layout_width="350dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:fontFamily="@font/kurale"
@@ -195,12 +204,13 @@
                 android:textSize="25sp"
                 android:gravity="center" />
 
-            <!-- Decorative ImageView -->
+            <!-- Imagem decorativa -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/decorative_image"
                 android:layout_width="400dp"
                 android:layout_height="120dp"
-                android:src="@drawable/elipse" />
+                android:src="@drawable/elipse"
+                app:layout_constraintHeight_percent="0.2" />
 
         </LinearLayout>
     </ScrollView>
