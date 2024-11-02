@@ -41,7 +41,7 @@
         <!-- Outras atividades -->
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ResetPassword" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.PasswordRedefined" android:exported="true" />
-        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notes" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Annotations" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Login" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.TimeLine" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Profile" android:exported="true" />

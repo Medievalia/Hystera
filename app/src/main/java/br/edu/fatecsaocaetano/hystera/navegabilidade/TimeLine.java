@@ -95,7 +95,7 @@ public class TimeLine extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if (id == R.id.nav_anota) {
-                    startActivity(new Intent(TimeLine.this, Notes.class));
+                    startActivity(new Intent(TimeLine.this, Annotations.class));
                     return true;
                 } else if (id == R.id.nav_calendario) {
                     startActivity(new Intent(TimeLine.this, CalendaryCycle.class));

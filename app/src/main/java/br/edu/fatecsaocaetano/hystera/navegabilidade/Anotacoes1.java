@@ -38,7 +38,7 @@ public class Anotacoes1 extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Anotacoes1.this, Notes.class);
+                Intent intent = new Intent(Anotacoes1.this, Annotations.class);
                 startActivity(intent);
             }
         });
@@ -87,7 +87,7 @@ public class Anotacoes1 extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             Log.d("TAG", "Anotação alterada com sucesso!");
 
-                            Intent intent = new Intent(Anotacoes1.this, Notes.class);
+                            Intent intent = new Intent(Anotacoes1.this, Annotations.class);
                             startActivity(intent);
                             finish();
                         }
@@ -128,7 +128,7 @@ public class Anotacoes1 extends AppCompatActivity {
                                     public void onSuccess(Void aVoid) {
                                         Log.d("TAG", "Nova anotação salva com sucesso!");
 
-                                        Intent intent = new Intent(Anotacoes1.this, Notes.class);
+                                        Intent intent = new Intent(Anotacoes1.this, Annotations.class);
                                         startActivity(intent);
                                         finish();
                                     }
@@ -200,7 +200,7 @@ public class Anotacoes1 extends AppCompatActivity {
                         // Ação de sucesso ao excluir a anotação
                         Log.d("TAG", "Anotação excluída com sucesso!");
 
-                        Intent intent = new Intent(Anotacoes1.this, Notes.class);
+                        Intent intent = new Intent(Anotacoes1.this, Annotations.class);
                         startActivity(intent);
                         finish();
                     }
