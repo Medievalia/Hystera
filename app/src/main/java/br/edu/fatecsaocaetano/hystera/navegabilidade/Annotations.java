@@ -96,8 +96,23 @@ public class Annotations extends AppCompatActivity {
                     String title = document.getString("title");
                     String description = document.getString("description");
 
-                    // Passando os dados da nota para o método createNoteCard
-                    createNoteCard(noteId, title, description);
+                    // Verifica se o cartão já existe antes de criar
+                    boolean cardExists = false;
+                    for (int i = 0; i < gridLayout.getChildCount(); i++) {
+                        View child = gridLayout.getChildAt(i);
+                        if (child instanceof MaterialCardView) {
+                            TextView existingTitleView = (TextView) ((LinearLayout) ((MaterialCardView) child).getChildAt(0)).getChildAt(0);
+                            if (existingTitleView.getText().toString().equals(title)) {
+                                cardExists = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Se o cartão não existir, cria um novo
+                    if (!cardExists) {
+                        createNoteCard(noteId, title, description);
+                    }
                 }
                 // Adiciona o botão "+" como o último item após carregar todas as notas
                 addButtonAdd();
@@ -106,6 +121,7 @@ public class Annotations extends AppCompatActivity {
             }
         });
     }
+
 
     private void adicionarNovoQuadradoBranco() {
         // Gera um ID único no formato MMAAAA-DDMMSSMMM

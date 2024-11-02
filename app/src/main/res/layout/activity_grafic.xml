@@ -63,7 +63,7 @@
             android:gravity="center"
             android:text="Gráfico Menstrual"
             android:textColor="#8A50FF"
-            android:textSize="35sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
     </com.google.android.material.card.MaterialCardView>
 
