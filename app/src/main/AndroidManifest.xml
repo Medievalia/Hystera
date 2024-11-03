@@ -55,7 +55,7 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.MethodUse" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.FirstCycle" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditProfile" android:exported="true" />
-        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Ajuda" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Help" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.CompleteAnnotations" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.DUM" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Graph" android:exported="true" />

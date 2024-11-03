@@ -10,7 +10,7 @@ import com.google.android.material.button.MaterialButton;
 
 import br.edu.fatecsaocaetano.hystera.R;
 
-public class Ajuda extends AppCompatActivity {
+public class Help extends AppCompatActivity {
 
     private MaterialButton backButton;
     private LinearLayout pergunta1, pergunta2, pergunta3;

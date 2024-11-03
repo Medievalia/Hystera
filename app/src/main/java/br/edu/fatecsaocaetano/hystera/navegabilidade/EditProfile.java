@@ -22,8 +22,6 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import br.edu.fatecsaocaetano.hystera.R;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -73,7 +71,7 @@ public class EditProfile extends AppCompatActivity {
 
     private void configurarBotaoAjuda() {
         MaterialButton ajuda = findViewById(R.id.help_button);
-        ajuda.setOnClickListener(v -> startActivity(new Intent(EditProfile.this, Ajuda.class)));
+        ajuda.setOnClickListener(v -> startActivity(new Intent(EditProfile.this, Help.class)));
     }
 
     private void configurarBotaoVoltar() {
