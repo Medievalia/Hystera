@@ -4,18 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
@@ -28,13 +33,42 @@ import br.edu.fatecsaocaetano.hystera.R;
 
 public class Annotations extends AppCompatActivity {
     private static final String tag = "AnnotationsClass"; // Tag para logging
-    GridLayout gridLayout;
-    FirebaseFirestore db;
+    private GridLayout gridLayout;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anotacao);
+
+        //navegação e menu
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationHelper menuHelper = new BottomNavigationHelper();
+        menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_anota);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.nav_anota) {
+                    startActivity(new Intent(Annotations.this, Notes.class));
+                    startActivity(new Intent(Annotations.this, Annotations.class));
+                    return true;
+                } else if (id == R.id.nav_calendario) {
+                    startActivity(new Intent(Annotations.this, CalendaryCycle.class));
+                    return true;
+                } else if (id == R.id.nav_utero) {
+                    startActivity(new Intent(Annotations.this, Informations.class));
+                    return true;
+                } else if (id == R.id.nav_seekbar) {
+                    startActivity(new Intent(Annotations.this, TimeLine.class));
+                    return true;
+                } else if (id == R.id.nav_medicacao) {
+                    startActivity(new Intent(Annotations.this, Medicine.class));
+                    return true;
+                }
+                return false;
+            }
+        });
 
         db = FirebaseFirestore.getInstance(); // Inicializando Firestore
         gridLayout = findViewById(R.id.gridLayout);

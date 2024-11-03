@@ -41,10 +41,10 @@ public class TimeLine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linha_tempo);
 
+        //navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper menuHelper = new BottomNavigationHelper();
         menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_seekbar);
-
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
