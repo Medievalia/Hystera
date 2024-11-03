@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -24,12 +28,13 @@ import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class TimeLine extends AppCompatActivity {
 
-    private final String tag = "LinhaDoTempoClass";
+    private final String tag = "TimeLineClass";
     private String userID;
     private CircularSeekBar seekBar;
     private CircularSeekBar seekBarPeriod;
     private CircularSeekBar seekBarNextBleeding;
     private Cycle currentCycle;
+    private int cycleAverage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,31 @@ public class TimeLine extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper menuHelper = new BottomNavigationHelper();
         menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_seekbar);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.nav_anota) {
+                    startActivity(new Intent(TimeLine.this, Notes.class));
+                    startActivity(new Intent(TimeLine.this, Annotations.class));
+                    return true;
+                } else if (id == R.id.nav_calendario) {
+                    startActivity(new Intent(TimeLine.this, CalendaryCycle.class));
+                    return true;
+                } else if (id == R.id.nav_utero) {
+                    startActivity(new Intent(TimeLine.this, Informations.class));
+                    return true;
+                } else if (id == R.id.nav_seekbar) {
+                    startActivity(new Intent(TimeLine.this, TimeLine.class));
+                    return true;
+                } else if (id == R.id.nav_medicacao) {
+                    startActivity(new Intent(TimeLine.this, Medicine.class));
+                    return true;
+                }
+                return false;
+            }
+        });
 
         seekBar = findViewById(R.id.seekbar);
         seekBarPeriod = findViewById(R.id.seekbar_period);
@@ -76,9 +106,10 @@ public class TimeLine extends AppCompatActivity {
                                 currentCycle = ultimoCiclo;
                             }
                         } else {
-                            Log.e(tag, "Ciclo nullo para usuário: " + userID);
+                            Log.e(tag, "Ciclo nulo para usuário: " + userID);
                         }
                         atualizandoSeekBar(currentCycle);
+                        calcularMediaDuracaoCiclos(userID);
                     } else {
                         Log.e(tag, "Nenhum ciclo encontrado.");
                     }
@@ -91,8 +122,24 @@ public class TimeLine extends AppCompatActivity {
         carregandoBotoesAppCompatButton(R.id.button_agendamento, Scheduling.class);
         carregandoBotoesAppCompatButton(R.id.button_perfil, Profile.class);
         carregandoBotoesAppCompatImageButton(R.id.button_menstruacao, NewBleeding.class);
-        carregandoBotoesAppCompatImageButton(R.id.button_periodo, PeriodCycle.class);
 
+        ImageButton buttonMenstruacao = findViewById(R.id.button_menstruacao);
+        buttonMenstruacao.setOnClickListener(v -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Confirmação")
+                    .setMessage("Tem certeza que deseja registrar o início de uma nova menstruação?")
+                    .setPositiveButton("Sim", (dialog, which) -> {
+                        NewBleeding newBleeding = new NewBleeding();
+                        calcularMediaDuracaoCiclos(userID);
+                        newBleeding.validateNewCycle(userID, TimeLine.this); // Passando o contexto
+                        Toast.makeText(this, "Nova menstruação registrada", Toast.LENGTH_SHORT).show();
+                        atualizarCiclo();
+                    })
+                    .setNegativeButton("Não", (dialog, which) -> {
+                        dialog.dismiss();
+                    })
+                    .show();
+        });
     }
 
     private void atualizandoSeekBar(Cycle currentCycle) {
@@ -176,5 +223,69 @@ public class TimeLine extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void calcularMediaDuracaoCiclos(String userID) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Usuarios").document(userID)
+                .collection("Ciclos")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        int somaDuracoes = 0;
+                        int quantidadeCiclos = 0;
+
+                        for (DocumentSnapshot cicloDoc : queryDocumentSnapshots.getDocuments()) {
+                            if (cicloDoc.contains("duration")) {
+                                int duracao = cicloDoc.getLong("duration").intValue();
+                                somaDuracoes += duracao;
+                                quantidadeCiclos++;
+                            }
+                        }
+
+                        if (quantidadeCiclos > 0) {
+                            int mediaDuracao = (int) Math.round((double) somaDuracoes / quantidadeCiclos);
+                            Log.i(tag, "Média da duração dos ciclos: " + mediaDuracao);
+                            db.collection("Usuarios").document(userID)
+                                    .update("Cycle Average", mediaDuracao)
+                                    .addOnSuccessListener(aVoid -> Log.i(tag, "Média atualizada com sucesso!"))
+                                    .addOnFailureListener(e -> Log.e(tag, "Erro ao atualizar a média.", e));
+                        } else {
+                            Log.e(tag, "Nenhum ciclo encontrado com duração.");
+                        }
+                    } else {
+                        Log.e(tag, "Nenhum ciclo encontrado para o usuário.");
+                    }
+                })
+                .addOnFailureListener(e -> Log.e(tag, "Erro ao buscar ciclos.", e));
+    }
+
+
+    private void atualizarCiclo() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Usuarios")
+                .document(userID)
+                .collection("Ciclos")
+                .orderBy("startDate", Query.Direction.DESCENDING)
+                .limit(1)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (!queryDocumentSnapshots.isEmpty()) {
+                        DocumentSnapshot actualCycle = queryDocumentSnapshots.getDocuments().get(0);
+                        Cycle ultimoCiclo = actualCycle.toObject(Cycle.class);
+                        if (ultimoCiclo != null) {
+                            currentCycle = ultimoCiclo;
+                            atualizandoSeekBar(currentCycle);
+                        } else {
+                            Log.e(tag, "Ciclo nullo para usuário: " + userID);
+                        }
+                    } else {
+                        Log.e(tag, "Nenhum ciclo encontrado.");
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(tag, "Erro ao recuperar o último ciclo. ", e);
+                });
     }
 }

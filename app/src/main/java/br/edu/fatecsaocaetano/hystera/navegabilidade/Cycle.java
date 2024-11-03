@@ -23,6 +23,7 @@ public class Cycle {
     private boolean natural;
     private int bleeding;
     private Timestamp ovulation;
+    private boolean interrupted;
     private final Map<String, Map<String, Timestamp>> fases = new HashMap<>();
 
     public Cycle() {
@@ -35,7 +36,7 @@ public class Cycle {
         this.bleeding = bleeding;
         this.userID = userID;
         this.id = gerarIdCiclo();
-
+        this.interrupted = false;
         this.endDate = calcularData(startDate, duration - 1);
         this.ovulation = calcularOvulacao();
 
@@ -45,7 +46,7 @@ public class Cycle {
         adicionarFase("Ovulacao", calcularOvulacao(), calcularOvulacao());
     }
 
-    private Timestamp calcularData(Timestamp data, int dias) {
+    public Timestamp calcularData(Timestamp data, int dias) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(data.toDate());
         calendar.add(Calendar.DAY_OF_MONTH, dias);
@@ -86,45 +87,13 @@ public class Cycle {
         return new Cycle(proximoInicio, cicloAtual.getDuration(), cicloAtual.isNatural(), cicloAtual.getBleeding(), cicloAtual.getUserID());
     }
 
-    public void calcularMediaDuracaoCiclos(String userID) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        db.collection("Usuarios").document(userID)
-                .collection("Ciclos")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    if (!queryDocumentSnapshots.isEmpty()) {
-                        int somaDuracoes = 0;
-                        int quantidadeCiclos = 0;
-
-                        for (DocumentSnapshot cicloDoc : queryDocumentSnapshots.getDocuments()) {
-                            if (cicloDoc.contains("duration")) {
-                                int duracao = cicloDoc.getLong("duration").intValue();
-                                somaDuracoes += duracao;
-                                quantidadeCiclos++;
-                            }
-                        }
-
-                        if (quantidadeCiclos > 0) {
-                            double mediaDuracao = (double) somaDuracoes / quantidadeCiclos;
-                            Log.i(tag, "Média da duração dos ciclos: " + mediaDuracao);
-                        } else {
-                            Log.e(tag, "Nenhum ciclo encontrado com duração.");
-                        }
-                    } else {
-                        Log.e(tag, "Nenhum ciclo encontrado para o usuário.");
-                    }
-                })
-                .addOnFailureListener(e -> Log.e(tag, "Erro ao buscar ciclos.", e));
-    }
-
     public Map<String, String> obterInformacoesDoCicloAtual() {
         Calendar hoje = Calendar.getInstance();
         hoje.setTime(new Date());
 
         Map<String, String> informacoesCiclo = new HashMap<>();
 
-        long diasDesdeInicio = (hoje.getTimeInMillis() - startDate.toDate().getTime()) / (1000 * 60 * 60 * 24);
+        long diasDesdeInicio = (hoje.getTimeInMillis() - getStartDate().toDate().getTime()) / (1000 * 60 * 60 * 24);
         int diaDoCiclo = (int) diasDesdeInicio + 1;
 
         String faseAtual = "Sangramento";
@@ -150,7 +119,7 @@ public class Cycle {
         hoje.setTime(new Date());
         Map<String, Integer> diasRestantesMap = new HashMap<>();
 
-        long diasRestantesParaMenstruacao = (endDate.toDate().getTime() - hoje.getTimeInMillis()) / (1000 * 60 * 60 * 24);
+        long diasRestantesParaMenstruacao = (getEndDate().toDate().getTime() - hoje.getTimeInMillis()) / (1000 * 60 * 60 * 24);
         diasRestantesMap.put("diasProximaMenstruacao", (int) diasRestantesParaMenstruacao);
 
         String faseAtual = "Sangramento";
@@ -173,12 +142,31 @@ public class Cycle {
         return diasRestantesMap;
     }
 
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public void setInterrupted(boolean interrupted) {
+        this.interrupted = interrupted;
+    }
+
+    public int calcularDuracao() {
+        if (startDate != null && endDate != null) {
+            long diffInMillis = endDate.toDate().getTime() - startDate.toDate().getTime();
+            return (int) (diffInMillis / (1000 * 60 * 60 * 24)) + 1;
+        }
+        return 0;
+    }
+
     public Timestamp getStartDate() { return startDate; }
     public Timestamp getEndDate() { return endDate; }
     public int getDuration() { return duration; }
     public boolean isNatural() { return natural; }
     public int getBleeding() { return bleeding; }
-    public Timestamp getOvulation() { return ovulation; }
     public String getUserID() { return userID; }
     public String getId() { return id; }
     public Map<String, Map<String, Timestamp>> getFases() {
