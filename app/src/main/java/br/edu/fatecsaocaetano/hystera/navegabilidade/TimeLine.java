@@ -35,6 +35,11 @@ public class TimeLine extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linha_tempo);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationHelper menuHelper = new BottomNavigationHelper();
+        menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_seekbar);
+
         seekBar = findViewById(R.id.seekbar);
         seekBarPeriod = findViewById(R.id.seekbar_period);
         seekBarNextBleeding = findViewById(R.id.seekbar_next);
@@ -88,31 +93,6 @@ public class TimeLine extends AppCompatActivity {
         carregandoBotoesAppCompatImageButton(R.id.button_menstruacao, NewBleeding.class);
         carregandoBotoesAppCompatImageButton(R.id.button_periodo, PeriodCycle.class);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                if (id == R.id.nav_anota) {
-                    startActivity(new Intent(TimeLine.this, Annotations.class));
-                    return true;
-                } else if (id == R.id.nav_calendario) {
-                    startActivity(new Intent(TimeLine.this, CalendaryCycle.class));
-                    return true;
-                } else if (id == R.id.nav_utero) {
-                    startActivity(new Intent(TimeLine.this, Informations.class));
-                    return true;
-                } else if (id == R.id.nav_seekbar) {
-                    startActivity(new Intent(TimeLine.this, TimeLine.class));
-                    return true;
-                } else if (id == R.id.nav_medicacao) {
-                    startActivity(new Intent(TimeLine.this, Medicine.class));
-                    return true;
-                }
-                return false;
-            }
-        });
     }
 
     private void atualizandoSeekBar(Cycle currentCycle) {
