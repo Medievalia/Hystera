@@ -73,6 +73,7 @@ public class Graph extends AppCompatActivity {
 
         // Inicializando o LineChart
         lineChart = findViewById(R.id.chart);
+        lineChart.setBackgroundColor(Color.WHITE);
         if (lineChart == null) {
             Log.e(tag, "LineChart não foi inicializado.");
             return;

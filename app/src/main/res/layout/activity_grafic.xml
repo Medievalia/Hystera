@@ -86,7 +86,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/layout_duracao_menstruacao"
         app:layout_constraintTop_toBottomOf="@+id/chart"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp">
 
         <!-- Título do cartão -->
         <com.google.android.material.textview.MaterialTextView
@@ -132,7 +132,7 @@
         app:layout_constraintStart_toEndOf="@id/layout_duracao_ciclo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chart"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp">
 
         <!-- Título do cartão -->
         <com.google.android.material.textview.MaterialTextView
@@ -174,7 +174,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewTotal" />
+        app:layout_constraintTop_toBottomOf="@id/textViewTotal"
+        android:layout_margin="30dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

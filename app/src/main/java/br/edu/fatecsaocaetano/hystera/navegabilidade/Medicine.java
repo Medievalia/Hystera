@@ -3,13 +3,10 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class Medicine extends AppCompatActivity {
@@ -46,15 +43,6 @@ public class Medicine extends AppCompatActivity {
                 }
                 return false;
             }
-        });
-
-        // Inicializa o FAB
-        FloatingActionButton fab_add_medicamento = findViewById(R.id.fab_add_medicamento); //  ID
-
-        // Adiciona o listener de clique
-        fab_add_medicamento.setOnClickListener(v -> {
-            Intent intent = new Intent(Medicine.this, Medicine.class); // Use Medicacao.this
-            startActivity(intent);
         });
     }
 }

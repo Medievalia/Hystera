@@ -38,18 +38,19 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_duvidas"
                 android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/kurale"
-            android:text="Dúvidas Frequentes"
-            android:textColor="#8A50FF"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/back_button"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/kurale"
+                android:text="Dúvidas Frequentes"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="#8A50FF"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/back_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <!-- Pergunta 1 -->
             <LinearLayout
@@ -74,7 +75,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Como alterar minha senha?"
-                        android:textSize="16sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/black" />
 
                     <ImageView
                         android:id="@+id/arrow_icon1"
@@ -117,7 +119,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Os dados do meu ciclo estão incorretos, como posso modificar?"
-                        android:textSize="16sp" />
+                        android:textSize="17sp"
+                        android:textColor="@color/black" />
 
                     <ImageView
                         android:id="@+id/arrow_icon2"
@@ -142,13 +145,13 @@
                 android:id="@+id/pergunta3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/layout_question3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
                     android:gravity="center_vertical"
                     android:padding="16dp"
                     android:clickable="true"
@@ -160,7 +163,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Como alterar o meu método contraceptivo?"
-                        android:textSize="16sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/black" />
 
                     <ImageView
                         android:id="@+id/arrow_icon3"
@@ -207,8 +211,8 @@
             <!-- Imagem decorativa -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/decorative_image"
-                android:layout_width="400dp"
-                android:layout_height="120dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/elipse"
                 app:layout_constraintHeight_percent="0.2" />
 

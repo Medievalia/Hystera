@@ -218,13 +218,14 @@ public class Annotations extends AppCompatActivity {
         // Adicionar um TextView para o título
         TextView titleView = new TextView(this);
         titleView.setText(title != null ? title : "Título da Nota"); // Usar o título real ou um padrão
-        titleView.setTextColor(0xFF8A50FF); // Usando cor direta
-        titleView.setTextSize(20); // Tamanho da fonte do título
+        titleView.setTextColor(0xFF212021); // Usando cor direta
+        titleView.setTextSize(16); // Tamanho da fonte do título
 
         // Adicionar um TextView para a descrição
         TextView descriptionView = new TextView(this);
         descriptionView.setText(description != null ? description : "Descrição da Nota..."); // Usar descrição real ou um padrão
-        descriptionView.setTextSize(16); // Tamanho da fonte da descrição
+        descriptionView.setTextColor(0xFF212021);
+        descriptionView.setTextSize(12); // Tamanho da fonte da descrição
         descriptionView.setEllipsize(TextUtils.TruncateAt.END); // Adiciona "..." se o texto for longo
         descriptionView.setMaxLines(2); // Limita a 2 linhas
 
@@ -275,9 +276,9 @@ public class Annotations extends AppCompatActivity {
         buttonAdd.setLayoutParams(params);
 
         buttonAdd.setText("+");
-        buttonAdd.setBackgroundColor(getResources().getColor(R.color.purple_500)); // Cor de fundo
+        buttonAdd.setBackgroundColor(getResources().getColor(R.color.blue)); // Cor de fundo
+        buttonAdd.setCornerRadius(28);
         buttonAdd.setTextColor(getResources().getColor(android.R.color.white)); // Cor do texto
-        buttonAdd.setCornerRadius(16); // Canto arredondado
 
         // Adiciona o listener para adicionar uma nova nota
         buttonAdd.setOnClickListener(v -> adicionarNovoQuadradoBranco());
