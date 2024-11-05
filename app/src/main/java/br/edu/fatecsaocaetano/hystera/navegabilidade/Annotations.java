@@ -54,7 +54,7 @@ public class Annotations extends AppCompatActivity {
                     startActivity(new Intent(Annotations.this, Annotations.class));
                     return true;
                 } else if (id == R.id.nav_calendario) {
-                    startActivity(new Intent(Annotations.this, CalendaryCycle.class));
+                    startActivity(new Intent(Annotations.this, CalendarCycle.class));
                     return true;
                 } else if (id == R.id.nav_utero) {
                     startActivity(new Intent(Annotations.this, Informations.class));

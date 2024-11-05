@@ -39,7 +39,7 @@ public class Informations extends AppCompatActivity {
                     startActivity(new Intent(Informations.this, Annotations.class));
                     return true;
                 } else if (id == R.id.nav_calendario) {
-                    startActivity(new Intent(Informations.this, CalendaryCycle.class));
+                    startActivity(new Intent(Informations.this, CalendarCycle.class));
                     return true;
                 } else if (id == R.id.nav_utero) {
                     startActivity(new Intent(Informations.this, Informations.class));

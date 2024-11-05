@@ -1,16 +1,20 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
+import android.graphics.Color;
 import android.util.Log;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 public class Cycle {
 
@@ -83,7 +87,6 @@ public class Cycle {
 
     public Cycle simularProximoCiclo(Cycle cicloAtual) {
         Timestamp proximoInicio = calcularData(cicloAtual.getEndDate(), 1);
-
         return new Cycle(proximoInicio, cicloAtual.getDuration(), cicloAtual.isNatural(), cicloAtual.getBleeding(), cicloAtual.getUserID());
     }
 
@@ -142,18 +145,6 @@ public class Cycle {
         return diasRestantesMap;
     }
 
-    public void setEndDate(Timestamp endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public void setInterrupted(boolean interrupted) {
-        this.interrupted = interrupted;
-    }
-
     public int calcularDuracao() {
         if (startDate != null && endDate != null) {
             long diffInMillis = endDate.toDate().getTime() - startDate.toDate().getTime();
@@ -162,6 +153,64 @@ public class Cycle {
         return 0;
     }
 
+    public void marcarDiasNoCalendario(MaterialCalendarView calendarView, Calendar start, Calendar end, Cycle ciclo) {
+        if (ciclo.getStartDate() == null || ciclo.getOvulation() == null) {
+            Log.e(tag, "startDate ou a data da ovulação são nulas: " + ciclo.getStartDate() + "," + ciclo.getOvulation());
+            return;
+        }
+
+        Set<CalendarDay> bleedingDays = new HashSet<>();
+        Set<CalendarDay> fertileDays = new HashSet<>();
+
+        // Marcando dias de sangramento
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(ciclo.getStartDate().toDate());
+
+        // Marcar dias de sangramento
+        for (int i = 0; i < ciclo.getBleeding(); i++) {
+            Calendar day = (Calendar) calendar.clone();
+            day.add(Calendar.DAY_OF_MONTH, i);
+            if ((day.compareTo(start) >= 0 && day.compareTo(end) <= 0) || (day.get(Calendar.MONTH) != start.get(Calendar.MONTH))) {
+                bleedingDays.add(CalendarDay.from(day));
+            }
+        }
+
+        // Marcando dias férteis
+        Calendar ovulacao = Calendar.getInstance();
+        ovulacao.setTime(ciclo.getOvulation().toDate());
+
+        for (int i = -2; i <= 2; i++) {
+            Calendar fertileDay = (Calendar) ovulacao.clone();
+            fertileDay.add(Calendar.DAY_OF_MONTH, i);
+            if (fertileDay.compareTo(start) >= 0 && fertileDay.compareTo(end) <= 0) {
+                fertileDays.add(CalendarDay.from(fertileDay));
+            }
+        }
+
+        int bleedingColor = Color.parseColor("#D84242");
+        int fertileColor = Color.parseColor("#61C3EF");
+        calendarView.addDecorator(new EventDecorator(bleedingColor, bleedingDays));
+        calendarView.addDecorator(new EventDecorator(fertileColor, fertileDays));
+    }
+
+    public String getTag() { return tag; }
+    public void setUserID(String userID) { this.userID = userID; }
+    public void setId(String id) { this.id = id;}
+    public void setStartDate(Timestamp startDate) { this.startDate = startDate;}
+    public void setNatural(boolean natural) { this.natural = natural;}
+    public void setBleeding(int bleeding) { this.bleeding = bleeding; }
+    public void setOvulation(Timestamp ovulation) { this.ovulation = ovulation; }
+    public boolean isInterrupted() { return interrupted; }
+    public Timestamp getOvulation() { return ovulation; }
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
+    }
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+    public void setInterrupted(boolean interrupted) {
+        this.interrupted = interrupted;
+    }
     public Timestamp getStartDate() { return startDate; }
     public Timestamp getEndDate() { return endDate; }
     public int getDuration() { return duration; }

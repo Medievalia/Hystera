@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,7 +53,7 @@ public class TimeLine extends AppCompatActivity {
                     startActivity(new Intent(TimeLine.this, Annotations.class));
                     return true;
                 } else if (id == R.id.nav_calendario) {
-                    startActivity(new Intent(TimeLine.this, CalendaryCycle.class));
+                    startActivity(new Intent(TimeLine.this, CalendarCycle.class));
                     return true;
                 } else if (id == R.id.nav_utero) {
                     startActivity(new Intent(TimeLine.this, Informations.class));

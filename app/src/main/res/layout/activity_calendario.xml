@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_month"
@@ -101,32 +101,6 @@
                     android:dateTextAppearance="@style/CalenderViewDateCustomText"
                     android:weekDayTextAppearance="@color/black"/>
             </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_next_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Próximo Mês"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardViewNextMonth"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp">
-
-                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-                    android:id="@+id/nextMonthCalendarView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:dateTextAppearance="@style/CalenderViewDateCustomText"
-                    android:weekDayTextAppearance="@color/black"/>
-            </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
     </ScrollView>
 

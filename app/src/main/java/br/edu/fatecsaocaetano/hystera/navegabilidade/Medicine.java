@@ -29,7 +29,7 @@ public class Medicine extends AppCompatActivity {
                     startActivity(new Intent(Medicine.this, Annotations.class));
                     return true;
                 } else if (id == R.id.nav_calendario) {
-                    startActivity(new Intent(Medicine.this, CalendaryCycle.class));
+                    startActivity(new Intent(Medicine.this, CalendarCycle.class));
                     return true;
                 } else if (id == R.id.nav_utero) {
                     startActivity(new Intent(Medicine.this, Informations.class));

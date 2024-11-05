@@ -50,7 +50,7 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Informations" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Logout" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notifications" android:exported="true" />
-        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.CalendaryCycle" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.CalendarCycle" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ReasonForUse" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.MethodUse" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.FirstCycle" android:exported="true" />
