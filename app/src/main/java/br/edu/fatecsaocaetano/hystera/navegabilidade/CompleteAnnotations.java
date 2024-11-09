@@ -39,8 +39,7 @@ public class CompleteAnnotations extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CompleteAnnotations.this, Annotations.class);
-                startActivity(intent);
+                finish();
             }
         });
 

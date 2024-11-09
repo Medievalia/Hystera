@@ -54,9 +54,7 @@ public class Graph extends AppCompatActivity {
         voltarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Graph.this, TimeLine.class);
-                startActivity(intent);
-                finish(); // Finaliza a Activity atual (opcional)
+                finish();
             }
         });
 
@@ -65,9 +63,7 @@ public class Graph extends AppCompatActivity {
         perfilButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Graph.this, Profile.class);
-                startActivity(intent);
-                finish(); // Finaliza a Activity atual (opcional)
+                finish();
             }
         });
 

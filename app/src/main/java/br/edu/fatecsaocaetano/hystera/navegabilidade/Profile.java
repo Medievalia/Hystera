@@ -50,8 +50,6 @@ public class Profile extends AppCompatActivity {
         }
 
         voltarButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Profile.this, TimeLine.class);
-            startActivity(intent);
             finish();
         });
 

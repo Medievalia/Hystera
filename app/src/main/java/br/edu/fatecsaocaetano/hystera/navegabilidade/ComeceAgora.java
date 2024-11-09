@@ -20,8 +20,7 @@ public class ComeceAgora extends AppCompatActivity {
         signInEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ComeceAgora.this, CreateAccount.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

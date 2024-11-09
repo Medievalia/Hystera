@@ -156,7 +156,6 @@ public class Annotations extends AppCompatActivity {
         });
     }
 
-
     private void adicionarNovoQuadradoBranco() {
         // Gera um ID único no formato MMAAAA-DDMMSSMMM
         String noteId = generateNoteId();

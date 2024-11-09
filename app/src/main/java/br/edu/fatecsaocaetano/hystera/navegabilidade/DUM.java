@@ -58,8 +58,6 @@ public class DUM extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DUM.this, MethodUse.class);
-                startActivity(intent);
                 finish();
             }
         });

@@ -55,8 +55,6 @@ public class MethodUse extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MethodUse.this, ReasonForUse.class);
-                startActivity(intent);
                 finish();
             }
         });

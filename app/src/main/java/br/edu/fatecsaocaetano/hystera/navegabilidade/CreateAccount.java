@@ -60,8 +60,6 @@ public class CreateAccount extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateAccount.this, MainActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
@@ -110,7 +108,6 @@ public class CreateAccount extends AppCompatActivity {
                     mostrarSnackbar(v, mensagens[1]);
                     Intent intent = new Intent(CreateAccount.this, ReasonForUse.class);
                     startActivity(intent);
-                    finish();
                 } else {
                     String erro = obterMensagemErro(task.getException(), email);
                     mostrarSnackbar(v, erro);
