@@ -19,6 +19,7 @@ public class Logout extends AppCompatActivity {
         setContentView(R.layout.activity_sair);
 
         AppCompatButton acompanhar = findViewById(R.id.continuar_acompanhando);
+        AppCompatButton voltar = findViewById(R.id.voltar_button);
         AppCompatButton sair = findViewById(R.id.sair);
 
         acompanhar.setOnClickListener(new View.OnClickListener() {
@@ -26,6 +27,13 @@ public class Logout extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Logout.this, TimeLine.class);
                 startActivity(intent);
+            }
+        });
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

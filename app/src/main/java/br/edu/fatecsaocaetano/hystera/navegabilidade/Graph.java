@@ -58,12 +58,12 @@ public class Graph extends AppCompatActivity {
             }
         });
 
-        // Inicializando o botão "Perfil"
         perfilButton = findViewById(R.id.button_perfil);
         perfilButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(Graph.this, Profile.class);
+                startActivity(intent);
             }
         });
 

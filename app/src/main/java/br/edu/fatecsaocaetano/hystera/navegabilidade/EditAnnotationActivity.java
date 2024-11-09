@@ -46,24 +46,43 @@ public class EditAnnotationActivity extends AppCompatActivity {
         // Receber dados da Intent
         Intent intent = getIntent();
         noteId = intent.getStringExtra("NOTE_ID");
-        String titulo = intent.getStringExtra("NOTE_TITLE");
-        String anotacao = intent.getStringExtra("NOTE_DESCRIPTION");
-        String dataCriacao = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()); // Data abreviada
 
-        // Definir os valores nos campos
-        tituloEditText.setText(titulo);
-        anotacaoEditText.setText(anotacao);
-        dataCriacaoTextView.setText(dataCriacao); // Exibe a data formatada
+        // Referência para o documento da nota
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference noteRef = db.collection("Usuarios").document(userId).collection("Notes").document(noteId);
 
-        // Criar uma instância da nota
-        note = new Notes(FirebaseAuth.getInstance().getCurrentUser().getUid(), titulo, anotacao, new Date());
+        // Buscar a nota no Firestore
+        noteRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                // Carregar os dados da nota
+                String titulo = documentSnapshot.getString("title");
+                String anotacao = documentSnapshot.getString("description");
+                Date annotationDate = documentSnapshot.getDate("annotationDate");
+
+                // Se a data de criação não for nula, formate e exiba
+                if (annotationDate != null) {
+                    String formattedDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(annotationDate);
+                    dataCriacaoTextView.setText(formattedDate); // Exibe a data de criação
+                }
+
+                // Definir os valores nos campos
+                tituloEditText.setText(titulo);
+                anotacaoEditText.setText(anotacao);
+
+                // Criar uma instância da nota
+                note = new Notes(userId, titulo, anotacao, annotationDate);
+            }
+        }).addOnFailureListener(e -> {
+            // Em caso de erro ao buscar a nota
+            System.err.println("Erro ao buscar a nota: " + e.getMessage());
+        });
 
         // Configurar os listeners para os botões
         btnSalvar.setOnClickListener(v -> {
             // Captura os dados atualizados
             String updatedTitle = tituloEditText.getText().toString();
             String updatedDescription = anotacaoEditText.getText().toString();
-            Date updatedDate = new Date();
+            Date updatedDate = new Date(); // Atualiza com a data atual ao salvar
 
             // Atualiza os campos na instância de Notes
             note.setTitle(updatedTitle);

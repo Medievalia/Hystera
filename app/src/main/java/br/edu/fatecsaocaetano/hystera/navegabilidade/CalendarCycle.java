@@ -11,26 +11,29 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import br.edu.fatecsaocaetano.hystera.R;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
+
+import br.edu.fatecsaocaetano.hystera.R;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 public class CalendarCycle extends AppCompatActivity {
 
     private static final String tag = "CalendarCycleClass";
     private MaterialCalendarView currentMonthCalendarView;
     private TextView txtMonth;
+    private MaterialButton btn_graph;
+    private MaterialButton perfilButton;
     private String userID;
     private Cycle currentCycle;
     private Calendar displayedCalendar;
@@ -40,11 +43,14 @@ public class CalendarCycle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendario);
+
         currentMonthCalendarView = findViewById(R.id.currentMonthCalendarView);
         txtMonth = findViewById(R.id.txt_month);
+        btn_graph = findViewById(R.id.button_gafico);
+        perfilButton = findViewById(R.id.button_perfil);
         displayedCalendar = Calendar.getInstance();
 
-        //navegação e menu
+        // Navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper menuHelper = new BottomNavigationHelper();
         menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_calendario);
@@ -87,6 +93,22 @@ public class CalendarCycle extends AppCompatActivity {
                 navegarParaProximoMes();
             }
         });
+
+        perfilButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalendarCycle.this, Profile.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CalendarCycle.this, Graph.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void recuperarCiclos() {
@@ -111,7 +133,7 @@ public class CalendarCycle extends AppCompatActivity {
                                     }
                                 }
 
-                                ciclo = new Cycle(startDate, documentSnapshot.getLong("duration").intValue(), documentSnapshot.getBoolean("natural"),documentSnapshot.getLong("bleeding").intValue(), userID);
+                                ciclo = new Cycle(startDate, documentSnapshot.getLong("duration").intValue(), documentSnapshot.getBoolean("natural"), documentSnapshot.getLong("bleeding").intValue(), userID);
                                 ciclosAnteriores.add(ciclo);
                             }
                         }
@@ -190,6 +212,4 @@ public class CalendarCycle extends AppCompatActivity {
             proximoCiclo.marcarDiasNoCalendario(currentMonthCalendarView, nextStart, nextEnd, proximoCiclo);
         }
     }
-
 }
-

@@ -25,6 +25,7 @@ public class Profile extends AppCompatActivity {
 
     private final String tag = "ProfileClass";
     private MaterialButton voltarButton;
+    private MaterialButton help;
     private TextView nomeUsuario;
     private TextView emailUsuario;
     private ImageView fotoPerfil; // Mantendo a ImageView para mostrar a foto
@@ -35,6 +36,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
         iniciarComponente();
+        configurarBotaoAjuda();
         configurarBotoes();
     }
 
@@ -75,7 +77,7 @@ public class Profile extends AppCompatActivity {
     private void iniciarComponente() {
         nomeUsuario = findViewById(R.id.txt_nome);
         emailUsuario = findViewById(R.id.txtEmail);
-        fotoPerfil = findViewById(R.id.btn_foto); // Mantendo a referência da ImageView
+        fotoPerfil = findViewById(R.id.btn_foto);
         voltarButton = findViewById(R.id.voltar_button);
     }
 
@@ -95,7 +97,12 @@ public class Profile extends AppCompatActivity {
         button.setOnClickListener(v -> {
             Intent intent = new Intent(Profile.this, targetActivity);
             startActivity(intent);
-            finish();
         });
     }
+
+    private void configurarBotaoAjuda() {
+        MaterialButton ajuda = findViewById(R.id.help_button);
+        ajuda.setOnClickListener(v -> startActivity(new Intent(Profile.this, Help.class)));
+    }
+
 }

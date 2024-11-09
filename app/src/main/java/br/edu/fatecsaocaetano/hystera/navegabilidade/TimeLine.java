@@ -207,7 +207,6 @@ public class TimeLine extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(TimeLine.this, targetActivity);
                 startActivity(intent);
-                finish();
             }
         });
     }
@@ -219,7 +218,6 @@ public class TimeLine extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(TimeLine.this, targetActivity);
                 startActivity(intent);
-                finish();
             }
         });
     }
