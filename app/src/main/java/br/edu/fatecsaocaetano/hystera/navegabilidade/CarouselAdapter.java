@@ -2,6 +2,7 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,56 +10,87 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import br.edu.fatecsaocaetano.hystera.R;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.ViewHolder> {
-    private Context context;
-    private List<Noticia> noticias;
+import br.edu.fatecsaocaetano.hystera.R;
 
-    // Construtor do adaptador, recebe o contexto e a lista de notícias
+public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder> {
+
+    private final Context context;
+    private final List<Noticia> noticias;
+
     public CarouselAdapter(Context context, List<Noticia> noticias) {
         this.context = context;
         this.noticias = noticias;
     }
 
-    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Infla o layout de cada item do carrossel
+    public CarouselViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.carousel_item, parent, false);
-        return new ViewHolder(view); // Retorna o ViewHolder com a visão inflada
+        return new CarouselViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Noticia noticia = noticias.get(position); // Obtém a notícia na posição atual
-        holder.titulo.setText(noticia.getTitulo()); // Define o título da notícia
-        holder.imagem.setImageResource(noticia.getImagemResId()); // Define a imagem da notícia
+    public void onBindViewHolder(CarouselViewHolder holder, int position) {
+        Noticia noticia = noticias.get(position);
+        holder.title.setText(noticia.getTitulo());
+
+        // Carregar a imagem usando Glide
+        Glide.with(context)
+                .load(noticia.getImagemResId()) // Carregando imagem pelo ID do recurso
+                .into(holder.imageView);
+
+        // Aplique cores diferentes com base na posição
+        int color = getColorForPosition(position);
+        holder.itemView.setBackgroundColor(ContextCompat.getColor(context, color));
+
+        // Definir o fundo com bordas arredondadas diretamente no código
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setCornerRadius(16); // Defina o raio da borda
+        drawable.setColor(ContextCompat.getColor(context, color)); // Cor de fundo
+        drawable.setStroke(2, ContextCompat.getColor(context, R.color.black)); // Cor e largura da borda
+        holder.itemView.setBackground(drawable);  // Aplica no item
+
+        // Configura o clique no item para abrir a URL no navegador
         holder.itemView.setOnClickListener(v -> {
-            // Ao clicar no item, abre a URL da notícia em um navegador
+            // Abre a URL no navegador
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(noticia.getUrl()));
-            context.startActivity(intent); // Inicia a Activity do navegador
+            context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return noticias.size(); // Retorna o número de itens na lista
+        return noticias.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titulo; // TextView para o título da notícia
-        ImageView imagem; // ImageView para a imagem da notícia
+    private int getColorForPosition(int position) {
+        // Defina cores diferentes para cada posição
+        switch (position % 4) {
+            case 0:
+                return R.color.azul_calcinha;  // Exemplo de cor
+            case 1:
+                return R.color.purple_white;
+            case 2:
+                return R.color.rocho_calcinha;
+            default:
+                return R.color.purple_mid;
+        }
+    }
 
-        // Construtor do ViewHolder, inicializa as views
-        public ViewHolder(@NonNull View itemView) {
+    public static class CarouselViewHolder extends RecyclerView.ViewHolder {
+        TextView title;
+        ImageView imageView;
+
+        public CarouselViewHolder(View itemView) {
             super(itemView);
-            titulo = itemView.findViewById(R.id.news_title);  // Atualizado para corresponder ao ID do layout
-            imagem = itemView.findViewById(R.id.news_image);  // Atualizado para corresponder ao ID do layout
+            title = itemView.findViewById(R.id.news_title);
+            imageView = itemView.findViewById(R.id.news_image);
         }
     }
 }

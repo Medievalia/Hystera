@@ -1,7 +1,6 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -45,7 +44,7 @@ public class Informations extends AppCompatActivity {
         noticias.add(new Noticia(
                 "Coletor menstrual ou absorvente: qual o melhor?", // Título da notícia
                 "https://cinge.com.br/2022/08/08/coletor-menstrual-ou-absorvente-qual-o-melhor/", // URL da notícia
-                R.drawable.prototipo_tcc_2_1 // ID da imagem (substituir pelo ID correto)
+                R.drawable.prototipo_tcc_2_1 // ID da imagem
         ));
         noticias.add(new Noticia(
                 "Ciclo menstrual explicado",
@@ -57,17 +56,7 @@ public class Informations extends AppCompatActivity {
                 "https://www.pantys.com.br/blogs/pantys/absorvente-ecologico-vs-descartavel-5-diferencas",
                 R.drawable.prototipo_tcc_2_1
         ));
-        noticias.add(new Noticia(
-                "Pílula do dia seguinte: tudo o que você precisa saber",
-                "https://hilab.com.br/blog/pilula-dia-seguinte/",
-                R.drawable.prototipo_tcc_2_1
-        ));
-        noticias.add(new Noticia(
-                "O que é endometriose e como tratar?",
-                "https://bvsms.saude.gov.br/endometriose/#:~:text=A%20endometriose%20%C3%A9%20uma%20doen%C3%A7a,geral%2C%20devem%20ser%20retiradas%20cirurgicamente.",
-                R.drawable.prototipo_tcc_2_1
-        ));
-        return noticias; // Retorna a lista de notícias
+        return noticias; // Retorna a lista de notícias para o primeiro carrossel
     }
 
     /**
@@ -76,15 +65,15 @@ public class Informations extends AppCompatActivity {
     private List<Noticia> getDataForSecondCarousel() {
         List<Noticia> noticias = new ArrayList<>();
         noticias.add(new Noticia(
-                "Notícia Extra 1", // Título da notícia extra
-                "https://exemplo.com/noticia-extra1", // URL da notícia extra
-                R.drawable.prototipo_tcc_2_1 // ID da imagem (substituir pelo ID correto)
+                "Pílula do dia seguinte: tudo o que você precisa saber",
+                "https://hilab.com.br/blog/pilula-dia-seguinte/",
+                R.drawable.prototipo_tcc_2_1 // ID da imagem
         ));
         noticias.add(new Noticia(
-                "Notícia Extra 2",
-                "https://exemplo.com/noticia-extra2",
+                "O que é endometriose e como tratar?",
+                "https://bvsms.saude.gov.br/endometriose/#:~:text=A%20endometriose%20%C3%A9%20uma%20doen%C3%A7a,geral%2C%20devem%20ser%20retiradas%20cirurgicamente.",
                 R.drawable.prototipo_tcc_2_1
         ));
-        return noticias; // Retorna a lista de notícias extras
+        return noticias; // Retorna a lista de notícias para o segundo carrossel
     }
 }
