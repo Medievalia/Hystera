@@ -167,8 +167,8 @@ public class Annotations extends AppCompatActivity {
 
         // Cria um mapa para armazenar os dados da nova nota
         Map<String, Object> noteData = new HashMap<>();
-        noteData.put("title", "Título da Nota"); // Placeholder, você pode substituir por um EditText
-        noteData.put("description", "Descrição da Nota"); // Placeholder, você pode substituir por um EditText
+        noteData.put("title", ""); // Placeholder, você pode substituir por um EditText
+        noteData.put("description", ""); // Placeholder, você pode substituir por um EditText
         noteData.put("annotationDate", currentDate); // Usando a data de criação
 
         // Adiciona a nova nota na coleção

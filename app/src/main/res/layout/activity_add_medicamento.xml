@@ -92,7 +92,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/input_posologia"
             app:layout_constraintWidth_percent="0.5"
-            android:hint="Quantidade do medicamento">
+            android:hint="Quantidade">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -134,7 +134,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/input_hora_inicio"
             app:layout_constraintWidth_percent="0.5"
-            android:hint="Data de Inicio">
+            android:hint="Data de Início">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -150,7 +150,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.5"
-            android:hint="Hora de Inicio">
+            android:hint="Hora de Início">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_hora_inicio"
@@ -176,7 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="  Desativar notificações"
+            android:text="  Desativar Notificações"
             android:fontFamily="@font/kurale"
             android:textSize="15sp"
             android:textColor="@color/black"
@@ -211,7 +211,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="  Desativar som"
+                android:text="  Desativar Som"
                 android:fontFamily="@font/kurale"
                 android:textSize="15sp"
                 android:textColor="@color/black"

@@ -2,19 +2,33 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Medicine extends AppCompatActivity {
+
+    private static final String tag = "MedicineClass"; // Tag para logging
+    private String userID; // Para armazenar o ID do usuário
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicacao);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        userID = FirebaseAuth.getInstance().getCurrentUser() != null ? FirebaseAuth.getInstance().getCurrentUser().getUid() : null;
+
+        if (userID == null) {
+            Log.e(tag, "ID do usuário não encontrado!");
+            return;
+        }
 
         //navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
