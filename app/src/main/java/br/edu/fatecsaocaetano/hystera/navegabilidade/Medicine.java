@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -58,5 +60,15 @@ public class Medicine extends AppCompatActivity {
                 return false;
             }
         });
+
+        FloatingActionButton addMedicamentoButton = findViewById(R.id.add_medicamento);
+        addMedicamentoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Medicine.this, AddMedicine.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -108,7 +108,7 @@
 
     <!-- Floating Action Button para adicionar medicamento -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_medicamento"
+        android:id="@+id/add_medicamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

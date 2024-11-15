@@ -96,7 +96,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Campo de Intervalo -->
@@ -108,13 +109,12 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.5"
-            android:hint="Intervalo">
+            android:hint="Intervalo em Horas">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_hora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false" />
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -138,7 +138,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Campo de Data de Inicio-->
@@ -153,10 +154,9 @@
             android:hint="Hora de Início">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_hora_inicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false" />
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -176,7 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="  Desativar Notificações"
+            android:text="  Ativar Notificações"
             android:fontFamily="@font/kurale"
             android:textSize="15sp"
             android:textColor="@color/black"
@@ -211,7 +211,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="  Desativar Som"
+                android:text="  Ativar Som"
                 android:fontFamily="@font/kurale"
                 android:textSize="15sp"
                 android:textColor="@color/black"
@@ -246,7 +246,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="  Desativar Vibração"
+            android:text="  Ativar Vibração"
             android:fontFamily="@font/kurale"
             android:textSize="15sp"
             android:textColor="@color/black"
