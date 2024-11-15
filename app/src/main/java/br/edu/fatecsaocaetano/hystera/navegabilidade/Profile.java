@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,8 +52,13 @@ public class Profile extends AppCompatActivity {
             return;
         }
 
-        voltarButton.setOnClickListener(v -> {
-            finish();
+        voltarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(Profile.this, TimeLine.class);
+                startActivity(intent);
+            }
         });
 
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
@@ -81,11 +87,63 @@ public class Profile extends AppCompatActivity {
         voltarButton = findViewById(R.id.voltar_button);
     }
 
+//    private void configurarBotoes() {
+//        carregandoBotoesAppCompatImageButton(R.id.btn_pefil_editar, EditProfile.class);
+//        carregandoBotoesAppCompatImageButton(R.id.btn_ciclo_editar, FirstCycle.class);
+//        carregandoBotoesAppCompatImageButton(R.id.btn_alterar_senha, ResetPassword.class);
+//        carregandoBotoesAppCompatImageButton(R.id.btn_logoff, Logout.class);
+//    }
+
     private void configurarBotoes() {
         carregandoBotoesAppCompatImageButton(R.id.btn_pefil_editar, EditProfile.class);
         carregandoBotoesAppCompatImageButton(R.id.btn_ciclo_editar, FirstCycle.class);
         carregandoBotoesAppCompatImageButton(R.id.btn_alterar_senha, ResetPassword.class);
-        carregandoBotoesAppCompatImageButton(R.id.btn_logoff, Logout.class);
+
+        // Configurando o botão para excluir conta
+        MaterialButton excluirConta = findViewById(R.id.btn_excluir_conta);
+        excluirConta.setOnClickListener(v -> confirmarExclusaoConta());
+
+        // Configurando o botão para sair do aplicativo
+        MaterialButton sair = findViewById(R.id.btn_logoff);
+        sair.setOnClickListener(v -> realizarLogout());
+    }
+
+    private void confirmarExclusaoConta() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Excluir Conta")
+                .setMessage("Tem certeza de que deseja excluir sua conta? Essa ação não pode ser desfeita.")
+                .setPositiveButton("Excluir", (dialog, which) -> excluirConta())
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
+    private void excluirConta() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            auth.getCurrentUser().delete()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            showToast("Conta excluída com sucesso.");
+                            // Redirecionar para a tela de login após a exclusão
+                            Intent intent = new Intent(Profile.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            showToast("Falha ao excluir a conta. Faça login novamente para confirmar.");
+                        }
+                    });
+        }
+    }
+
+    private void realizarLogout() {
+        FirebaseAuth.getInstance().signOut();
+        showToast("Você saiu da sua conta.");
+        // Redirecionar para a tela de login
+        Intent intent = new Intent(Profile.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void showToast(String message) {

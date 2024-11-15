@@ -149,6 +149,20 @@
         app:backgroundTint="#8A50FF"
         app:cornerRadius="8dp"/>
 
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_excluir_conta"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:text="Excluir Conta"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_alterar_senha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="#8A50FF"
+        app:cornerRadius="8dp"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_logoff"
         android:layout_width="300dp"
@@ -156,7 +170,7 @@
         android:layout_marginTop="16dp"
         android:text="Sair"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/btn_alterar_senha"
+        app:layout_constraintTop_toBottomOf="@id/btn_excluir_conta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:backgroundTint="@color/white"

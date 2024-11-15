@@ -70,7 +70,7 @@ public class ResetPassword extends AppCompatActivity {
     }
 
     private void iniciarComponentes() {
-        email = findViewById(R.id.email);
+        email = findViewById(R.id.editTextEmail);
         btn_enviar = findViewById(R.id.btn_enviar);
     }
 }
