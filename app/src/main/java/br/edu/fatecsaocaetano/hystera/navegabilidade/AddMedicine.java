@@ -176,7 +176,7 @@ public class AddMedicine extends AppCompatActivity {
             String startTimeText = editHoraInicio.getText() != null ? editHoraInicio.getText().toString().trim() : "";
 
             // Impedir salvar se "Unidade de Dosagem" for a opção selecionada
-            if (dosagemSelecionada.equals("Unidade de Dosagem") || drugName.isEmpty() || drugDescription.isEmpty() || drugAmount.isEmpty() || intervalText.isEmpty() || startDateText.isEmpty() || startTimeText.isEmpty()) {
+            if (dosagemSelecionada.equals("Unidade de Dosagem") || dosagemSelecionada.isEmpty() || drugName.isEmpty() || drugDescription.isEmpty() || drugAmount.isEmpty() || intervalText.isEmpty() || startDateText.isEmpty() || startTimeText.isEmpty()) {
                 Toast.makeText(this, "A unidade de dosagem deve ser preenchida corretamente!", Toast.LENGTH_SHORT).show();
                 return;
             }

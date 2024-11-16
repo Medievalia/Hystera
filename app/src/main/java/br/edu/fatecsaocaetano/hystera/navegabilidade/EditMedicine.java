@@ -232,7 +232,7 @@ public class EditMedicine extends AppCompatActivity {
             String startTimeText = editHoraInicio.getText() != null ? editHoraInicio.getText().toString().trim() : "";
 
             // Verificação de dados
-            if (dosagemSelecionada.equals("Unidade de Dosagem") || drugNameMed.isEmpty() || drugDescriptionMed.isEmpty() || drugAmountMed.isEmpty() || intervalText.isEmpty() || startDateText.isEmpty() || startTimeText.isEmpty()) {
+            if (dosagemSelecionada.equals("Unidade de Dosagem") || dosagemSelecionada.isEmpty() || drugNameMed.isEmpty() || drugDescriptionMed.isEmpty() || drugAmountMed.isEmpty() || intervalText.isEmpty() || startDateText.isEmpty() || startTimeText.isEmpty()) {
                 Toast.makeText(this, "Preencha todos os campos corretamente!", Toast.LENGTH_SHORT).show();
                 return;
             }
