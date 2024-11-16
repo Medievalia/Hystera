@@ -10,4 +10,15 @@
         <item>OUTROS</item>
         <item>NÃO UTILIZA</item>
     </string-array>
+
+    <string-array name="dosagem">
+        <item>"Unidade de Dosagem"</item>
+        <item>mL</item>
+        <item>Comprimido</item>
+        <item>Unidade</item>
+        <item>mg</item>
+        <item>g</item>
+        <item>Dose</item>
+        <item>UI</item>
+    </string-array>
 </resources>

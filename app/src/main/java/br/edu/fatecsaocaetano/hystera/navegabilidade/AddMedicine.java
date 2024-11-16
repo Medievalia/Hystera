@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -34,6 +37,9 @@ public class AddMedicine extends AppCompatActivity {
     private boolean isVibrationEnabled = false;
     private MaterialButton voltarButton;
     private MaterialButton buttonSalvar;
+    private Spinner spinnerDosagem;
+    private String dosagemSelecionada;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +54,10 @@ public class AddMedicine extends AppCompatActivity {
             return;
         }
 
+        spinnerDosagem = findViewById(R.id.medicacao_spinner);
         buttonSalvar = findViewById(R.id.button_salvar);
         voltarButton = findViewById(R.id.back_button);
+        configurarSpinner();
 
         voltarButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +163,7 @@ public class AddMedicine extends AppCompatActivity {
 
         buttonSalvar.setOnClickListener(v -> {
             if (editDosagem == null || editIntervalo == null || editDataInicio == null || editHoraInicio == null || editNome == null || editDescription == null) {
-                Log.e(tag, "Um ou mais campos não foram inicializados.");
+                Toast.makeText(this, "Um ou mais campos não foram inicializados!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -167,8 +175,9 @@ public class AddMedicine extends AppCompatActivity {
             String startDateText = editDataInicio.getText() != null ? editDataInicio.getText().toString().trim() : "";
             String startTimeText = editHoraInicio.getText() != null ? editHoraInicio.getText().toString().trim() : "";
 
-            if (drugName.isEmpty() || drugDescription.isEmpty() || drugAmount.isEmpty() || intervalText.isEmpty() || startDateText.isEmpty() || startTimeText.isEmpty()) {
-                Log.e(tag, "Todos os campos devem ser preenchidos.");
+            // Impedir salvar se "Unidade de Dosagem" for a opção selecionada
+            if (dosagemSelecionada.equals("Unidade de Dosagem") || drugName.isEmpty() || drugDescription.isEmpty() || drugAmount.isEmpty() || intervalText.isEmpty() || startDateText.isEmpty() || startTimeText.isEmpty()) {
+                Toast.makeText(this, "A unidade de dosagem deve ser preenchida corretamente!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -182,6 +191,7 @@ public class AddMedicine extends AppCompatActivity {
                         drugName,
                         drugDescription,
                         drugAmount,
+                        dosagemSelecionada,
                         drugDate,
                         interval,
                         userID,
@@ -203,9 +213,33 @@ public class AddMedicine extends AppCompatActivity {
                 editIntervalo.setText("");
                 editDataInicio.setText("");
                 editHoraInicio.setText("");
-
+                spinnerDosagem.setSelection(0);  // Limpa o spinner e mantém a opção inicial
             } catch (Exception e) {
                 Log.e(tag, "Erro ao criar ou salvar o medicamento: " + e.getMessage(), e);
+            }
+        });
+    }
+
+    private void configurarSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.dosagem, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDosagem.setAdapter(adapter);
+        spinnerDosagem.setSelection(0);
+
+        spinnerDosagem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                dosagemSelecionada = parent.getItemAtPosition(position).toString();
+                if (dosagemSelecionada.equals("Unidade de Dosagem")) {
+                    dosagemSelecionada = "";
+                }
+                Log.d(tag, "Dosagem selecionada: " + dosagemSelecionada);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Não fazer nada
             }
         });
     }

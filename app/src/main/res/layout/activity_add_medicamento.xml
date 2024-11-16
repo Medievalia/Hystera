@@ -161,13 +161,22 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <!-- MaterialSwitch - Notificações -->
+    <!-- Spinner para selecionar medicação -->
+    <android.widget.Spinner
+        android:id="@+id/medicacao_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ContraintLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/notificationsSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/ContraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/medicacao_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -176,7 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="  Ativar Notificações"
+            android:text="    Ativar Notificações"
             android:fontFamily="@font/kurale"
             android:textSize="15sp"
             android:textColor="@color/black"
@@ -211,7 +220,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:text="  Ativar Som"
+                android:text="    Ativar Som"
                 android:fontFamily="@font/kurale"
                 android:textSize="15sp"
                 android:textColor="@color/black"
@@ -246,7 +255,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="  Ativar Vibração"
+            android:text="    Ativar Vibração"
             android:fontFamily="@font/kurale"
             android:textSize="15sp"
             android:textColor="@color/black"

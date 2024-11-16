@@ -20,10 +20,11 @@ public class Drug {
     private boolean sound;
     private boolean notification;
     private boolean vibration;
+    private String dosageUnits;
 
     public Drug(){}
 
-    public Drug(String drugName, String drugDescription, String drugAmount, Timestamp drugDate, int trigger, String userID, boolean notification, boolean sound, boolean vibration) {
+    public Drug(String drugName, String drugDescription, String drugAmount, String dosageUnits, Timestamp drugDate, int trigger, String userID, boolean notification, boolean sound, boolean vibration) {
         this.drugName = drugName;
         this.drugDate = drugDate;
         this.trigger = trigger;
@@ -34,6 +35,7 @@ public class Drug {
         this.sound = sound;
         this.notification = notification;
         this.vibration = vibration;
+        this.dosageUnits = dosageUnits;
     }
 
     private String gerarIdDrugs(String drugName) {
@@ -121,6 +123,14 @@ public class Drug {
 
     public void setDrugAmount(String drugQuant) {
         this.drugAmount = drugQuant;
+    }
+
+    public String getDosageUnits() {
+        return dosageUnits;
+    }
+
+    public void setDosageUnits(String dosageUnits) {
+        this.dosageUnits = dosageUnits;
     }
 }
 

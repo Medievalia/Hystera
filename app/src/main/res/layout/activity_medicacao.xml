@@ -56,54 +56,11 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation">
 
         <LinearLayout
+            android:id="@+id/scrollViewLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
-
-            <ImageView
-                android:id="@+id/image_medicamento"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_medicamento_foreground"
-                android:contentDescription="Imagem do medicamento" />
-
-            <TextView
-                android:id="@+id/text_nome_medicamento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nome do Medicamento"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginTop="8dp" />
-
-            <TextView
-                android:id="@+id/text_dosagem_medicamento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dosagem"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp" />
-
-            <TextView
-                android:id="@+id/text_instrucoes_medicamento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instruções"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp" />
-
-            <ImageButton
-                android:id="@+id/button_opcoes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Mais opções"
-                app:srcCompat="@drawable/ic_more_vert" />
-        </LinearLayout>
-
+            android:padding="16dp" />
     </ScrollView>
 
     <!-- Floating Action Button para adicionar medicamento -->
