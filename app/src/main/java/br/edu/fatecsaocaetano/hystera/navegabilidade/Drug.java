@@ -49,36 +49,44 @@ public class Drug {
 
     public void salvarDrugNoFirebase() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference cycleRef = db.collection("Usuarios").document(userID)
+        DocumentReference drugRef = db.collection("Usuarios").document(userID)
                 .collection("Medicines").document(id);
 
-        cycleRef.set(this)
+        drugRef.set(this)
                 .addOnSuccessListener(aVoid -> Log.i(tag, "Medicamento salvo com sucesso! " + userID))
                 .addOnFailureListener(e -> Log.e(tag,"Erro ao salvar medicamento. " + e));
+    }
+
+    public void atualizarDrugNoFirebase() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference drugRef = db.collection("Usuarios").document(userID)
+                .collection("Medicines").document(id);
+
+        drugRef.update(
+                        "drugName", getDrugName(),
+                        "drugDescription", getDrugDescription(),
+                        "drugAmount", getDrugAmount(),
+                        "dosageUnits", getDosageUnits(),
+                        "drugDate", getDrugDate(),
+                        "trigger", getTrigger(),
+                        "sound", isSound(),
+                        "notification", isNotification(),
+                        "vibration", isVibration()
+                )
+                .addOnSuccessListener(aVoid -> Log.i(tag, "Medicamento atualizado com sucesso! " + userID))
+                .addOnFailureListener(e -> Log.e(tag, "Erro ao atualizar medicamento. " + e));
     }
 
     public String getDrugName() {
         return drugName;
     }
 
-    public void setDrugName(String drugName) {
-        this.drugName = drugName;
-    }
-
     public Timestamp getDrugDate() {
         return drugDate;
     }
 
-    public void setDrugDate(Timestamp drugDate) {
-        this.drugDate = drugDate;
-    }
-
     public int getTrigger() {
         return trigger;
-    }
-
-    public void setTrigger(int trigger) {
-        this.trigger = trigger;
     }
 
     public String getId() {
@@ -93,44 +101,22 @@ public class Drug {
         return sound;
     }
 
-    public void setSound(boolean sound) {
-        this.sound = sound;
-    }
-
     public boolean isNotification() {
         return notification;
-    }
-
-    public void setNotification(boolean notification) {
-        this.notification = notification;
     }
 
     public boolean isVibration() {
         return vibration;
     }
 
-    public void setVibration(boolean vibration) {
-        this.vibration = vibration;
-    }
-
     public String getDrugDescription() { return drugDescription; }
-
-    public void setDrugDescription(String drugDescription) { this.drugDescription = drugDescription; }
 
     public String getDrugAmount() {
         return drugAmount;
     }
 
-    public void setDrugAmount(String drugQuant) {
-        this.drugAmount = drugQuant;
-    }
-
     public String getDosageUnits() {
         return dosageUnits;
-    }
-
-    public void setDosageUnits(String dosageUnits) {
-        this.dosageUnits = dosageUnits;
     }
 }
 

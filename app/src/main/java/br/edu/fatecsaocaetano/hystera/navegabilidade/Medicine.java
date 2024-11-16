@@ -18,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -105,14 +106,19 @@ public class Medicine extends AppCompatActivity {
                         if (querySnapshot != null && !querySnapshot.isEmpty()) {
                             for (DocumentSnapshot document : querySnapshot.getDocuments()) {
                                 String nome = document.getString("drugName");
+                                Timestamp drugDate = document.getTimestamp("drugDate");
+                                boolean drugNotification = document.getBoolean("notification");
+                                boolean drugSound = document.getBoolean("sound");
+                                boolean drugVibration = document.getBoolean("vibration");
                                 String dosagem = document.getString("drugAmount");
                                 String dosageUnits = document.getString("dosageUnits");
                                 long intervaloLong = document.getLong("trigger");
                                 int intervalo = (int) intervaloLong;
                                 String instrucoes = document.getString("drugDescription");
+                                String documentId = document.getId();
 
                                 // Criar e adicionar a view do medicamento
-                                addMedicamentoView(nome, dosagem, instrucoes, intervalo, dosageUnits);
+                                addMedicamentoView(nome, dosagem, instrucoes, intervalo, dosageUnits, documentId, drugNotification, drugSound, drugVibration, drugDate);
                             }
                         } else {
                             Log.e(tag, "Nenhuma medicação encontrada para o usuário.");
@@ -123,7 +129,7 @@ public class Medicine extends AppCompatActivity {
                 });
     }
 
-    private void addMedicamentoView(String nome, String dosagem, String instrucoes, int intervalo, String dosageUnits) {
+    private void addMedicamentoView(String nome, String dosagem, String instrucoes, int intervalo, String dosageUnits, String documentId, boolean drugNotification, boolean drugSound, boolean drugVibration, Timestamp drugDate) {
         // Obter referência ao layout pai
         LinearLayout scrollViewLayout = findViewById(R.id.scrollViewLayout);
 
@@ -185,6 +191,23 @@ public class Medicine extends AppCompatActivity {
         opcoesButton.setImageResource(R.drawable.ic_more_vert);
         opcoesButton.setBackgroundResource(android.R.color.transparent);
         opcoesButton.setContentDescription("Mais opções");
+
+        opcoesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Medicine.this, EditMedicine.class);
+            intent.putExtra("medicineName", nome);
+            intent.putExtra("medicineDosage", dosagem);
+            intent.putExtra("medicineDescription", instrucoes);
+            intent.putExtra("medicineInterval", intervalo);
+            intent.putExtra("medicineDosageUnits", dosageUnits);
+            intent.putExtra("documentId", documentId);  // Passando o ID do documento
+            intent.putExtra("medicineNotification", drugNotification);
+            intent.putExtra("medicineSound", drugSound);
+            intent.putExtra("medicineVibration", drugVibration);
+            intent.putExtra("medicineTimestampDate", drugDate);
+
+            // Iniciando a atividade
+            startActivity(intent);
+        });
         medicamentoLayout.addView(opcoesButton);
 
         // Adicionar ao layout pai
