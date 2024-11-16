@@ -23,20 +23,20 @@
         app:strokeColor="@android:color/transparent"
         app:strokeWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_agendamento"
+        app:layout_constraintEnd_toStartOf="@id/button_notification"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.30" />
 
     <!-- Botão de menstruação no topo -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_agendamento"
+        android:id="@+id/button_notification"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="#F1F1F1"
         android:contentDescription="Inicio Menstruação"
-        app:icon="@drawable/planner"
+        app:icon="@drawable/notifica"
         app:iconTint="#8A50FF"
         app:iconGravity="textStart"
         app:iconPadding="1dp"
@@ -64,7 +64,7 @@
         app:cornerRadius="100dp"
         app:strokeColor="@android:color/transparent"
         app:strokeWidth="0dp"
-        app:layout_constraintStart_toEndOf="@id/button_agendamento"
+        app:layout_constraintStart_toEndOf="@id/button_notification"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.30" />
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/button_agendamento"
+        app:layout_constraintTop_toBottomOf="@id/button_notification"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

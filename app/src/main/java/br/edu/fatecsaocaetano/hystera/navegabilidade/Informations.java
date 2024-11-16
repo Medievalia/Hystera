@@ -4,17 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.edu.fatecsaocaetano.hystera.R;
 
 public class Informations extends AppCompatActivity {
@@ -25,7 +25,6 @@ public class Informations extends AppCompatActivity {
     private List<Noticia> allFirstCarouselItems;
     private List<Noticia> allSecondCarouselItems;
     private List<Noticia> allThirdCarouselItems;
-
     private ViewPager2 firstCarousel;
     private ViewPager2 secondCarousel;
     private ViewPager2 thirdCarousel;
@@ -68,6 +67,35 @@ public class Informations extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {}
+        });
+
+        //navegação e menu
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationHelper menuHelper = new BottomNavigationHelper();
+        menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_utero);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.nav_anota) {
+                    startActivity(new Intent(Informations.this, Notes.class));
+                    startActivity(new Intent(Informations.this, Annotations.class));
+                    return true;
+                } else if (id == R.id.nav_calendario) {
+                    startActivity(new Intent(Informations.this, CalendarCycle.class));
+                    return true;
+                } else if (id == R.id.nav_utero) {
+                    startActivity(new Intent(Informations.this, Informations.class));
+                    return true;
+                } else if (id == R.id.nav_seekbar) {
+                    startActivity(new Intent(Informations.this, TimeLine.class));
+                    return true;
+                } else if (id == R.id.nav_medicacao) {
+                    startActivity(new Intent(Informations.this, Medicine.class));
+                    return true;
+                }
+                return false;
+            }
         });
     }
 

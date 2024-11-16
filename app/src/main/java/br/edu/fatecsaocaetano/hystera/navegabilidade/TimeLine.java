@@ -118,7 +118,7 @@ public class TimeLine extends AppCompatActivity {
                 });
 
         carregandoBotoesAppCompatButton(R.id.button_grafico, Graph.class);
-        carregandoBotoesAppCompatButton(R.id.button_agendamento, Scheduling.class);
+            carregandoBotoesAppCompatButton(R.id.button_notification, Notifications.class);
         carregandoBotoesAppCompatButton(R.id.button_perfil, Profile.class);
         carregandoBotoesAppCompatImageButton(R.id.button_menstruacao, NewBleeding.class);
 
