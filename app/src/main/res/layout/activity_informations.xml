@@ -21,17 +21,27 @@
             android:padding="16dp">
 
             <!-- Título da página -->
-            <TextView
-                android:id="@+id/title_text"
+            <!-- CardView com o título "Anotações" -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/textViewTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Informações"
-                android:textSize="24sp"
-                android:textColor="@color/purple_200"
-                android:fontFamily="@font/kurale"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:textAlignment="center" />
+                android:layout_margin="30dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:fontFamily="@font/kurale"
+                    android:gravity="center"
+                    android:text="Informações"
+                    android:textColor="#8A50FF"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Barra de pesquisa -->
             <com.google.android.material.textfield.TextInputLayout
