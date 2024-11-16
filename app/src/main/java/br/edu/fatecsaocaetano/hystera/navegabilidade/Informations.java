@@ -2,6 +2,9 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +16,11 @@ import java.util.List;
 import br.edu.fatecsaocaetano.hystera.R;
 
 public class Informations extends AppCompatActivity {
+
+    private CarouselAdapter firstAdapter;
+    private CarouselAdapter secondAdapter;
+    private List<Noticia> allFirstCarouselItems;
+    private List<Noticia> allSecondCarouselItems;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,13 +35,60 @@ public class Informations extends AppCompatActivity {
 
         // Configuração do primeiro carrossel de notícias
         ViewPager2 firstCarousel = findViewById(R.id.viewPager);
-        CarouselAdapter firstAdapter = new CarouselAdapter(this, getDataForFirstCarousel());
+        allFirstCarouselItems = getDataForFirstCarousel();
+        firstAdapter = new CarouselAdapter(this, allFirstCarouselItems);
         firstCarousel.setAdapter(firstAdapter); // Associa o adaptador ao carrossel
 
         // Configuração do segundo carrossel de notícias
         ViewPager2 secondCarousel = findViewById(R.id.viewPager2);
-        CarouselAdapter secondAdapter = new CarouselAdapter(this, getDataForSecondCarousel());
+        allSecondCarouselItems = getDataForSecondCarousel();
+        secondAdapter = new CarouselAdapter(this, allSecondCarouselItems);
         secondCarousel.setAdapter(secondAdapter); // Associa o adaptador ao segundo carrossel
+
+        // Encontrando o EditText de pesquisa e adicionando o TextWatcher
+        EditText searchEditText = findViewById(R.id.search_edit_text);
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+                // Não precisamos usar esse método
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                // Filtra os itens enquanto o texto é alterado
+                filterCarousels(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Não precisamos usar esse método
+            }
+        });
+    }
+
+    /**
+     * Função para filtrar os carrosséis com base no texto de pesquisa
+     */
+    private void filterCarousels(String query) {
+        List<Noticia> filteredFirstItems = filterItems(query, allFirstCarouselItems);
+        List<Noticia> filteredSecondItems = filterItems(query, allSecondCarouselItems);
+
+        // Atualiza os adaptadores com os itens filtrados
+        firstAdapter.updateItems(filteredFirstItems);
+        secondAdapter.updateItems(filteredSecondItems);
+    }
+
+    /**
+     * Função que filtra os itens com base no título
+     */
+    private List<Noticia> filterItems(String query, List<Noticia> items) {
+        List<Noticia> filteredItems = new ArrayList<>();
+        for (Noticia item : items) {
+            if (item.getTitulo().toLowerCase().contains(query.toLowerCase())) {
+                filteredItems.add(item);
+            }
+        }
+        return filteredItems;
     }
 
     /**
