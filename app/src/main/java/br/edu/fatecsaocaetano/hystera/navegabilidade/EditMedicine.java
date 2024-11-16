@@ -280,6 +280,37 @@ public class EditMedicine extends AppCompatActivity {
                 Log.e(tag, "Erro ao atualizar medicamento: " + e.getMessage(), e);
             }
         });
+
+        MaterialButton buttonExcluir = findViewById(R.id.button_delete);
+        buttonExcluir.setOnClickListener(v -> {
+            if (documentId == null || userID == null) {
+                Toast.makeText(EditMedicine.this, "Erro ao excluir a medicação!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            new androidx.appcompat.app.AlertDialog.Builder(EditMedicine.this)
+                    .setTitle("Excluir Medicação")
+                    .setMessage("Tem certeza de que deseja excluir esta medicação? Essa ação não pode ser desfeita.")
+                    .setPositiveButton("Excluir", (dialog, which) -> {
+                        // Código para exclusão
+                        db.collection("Usuarios").document(userID)
+                                .collection("Medicines").document(documentId)
+                                .delete()
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(EditMedicine.this, "Medicação excluída com sucesso!", Toast.LENGTH_SHORT).show();
+                                    // Voltar para a tela de Medicine
+                                    finish();
+                                    Intent intentThree = new Intent(EditMedicine.this, Medicine.class);
+                                    startActivity(intentThree);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e(tag, "Erro ao excluir a medicação: ", e);
+                                    Toast.makeText(EditMedicine.this, "Erro ao excluir a medicação!", Toast.LENGTH_SHORT).show();
+                                });
+                    })
+                    .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss())
+                    .show();
+        });
     }
 
     private void configurarSpinner() {
