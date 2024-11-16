@@ -6,65 +6,109 @@
     android:layout_height="match_parent"
     android:background="#F1F1F1">
 
-    <!-- Botão de perfil no topo -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#F1F1F1"
-        android:contentDescription="Perfil"
-        app:icon="@drawable/person"
-        app:iconTint="#8A50FF"
-        app:iconGravity="textStart"
-        app:iconPadding="1dp"
-        app:cornerRadius="100dp"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- ScrollView para conteúdo rolável -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <!-- Barra de pesquisa -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/search_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/button_perfil"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:hintEnabled="true"
-        app:hintAnimationEnabled="true"
-        app:hintTextColor="@color/purple_200">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/search_edit_text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pesquisar"
-            android:padding="16dp"
-            android:background="@drawable/search_background"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <!-- Carrossel de Notícias -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/search_layout"
-        app:layout_constraintBottom_toTopOf="@id/viewPager2" />
+            <!-- Título da página -->
+            <!-- CardView com o título "Anotações" -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/textViewTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp">
 
-    <!-- Carrossel de Dicas -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/viewPager" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:fontFamily="@font/kurale"
+                    android:gravity="center"
+                    android:text="Informações"
+                    android:textColor="#8A50FF"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Barra de pesquisa -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintTextColor="@color/purple_200"
+                app:boxBackgroundMode="none"
+                app:boxStrokeColor="@android:color/transparent"
+                app:boxStrokeWidth="0dp">
+
+                <!-- EditText com hint fora do campo -->
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/search_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pesquisar"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/purple_200"
+                    android:padding="20dp"
+                    android:background="@drawable/search_background"
+                    android:inputType="text"
+                    android:fontFamily="@font/kurale" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Contêiner para os carrosséis -->
+            <LinearLayout
+                android:id="@+id/carousels_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Carrossel de Notícias -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
+
+                <!-- Carrossel de Dicas -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
+
+                <!-- Carrossel 3 -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager3"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="50dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <!-- Navegação inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -78,5 +122,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
