@@ -1,0 +1,269 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
+
+    <!-- Botão Voltar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FFFFFF"
+        android:contentDescription="Voltar"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- CardView com o título "Seu Ciclo" -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/textViewTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/back_button">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/kurale"
+            android:gravity="center"
+            android:text="Fases do Ciclo"
+            android:textColor="#8A50FF"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+    </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/menstruacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTotal"
+            tools:ignore="MissingConstraints">
+
+            <!-- Botão com a imagem -->
+            <ImageButton
+                android:id="@+id/button_menstruacao"
+                android:backgroundTint="#F1F1F1"
+                android:contentDescription="Menstruação"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/gota2"
+                app:iconTint="#D84242"
+                android:scaleType="centerInside" />
+
+            <!-- Título e texto ao lado -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical">
+
+                <!-- Título -->
+                <TextView
+                    android:id="@+id/title_menstruacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menstruação"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+
+                <!-- Texto abaixo do título -->
+                <TextView
+                    android:id="@+id/subtitle_menstruacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="Essa fase é caracterizada pelo sangramento causado pela descamação do útero quando não há fecundação e marca o início do ciclo menstrual."
+                    android:textSize="14sp"
+                    android:textColor="#757575" />
+            </LinearLayout>
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fasefolicular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/menstruacao"
+        tools:ignore="MissingConstraints">
+
+        <!-- Botão com a imagem -->
+        <ImageButton
+            android:id="@+id/button_fasefolicular"
+            android:backgroundTint="#F1F1F1"
+            android:contentDescription="Fase Folicular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/cicle"
+            app:iconTint="#00BCD4"
+            android:scaleType="centerInside" />
+
+        <!-- Fase Folicular -->
+        <LinearLayout
+            android:id="@+id/text_fasefolicular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/title_fasefolicular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fase Folicular"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <!-- Texto abaixo do título -->
+            <TextView
+                android:id="@+id/subtitle_fasefolicular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Durante esta fase, os folículos nos ovários se desenvolvem e o endométrio do útero se prepara para receber um embrião.  A fase folicular dura em torno de 14 dias, terminando com o aumento drástico do hormônio luteinizante (LH)"
+                android:textSize="14sp"
+                android:textColor="#757575" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fertil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/fasefolicular"
+        tools:ignore="MissingConstraints">
+
+        <!-- Botão com a imagem -->
+        <ImageButton
+            android:id="@+id/button_fertil"
+            android:backgroundTint="#F1F1F1"
+            android:contentDescription="Período Fértil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/utero"
+            app:iconTint="#00BCD4"
+            android:scaleType="centerInside" />
+
+        <!-- Fase Fertil -->
+        <LinearLayout
+            android:id="@+id/fertil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/title_fertil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Período Fértil"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <!-- Texto abaixo do título -->
+            <TextView
+                android:id="@+id/subtitle_fertil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="É o momento do ciclo menstrual em que a mulher tem maior probabilidade de engravidar, pois o óvulo é liberado para ser fecundado pelo espermatozoide"
+                android:textSize="14sp"
+                android:textColor="#757575" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/faselutea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/fertil"
+        tools:ignore="MissingConstraints">
+
+        <!-- Botão com a imagem -->
+        <ImageButton
+            android:id="@+id/button_faselutea"
+            android:backgroundTint="#F1F1F1"
+            android:contentDescription="Menstruação"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/fase_lutea"
+            app:iconTint="#D84242"
+            android:scaleType="centerInside" />
+
+        <!-- Título e texto ao lado -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/title_faselutea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fase Lútea"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <!-- Texto abaixo do título -->
+            <TextView
+                android:id="@+id/subtitle_faselutea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="A fase lútea é a segunda metade do ciclo menstrual, que ocorre após a ovulação e antes do início da menstruação. Durante esse período, o corpo lúteo - estrutura temporária formada a partir do folículo ovariano, após a liberação do óvulo - produz progesterona em preparação para uma possível gravidez.
+Se a gravidez não ocorrer, o corpo lúteo se desintegra, os níveis de progesterona caem e a menstruação começa. "
+                android:textSize="14sp"
+                android:textColor="#757575" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
