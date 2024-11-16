@@ -20,21 +20,18 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Botão de perfil no topo -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_perfil"
-                android:layout_width="wrap_content"
+            <!-- Título da página -->
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:backgroundTint="#F1F1F1"
-                android:contentDescription="Perfil"
-                app:icon="@drawable/person"
-                app:iconTint="#8A50FF"
-                app:iconGravity="textStart"
-                app:iconPadding="1dp"
-                app:cornerRadius="100dp"
-                app:strokeColor="@android:color/transparent"
-                app:strokeWidth="0dp" />
+                android:text="Informações"
+                android:textSize="24sp"
+                android:textColor="@color/purple_200"
+                android:fontFamily="@font/kurale"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:textAlignment="center" />
 
             <!-- Barra de pesquisa -->
             <com.google.android.material.textfield.TextInputLayout
@@ -44,35 +41,62 @@
                 android:layout_marginTop="10dp"
                 app:hintEnabled="true"
                 app:hintAnimationEnabled="true"
-                app:hintTextColor="@color/purple_200">
+                app:hintTextColor="@color/purple_200"
+                app:boxBackgroundMode="none"
+                app:boxStrokeColor="@android:color/transparent"
+                app:boxStrokeWidth="0dp">
 
+                <!-- EditText com hint fora do campo -->
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/search_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Pesquisar"
-                    android:padding="16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/purple_200"
+                    android:padding="20dp"
                     android:background="@drawable/search_background"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:fontFamily="@font/kurale" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Carrossel de Notícias -->
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager"
+            <!-- Contêiner para os carrosséis -->
+            <LinearLayout
+                android:id="@+id/carousels_layout"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <!-- Carrossel de Dicas -->
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager2"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" />
+                <!-- Carrossel de Notícias -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
+
+                <!-- Carrossel de Dicas -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
+
+                <!-- Carrossel 3 -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager3"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="50dp"/>
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

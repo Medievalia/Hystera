@@ -52,8 +52,8 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
                 .load(noticia.getImagemResId()) // URL ou ID do recurso
                 .into(holder.imageView);
 
-        // Define uma cor de fundo específica para a posição
-        int color = getColorForPosition(position);
+        // Define a cor do fundo com base na cor da notícia
+        int color = getColorForPosition(noticia.getCor()); // Passa a cor como argumento
 
         // Cria um fundo com bordas arredondadas
         GradientDrawable drawable = new GradientDrawable();
@@ -75,25 +75,25 @@ public class CarouselAdapter extends RecyclerView.Adapter<CarouselAdapter.Carous
         return noticiasFiltradas.size();
     }
 
-    // Define cores diferentes para cada posição
-    private int getColorForPosition(int position) {
-        switch (position % 4) {
-            case 0:
-                return R.color.azul_calcinha;  // Exemplo de cor
-            case 1:
-                return R.color.purple_white;
-            case 2:
-                return R.color.rocho_calcinha;
-            default:
-                return R.color.purple_mid;
-        }
-    }
-
     // Método para atualizar os itens com base no filtro de pesquisa
     public void updateItems(List<Noticia> newNoticias) {
         noticiasFiltradas.clear();  // Limpa a lista de notícias filtradas
         noticiasFiltradas.addAll(newNoticias); // Adiciona as novas notícias filtradas
         notifyDataSetChanged(); // Notifica o adaptador para atualizar a exibição
+    }
+
+    // Define cores diferentes com base na cor fornecida como argumento
+    private int getColorForPosition(String cor) {
+        switch (cor) {
+            case "azul":
+                return R.color.azul_calcinha;  // Exemplo de cor
+            case "roxo":
+                return R.color.purple_white;
+            case "verde":
+                return R.color.rocho_calcinha;
+            default:
+                return R.color.purple_mid;
+        }
     }
 
     // Classe ViewHolder para vincular os elementos do layout

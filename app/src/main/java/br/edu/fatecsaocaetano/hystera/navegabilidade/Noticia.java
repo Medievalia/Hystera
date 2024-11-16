@@ -4,11 +4,14 @@ public class Noticia {
     private String titulo;
     private String url;
     private int imagemResId;  // Agora estamos usando o ID do recurso da imagem
+    private String cor;  // Novo campo para armazenar a cor
 
-    public Noticia(String titulo, String url, int imagemResId) {
+    // Construtor atualizado para incluir a cor
+    public Noticia(String titulo, String url, int imagemResId, String cor) {
         this.titulo = titulo;
         this.url = url;
         this.imagemResId = imagemResId;
+        this.cor = cor;  // Atribui a cor ao campo
     }
 
     public String getTitulo() {
@@ -21,5 +24,9 @@ public class Noticia {
 
     public int getImagemResId() {
         return imagemResId;
+    }
+
+    public String getCor() {
+        return cor;
     }
 }
