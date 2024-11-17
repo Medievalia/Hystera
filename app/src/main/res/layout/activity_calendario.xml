@@ -90,7 +90,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardViewCurrentMonth"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="370dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp">
 
@@ -101,8 +101,75 @@
                     android:dateTextAppearance="@style/CalenderViewDateCustomText"
                     android:weekDayTextAppearance="@color/black"/>
             </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/legenda_vermelha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="0dp">
+
+                    <!-- Botão com a imagem -->
+                    <ImageButton
+                        android:id="@+id/button_menstruacao"
+                        android:backgroundTint="#F1F1F1"
+                        android:contentDescription="Menstruação"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/legenda_red"
+                        app:iconTint="#D84242"
+                        android:scaleType="centerInside" />
+
+                    <!-- Título -->
+                    <TextView
+                        android:id="@+id/title_menstruacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Menstruação"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/legenda_azul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp">
+
+                    <!-- Botão com a imagem -->
+                    <ImageButton
+                        android:id="@+id/button_periodofertil"
+                        android:backgroundTint="#F1F1F1"
+                        android:contentDescription="Período Fértil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/periodo_fertil"
+                        app:iconTint="#03A9F4"
+                        android:scaleType="centerInside" />
+
+                    <!-- Título -->
+                    <TextView
+                        android:id="@+id/title_periodo_fertil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Período Fértil"
+                        android:textSize="16sp"
+                        android:textColor="#000000"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
