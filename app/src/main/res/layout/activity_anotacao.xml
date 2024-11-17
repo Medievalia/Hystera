@@ -65,6 +65,19 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- Floating Action Button para adicionar medicamento -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_anotacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="Adicionar anotção"
+        app:srcCompat="@drawable/adicionar"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

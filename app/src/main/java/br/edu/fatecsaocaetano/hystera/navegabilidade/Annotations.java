@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -41,7 +42,7 @@ public class Annotations extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anotacao);
 
-        //navegação e menu
+        // navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper menuHelper = new BottomNavigationHelper();
         menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_anota);
@@ -86,7 +87,12 @@ public class Annotations extends AppCompatActivity {
         Log.d(tag, "Carregando notas existentes.");
         // Carrega as notas existentes do Firestore
         loadExistingNotes();
+
+        // Configura o FloatingActionButton para adicionar uma nova nota
+        FloatingActionButton addButton = findViewById(R.id.add_anotacao);
+        addButton.setOnClickListener(v -> adicionarNovoQuadradoBranco());
     }
+
 
     @Override
     protected void onResume() {
