@@ -2,16 +2,13 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,11 +20,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.edu.fatecsaocaetano.hystera.R;
 
@@ -35,13 +29,14 @@ public class Annotations extends AppCompatActivity {
     private static final String tag = "AnnotationsClass"; // Tag para logging
     private GridLayout gridLayout;
     private FirebaseFirestore db;
+    private Set<String> loadedNoteIds = new HashSet<>(); // Para controlar notas carregadas e evitar duplicação
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anotacao);
 
-        //navegação e menu
+        // Navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper menuHelper = new BottomNavigationHelper();
         menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_anota);
@@ -50,8 +45,7 @@ public class Annotations extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if (id == R.id.nav_anota) {
-                    startActivity(new Intent(Annotations.this, Notes.class));
-                    startActivity(new Intent(Annotations.this, Annotations.class));
+                    // Não iniciamos a atividade duas vezes, removemos a linha repetida
                     return true;
                 } else if (id == R.id.nav_calendario) {
                     startActivity(new Intent(Annotations.this, CalendarCycle.class));
@@ -79,37 +73,9 @@ public class Annotations extends AppCompatActivity {
             return; // Ou use uma Intent para a tela de login
         }
 
-        Log.d(tag, "Verificando e criando coleção de notas.");
-        // Inicia a coleção "Notes" se não existir
-        verifyAndCreateNotesCollection();
-
         Log.d(tag, "Carregando notas existentes.");
         // Carrega as notas existentes do Firestore
         loadExistingNotes();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Atualiza as anotações ao retornar à atividade
-        Log.d(tag, "Atualizando notas existentes.");
-        loadExistingNotes();
-    }
-
-    private void verifyAndCreateNotesCollection() {
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        CollectionReference notesCollection = db.collection("Usuarios").document(userId).collection("Notes");
-
-        // Adicionando um documento vazio para garantir que a coleção seja criada
-        notesCollection.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful() && task.getResult().isEmpty()) {
-                Log.d(tag, "Coleção 'Notes' criada com sucesso!");
-            } else if (task.isSuccessful()) {
-                Log.d(tag, "Coleção 'Notes' já existe.");
-            } else {
-                Log.e(tag, "Erro ao verificar a coleção 'Notes': " + task.getException().getMessage());
-            }
-        });
     }
 
     private void loadExistingNotes() {
@@ -123,69 +89,31 @@ public class Annotations extends AppCompatActivity {
             if (task.isSuccessful()) {
                 QuerySnapshot querySnapshot = task.getResult();
                 Log.d(tag, "Notas carregadas com sucesso. Total de notas: " + querySnapshot.size());
-                for (QueryDocumentSnapshot document : querySnapshot) {
-                    String noteId = document.getId();
+                if (querySnapshot != null) {
+                    for (QueryDocumentSnapshot document : querySnapshot) {
+                        String noteId = document.getId();
 
-                    // Obtendo os dados da nota
-                    String title = document.getString("title");
-                    String description = document.getString("description");
-
-                    // Verifica se o cartão já existe antes de criar
-                    boolean cardExists = false;
-                    for (int i = 0; i < gridLayout.getChildCount(); i++) {
-                        View child = gridLayout.getChildAt(i);
-                        if (child instanceof MaterialCardView) {
-                            TextView existingTitleView = (TextView) ((LinearLayout) ((MaterialCardView) child).getChildAt(0)).getChildAt(0);
-                            if (existingTitleView.getText().toString().equals(title)) {
-                                cardExists = true;
-                                break;
-                            }
+                        // Verifica se a nota já foi carregada para evitar duplicação
+                        if (loadedNoteIds.contains(noteId)) {
+                            Log.d(tag, "Nota duplicada detectada, ignorando. ID: " + noteId);
+                            continue; // Ignora essa nota
                         }
-                    }
 
-                    // Se o cartão não existir, cria um novo
-                    if (!cardExists) {
+                        // Marca a nota como carregada
+                        loadedNoteIds.add(noteId);
+
+                        // Obtendo os dados da nota
+                        String title = document.getString("title");
+                        String description = document.getString("description");
+
+                        // Cria o cartão da nota
                         createNoteCard(noteId, title, description);
                     }
                 }
-                // Adiciona o botão "+" como o último item após carregar todas as notas
-                addButtonAdd();
             } else {
                 Log.e(tag, "Erro ao carregar notas: " + task.getException().getMessage());
             }
         });
-    }
-
-    private void adicionarNovoQuadradoBranco() {
-        // Gera um ID único no formato MMAAAA-DDMMSSMMM
-        String noteId = generateNoteId();
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        CollectionReference notesCollection = db.collection("Usuarios").document(userId).collection("Notes");
-
-        // Captura a data atual para a annotationDate
-        Date currentDate = new Date();
-
-        // Cria um mapa para armazenar os dados da nova nota
-        Map<String, Object> noteData = new HashMap<>();
-        noteData.put("title", "Título da Nota"); // Placeholder, você pode substituir por um EditText
-        noteData.put("description", "Descrição da Nota"); // Placeholder, você pode substituir por um EditText
-        noteData.put("annotationDate", currentDate); // Usando a data de criação
-
-        // Adiciona a nova nota na coleção
-        notesCollection.document(noteId).set(noteData).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Log.d(tag, "Nota adicionada com sucesso! ID da nota: " + noteId);
-                createNoteCard(noteId, "Título da Nota", "Descrição da Nota..."); // Cria o cartão da nota
-                addButtonAdd(); // Adiciona o botão "+" novamente
-            } else {
-                Log.e(tag, "Erro ao adicionar a nota: " + task.getException().getMessage());
-            }
-        });
-    }
-
-    private String generateNoteId() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMyyyy-ddmmssSSS", Locale.getDefault());
-        return dateFormat.format(new Date());
     }
 
     private void createNoteCard(String noteId, String title, String description) {
@@ -222,67 +150,18 @@ public class Annotations extends AppCompatActivity {
 
         // Adicionar um TextView para a descrição
         TextView descriptionView = new TextView(this);
-        descriptionView.setText(description != null ? description : "Descrição da Nota..."); // Usar descrição real ou um padrão
-        descriptionView.setTextColor(0xFF212021);
-        descriptionView.setTextSize(12); // Tamanho da fonte da descrição
-        descriptionView.setEllipsize(TextUtils.TruncateAt.END); // Adiciona "..." se o texto for longo
-        descriptionView.setMaxLines(2); // Limita a 2 linhas
+        descriptionView.setText(description != null ? description : "Descrição da Nota...");
+        descriptionView.setTextColor(0xFF212021); // Cor da descrição
+        descriptionView.setTextSize(14); // Tamanho da fonte da descrição
 
-        // Adiciona título e descrição ao LinearLayout
+        // Adicionar o título e a descrição ao layout do conteúdo
         contentLayout.addView(titleView);
         contentLayout.addView(descriptionView);
 
-        // Adiciona o LinearLayout ao cartão
+        // Adicionar o layout de conteúdo ao cartão
         novoCartao.addView(contentLayout);
 
-        // Adiciona um listener para abrir a view de edição da anotação
-        novoCartao.setOnClickListener(v -> openEditAnnotation(noteId, title, description));
-
-        // Adiciona o cartão à GridLayout
+        // Adiciona o cartão ao GridLayout
         gridLayout.addView(novoCartao);
-    }
-
-    private void openEditAnnotation(String noteId, String title, String description) {
-        Intent intent = new Intent(this, EditAnnotationActivity.class);
-        intent.putExtra("NOTE_ID", noteId); // Passa o ID da nota para a nova activity
-        intent.putExtra("NOTE_TITLE", title); // Passa o título da nota
-        intent.putExtra("NOTE_DESCRIPTION", description); // Passa a descrição da nota
-        startActivity(intent);
-    }
-
-    private void addButtonAdd() {
-        // Remove qualquer botão "+" existente antes de adicionar um novo
-        for (int i = 0; i < gridLayout.getChildCount(); i++) {
-            View child = gridLayout.getChildAt(i);
-            if (child instanceof MaterialButton && ((MaterialButton) child).getText().equals("+")) {
-                gridLayout.removeViewAt(i);
-                break; // Sai do loop após remover o botão
-            }
-        }
-
-        // Cria um novo botão "+"
-        MaterialButton buttonAdd = new MaterialButton(this);
-
-        // Definindo as dimensões do botão para serem iguais às dos cartões
-        int buttonWidth = (int) getResources().getDimension(R.dimen.card_width);
-        int buttonHeight = (int) getResources().getDimension(R.dimen.card_height);
-
-        // Aplicando layout params ao botão
-        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-        params.setMargins(8, 8, 8, 8);
-        params.width = buttonWidth; // Largura do botão igual à do cartão
-        params.height = buttonHeight; // Altura do botão igual à do cartão
-        buttonAdd.setLayoutParams(params);
-
-        buttonAdd.setText("+");
-        buttonAdd.setBackgroundColor(getResources().getColor(R.color.blue)); // Cor de fundo
-        buttonAdd.setCornerRadius(28);
-        buttonAdd.setTextColor(getResources().getColor(android.R.color.white)); // Cor do texto
-
-        // Adiciona o listener para adicionar uma nova nota
-        buttonAdd.setOnClickListener(v -> adicionarNovoQuadradoBranco());
-
-        // Adiciona o botão à GridLayout
-        gridLayout.addView(buttonAdd);
     }
 }
