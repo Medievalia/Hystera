@@ -93,7 +93,6 @@ public class Annotations extends AppCompatActivity {
         addButton.setOnClickListener(v -> adicionarNovoQuadradoBranco());
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -154,8 +153,6 @@ public class Annotations extends AppCompatActivity {
                         createNoteCard(noteId, title, description);
                     }
                 }
-                // Adiciona o botão "+" como o último item após carregar todas as notas
-                addButtonAdd();
             } else {
                 Log.e(tag, "Erro ao carregar notas: " + task.getException().getMessage());
             }
@@ -182,7 +179,6 @@ public class Annotations extends AppCompatActivity {
             if (task.isSuccessful()) {
                 Log.d(tag, "Nota adicionada com sucesso! ID da nota: " + noteId);
                 createNoteCard(noteId, "Título da Nota", "Descrição da Nota..."); // Cria o cartão da nota
-                addButtonAdd(); // Adiciona o botão "+" novamente
             } else {
                 Log.e(tag, "Erro ao adicionar a nota: " + task.getException().getMessage());
             }
@@ -224,71 +220,22 @@ public class Annotations extends AppCompatActivity {
         TextView titleView = new TextView(this);
         titleView.setText(title != null ? title : "Título da Nota"); // Usar o título real ou um padrão
         titleView.setTextColor(0xFF212021); // Usando cor direta
-        titleView.setTextSize(16); // Tamanho da fonte do título
+        titleView.setTextSize(16); // Tamanho da fonte
 
         // Adicionar um TextView para a descrição
         TextView descriptionView = new TextView(this);
-        descriptionView.setText(description != null ? description : "Descrição da Nota..."); // Usar descrição real ou um padrão
-        descriptionView.setTextColor(0xFF212021);
-        descriptionView.setTextSize(12); // Tamanho da fonte da descrição
-        descriptionView.setEllipsize(TextUtils.TruncateAt.END); // Adiciona "..." se o texto for longo
-        descriptionView.setMaxLines(2); // Limita a 2 linhas
+        descriptionView.setText(description != null ? description : "Descrição da Nota...");
+        descriptionView.setTextColor(0xFF616161);
+        descriptionView.setTextSize(14);
 
-        // Adiciona título e descrição ao LinearLayout
+        // Adicionando os TextViews ao layout
         contentLayout.addView(titleView);
         contentLayout.addView(descriptionView);
 
-        // Adiciona o LinearLayout ao cartão
+        // Adicionando o layout com título e descrição ao cartão
         novoCartao.addView(contentLayout);
 
-        // Adiciona um listener para abrir a view de edição da anotação
-        novoCartao.setOnClickListener(v -> openEditAnnotation(noteId, title, description));
-
-        // Adiciona o cartão à GridLayout
+        // Adiciona o novo cartão ao GridLayout
         gridLayout.addView(novoCartao);
-    }
-
-    private void openEditAnnotation(String noteId, String title, String description) {
-        Intent intent = new Intent(this, EditAnnotationActivity.class);
-        intent.putExtra("NOTE_ID", noteId); // Passa o ID da nota para a nova activity
-        intent.putExtra("NOTE_TITLE", title); // Passa o título da nota
-        intent.putExtra("NOTE_DESCRIPTION", description); // Passa a descrição da nota
-        startActivity(intent);
-    }
-
-    private void addButtonAdd() {
-        // Remove qualquer botão "+" existente antes de adicionar um novo
-        for (int i = 0; i < gridLayout.getChildCount(); i++) {
-            View child = gridLayout.getChildAt(i);
-            if (child instanceof MaterialButton && ((MaterialButton) child).getText().equals("+")) {
-                gridLayout.removeViewAt(i);
-                break; // Sai do loop após remover o botão
-            }
-        }
-
-        // Cria um novo botão "+"
-        MaterialButton buttonAdd = new MaterialButton(this);
-
-        // Definindo as dimensões do botão para serem iguais às dos cartões
-        int buttonWidth = (int) getResources().getDimension(R.dimen.card_width);
-        int buttonHeight = (int) getResources().getDimension(R.dimen.card_height);
-
-        // Aplicando layout params ao botão
-        GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-        params.setMargins(8, 8, 8, 8);
-        params.width = buttonWidth; // Largura do botão igual à do cartão
-        params.height = buttonHeight; // Altura do botão igual à do cartão
-        buttonAdd.setLayoutParams(params);
-
-        buttonAdd.setText("+");
-        buttonAdd.setBackgroundColor(getResources().getColor(R.color.blue)); // Cor de fundo
-        buttonAdd.setCornerRadius(28);
-        buttonAdd.setTextColor(getResources().getColor(android.R.color.white)); // Cor do texto
-
-        // Adiciona o listener para adicionar uma nova nota
-        buttonAdd.setOnClickListener(v -> adicionarNovoQuadradoBranco());
-
-        // Adiciona o botão à GridLayout
-        gridLayout.addView(buttonAdd);
     }
 }
