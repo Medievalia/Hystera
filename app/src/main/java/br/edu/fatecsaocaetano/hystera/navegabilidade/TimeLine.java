@@ -160,6 +160,7 @@ public class TimeLine extends AppCompatActivity {
         carregandoBotoesAppCompatButton(R.id.button_notification, Notifications.class);
         carregandoBotoesAppCompatButton(R.id.button_perfil, Profile.class);
         carregandoBotoesAppCompatImageButton(R.id.button_menstruacao, NewBleeding.class);
+        carregandoBotoesAppCompatImageButton(R.id.button_periodo, CycleInformation.class);
 
         ImageButton buttonMenstruacao = findViewById(R.id.button_menstruacao);
         buttonMenstruacao.setOnClickListener(v -> {
