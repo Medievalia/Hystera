@@ -1,6 +1,8 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,6 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -161,45 +164,53 @@ public class Annotations extends AppCompatActivity {
     }
 
     private void createNoteCard(String noteId, String title, String description) {
+        // Criação do MaterialCardView
         MaterialCardView novoCartao = new MaterialCardView(this);
-        int cardWidth = (int) getResources().getDimension(R.dimen.card_width);
-        int cardHeight = (int) getResources().getDimension(R.dimen.card_height);
 
+        // Estilo do cartão (dimensões, margem, canto arredondado, etc.)
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-        params.setMargins(8, 8, 8, 8);
-        params.width = cardWidth;
-        params.height = cardHeight;
-        novoCartao.setLayoutParams(params);
+        params.width = (int) getResources().getDimension(R.dimen.card_width);
+        params.height = (int) getResources().getDimension(R.dimen.card_height);
+        params.setMargins(8, 8, 8, 8); // Margem semelhante ao layout XML
 
-        novoCartao.setCardElevation(4);
+        novoCartao.setLayoutParams(params);
+        novoCartao.setCardElevation(16); // Elevação para o sombreamento
+        novoCartao.setRadius(16); // Canto arredondado
         novoCartao.setCardBackgroundColor(getResources().getColor(android.R.color.white));
 
+        // Configuração do layout interno
         LinearLayout contentLayout = new LinearLayout(this);
         contentLayout.setOrientation(LinearLayout.VERTICAL);
         contentLayout.setPadding(16, 16, 16, 16);
 
+        // Título da anotação
         TextView titleView = new TextView(this);
         titleView.setText(title != null ? title : "Título da Nota");
-        titleView.setTextColor(0xFF212021);
+        titleView.setTextColor(Color.parseColor("#8A50FF"));
         titleView.setTextSize(16);
+        titleView.setTypeface(ResourcesCompat.getFont(this, R.font.kurale), Typeface.BOLD);
 
+        // Descrição da anotação
         TextView descriptionView = new TextView(this);
         descriptionView.setText(description != null ? description : "Descrição da Nota...");
-        descriptionView.setTextColor(0xFF212021);
+        descriptionView.setTextColor(Color.parseColor("#212121"));
         descriptionView.setTextSize(14);
 
+        // Adiciona título e descrição ao layout interno
         contentLayout.addView(titleView);
         contentLayout.addView(descriptionView);
 
+        // Adiciona o layout interno ao cartão
         novoCartao.addView(contentLayout);
 
-        // Configura o clique para editar a nota
+        // Configura o clique para abrir a tela de edição
         novoCartao.setOnClickListener(v -> {
-            Intent intent = new Intent(Annotations.this, EditAnnotationActivity.class);
+            Intent intent = new Intent(this, EditAnnotationActivity.class);
             intent.putExtra("noteId", noteId);
-            startActivityForResult(intent, EDIT_NOTE_REQUEST_CODE); // Usa o código de requisição
+            startActivity(intent);
         });
 
+        // Adiciona o cartão ao GridLayout
         gridLayout.addView(novoCartao);
     }
 }
