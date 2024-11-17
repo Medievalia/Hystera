@@ -69,7 +69,6 @@ public class Annotations extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         gridLayout = findViewById(R.id.gridLayout);
-
         // Verifica se o usuário está autenticado antes de continuar
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             Log.e(tag, "Usuário não autenticado. Encerrando a Activity.");
@@ -82,7 +81,6 @@ public class Annotations extends AppCompatActivity {
         // Adiciona um listener para o botão de adicionar anotação
         findViewById(R.id.add_anotacao).setOnClickListener(v -> createNewNoteAndEdit());
     }
-
     private void createNewNoteAndEdit() {
         // Cria uma nova nota vazia
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();

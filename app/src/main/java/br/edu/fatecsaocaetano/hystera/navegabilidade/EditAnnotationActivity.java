@@ -1,13 +1,16 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,6 +26,7 @@ public class EditAnnotationActivity extends AppCompatActivity {
     private EditText titleEditText, descriptionEditText;
     private TextView dataCriacaoTextView;
     private String noteId;
+    private MaterialButton voltarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +42,19 @@ public class EditAnnotationActivity extends AppCompatActivity {
         titleEditText = findViewById(R.id.titulo);
         descriptionEditText = findViewById(R.id.anotacao);
         dataCriacaoTextView = findViewById(R.id.dataCriacao);
+        voltarButton = findViewById(R.id.back_button);
 
         if (noteId != null) {
             // Carrega a nota para edição
             loadNoteForEditing(noteId);
         }
+
+        voltarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Configura o botão de salvar
         Button saveButton = findViewById(R.id.btn_salvar);
