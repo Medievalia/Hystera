@@ -44,6 +44,8 @@ public class EditProfile extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri imageUri;
     private MaterialButton changeImageButton;
+    private boolean methoduse = false;
+    private boolean usepill = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +175,16 @@ public class EditProfile extends AppCompatActivity {
         usuarios.put("Email", email);
         usuarios.put("Phone", celular);
         usuarios.put("Method", metodo);
+
+        if(!metodo.toString().equals("NAO_UTILIZA")){
+            methoduse = true;
+        }
+
+        if (metodo.toString().equals("PILULA")) {
+            usepill = true;
+        }
+        usuarios.put("UseMethod", methoduse);
+        usuarios.put("Pill", usepill);
 
         usuarioId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DocumentReference documentReference = db.collection("Usuarios").document(usuarioId);

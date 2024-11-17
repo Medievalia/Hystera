@@ -29,7 +29,7 @@ public class Profile extends AppCompatActivity {
     private MaterialButton help;
     private TextView nomeUsuario;
     private TextView emailUsuario;
-    private ImageView fotoPerfil; // Mantendo a ImageView para mostrar a foto
+    private ImageView fotoPerfil;
     private String userID;
 
     @Override
@@ -86,13 +86,6 @@ public class Profile extends AppCompatActivity {
         fotoPerfil = findViewById(R.id.btn_foto);
         voltarButton = findViewById(R.id.voltar_button);
     }
-
-//    private void configurarBotoes() {
-//        carregandoBotoesAppCompatImageButton(R.id.btn_pefil_editar, EditProfile.class);
-//        carregandoBotoesAppCompatImageButton(R.id.btn_ciclo_editar, FirstCycle.class);
-//        carregandoBotoesAppCompatImageButton(R.id.btn_alterar_senha, ResetPassword.class);
-//        carregandoBotoesAppCompatImageButton(R.id.btn_logoff, Logout.class);
-//    }
 
     private void configurarBotoes() {
         carregandoBotoesAppCompatImageButton(R.id.btn_pefil_editar, EditProfile.class);
