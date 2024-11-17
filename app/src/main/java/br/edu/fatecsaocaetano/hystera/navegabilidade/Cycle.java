@@ -175,7 +175,7 @@ public class Cycle {
 
     public void marcarDiasNoCalendario(MaterialCalendarView calendarView, Calendar start, Calendar end, Cycle ciclo) {
         if (ciclo.getStartDate() == null || ciclo.getOvulation() == null) {
-            Log.e(tag, "startDate ou a data da ovulação são nulas: " + ciclo.getStartDate() + "," + ciclo.getOvulation());
+            Log.e(tag, "startDate ou ovulation são nulas: " + ciclo.getStartDate() + "," + ciclo.getOvulation());
             return;
         }
 
@@ -185,12 +185,10 @@ public class Cycle {
         // Marcando dias de sangramento
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(ciclo.getStartDate().toDate());
-
-        // Marcar dias de sangramento
         for (int i = 0; i < ciclo.getBleeding(); i++) {
             Calendar day = (Calendar) calendar.clone();
             day.add(Calendar.DAY_OF_MONTH, i);
-            if ((day.compareTo(start) >= 0 && day.compareTo(end) <= 0) || (day.get(Calendar.MONTH) != start.get(Calendar.MONTH))) {
+            if (day.compareTo(start) >= 0 && day.compareTo(end) <= 0) {
                 bleedingDays.add(CalendarDay.from(day));
             }
         }
@@ -198,7 +196,6 @@ public class Cycle {
         // Marcando dias férteis
         Calendar ovulacao = Calendar.getInstance();
         ovulacao.setTime(ciclo.getOvulation().toDate());
-
         for (int i = -2; i <= 2; i++) {
             Calendar fertileDay = (Calendar) ovulacao.clone();
             fertileDay.add(Calendar.DAY_OF_MONTH, i);
@@ -207,10 +204,14 @@ public class Cycle {
             }
         }
 
+        // Aplicar decoradores
         int bleedingColor = Color.parseColor("#D84242");
-        int fertileColor = Color.parseColor("#61C3EF");
         calendarView.addDecorator(new EventDecorator(bleedingColor, bleedingDays));
-        calendarView.addDecorator(new EventDecorator(fertileColor, fertileDays));
+
+        if(ciclo.isNatural()){
+            int fertileColor = Color.parseColor("#61C3EF");
+            calendarView.addDecorator(new EventDecorator(fertileColor, fertileDays));
+        }
     }
 
     public boolean isInterrupted() {

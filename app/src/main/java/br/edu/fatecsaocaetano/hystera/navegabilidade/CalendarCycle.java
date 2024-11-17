@@ -22,8 +22,10 @@ import com.google.firebase.firestore.Query;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import br.edu.fatecsaocaetano.hystera.R;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -127,32 +129,35 @@ public class CalendarCycle extends AppCompatActivity {
                             if (ciclo != null) {
                                 Map<String, Map<String, Timestamp>> fases = (Map<String, Map<String, Timestamp>>) documentSnapshot.get("fases");
                                 if (fases != null) {
+                                    startDate = ajustarDataPara3HorasAntes(documentSnapshot.getTimestamp("startDate"));
+                                    ciclo.setStartDate(startDate);
+
                                     Map<String, Timestamp> faseMenstrual = fases.get("Menstrual");
                                     if (faseMenstrual != null) {
-                                        Timestamp inicioMenstrual = faseMenstrual.get("inicio");
-                                        Timestamp fimMenstrual = faseMenstrual.get("fim");
+                                        Timestamp inicioMenstrual = ajustarDataPara3HorasAntes(faseMenstrual.get("inicio"));
+                                        Timestamp fimMenstrual = ajustarDataPara3HorasAntes(faseMenstrual.get("fim"));
                                         ciclo.adicionarFase("Menstrual", inicioMenstrual, fimMenstrual);
-                                        startDate = inicioMenstrual;
                                     }
 
                                     Map<String, Timestamp> faseFolicular = fases.get("Folicular");
-                                    if (faseMenstrual != null) {
-                                        Timestamp inicioFolicular = faseFolicular.get("inicio");
-                                        Timestamp fimFolicular = faseFolicular.get("fim");
+                                    if (faseFolicular != null) {
+                                        Timestamp inicioFolicular = ajustarDataPara3HorasAntes(faseFolicular.get("inicio"));
+                                        Timestamp fimFolicular = ajustarDataPara3HorasAntes(faseFolicular.get("fim"));
                                         ciclo.adicionarFase("Folicular", inicioFolicular, fimFolicular);
                                     }
 
                                     Map<String, Timestamp> faseOvulacao = fases.get("Ovulacao");
-                                    if (faseMenstrual != null) {
-                                        Timestamp inicioOvulacao = faseOvulacao.get("inicio");
-                                        Timestamp fimOvulacao = faseOvulacao.get("fim");
+                                    if (faseOvulacao != null) {
+                                        Timestamp inicioOvulacao = ajustarDataPara3HorasAntes(faseOvulacao.get("inicio"));
+                                        Timestamp fimOvulacao = ajustarDataPara3HorasAntes(faseOvulacao.get("fim"));
+                                        ciclo.setOvulation(inicioOvulacao);
                                         ciclo.adicionarFase("Ovulacao", inicioOvulacao, fimOvulacao);
                                     }
 
                                     Map<String, Timestamp> faseLutea = fases.get("Lutea");
-                                    if (faseMenstrual != null) {
-                                        Timestamp inicioLutea = faseLutea.get("inicio");
-                                        Timestamp fimLutea = faseLutea.get("fim");
+                                    if (faseLutea != null) {
+                                        Timestamp inicioLutea = ajustarDataPara3HorasAntes(faseLutea.get("inicio"));
+                                        Timestamp fimLutea = ajustarDataPara3HorasAntes(faseLutea.get("fim"));
                                         ciclo.adicionarFase("Lutea", inicioLutea, fimLutea);
                                     }
                                 }
@@ -162,8 +167,8 @@ public class CalendarCycle extends AppCompatActivity {
                                 ciclo.setBleeding(documentSnapshot.getLong("bleeding").intValue());
                                 ciclo.setUserID(userID);
                                 ciclo.setId(documentSnapshot.getId());
-                                ciclosAnteriores.add(ciclo);
                             }
+                            ciclosAnteriores.add(ciclo);
                         }
 
                         if (!queryDocumentSnapshots.isEmpty()) {
@@ -217,13 +222,8 @@ public class CalendarCycle extends AppCompatActivity {
         for (Cycle ciclo : ciclosAnteriores) {
             Calendar cicloStart = Calendar.getInstance();
             Calendar cicloEnd = Calendar.getInstance();
-
-            if (ciclo.getStartDate() != null) {
-                cicloStart.setTime(ciclo.getStartDate().toDate());
-            }
-            if (ciclo.getEndDate() != null) {
-                cicloEnd.setTime(ciclo.getEndDate().toDate());
-            }
+            cicloStart.setTime(ciclo.getStartDate().toDate());
+            cicloEnd.setTime(ciclo.getEndDate().toDate());
             ciclo.marcarDiasNoCalendario(currentMonthCalendarView, cicloStart, cicloEnd, ciclo);
         }
 
@@ -249,5 +249,15 @@ public class CalendarCycle extends AppCompatActivity {
                 proximoCiclo.marcarDiasNoCalendario(currentMonthCalendarView, nextStart, nextEnd, proximoCiclo);
             }
         }
+    }
+
+    private Timestamp ajustarDataPara3HorasAntes(Timestamp timestamp) {
+        if (timestamp != null) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(timestamp.toDate());
+            calendar.add(Calendar.HOUR_OF_DAY, -3);
+            return new Timestamp(calendar.getTime());
+        }
+        return null;
     }
 }
