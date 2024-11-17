@@ -96,6 +96,45 @@ public class TimeLine extends AppCompatActivity {
                     if (!queryDocumentSnapshots.isEmpty()) {
                         DocumentSnapshot actualCycle = queryDocumentSnapshots.getDocuments().get(0);
                         Cycle ultimoCiclo = actualCycle.toObject(Cycle.class);
+                        Timestamp startDate = Timestamp.now();
+
+                        Map<String, Map<String, Timestamp>> fases = (Map<String, Map<String, Timestamp>>) actualCycle.get("fases");
+                        if (fases != null) {
+                            Map<String, Timestamp> faseMenstrual = fases.get("Menstrual");
+                            if (faseMenstrual != null) {
+                                Timestamp inicioMenstrual = faseMenstrual.get("inicio");
+                                Timestamp fimMenstrual = faseMenstrual.get("fim");
+                                ultimoCiclo.adicionarFase("Menstrual", inicioMenstrual, fimMenstrual);
+                                startDate = inicioMenstrual;
+                            }
+
+                            Map<String, Timestamp> faseFolicular = fases.get("Folicular");
+                            if (faseMenstrual != null) {
+                                Timestamp inicioFolicular = faseFolicular.get("inicio");
+                                Timestamp fimFolicular = faseFolicular.get("fim");
+                                ultimoCiclo.adicionarFase("Folicular", inicioFolicular, fimFolicular);
+                            }
+
+                            Map<String, Timestamp> faseOvulacao = fases.get("Ovulacao");
+                            if (faseMenstrual != null) {
+                                Timestamp inicioOvulacao = faseOvulacao.get("inicio");
+                                Timestamp fimOvulacao = faseOvulacao.get("fim");
+                                ultimoCiclo.adicionarFase("Ovulacao", inicioOvulacao, fimOvulacao);
+                            }
+
+                            Map<String, Timestamp> faseLutea = fases.get("Lutea");
+                            if (faseMenstrual != null) {
+                                Timestamp inicioLutea = faseLutea.get("inicio");
+                                Timestamp fimLutea = faseLutea.get("fim");
+                                ultimoCiclo.adicionarFase("Lutea", inicioLutea, fimLutea);
+                            }
+                        }
+                        ultimoCiclo.setStartDate(startDate);
+                        ultimoCiclo.setDuration(actualCycle.getLong("duration").intValue());
+                        ultimoCiclo.setNatural(actualCycle.getBoolean("natural"));
+                        ultimoCiclo.setBleeding(actualCycle.getLong("bleeding").intValue());
+                        ultimoCiclo.setUserID(userID);
+                        ultimoCiclo.setId(actualCycle.getId());
 
                         if (ultimoCiclo != null) {
                             if (isCicloAtualTerminado(ultimoCiclo)) {
@@ -118,7 +157,7 @@ public class TimeLine extends AppCompatActivity {
                 });
 
         carregandoBotoesAppCompatButton(R.id.button_grafico, Graph.class);
-            carregandoBotoesAppCompatButton(R.id.button_notification, Notifications.class);
+        carregandoBotoesAppCompatButton(R.id.button_notification, Notifications.class);
         carregandoBotoesAppCompatButton(R.id.button_perfil, Profile.class);
         carregandoBotoesAppCompatImageButton(R.id.button_menstruacao, NewBleeding.class);
 

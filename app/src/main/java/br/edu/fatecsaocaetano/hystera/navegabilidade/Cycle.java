@@ -61,7 +61,7 @@ public class Cycle {
         return calcularData(endDate, -14);
     }
 
-    private void adicionarFase(String nomeFase, Timestamp inicio, Timestamp fim) {
+    public void adicionarFase(String nomeFase, Timestamp inicio, Timestamp fim) {
         Map<String, Timestamp> fase = new HashMap<>();
         fase.put("inicio", inicio);
         fase.put("fim", fim);
@@ -94,22 +94,50 @@ public class Cycle {
         Calendar hoje = Calendar.getInstance();
         hoje.setTime(new Date());
 
+        // Zera a hora, minuto, segundo e milissegundo da data de hoje
+        hoje.set(Calendar.HOUR_OF_DAY, 0);
+        hoje.set(Calendar.MINUTE, 0);
+        hoje.set(Calendar.SECOND, 0);
+        hoje.set(Calendar.MILLISECOND, 0);
+
         Map<String, String> informacoesCiclo = new HashMap<>();
 
         long diasDesdeInicio = (hoje.getTimeInMillis() - getStartDate().toDate().getTime()) / (1000 * 60 * 60 * 24);
         int diaDoCiclo = (int) diasDesdeInicio + 1;
 
-        String faseAtual = "Sangramento";
+        String faseAtual = "";
         for (Map.Entry<String, Map<String, Timestamp>> entry : fases.entrySet()) {
             String nomeFase = entry.getKey();
             Timestamp inicioFase = entry.getValue().get("inicio");
             Timestamp fimFase = entry.getValue().get("fim");
 
-            if (hoje.getTimeInMillis() >= inicioFase.toDate().getTime() && hoje.getTimeInMillis() <= fimFase.toDate().getTime()) {
+            // Cria uma instância Calendar para as datas de início e fim da fase
+            Calendar inicioFaseCalendar = Calendar.getInstance();
+            Calendar fimFaseCalendar = Calendar.getInstance();
+
+            // Configura as datas de início e fim da fase, zerando hora, minuto, segundo e milissegundo
+            inicioFaseCalendar.setTime(inicioFase.toDate());
+            fimFaseCalendar.setTime(fimFase.toDate());
+
+            // Zera a hora, minuto, segundo e milissegundo das fases
+            inicioFaseCalendar.set(Calendar.HOUR_OF_DAY, 0);
+            inicioFaseCalendar.set(Calendar.MINUTE, 0);
+            inicioFaseCalendar.set(Calendar.SECOND, 0);
+            inicioFaseCalendar.set(Calendar.MILLISECOND, 0);
+
+            fimFaseCalendar.set(Calendar.HOUR_OF_DAY, 0);
+            fimFaseCalendar.set(Calendar.MINUTE, 0);
+            fimFaseCalendar.set(Calendar.SECOND, 0);
+            fimFaseCalendar.set(Calendar.MILLISECOND, 0);
+
+            // Verifica se a data de hoje está entre o início e o fim da fase (inclusive)
+            if ((hoje.equals(inicioFaseCalendar) || hoje.after(inicioFaseCalendar)) &&
+                    (hoje.equals(fimFaseCalendar) || hoje.before(fimFaseCalendar))) {
                 faseAtual = nomeFase;
                 break;
             }
         }
+
         informacoesCiclo.put("faseAtual", faseAtual);
         informacoesCiclo.put("diaDoCiclo", String.valueOf(diaDoCiclo));
 
@@ -117,7 +145,6 @@ public class Cycle {
     }
 
     public Map<String, Integer> calcularDiasRestantes() {
-
         Calendar hoje = Calendar.getInstance();
         hoje.setTime(new Date());
         Map<String, Integer> diasRestantesMap = new HashMap<>();
@@ -125,18 +152,11 @@ public class Cycle {
         long diasRestantesParaMenstruacao = (getEndDate().toDate().getTime() - hoje.getTimeInMillis()) / (1000 * 60 * 60 * 24);
         diasRestantesMap.put("diasProximaMenstruacao", (int) diasRestantesParaMenstruacao);
 
-        String faseAtual = "Sangramento";
         int diasRestantesParaFase = -1;
 
         for (Map.Entry<String, Map<String, Timestamp>> entry : fases.entrySet()) {
-            String nomeFase = entry.getKey();
             Timestamp inicioFase = entry.getValue().get("inicio");
-            Timestamp fimFase = entry.getValue().get("fim");
-
-            if (hoje.getTimeInMillis() >= inicioFase.toDate().getTime() && hoje.getTimeInMillis() <= fimFase.toDate().getTime()) {
-                faseAtual = nomeFase;
-                break;
-            } else if (hoje.getTimeInMillis() < inicioFase.toDate().getTime()) {
+            if (hoje.getTimeInMillis() < inicioFase.toDate().getTime()) {
                 diasRestantesParaFase = (int) ((inicioFase.toDate().getTime() - hoje.getTimeInMillis()) / (1000 * 60 * 60 * 24));
                 break;
             }
@@ -193,31 +213,83 @@ public class Cycle {
         calendarView.addDecorator(new EventDecorator(fertileColor, fertileDays));
     }
 
-    public String getTag() { return tag; }
-    public void setUserID(String userID) { this.userID = userID; }
-    public void setId(String id) { this.id = id;}
-    public void setStartDate(Timestamp startDate) { this.startDate = startDate;}
-    public void setNatural(boolean natural) { this.natural = natural;}
-    public void setBleeding(int bleeding) { this.bleeding = bleeding; }
-    public void setOvulation(Timestamp ovulation) { this.ovulation = ovulation; }
-    public boolean isInterrupted() { return interrupted; }
-    public Timestamp getOvulation() { return ovulation; }
-    public void setEndDate(Timestamp endDate) {
-        this.endDate = endDate;
+    public boolean isInterrupted() {
+        return interrupted;
     }
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+
     public void setInterrupted(boolean interrupted) {
         this.interrupted = interrupted;
     }
-    public Timestamp getStartDate() { return startDate; }
-    public Timestamp getEndDate() { return endDate; }
-    public int getDuration() { return duration; }
-    public boolean isNatural() { return natural; }
-    public int getBleeding() { return bleeding; }
-    public String getUserID() { return userID; }
-    public String getId() { return id; }
+
+    // Getters and setters
+    public Timestamp getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Timestamp startDate) {
+        this.startDate = startDate;
+    }
+
+    public Timestamp getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Timestamp endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public boolean isNatural() {
+        return natural;
+    }
+
+    public void setNatural(boolean natural) {
+        this.natural = natural;
+    }
+
+    public int getBleeding() {
+        return bleeding;
+    }
+
+    public void setBleeding(int bleeding) {
+        this.bleeding = bleeding;
+    }
+
+    public Timestamp getOvulation() {
+        return ovulation;
+    }
+
+    public void setOvulation(Timestamp ovulation) {
+        this.ovulation = ovulation;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Map<String, Map<String, Timestamp>> getFases() {
         return fases;
     }

@@ -21,6 +21,7 @@ import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -129,11 +130,38 @@ public class CalendarCycle extends AppCompatActivity {
                                     Map<String, Timestamp> faseMenstrual = fases.get("Menstrual");
                                     if (faseMenstrual != null) {
                                         Timestamp inicioMenstrual = faseMenstrual.get("inicio");
+                                        Timestamp fimMenstrual = faseMenstrual.get("fim");
+                                        ciclo.adicionarFase("Menstrual", inicioMenstrual, fimMenstrual);
                                         startDate = inicioMenstrual;
                                     }
-                                }
 
-                                ciclo = new Cycle(startDate, documentSnapshot.getLong("duration").intValue(), documentSnapshot.getBoolean("natural"), documentSnapshot.getLong("bleeding").intValue(), userID);
+                                    Map<String, Timestamp> faseFolicular = fases.get("Folicular");
+                                    if (faseMenstrual != null) {
+                                        Timestamp inicioFolicular = faseFolicular.get("inicio");
+                                        Timestamp fimFolicular = faseFolicular.get("fim");
+                                        ciclo.adicionarFase("Folicular", inicioFolicular, fimFolicular);
+                                    }
+
+                                    Map<String, Timestamp> faseOvulacao = fases.get("Ovulacao");
+                                    if (faseMenstrual != null) {
+                                        Timestamp inicioOvulacao = faseOvulacao.get("inicio");
+                                        Timestamp fimOvulacao = faseOvulacao.get("fim");
+                                        ciclo.adicionarFase("Ovulacao", inicioOvulacao, fimOvulacao);
+                                    }
+
+                                    Map<String, Timestamp> faseLutea = fases.get("Lutea");
+                                    if (faseMenstrual != null) {
+                                        Timestamp inicioLutea = faseLutea.get("inicio");
+                                        Timestamp fimLutea = faseLutea.get("fim");
+                                        ciclo.adicionarFase("Lutea", inicioLutea, fimLutea);
+                                    }
+                                }
+                                ciclo.setStartDate(startDate);
+                                ciclo.setDuration(documentSnapshot.getLong("duration").intValue());
+                                ciclo.setNatural(documentSnapshot.getBoolean("natural"));
+                                ciclo.setBleeding(documentSnapshot.getLong("bleeding").intValue());
+                                ciclo.setUserID(userID);
+                                ciclo.setId(documentSnapshot.getId());
                                 ciclosAnteriores.add(ciclo);
                             }
                         }
@@ -185,31 +213,41 @@ public class CalendarCycle extends AppCompatActivity {
     private void atualizarCalendario() {
         currentMonthCalendarView.removeDecorators();
 
+        // Renderizando ciclos anteriores
         for (Cycle ciclo : ciclosAnteriores) {
             Calendar cicloStart = Calendar.getInstance();
-            cicloStart.setTime(ciclo.getStartDate().toDate());
             Calendar cicloEnd = Calendar.getInstance();
-            cicloEnd.setTime(ciclo.getEndDate().toDate());
+
+            if (ciclo.getStartDate() != null) {
+                cicloStart.setTime(ciclo.getStartDate().toDate());
+            }
+            if (ciclo.getEndDate() != null) {
+                cicloEnd.setTime(ciclo.getEndDate().toDate());
+            }
             ciclo.marcarDiasNoCalendario(currentMonthCalendarView, cicloStart, cicloEnd, ciclo);
         }
 
-        Calendar cicloStart = Calendar.getInstance();
-        cicloStart.setTime(currentCycle.getStartDate().toDate());
-        Calendar cicloEnd = Calendar.getInstance();
-        cicloEnd.setTime(currentCycle.getEndDate().toDate());
-        currentCycle.marcarDiasNoCalendario(currentMonthCalendarView, cicloStart, cicloEnd, currentCycle);
+        // Renderizando ciclo atual
+        if (currentCycle != null && currentCycle.getStartDate() != null && currentCycle.getEndDate() != null) {
+            Calendar cicloStart = Calendar.getInstance();
+            Calendar cicloEnd = Calendar.getInstance();
+            cicloStart.setTime(currentCycle.getStartDate().toDate());
+            cicloEnd.setTime(currentCycle.getEndDate().toDate());
+            currentCycle.marcarDiasNoCalendario(currentMonthCalendarView, cicloStart, cicloEnd, currentCycle);
+        }
 
-        Calendar nextStart = (Calendar) cicloStart.clone();
-        Calendar nextEnd = (Calendar) cicloEnd.clone();
-        Cycle proximoCiclo = currentCycle;
+        // Renderizando ciclos futuros
+        if (currentCycle != null) {
+            Calendar nextStart = Calendar.getInstance();
+            Calendar nextEnd = Calendar.getInstance();
+            Cycle proximoCiclo = currentCycle;
 
-        for (int i = 1; i <= 12; i++) {
-            proximoCiclo = proximoCiclo.simularProximoCiclo(proximoCiclo);
-            nextStart = Calendar.getInstance();
-            nextStart.setTime(proximoCiclo.getStartDate().toDate());
-            nextEnd = Calendar.getInstance();
-            nextEnd.setTime(proximoCiclo.getEndDate().toDate());
-            proximoCiclo.marcarDiasNoCalendario(currentMonthCalendarView, nextStart, nextEnd, proximoCiclo);
+            for (int i = 1; i <= 12; i++) {
+                proximoCiclo = proximoCiclo.simularProximoCiclo(proximoCiclo);
+                nextStart.setTime(proximoCiclo.getStartDate().toDate());
+                nextEnd.setTime(proximoCiclo.getEndDate().toDate());
+                proximoCiclo.marcarDiasNoCalendario(currentMonthCalendarView, nextStart, nextEnd, proximoCiclo);
+            }
         }
     }
 }
