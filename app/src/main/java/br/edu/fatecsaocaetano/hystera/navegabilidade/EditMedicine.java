@@ -145,7 +145,7 @@ public class EditMedicine extends AppCompatActivity {
 
         // Aplicando máscaras
         if (editDosagem != null) {
-            editDosagem.addTextChangedListener(Mask.insert("###", editDosagem));
+            editDosagem.addTextChangedListener(Mask.insert("#####", editDosagem));
         }
 
         if (editIntervalo != null) {
