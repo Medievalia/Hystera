@@ -123,9 +123,8 @@ public class AddMedicine extends AppCompatActivity {
             editHoraInicio.setClickable(true);
 
             editHoraInicio.setOnClickListener(v -> {
-                Calendar calendar = Calendar.getInstance();
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minute = calendar.get(Calendar.MINUTE);
+                int hour = 12;
+                int minute = 0;
 
                 TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                         (TimePicker view, int selectedHour, int selectedMinute) -> {
