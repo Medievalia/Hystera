@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 import br.edu.fatecsaocaetano.hystera.R;
@@ -22,38 +25,38 @@ public class Informations extends AppCompatActivity {
     private CarouselAdapter firstAdapter;
     private CarouselAdapter secondAdapter;
     private CarouselAdapter thirdAdapter;
-    private List<Noticia> allFirstCarouselItems;
-    private List<Noticia> allSecondCarouselItems;
-    private List<Noticia> allThirdCarouselItems;
+    private List<Noticia> allFirstCarouselItems = new ArrayList<>();
+    private List<Noticia> allSecondCarouselItems = new ArrayList<>();
+    private List<Noticia> allThirdCarouselItems = new ArrayList<>();
     private ViewPager2 firstCarousel;
     private ViewPager2 secondCarousel;
     private ViewPager2 thirdCarousel;
     private LinearLayout carouselsLayout;
+
+    private FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informations);
 
+        firestore = FirebaseFirestore.getInstance();
+
         firstCarousel = findViewById(R.id.viewPager);
         secondCarousel = findViewById(R.id.viewPager2);
         thirdCarousel = findViewById(R.id.viewPager3);
         carouselsLayout = findViewById(R.id.carousels_layout);
 
-        // Carrossel 1: Ciclos Menstruais
-        allFirstCarouselItems = getDataForFirstCarousel();
+        // Configurar carrosséis vazios inicialmente
         firstAdapter = new CarouselAdapter(this, allFirstCarouselItems);
-        firstCarousel.setAdapter(firstAdapter);
-
-        // Carrossel 2: Doenças
-        allSecondCarouselItems = getDataForSecondCarousel();
         secondAdapter = new CarouselAdapter(this, allSecondCarouselItems);
-        secondCarousel.setAdapter(secondAdapter);
-
-        // Carrossel 3: Métodos Contraceptivos
-        allThirdCarouselItems = getDataForThirdCarousel();
         thirdAdapter = new CarouselAdapter(this, allThirdCarouselItems);
+        firstCarousel.setAdapter(firstAdapter);
+        secondCarousel.setAdapter(secondAdapter);
         thirdCarousel.setAdapter(thirdAdapter);
+
+        // Carregar dados do Firestore
+        loadCarouselData();
 
         EditText searchEditText = findViewById(R.id.search_edit_text);
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -69,7 +72,7 @@ public class Informations extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {}
         });
 
-        //navegação e menu
+        // Navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper menuHelper = new BottomNavigationHelper();
         menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_utero);
@@ -99,6 +102,49 @@ public class Informations extends AppCompatActivity {
         });
     }
 
+    private void loadCarouselData() {
+        firestore.collection("Informacoes")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    allFirstCarouselItems.clear();
+                    allSecondCarouselItems.clear();
+                    allThirdCarouselItems.clear();
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        String tipo = document.getString("tipo");
+                        String titulo = document.getString("titulo");
+                        String url = document.getString("url");
+                        String cor = document.getString("cor");
+                        String imagem = document.getString("imagem");
+
+                        int imagemResId = this.getResources().getIdentifier(imagem, "drawable", this.getPackageName());
+
+                        Noticia noticia = new Noticia(titulo, url, imagemResId, cor); // Ajuste os parâmetros conforme necessário
+
+                        switch (tipo) {
+                            case "Ciclo":
+                                allFirstCarouselItems.add(noticia);
+                                break;
+                            case "Doenças":
+                                allSecondCarouselItems.add(noticia);
+                                break;
+                            case "Métodos Contraceptivos":
+                                allThirdCarouselItems.add(noticia);
+                                break;
+                        }
+                    }
+
+                    // Atualizar adaptadores
+                    firstAdapter.updateItems(allFirstCarouselItems);
+                    secondAdapter.updateItems(allSecondCarouselItems);
+                    thirdAdapter.updateItems(allThirdCarouselItems);
+                })
+                .addOnFailureListener(e -> {
+                    // Lidar com erros de leitura
+                    e.printStackTrace();
+                });
+    }
+
     private void filterCarousels(String query) {
         List<Noticia> filteredFirstItems = filterItems(query, allFirstCarouselItems);
         List<Noticia> filteredSecondItems = filterItems(query, allSecondCarouselItems);
@@ -122,36 +168,5 @@ public class Informations extends AppCompatActivity {
             }
         }
         return filteredItems;
-    }
-
-    private List<Noticia> getDataForFirstCarousel() {
-        List<Noticia> noticias = new ArrayList<>();
-        //Noticias sobre o ciclo
-        noticias.add(new Noticia("Ciclo menstrual explicado", "https://mundoeducacao.uol.com.br/sexualidade/ciclo-menstrual.htm", R.drawable.prototipo_tcc_1_3, "verde"));
-        noticias.add(new Noticia("Coletor menstrual ou absorvente: qual o melhor?", "https://cinge.com.br/2022/08/08/coletor-menstrual-ou-absorvente-qual-o-melhor/", R.drawable.prototipo_tcc_1_2, "roxo"));
-        noticias.add(new Noticia("Cuidados com a Saúde Menstrual", "https://www.who.int/news-room/fact-sheets/detail/menstrual-health", R.drawable.prototipo_tcc_2_1, "azul"));
-        noticias.add(new Noticia("Absorvente ecológico vs descartável: 5 diferenças", "https://www.pantys.com.br/blogs/pantys/absorvente-ecologico-vs-descartavel-5-diferencas", R.drawable.prototipo_tcc_1_4, "roxo"));
-        return noticias;
-    }
-
-    private List<Noticia> getDataForSecondCarousel() {
-        List<Noticia> noticias = new ArrayList<>();
-        //Noticias sobre doenças
-        noticias.add(new Noticia("Síndrome dos Ovários Policísticos (SOP)", "https://www.who.int/news-room/fact-sheets/detail/polycystic-ovary-syndrome", R.drawable.prototipo_tcc_2_1, "roxo"));
-        noticias.add(new Noticia("O que é endometriose e como tratar?", "https://bvsms.saude.gov.br/endometriose/#:~:text=A%20endometriose%20%C3%A9%20uma%20doen%C3%A7a,geral%2C%20devem%20ser%20retiradas%20cirurgicamente.", R.drawable.prototipo_tcc_2_1, "verde"));
-        noticias.add(new Noticia("Menopausa e Saúde da Mulher", "https://www.who.int/news-room/fact-sheets/detail/menopause", R.drawable.prototipo_tcc_2_1, "azul"));
-        return noticias;
-    }
-
-    private List<Noticia> getDataForThirdCarousel() {
-        List<Noticia> noticias = new ArrayList<>();
-        //Noticias sobre o metodos contraceptivos
-        noticias.add(new Noticia("Métodos Contraceptivos: Tipos e Eficácia", "https://www.who.int/news-room/fact-sheets/detail/contraception", R.drawable.prototipo_tcc_1_5, "verde"));
-        noticias.add(new Noticia("Pílula anticoncepcional: benefícios e cuidados", "https://www.istockphoto.com/photo/birth-control-pills-and-syringe-on-a-blue-background-contraception-methods-gm1188483140-338235349", R.drawable.prototipo_tcc_1_5, "azul"));
-        noticias.add(new Noticia("Preservativo: Como usar corretamente", "https://www.saude.gov.br/saude-de-a-z/contraceptivos", R.drawable.prototipo_tcc_2_1, "roxo"));
-        noticias.add(new Noticia("Implantes hormonais: O que você precisa saber", "https://www.mayoclinic.org/healthy-lifestyle/birth-control/experts/faq/faq-20058361", R.drawable.vacina, "verde"));
-        noticias.add(new Noticia("Método de esterilização feminina", "https://www.who.int/news-room/fact-sheets/detail/sterilization", R.drawable.prototipo_tcc_2_1, "azul"));
-        noticias.add(new Noticia("Pílula do dia seguinte: tudo o que você precisa saber", "https://hilab.com.br/blog/pilula-dia-seguinte/", R.drawable.prototipo_tcc_1_5, "azul"));
-        return noticias;
     }
 }

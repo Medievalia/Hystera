@@ -56,8 +56,6 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(Profile.this, TimeLine.class);
-                startActivity(intent);
             }
         });
 
