@@ -111,11 +111,11 @@ public class Informations extends AppCompatActivity {
                     allThirdCarouselItems.clear();
 
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        String tipo = document.getString("tipo");
-                        String titulo = document.getString("titulo");
-                        String url = document.getString("url");
+                        String tipo = document.getString("type");
+                        String titulo = document.getString("title");
+                        String url = document.getString("link");
                         String cor = document.getString("cor");
-                        String imagem = document.getString("imagem");
+                        String imagem = document.getString("uimageinfo");
 
                         int imagemResId = this.getResources().getIdentifier(imagem, "drawable", this.getPackageName());
 
