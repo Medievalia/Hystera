@@ -11,9 +11,11 @@ import br.edu.fatecsaocaetano.hystera.R;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.Timestamp;
@@ -33,11 +35,14 @@ public class Notifications extends AppCompatActivity {
 
     private NotificationHelper notificationHelper;
     private final String tag = "NotificationsClass";
+    private MaterialButton changeImageButton;
+    private MaterialButton voltarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notificacoes);
+        voltarButton = findViewById(R.id.voltar_button);
 
         notificationHelper = new NotificationHelper(this);
         //setupFirebaseListeners();
@@ -69,6 +74,13 @@ public class Notifications extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        voltarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

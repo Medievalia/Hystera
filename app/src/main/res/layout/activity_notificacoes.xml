@@ -6,6 +6,24 @@
     android:layout_height="match_parent"
     android:background="#F1F1F1">
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/voltar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#F1F1F1"
+        android:contentDescription="Voltar"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <!-- Botão de perfil no topo -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_perfil"
