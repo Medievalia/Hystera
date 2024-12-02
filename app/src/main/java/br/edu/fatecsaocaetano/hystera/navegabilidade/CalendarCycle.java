@@ -125,6 +125,13 @@ public class CalendarCycle extends AppCompatActivity {
                     if (!queryDocumentSnapshots.isEmpty()) {
                         for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
                             Cycle ciclo = documentSnapshot.toObject(Cycle.class);
+                            // Verificar se o campo "notCorrect" é verdadeiro
+                            Boolean notCorrect = documentSnapshot.getBoolean("notCorrect");
+                            if (notCorrect != null && notCorrect) {
+                                continue; // Ignorar este ciclo se "notCorrect" for verdadeiro
+                            }
+
+                            // Proseguir com o processamento do ciclo normalmente
                             Timestamp startDate = Timestamp.now();
                             if (ciclo != null) {
                                 Map<String, Map<String, Timestamp>> fases = (Map<String, Map<String, Timestamp>>) documentSnapshot.get("fases");

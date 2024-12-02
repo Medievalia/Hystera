@@ -1,0 +1,231 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- Botão Voltar -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FFFFFF"
+        android:contentDescription="Voltar"
+        app:icon="@drawable/vector"
+        app:iconTint="#8A50FF"
+        app:iconGravity="textStart"
+        app:iconPadding="5dp"
+        app:cornerRadius="100dp"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <!-- Texto Principal -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="Quanto tempo dura o seu ciclo?"
+        android:textColor="#8A50FF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_button" />
+
+    <!-- Texto Informativo -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="Normalmente um ciclo dura de 24 a 38 dias"
+        android:textColor="#74C9FD"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
+
+    <!-- SeekBar Circular -->
+    <me.tankery.lib.circularseekbar.CircularSeekBar
+        android:id="@+id/seekbar"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="30dp"
+        app:cs_circle_color="#74C9FD"
+        app:cs_circle_fill="@color/white"
+        app:cs_circle_progress_color="#8A50FF"
+        app:cs_circle_stroke_width="15dp"
+        app:layout_constraintTop_toBottomOf="@id/textView1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Dias -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/Dias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-150dp"
+        android:fontFamily="@font/kurale"
+        android:text="28 dias"
+        android:textColor="#8A50FF"
+        android:textSize="40sp"
+        app:layout_constraintTop_toBottomOf="@id/seekbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Texto de Menstruação -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="E sua menstruação?"
+        android:textColor="#8A50FF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_botao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/menos_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="40dp"
+            android:backgroundTint="#998A50FF"
+            android:onClick="diminuirDiasMenstruais"
+            android:contentDescription="Remover dias menstruais"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/remove"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/diasmens_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Botão Dias Menstruais -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/diasmens_button"
+            android:layout_width="115dp"
+            android:layout_height="60dp"
+            android:text="5 dias"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/menos_button"
+            app:layout_constraintEnd_toStartOf="@id/mais_button"
+            app:layout_constraintHorizontal_chainStyle="spread_inside" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mais_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="40dp"
+            android:backgroundTint="#998A50FF"
+            android:onClick="aumentarDiasMenstruais"
+            android:contentDescription="Adicionar dias menstruais"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/adicionar"
+            app:layout_constraintStart_toEndOf="@id/diasmens_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Texto Informativo -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/kurale"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:text="Normalmente a menstruação dura de 3 a 6 dias"
+        android:textColor="#74C9FD"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/layout_botao"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Botão 'Não sei' -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nao_sei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="#998A50FF"
+            android:fontFamily="@font/kurale"
+            android:text="Não sei"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_seguinte"
+            app:layout_constraintHorizontal_chainStyle="spread" />
+
+        <!-- Botão 'Seguinte' -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_seguinte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="35dp"
+            android:backgroundTint="#8A50FF"
+            android:fontFamily="@font/kurale"
+            android:text="Seguinte"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/nao_sei" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

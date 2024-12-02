@@ -96,6 +96,21 @@
         android:columnCount="2"
         android:rowCount="1">
 
+            <!-- Botão 1 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nao_sei"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginEnd="35dp"
+                android:layout_marginStart="35dp"
+                app:backgroundTint="#F6F6F6"
+                android:fontFamily="@font/kurale"
+                android:text="Não sei"
+                android:textAllCaps="false"
+                android:textColor="@color/purple_500"
+                android:textSize="22sp" />
+
             <!-- Botão 2 -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_seguinte"

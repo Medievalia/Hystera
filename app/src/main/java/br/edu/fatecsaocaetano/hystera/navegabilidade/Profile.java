@@ -87,7 +87,7 @@ public class Profile extends AppCompatActivity {
 
     private void configurarBotoes() {
         carregandoBotoesAppCompatImageButton(R.id.btn_pefil_editar, EditProfile.class);
-        carregandoBotoesAppCompatImageButton(R.id.btn_ciclo_editar, FirstCycle.class);
+        carregandoBotoesAppCompatImageButton(R.id.btn_ciclo_editar, EditCycleOne.class);
         carregandoBotoesAppCompatImageButton(R.id.btn_alterar_senha, ResetPassword.class);
 
         // Configurando o botão para excluir conta

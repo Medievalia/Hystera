@@ -39,7 +39,7 @@ public class DUM extends AppCompatActivity {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 // Salvar a data como Timestamp
-                dataSelecionada = getTimestamp(date.getYear(), date.getMonth(), date.getDay() + 1);
+                dataSelecionada = getTimestamp(date.getYear(), date.getMonth(), date.getDay());
             }
         });
 
