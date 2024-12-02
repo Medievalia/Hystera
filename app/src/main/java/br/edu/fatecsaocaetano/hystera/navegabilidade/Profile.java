@@ -128,13 +128,19 @@ public class Profile extends AppCompatActivity {
     }
 
     private void realizarLogout() {
-        FirebaseAuth.getInstance().signOut();
-        showToast("Você saiu da sua conta.");
-        // Redirecionar para a tela de login
-        Intent intent = new Intent(Profile.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Sair da Conta")
+                .setMessage("Tem certeza de que deseja sair? Você precisará fazer login novamente para acessar sua conta.")
+                .setPositiveButton("Sair", (dialog, which) -> {
+                    FirebaseAuth.getInstance().signOut();
+                    showToast("Você saiu da sua conta.");
+                    Intent intent = new Intent(Profile.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
     }
 
     private void showToast(String message) {
