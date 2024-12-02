@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -20,6 +21,7 @@ public class ResetPassword extends AppCompatActivity {
     private final String tag = "ResetPasswordClass";
     private EditText email;
     private Button btn_enviar;
+    private MaterialButton voltarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,12 @@ public class ResetPassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resetPassword(v);
+            }
+        });
+        voltarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -52,8 +60,13 @@ public class ResetPassword extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 // Email de redefinição de senha enviado com sucesso
-                                Intent intent = new Intent(ResetPassword.this, PasswordRedefined.class);
                                 Log.i(tag, "Email de redefinição de senha enviado com sucesso ao e-mail: " + txtemail);
+
+                                // Fazer logout após o envio do e-mail
+                                auth.signOut(); // Desconectar o usuário atual
+
+                                // Redirecionar para a tela de redefinição de senha
+                                Intent intent = new Intent(ResetPassword.this, PasswordRedefined.class);
                                 startActivity(intent);
                                 finish();
                             } else {
@@ -72,5 +85,6 @@ public class ResetPassword extends AppCompatActivity {
     private void iniciarComponentes() {
         email = findViewById(R.id.editTextEmail);
         btn_enviar = findViewById(R.id.btn_enviar);
+        voltarButton = findViewById(R.id.voltar_button);
     }
 }
