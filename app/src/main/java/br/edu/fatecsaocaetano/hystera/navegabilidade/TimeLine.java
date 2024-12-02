@@ -137,6 +137,18 @@ public class TimeLine extends AppCompatActivity {
                         ultimoCiclo.setId(actualCycle.getId());
 
                         if (ultimoCiclo != null) {
+                            int maxTentativas = 12;
+                            int tentativas = 0;
+
+                            while (isCicloAtualTerminado(ultimoCiclo) && tentativas < maxTentativas) {
+                                currentCycle = ultimoCiclo.simularProximoCiclo(ultimoCiclo);
+                                currentCycle.salvarCicloNoFirebase();
+                                ultimoCiclo = currentCycle;
+                                tentativas++;
+                            }
+
+                            Log.d(tag, "Ciclos criados durante simulação: " + tentativas);
+
                             if (isCicloAtualTerminado(ultimoCiclo)) {
                                 currentCycle = ultimoCiclo.simularProximoCiclo(ultimoCiclo);
                                 currentCycle.salvarCicloNoFirebase();
@@ -146,6 +158,7 @@ public class TimeLine extends AppCompatActivity {
                         } else {
                             Log.e(tag, "Ciclo nulo para usuário: " + userID);
                         }
+
                         atualizandoSeekBar(currentCycle);
                         calcularMediaDuracaoCiclos(userID);
                     } else {
@@ -195,16 +208,22 @@ public class TimeLine extends AppCompatActivity {
         MaterialTextView resultDuration = findViewById(R.id.result_duration);
         if (nomeFase.equals("Ovulacao")) {
             resultDuration.setText("Fase Ovulatória");
+        } else if (nomeFase.equalsIgnoreCase("Lutea")) {
+            resultDuration.setText("Fase Lútea");
         } else {
             resultDuration.setText(String.format("Fase %s", nomeFase));
         }
 
         Map<String, Integer> diasRestantes = currentCycle.calcularDiasRestantes();
         int diasProximaMenstruacao = diasRestantes.get("diasProximaMenstruacao") + 1;
-        int diasProximaFase = diasRestantes.get("diasProximaFase") - 1;
+        int diasProximaFase = diasRestantes.get("diasProximaFase") + 1;
 
         MaterialTextView resultDuration1 = findViewById(R.id.result_duration1);
-        resultDuration1.setText(String.format("Em %d dias", diasProximaMenstruacao));
+        if (diasProximaMenstruacao > 1){
+            resultDuration1.setText(String.format("Em %d dias", diasProximaMenstruacao));
+        } else {
+            resultDuration1.setText(String.format("Em %d dia", diasProximaMenstruacao));
+        }
 
         Log.i(tag, "Dias restantes para a próxima menstruação: " + diasProximaMenstruacao + " dias, " + userID);
         Log.i(tag, "Dias restantes para o próximo período do ciclo: " + diasProximaFase + " dias, " + userID);

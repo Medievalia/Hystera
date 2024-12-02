@@ -45,7 +45,7 @@ public class NewBleeding {
         Timestamp today = new Timestamp(Calendar.getInstance().getTime());
 
         // Marca o ciclo como interrompido
-        cycle.setEndDate(cycle.calcularData(today, -1));
+        cycle.setEndDate(cycle.ajustarParaFimDoDia(cycle.calcularData(today, -1)));
         cycle.setDuration(cycle.calcularDuracao());
 
         // Define a propriedade 'interrupted' como true

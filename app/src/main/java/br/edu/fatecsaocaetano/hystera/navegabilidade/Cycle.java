@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.Log;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -18,7 +19,6 @@ import java.util.Set;
 
 public class Cycle {
 
-    private final String tag = "CycleClass";
     private String userID;
     private String id;
     private Timestamp startDate;
@@ -34,14 +34,14 @@ public class Cycle {
     }
 
     public Cycle(Timestamp startDate, int duration, boolean natural, int bleeding, String userID) {
-        this.startDate = startDate;
+        this.startDate = ajustarParaComecoDoDia(startDate);
         this.duration = duration;
         this.natural = natural;
         this.bleeding = bleeding;
         this.userID = userID;
         this.id = gerarIdCiclo();
         this.interrupted = false;
-        this.endDate = calcularData(startDate, duration - 1);
+        this.endDate = ajustarParaFimDoDia(calcularData(startDate, duration - 1));
         this.ovulation = calcularOvulacao();
 
         adicionarFase("Menstrual", startDate, calcularData(startDate, bleeding - 1));
@@ -53,7 +53,16 @@ public class Cycle {
     public Timestamp calcularData(Timestamp data, int dias) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(data.toDate());
+
+        // Zera a hora, minuto, segundo e milissegundo
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        // Adiciona os dias desejados
         calendar.add(Calendar.DAY_OF_MONTH, dias);
+
         return new Timestamp(calendar.getTime());
     }
 
@@ -63,6 +72,7 @@ public class Cycle {
 
     public void adicionarFase(String nomeFase, Timestamp inicio, Timestamp fim) {
         Map<String, Timestamp> fase = new HashMap<>();
+        fim = ajustarParaFimDoDia(fim);
         fase.put("inicio", inicio);
         fase.put("fim", fim);
         fases.put(nomeFase, fase);
@@ -81,8 +91,8 @@ public class Cycle {
                 .collection("Ciclos").document(id);
 
         cycleRef.set(this)
-                .addOnSuccessListener(aVoid -> Log.i(tag, "Ciclo salvo com sucesso! " + userID))
-                .addOnFailureListener(e -> Log.e(tag,"Erro ao salvar ciclo. " + e));
+                .addOnSuccessListener(aVoid -> Log.i("CycleClass", "Ciclo salvo com sucesso! " + userID))
+                .addOnFailureListener(e -> Log.e("CycleClass","Erro ao salvar ciclo. " + e));
     }
 
     public Cycle simularProximoCiclo(Cycle cicloAtual) {
@@ -175,7 +185,7 @@ public class Cycle {
 
     public void marcarDiasNoCalendario(MaterialCalendarView calendarView, Calendar start, Calendar end, Cycle ciclo) {
         if (ciclo.getStartDate() == null || ciclo.getOvulation() == null) {
-            Log.e(tag, "startDate ou ovulation são nulas: " + ciclo.getStartDate() + "," + ciclo.getOvulation());
+            Log.e("CycleClass", "startDate ou ovulation são nulas: " + ciclo.getStartDate() + "," + ciclo.getOvulation());
             return;
         }
 
@@ -212,6 +222,26 @@ public class Cycle {
             int fertileColor = Color.parseColor("#61C3EF");
             calendarView.addDecorator(new EventDecorator(fertileColor, fertileDays));
         }
+    }
+
+    public Timestamp ajustarParaFimDoDia(Timestamp timestamp) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timestamp.getSeconds() * 1000); // Converter de segundos para milissegundos
+        calendar.set(Calendar.HOUR_OF_DAY, 23);  // Ajustar para 23h
+        calendar.set(Calendar.MINUTE, 59);       // Ajustar para 59min
+        calendar.set(Calendar.SECOND, 59);       // Ajustar para 59s
+        calendar.set(Calendar.MILLISECOND, 999); // Ajustar para 999ms
+        return new Timestamp(calendar.getTime());
+    }
+
+    public Timestamp ajustarParaComecoDoDia(Timestamp timestamp) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timestamp.getSeconds() * 1000); // Converter de segundos para milissegundos
+        calendar.set(Calendar.HOUR_OF_DAY, 00);  // Ajustar para 23h
+        calendar.set(Calendar.MINUTE, 00);       // Ajustar para 59min
+        calendar.set(Calendar.SECOND, 00);       // Ajustar para 59s
+        calendar.set(Calendar.MILLISECOND, 000); // Ajustar para 999ms
+        return new Timestamp(calendar.getTime());
     }
 
     public boolean isInterrupted() {
@@ -281,10 +311,6 @@ public class Cycle {
 
     public String getId() {
         return id;
-    }
-
-    public String getTag() {
-        return tag;
     }
 
     public void setId(String id) {
