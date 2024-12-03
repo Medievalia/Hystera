@@ -84,6 +84,7 @@ public class Annotations extends AppCompatActivity {
         // Adiciona um listener para o botão de adicionar anotação
         findViewById(R.id.add_anotacao).setOnClickListener(v -> createNewNoteAndEdit());
     }
+
     private void createNewNoteAndEdit() {
         // Cria uma nova nota vazia
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -136,32 +137,49 @@ public class Annotations extends AppCompatActivity {
         gridLayout.removeAllViews();
         loadedNoteIds.clear(); // Limpa os IDs de notas carregadas para evitar duplicações
 
-        notesCollection.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                QuerySnapshot querySnapshot = task.getResult();
-                if (querySnapshot != null) {
-                    // Adiciona as novas notas ao grid
-                    for (QueryDocumentSnapshot document : querySnapshot) {
-                        String noteId = document.getId();
+        // Ordena as notas por annotationDate em ordem decrescente (mais recente primeiro)
+        notesCollection.orderBy("annotationDate", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null) {
+                            // Remove notas vazias antes de adicionar ao grid
+                            for (QueryDocumentSnapshot document : querySnapshot) {
+                                String noteId = document.getId();
+                                String title = document.getString("title");
+                                String description = document.getString("description");
 
-                        // Verifica se a nota já foi carregada (evitar duplicações)
-                        if (loadedNoteIds.contains(noteId)) continue;
-
-                        // Marca a nota como carregada
-                        loadedNoteIds.add(noteId);
-
-                        String title = document.getString("title");
-                        String description = document.getString("description");
-
-                        // Cria o cartão para cada nota
-                        createNoteCard(noteId, title, description);
+                                // Verifica se a anotação está vazia (título e descrição vazios)
+                                if (title != null && title.isEmpty() && description != null && description.isEmpty()) {
+                                    // Exclui a nota vazia do Firestore
+                                    db.collection("Usuarios")
+                                            .document(userId)
+                                            .collection("Notes")
+                                            .document(noteId)
+                                            .delete()
+                                            .addOnCompleteListener(deleteTask -> {
+                                                if (deleteTask.isSuccessful()) {
+                                                    Log.d(tag, "Nota vazia excluída com sucesso.");
+                                                } else {
+                                                    Log.e(tag, "Erro ao excluir nota vazia: " + deleteTask.getException().getMessage());
+                                                }
+                                            });
+                                } else {
+                                    // Se a nota não for vazia e ainda não foi carregada, cria o cartão
+                                    if (!loadedNoteIds.contains(noteId)) {
+                                        loadedNoteIds.add(noteId);
+                                        createNoteCard(noteId, title, description);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        Log.e(tag, "Erro ao carregar notas: " + task.getException().getMessage());
                     }
-                }
-            } else {
-                Log.e(tag, "Erro ao carregar notas: " + task.getException().getMessage());
-            }
-        });
+                });
     }
+
 
     private void createNoteCard(String noteId, String title, String description) {
         // Criação do MaterialCardView

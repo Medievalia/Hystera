@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,12 +50,7 @@ public class EditAnnotationActivity extends AppCompatActivity {
             loadNoteForEditing(noteId);
         }
 
-        voltarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        voltarButton.setOnClickListener(v -> finish());
 
         // Configura o botão de salvar
         Button saveButton = findViewById(R.id.btn_salvar);
@@ -107,8 +103,15 @@ public class EditAnnotationActivity extends AppCompatActivity {
     }
 
     private void saveNote() {
-        String newTitle = titleEditText.getText().toString();
-        String newDescription = descriptionEditText.getText().toString();
+        String newTitle = titleEditText.getText().toString().trim();  // Remove espaços extras
+        String newDescription = descriptionEditText.getText().toString().trim();
+
+        // Verifica se o título ou a descrição estão vazios
+        if (newTitle.isEmpty() || newDescription.isEmpty()) {
+            // Exibe um Toast caso o título ou a descrição estejam vazios
+            Toast.makeText(this, "Anotações devem ter um título e descrição!", Toast.LENGTH_SHORT).show();
+            return;  // Interrompe a execução para não salvar a nota
+        }
 
         // Pegue o ID do usuário autenticado
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -146,6 +149,4 @@ public class EditAnnotationActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 }
