@@ -68,6 +68,5 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditAnnotationActivity" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditCycleOne" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditCycleTwo" android:exported="true" />
-        <receiver android:name=".navegabilidade.NotificationReceiver" android:enabled="true" android:exported="false"/>
     </application>
 </manifest>
