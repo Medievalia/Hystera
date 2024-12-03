@@ -10,9 +10,13 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
+import androidx.core.app.NotificationCompat;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.Timestamp;
+
+import br.edu.fatecsaocaetano.hystera.R;
 
 public class NotificationHelper {
 
@@ -30,6 +34,17 @@ public class NotificationHelper {
         this.db = FirebaseFirestore.getInstance();
 
         createNotificationChannels();
+    }
+
+    public void sendImmediateNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID_CYCLE)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        notificationManager.notify((int) System.currentTimeMillis(), builder.build());
     }
 
     // Criar os canais de notificação para ciclos e medicamentos

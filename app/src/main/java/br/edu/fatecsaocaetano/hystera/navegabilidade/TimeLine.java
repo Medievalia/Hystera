@@ -40,6 +40,9 @@ public class TimeLine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linha_tempo);
 
+        NotificationHelper notificationHelper = new NotificationHelper(this);
+        notificationHelper.sendImmediateNotification("View Aberta", "Você abriu a tela de Example.");
+
         //navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         BottomNavigationHelper menuHelper = new BottomNavigationHelper();
