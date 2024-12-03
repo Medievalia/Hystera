@@ -1,140 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
-
-    <!-- Logo -->
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/logo"
-        android:layout_width="0dp"
-        android:layout_height="280dp"
-        android:src="@drawable/logo"
-        android:scaleType="fitCenter"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
-        app:strokeWidth="2dp" />
-
-    <!-- Email TextView -->
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:textColor="#8C52FF"
-        android:fontFamily="@font/kurale"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="16dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editTextEmailLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:hint="Ex: hystera@gmail.com"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeColor="@color/purple_500"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/textViewEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:padding="15sp"
-            android:textColor="@color/purple_500"
-            android:textSize="18sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!-- Senha TextView -->
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textViewSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senha"
-        android:textColor="#8C52FF"
-        android:fontFamily="@font/kurale"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/editTextEmailLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="16dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutSenha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:hint="******"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeColor="@color/purple_500"
-        app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/textViewSenha"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:padding="15sp"
-            android:textColor="@color/purple_500"
-            android:textSize="18sp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <!-- Esqueceu a senha Button -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/esqueceu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Esqueceu a senha? Clique aqui"
-        android:textColor="#8A50FF"
-        android:textSize="14sp"
-        android:fontFamily="@font/kurale"
-        android:backgroundTint="@android:color/transparent"
-        app:cornerRadius="8dp"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutSenha"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"/>
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_seguinte"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="Login"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        android:fontFamily="@font/kurale"
-        android:layout_margin="30dp"
-        app:cornerRadius="8dp"
-        app:backgroundTint="#8A50FF"
-        app:strokeColor="#8A50FF"
-        app:strokeWidth="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/esqueceu" />
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Logo -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="280dp"
+            android:src="@drawable/logo"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            app:strokeWidth="2dp" />
+
+        <!-- Email TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="#8C52FF"
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextEmailLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="Ex: hystera@gmail.com"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@id/textViewEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Senha TextView -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewSenha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senha"
+            android:textColor="#8C52FF"
+            android:fontFamily="@font/kurale"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/editTextEmailLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutSenha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:hint="******"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/purple_500"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintTop_toBottomOf="@id/textViewSenha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:textColor="@color/purple_500"
+                android:textSize="18sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Esqueceu a senha Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/esqueceu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Esqueceu a senha? Clique aqui"
+            android:textColor="#8A50FF"
+            android:textSize="14sp"
+            android:fontFamily="@font/kurale"
+            android:backgroundTint="@android:color/transparent"
+            app:cornerRadius="8dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutSenha"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_seguinte"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Login"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:fontFamily="@font/kurale"
+            android:layout_margin="30dp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#8A50FF"
+            app:strokeColor="#8A50FF"
+            app:strokeWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/esqueceu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

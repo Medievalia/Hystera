@@ -19,7 +19,7 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         // Criação da notificação
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationHelper.CHANNEL_ID_CYCLE)
-                .setSmallIcon(R.drawable.ic_medical)  // Certifique-se de que o ícone está correto
+                .setSmallIcon(R.drawable.diu)  // Certifique-se de que o ícone está correto
                 .setContentTitle("Notificação")
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
