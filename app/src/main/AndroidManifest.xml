@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" android:maxSdkVersion="33" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
@@ -68,5 +68,7 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditAnnotationActivity" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditCycleOne" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditCycleTwo" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notes" android:exported="true"
+            tools:ignore="Instantiatable" />
     </application>
 </manifest>
