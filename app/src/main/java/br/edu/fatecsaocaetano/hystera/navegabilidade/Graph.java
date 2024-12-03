@@ -49,25 +49,15 @@ public class Graph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafic);
 
-        // Inicializando o botão "Voltar"
         voltarButton = findViewById(R.id.voltar_button);
-        voltarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        voltarButton.setOnClickListener(v -> finish());
 
         perfilButton = findViewById(R.id.button_perfil);
-        perfilButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Graph.this, Profile.class);
-                startActivity(intent);
-            }
+        perfilButton.setOnClickListener(v -> {
+            Intent intent = new Intent(Graph.this, Profile.class);
+            startActivity(intent);
         });
 
-        // Inicializando o LineChart
         lineChart = findViewById(R.id.chart);
         lineChart.setBackgroundColor(Color.WHITE);
         if (lineChart == null) {
@@ -75,27 +65,19 @@ public class Graph extends AppCompatActivity {
             return;
         }
 
-        // Inicializando o CircularSeekBar
         seekbarDuration = findViewById(R.id.seekbar_duration);
         seekbarBleeding = findViewById(R.id.seekbar_duration1);
-
-        // Definindo o máximo da seekbar de sangramento
         seekbarBleeding.setMax(15);
-
-        // Desabilitando a interação do usuário nas seekBars
         seekbarDuration.setEnabled(false);
         seekbarBleeding.setEnabled(false);
 
-        // Inicializando os TextViews
-        resultDuration = findViewById(R.id.result_duration); // Para a média de duração
-        resultBleeding = findViewById(R.id.result_duration1); // Para a média de sangramento
+        resultDuration = findViewById(R.id.result_duration);
+        resultBleeding = findViewById(R.id.result_duration1);
 
-        // Inicializando as listas de entradas do gráfico
         List<Entry> cycleEntries = new ArrayList<>();
         List<Entry> bleedingEntries = new ArrayList<>();
         List<String> monthLabels = new ArrayList<>();
 
-        // Chamando o método para buscar dados do Firestore
         getLastSixCycles(cycleEntries, bleedingEntries, monthLabels);
     }
 
@@ -124,13 +106,17 @@ public class Graph extends AppCompatActivity {
                             calendar.add(Calendar.MONTH, -1);
                         }
 
-                        // Inicializa os meses no mapa
                         for (String month : allMonths) {
                             monthlyDataDuration.put(month, 0);
                             monthlyDataBleeding.put(month, 0);
                         }
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
+                            Boolean notCorrect = document.getBoolean("notCorrect");
+                            if (notCorrect != null && notCorrect) {
+                                continue;
+                            }
+
                             Long duration = document.getLong("duration");
                             Long bleeding = document.getLong("bleeding");
                             Date startDate = document.getDate("startDate");
@@ -153,28 +139,22 @@ public class Graph extends AppCompatActivity {
                             }
                         }
 
-                        // Adiciona entradas ao gráfico apenas para meses que têm dados
                         for (int index = 0; index < allMonths.size(); index++) {
                             int durationValue = monthlyDataDuration.get(allMonths.get(index));
                             int bleedingValue = monthlyDataBleeding.get(allMonths.get(index));
-                            if (durationValue > 0 || bleedingValue > 0) { // Adiciona apenas se a duração ou sangramento for maior que zero
+                            if (durationValue > 0 || bleedingValue > 0) {
                                 cycleEntries.add(new Entry(index, durationValue));
                                 bleedingEntries.add(new Entry(index, bleedingValue));
                                 monthLabels.add(allMonths.get(index));
                             }
                         }
 
-                        // Logando o total para verificação
                         Log.d(tag, "Soma de Duração: " + sumDuration + ", Contagem: " + count);
                         Log.d(tag, "Soma de Sangramento: " + sumBleeding);
 
                         int averageDuration = (count > 0) ? (int) (sumDuration / count) : 0;
                         int averageBleeding = (count > 0) ? (int) (sumBleeding / count) : 0;
 
-                        Log.d(tag, "Média de Duração: " + averageDuration);
-                        Log.d(tag, "Média de Sangramento: " + averageBleeding);
-
-                        // Atualizando os TextViews com as médias
                         updateSeekBarWithAverage(averageDuration, averageBleeding);
                         updateResultTextViews(averageDuration, averageBleeding);
                         setupChart(cycleEntries, bleedingEntries, monthLabels);
@@ -185,9 +165,8 @@ public class Graph extends AppCompatActivity {
     }
 
     private void updateResultTextViews(int averageDuration, int averageBleeding) {
-        // Atualizando os TextViews com as médias
-        resultDuration.setText(averageDuration + " dias"); // Atualiza o primeiro TextView (duração)
-        resultBleeding.setText(averageBleeding + " dias"); // Atualiza o segundo TextView (sangramento)
+        resultDuration.setText(averageDuration + " dias");
+        resultBleeding.setText(averageBleeding + " dias");
     }
 
     private String getMonthYearLabel(Date date) {
@@ -200,11 +179,8 @@ public class Graph extends AppCompatActivity {
     }
 
     private void setupChart(List<Entry> cycleEntries, List<Entry> bleedingEntries, List<String> monthLabels) {
-        Log.d(tag, "Número de entradas: " + cycleEntries.size());
-
-        // Configurando o gráfico para a duração (linha roxa)
         LineDataSet lineDataSetDuration = new LineDataSet(cycleEntries, "Duração");
-        lineDataSetDuration.setColor(Color.parseColor("#FFBB86FC")); // Linha roxa
+        lineDataSetDuration.setColor(Color.parseColor("#FFBB86FC"));
         lineDataSetDuration.setCircleColor(Color.parseColor("#800080"));
         lineDataSetDuration.setLineWidth(2f);
         lineDataSetDuration.setCircleRadius(4f);
@@ -212,9 +188,8 @@ public class Graph extends AppCompatActivity {
         lineDataSetDuration.setValueTextSize(12f);
         lineDataSetDuration.setValueTextColor(Color.BLACK);
 
-        // Configurando o gráfico para o sangramento (linha vermelha)
         LineDataSet lineDataSetBleeding = new LineDataSet(bleedingEntries, "Sangramento");
-        lineDataSetBleeding.setColor(Color.RED); // Linha vermelha
+        lineDataSetBleeding.setColor(Color.RED);
         lineDataSetBleeding.setCircleColor(Color.RED);
         lineDataSetBleeding.setLineWidth(2f);
         lineDataSetBleeding.setCircleRadius(4f);
@@ -222,71 +197,42 @@ public class Graph extends AppCompatActivity {
         lineDataSetBleeding.setValueTextSize(12f);
         lineDataSetBleeding.setValueTextColor(Color.BLACK);
 
-        // Usando ValueFormatter personalizado para mostrar os valores inteiros
         lineDataSetDuration.setValueFormatter(new ValueFormatter() {
             @Override
             public String getPointLabel(Entry entry) {
-                return String.valueOf((int) entry.getY()); // Exibe o valor como inteiro
+                return String.valueOf((int) entry.getY());
             }
         });
 
         lineDataSetBleeding.setValueFormatter(new ValueFormatter() {
             @Override
             public String getPointLabel(Entry entry) {
-                return String.valueOf((int) entry.getY()); // Exibe o valor como inteiro
+                return String.valueOf((int) entry.getY());
             }
         });
 
-        // Configurando os dados do gráfico
         LineData lineData = new LineData(lineDataSetDuration, lineDataSetBleeding);
         lineChart.setData(lineData);
 
-        // Configurando o eixo X com os nomes dos meses
         XAxis xAxis = lineChart.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(monthLabels));
+        xAxis.setDrawLabels(false); // Desabilita os rótulos do eixo X
+        xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f);
         xAxis.setGranularityEnabled(true);
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawLabels(true);
-        xAxis.setTextSize(12f);
-        xAxis.setAxisMinimum(0f); // Define o valor mínimo do eixo X
-        xAxis.setTextColor(Color.BLACK);
-        xAxis.setDrawAxisLine(true);
-        xAxis.setAxisLineColor(Color.BLACK);
-        xAxis.setDrawGridLines(false); // Desabilita as linhas de grade do eixo X
-        xAxis.setLabelCount(monthLabels.size(), true); // Certifique-se de que há um rótulo para cada mês
 
-        // Adicionando rótulo ao eixo X
-        xAxis.setDrawLabels(true);
-        lineChart.getXAxis().setLabelCount(monthLabels.size());
-
-        // Configurando o eixo Y (durante e sangramento em dias)
         YAxis leftAxis = lineChart.getAxisLeft();
-        leftAxis.setLabelCount(6, true);
-        leftAxis.setDrawLabels(true);
-        leftAxis.setDrawAxisLine(true);
-        leftAxis.setAxisLineColor(Color.BLACK);
-        leftAxis.setTextColor(Color.BLACK);
-        leftAxis.setTextSize(12f);
-        leftAxis.setAxisMinimum(0f); // Definir o mínimo de dias como 0
-        leftAxis.setGranularity(1f); // Define a granularidade para mostrar os números inteiros
-        leftAxis.setDrawGridLines(true); // Exibe as linhas de grade no eixo Y
-
-        // Oculta o eixo Y da direita
         YAxis rightAxis = lineChart.getAxisRight();
+        leftAxis.setDrawGridLines(false);
         rightAxis.setEnabled(false);
 
-        // Removendo a descrição do gráfico
         Description description = new Description();
-        description.setText(""); // Define o texto da descrição como vazio
+        description.setText("Histórico de Ciclos");
+        description.setTextSize(14f);
         lineChart.setDescription(description);
-
-        // Atualizando o gráfico
-        lineChart.invalidate(); // Redesenha o gráfico
+        lineChart.animateX(1000);
     }
 
     private void updateSeekBarWithAverage(int averageDuration, int averageBleeding) {
-        // Atualiza os CircularSeekBars com as médias
         seekbarDuration.setProgress(averageDuration);
         seekbarBleeding.setProgress(averageBleeding);
     }
