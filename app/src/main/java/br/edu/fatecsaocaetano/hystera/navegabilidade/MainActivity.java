@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.fatecsaocaetano.hystera.R;
+import br.edu.fatecsaocaetano.hystera.navegabilidade.NotificationHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,16 +24,22 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_main);
 
+        // Verificando se o usuário está autenticado
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
         if (usuarioAtual != null) {
+            // Se o usuário estiver autenticado, vai para a tela de Timeline
             Intent intent = new Intent(MainActivity.this, TimeLine.class);
             startActivity(intent);
             Log.i(tag, "Usuário já autenticado, inicializando tela de linha do tempo!");
             finish();
         } else {
+            // Se o usuário não estiver autenticado, configura os botões de login e criação de conta
             btnTenhoUmaConta();
             btnComeceAgora();
         }
+
+        // Inicializa e agenda as notificações
+        scheduleNotifications();
     }
 
     private void btnTenhoUmaConta() {
@@ -63,5 +70,21 @@ public class MainActivity extends AppCompatActivity {
     private void createAccount() {
         Intent intent = new Intent(MainActivity.this, CreateAccount.class);
         startActivity(intent);
+    }
+
+    // Método para agendar as notificações
+    private void scheduleNotifications() {
+        NotificationHelper notificationHelper = new NotificationHelper(this);
+
+        // Verifica se o usuário está autenticado para agendar as notificações
+        FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
+        if (usuarioAtual != null) {
+            String userID = usuarioAtual.getUid();
+
+            // Envia notificações
+            notificationHelper.sendImmediateNotification("Aplicativo Aberto", "Você abriu o aplicativo.");
+            notificationHelper.scheduleCyclePhaseNotifications(this, userID);
+            notificationHelper.scheduleMedicationNotifications(userID);
+        }
     }
 }

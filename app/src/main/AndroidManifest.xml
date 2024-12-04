@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -70,5 +69,16 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditCycleTwo" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notes" android:exported="true"
             tools:ignore="Instantiatable" />
+
+        <!-- Adicionando o BroadcastReceiver -->
+        <receiver
+            android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.MedicineReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.exemplo.EVENTO_PERSONALIZADO" />
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>

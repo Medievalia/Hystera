@@ -42,9 +42,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         }
     }
 
-    /**
-     * Processar notificações de mudanças de fase do ciclo.
-     */
+    // Processa a notificação de mudança de fase
     private void handlePhaseNotification(Context context, NotificationManager notificationManager, Intent intent) {
         String phase = intent.getStringExtra("phase");
         if (phase == null) {
@@ -63,9 +61,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         Log.d(tag, "Notificação de fase enviada: " + phase);
     }
 
-    /**
-     * Processar notificações de medicamentos.
-     */
+    // Processa a notificação de medicamento
     private void handleMedicationNotification(Context context, NotificationManager notificationManager, Intent intent) {
         String message = intent.getStringExtra("message");
         boolean sound = intent.getBooleanExtra("sound", false);

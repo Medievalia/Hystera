@@ -119,21 +119,25 @@ public class NotificationHelper {
             return;
         }
 
+        // Recupera todos os medicamentos do banco de dados para o usuário
         db.collection("Usuarios")
                 .document(userID)
                 .collection("Medicines")
-                .addSnapshotListener((snapshots, e) -> {
-                    if (e != null) {
-                        Log.e(tag, "Erro ao ouvir alterações nos medicamentos.", e);
+                .get()  // Usando .get() para recuperar todos os medicamentos
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    if (queryDocumentSnapshots.isEmpty()) {
+                        Log.d(tag, "Nenhum medicamento encontrado.");
                         return;
                     }
-                    for (DocumentChange dc : snapshots.getDocumentChanges()) {
-                        if (dc.getType() == DocumentChange.Type.ADDED) {
-                            processMedicationDocument(dc.getDocument().getData());
-                        }
+
+                    for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                        // Processa cada medicamento individualmente
+                        processMedicationDocument(document.getData());
                     }
-                });
+                })
+                .addOnFailureListener(e -> Log.e(tag, "Erro ao recuperar medicamentos.", e));
     }
+
 
     /**
      * Processar documento de medicamentos para agendamento de notificações.

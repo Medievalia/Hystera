@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "br.edu.fatecsaocaetano.hystera"
-        minSdk 30
+        minSdk 31
         targetSdk 33
         versionCode 1
         versionName "1.0"
