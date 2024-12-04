@@ -40,8 +40,18 @@ public class TimeLine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linha_tempo);
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        try {
+            userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        } catch (NullPointerException e) {
+            Log.e(tag, "ID do usuário não encontrado!");
+            return;
+        }
+
         NotificationHelper notificationHelper = new NotificationHelper(this);
         notificationHelper.sendImmediateNotification("View Aberta", "Você abriu a tela de Example.");
+        notificationHelper.scheduleCyclePhaseNotifications(this, userID);
+        notificationHelper.scheduleMedicationNotifications(userID);
 
         //navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -80,14 +90,6 @@ public class TimeLine extends AppCompatActivity {
         seekBar.setEnabled(false);
         seekBarPeriod.setEnabled(false);
         seekBarNextBleeding.setEnabled(false);
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        try {
-            userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        } catch (NullPointerException e) {
-            Log.e(tag, "ID do usuário não encontrado!");
-            return;
-        }
 
         db.collection("Usuarios")
                 .document(userID)
@@ -159,7 +161,7 @@ public class TimeLine extends AppCompatActivity {
                                 currentCycle = ultimoCiclo;
                             }
                         } else {
-                            Log.e(tag, "Ciclo nulo para usuário: " + userID);
+                            Log.e(tag, "Ciclo nulo para usuário");
                         }
 
                         atualizandoSeekBar(currentCycle);
@@ -200,13 +202,13 @@ public class TimeLine extends AppCompatActivity {
     private void atualizandoSeekBar(Cycle currentCycle) {
         Map<String, String> informacoesCiclo = currentCycle.obterInformacoesDoCicloAtual();
 
-        Log.i(tag, "Iniciando atualização dos componentes SeekBar " + userID);
+        Log.i(tag, "Iniciando atualização dos componentes SeekBar");
         int duracaoCiclo = currentCycle.getDuration();
         String nomeFase = informacoesCiclo.get("faseAtual");
         String diaDoCiclo = informacoesCiclo.get("diaDoCiclo");
 
-        Log.i(tag, "Fase atual do ciclo: " + nomeFase + ", " + userID);
-        Log.i(tag, "Dia do ciclo: " + diaDoCiclo + "º, " + userID);
+        Log.i(tag, "Fase atual do ciclo: " + nomeFase);
+        Log.i(tag, "Dia do ciclo: " + diaDoCiclo + "º");
 
         MaterialTextView resultDuration = findViewById(R.id.result_duration);
         if (nomeFase.equals("Ovulacao")) {
@@ -228,8 +230,8 @@ public class TimeLine extends AppCompatActivity {
             resultDuration1.setText(String.format("Em %d dia", diasProximaMenstruacao));
         }
 
-        Log.i(tag, "Dias restantes para a próxima menstruação: " + diasProximaMenstruacao + " dias, " + userID);
-        Log.i(tag, "Dias restantes para o próximo período do ciclo: " + diasProximaFase + " dias, " + userID);
+        Log.i(tag, "Dias restantes para a próxima menstruação: " + diasProximaMenstruacao + " dias");
+        Log.i(tag, "Dias restantes para o próximo período do ciclo: " + diasProximaFase + " dias");
 
         float progressoSeekBarDiaDoCiclo = (Float.parseFloat(diaDoCiclo) / duracaoCiclo) * 100;
 
@@ -337,7 +339,7 @@ public class TimeLine extends AppCompatActivity {
                             currentCycle = ultimoCiclo;
                             atualizandoSeekBar(currentCycle);
                         } else {
-                            Log.e(tag, "Ciclo nullo para usuário: " + userID);
+                            Log.e(tag, "Ciclo nulo para usuário");
                         }
                     } else {
                         Log.e(tag, "Nenhum ciclo encontrado.");

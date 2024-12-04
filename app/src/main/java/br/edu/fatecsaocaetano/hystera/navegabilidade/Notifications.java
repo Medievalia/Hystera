@@ -1,42 +1,26 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import br.edu.fatecsaocaetano.hystera.R;
-
 import android.provider.Settings;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class Notifications extends AppCompatActivity {
 
     private NotificationHelper notificationHelper;
     private final String tag = "NotificationsClass";
-    private MaterialButton changeImageButton;
     private MaterialButton voltarButton;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +29,10 @@ public class Notifications extends AppCompatActivity {
         voltarButton = findViewById(R.id.voltar_button);
 
         notificationHelper = new NotificationHelper(this);
-        //setupFirebaseListeners();
-        sendTestNotification();
+        // Configuração dos switches
+        SwitchMaterial notificationSwitch = findViewById(R.id.notificationSwitch);
+        SwitchMaterial soundSwitch = findViewById(R.id.soundSwitch);
+        SwitchMaterial vibrationSwitch = findViewById(R.id.vibrationSwitch);
 
         //navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -77,84 +63,62 @@ public class Notifications extends AppCompatActivity {
             }
         });
 
-        voltarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        // Configuração inicial dos switches com SharedPreferences
+        sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE);
 
-        SwitchMaterial notificationSwitch = findViewById(R.id.notificationSwitch);
-        SwitchMaterial soundSwitch = findViewById(R.id.soundSwitch);
-        SwitchMaterial vibrationSwitch = findViewById(R.id.vibrationSwitch);
+        // Recuperando os valores de preferências para o estado inicial
+        boolean areNotificationsEnabled = sharedPreferences.getBoolean("notificationsEnabled", true);
+        boolean isSoundEnabled = sharedPreferences.getBoolean("soundEnabled", true);
+        boolean isVibrationEnabled = sharedPreferences.getBoolean("vibrationEnabled", true);
 
+        // Configura os switches de acordo com as preferências
+        notificationSwitch.setChecked(areNotificationsEnabled);
+        soundSwitch.setChecked(isSoundEnabled);
+        vibrationSwitch.setChecked(isVibrationEnabled);
+
+        // Ativar/desativar notificações
         notificationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                sendNotification("title", "message");
+                Toast.makeText(this, "Notificações ativadas", Toast.LENGTH_SHORT).show();
+                notificationHelper.enableNotifications();
             } else {
                 Toast.makeText(this, "Notificações desativadas", Toast.LENGTH_SHORT).show();
+                notificationHelper.disableNotifications();
             }
+
+            // Salvar a preferência
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("notificationsEnabled", isChecked);
+            editor.apply();
         });
 
-        // Listener para o switch de som
+        // Som
         soundSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             Toast.makeText(this, isChecked ? "Som ativado" : "Som desativado", Toast.LENGTH_SHORT).show();
+            // Salvar a preferência
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("soundEnabled", isChecked);
+            editor.apply();
         });
 
-        // Listener para o switch de vibração
+        // Vibração
         vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             Toast.makeText(this, isChecked ? "Vibração ativada" : "Vibração desativada", Toast.LENGTH_SHORT).show();
+            // Salvar a preferência
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("vibrationEnabled", isChecked);
+            editor.apply();
         });
+
+        // Botão voltar
+        voltarButton.setOnClickListener(v -> finish());
     }
 
-    private void sendNotification(String t, String m) {
-        // Configurações de título e mensagem
-        String title = t;
-        String message = m;
-        int id = generateID();
-
-        // Enviar notificação usando o NotificationHelper
-        //notificationHelper.sendCycleNotification(title, message, id);
-    }
-
-    private int generateID(){
-        return 1;
-    }
-
-    private void sendTestNotification() {
-        // Verifica se o app tem permissão para agendar alarmes exatos
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            if (alarmManager != null && !alarmManager.canScheduleExactAlarms()) {
-                // Se não tiver permissão, solicitar permissão ao usuário
-                requestExactAlarmPermission();
-                return;  // Não agendar o alarme até que a permissão seja concedida
-            }
-        }
-
-        // Configurar uma notificação de teste que será disparada em 5 segundos
-        long triggerTime = System.currentTimeMillis() + 5000; // 5 segundos a partir de agora
-
-        Intent intent = new Intent(this, NotificationReceiver.class);
-        intent.putExtra("message", "Esta é uma notificação de teste!");
-        Log.e("que", "erro");
-
-        // Usar FLAG_IMMUTABLE ou FLAG_MUTABLE
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        if (alarmManager != null) {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
-        }
-    }
-
+    // Solicitar permissão para alarmes exatos, caso necessário
     private void requestExactAlarmPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
             startActivity(intent);
         }
     }
-
 }
-
-
