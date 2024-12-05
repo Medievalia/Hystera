@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.github.mikephil.charting.charts.LineChart;
@@ -16,7 +19,9 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -79,6 +84,35 @@ public class Graph extends AppCompatActivity {
         List<String> monthLabels = new ArrayList<>();
 
         getLastSixCycles(cycleEntries, bleedingEntries, monthLabels);
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationHelper menuHelper = new BottomNavigationHelper();
+        menuHelper.setNavigationFocus(bottomNavigationView, R.id.nav_seekbar);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.nav_anota) {
+                    startActivity(new Intent(Graph.this, Notes.class));
+                    startActivity(new Intent(Graph.this, Annotations.class));
+                    return true;
+                } else if (id == R.id.nav_calendario) {
+                    startActivity(new Intent(Graph.this, CalendarCycle.class));
+                    return true;
+                } else if (id == R.id.nav_utero) {
+                    startActivity(new Intent(Graph.this, Informations.class));
+                    return true;
+                } else if (id == R.id.nav_seekbar) {
+                    startActivity(new Intent(Graph.this, TimeLine.class));
+                    return true;
+                } else if (id == R.id.nav_medicacao) {
+                    startActivity(new Intent(Graph.this, Medicine.class));
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void getLastSixCycles(List<Entry> cycleEntries, List<Entry> bleedingEntries, List<String> monthLabels) {

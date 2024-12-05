@@ -2,11 +2,14 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -37,6 +40,7 @@ public class CreateAccount extends AppCompatActivity {
     String[] mensagens = {"Preencha todos os campos!", "Cadastro realizado com sucesso!", "Para prosseguir é necessário aceitar os Termos de Uso!"};
     private String userID;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criacao_conta);
@@ -45,6 +49,17 @@ public class CreateAccount extends AppCompatActivity {
         campo_celular.addTextChangedListener(Mask.insert("(##)#####-####", campo_celular));
 
         iniciarComponentes();
+
+        // Adiciona o Listener para o TextView de Termos de Uso
+        TextView termosDeUsoText = findViewById(R.id.declaro_que_li_e_aceito_os_termos_de_uso_e_pol_tica_de_privacidade);
+        termosDeUsoText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Inicia a nova Activity para exibir o PDF
+                Intent intent = new Intent(CreateAccount.this, ShowPdfActivity.class);
+                startActivity(intent);
+            }
+        });
 
         AppCompatButton cadastrar = findViewById(R.id.cadastrar);
         cadastrar.setOnClickListener(new View.OnClickListener() {

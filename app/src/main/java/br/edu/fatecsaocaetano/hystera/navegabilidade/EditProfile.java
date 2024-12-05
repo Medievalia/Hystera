@@ -78,7 +78,12 @@ public class EditProfile extends AppCompatActivity {
 
     private void configurarBotaoVoltar() {
         MaterialButton voltar = findViewById(R.id.voltar_button);
-        voltar.setOnClickListener(v -> startActivity(new Intent(EditProfile.this, Profile.class)));
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void configurarSpinner() {

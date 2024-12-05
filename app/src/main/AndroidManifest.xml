@@ -87,6 +87,7 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditMedicine" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditAnnotationActivity" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditCycleOne" android:exported="true" />
+        <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ShowPdfActivity" android:exported="true"/>
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditCycleTwo" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notes" android:exported="true"
             tools:ignore="Instantiatable" />
