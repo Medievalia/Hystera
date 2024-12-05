@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,6 +11,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -40,6 +42,11 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".navegabilidade.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <!-- Outras atividades -->
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.ResetPassword" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.PasswordRedefined" android:exported="true" />
@@ -69,16 +76,5 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.EditCycleTwo" android:exported="true" />
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notes" android:exported="true"
             tools:ignore="Instantiatable" />
-
-        <!-- Adicionando o BroadcastReceiver -->
-        <receiver
-            android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.MedicineReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.exemplo.EVENTO_PERSONALIZADO" />
-            </intent-filter>
-        </receiver>
-
     </application>
 </manifest>

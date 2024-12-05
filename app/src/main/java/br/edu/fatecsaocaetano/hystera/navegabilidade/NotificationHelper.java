@@ -20,7 +20,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -43,7 +46,7 @@ public class NotificationHelper {
         this.context = context;
         this.notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         this.db = FirebaseFirestore.getInstance();
-        this.notificationsEnabled = true; // Habilitado por padrão
+        this.notificationsEnabled = true;
         createNotificationChannels();
     }
 
@@ -119,25 +122,21 @@ public class NotificationHelper {
             return;
         }
 
-        // Recupera todos os medicamentos do banco de dados para o usuário
         db.collection("Usuarios")
                 .document(userID)
                 .collection("Medicines")
-                .get()  // Usando .get() para recuperar todos os medicamentos
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    if (queryDocumentSnapshots.isEmpty()) {
-                        Log.d(tag, "Nenhum medicamento encontrado.");
+                .addSnapshotListener((snapshots, e) -> {
+                    if (e != null) {
+                        Log.e(tag, "Erro ao ouvir alterações nos medicamentos.", e);
                         return;
                     }
-
-                    for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
-                        // Processa cada medicamento individualmente
-                        processMedicationDocument(document.getData());
+                    for (DocumentChange dc : snapshots.getDocumentChanges()) {
+                        if (dc.getType() == DocumentChange.Type.ADDED) {
+                            processMedicationDocument(dc.getDocument().getData());
+                        }
                     }
-                })
-                .addOnFailureListener(e -> Log.e(tag, "Erro ao recuperar medicamentos.", e));
+                });
     }
-
 
     /**
      * Processar documento de medicamentos para agendamento de notificações.
@@ -148,66 +147,71 @@ public class NotificationHelper {
         Boolean vibration = (Boolean) data.get("vibration");
         Number trigger = (Number) data.get("trigger");
         Timestamp drugDate = (Timestamp) data.get("drugDate");
-        Log.e(tag, "drugDate (calculado) " + drugDate);
         String drugName = (String) data.get("drugName");
 
         if (notificationEnabled != null && notificationEnabled && drugDate != null && trigger != null) {
-            long interval = trigger.longValue() * 3600 * 1000;
+            long interval = trigger.longValue() * 3600000L;
             scheduleMedicationNotification(drugName.hashCode(), drugName, drugDate, interval, sound, vibration);
         }
     }
 
-    /**
-     * Agendar notificação para medicamento.
-     */
-    private void scheduleMedicationNotification(int id, String drugName, Timestamp startTime, long interval, Boolean sound, Boolean vibration) {
-        long startMillis = startTime.getSeconds() * 1000L; // Hora em UTC (milissegundos)
-        long currentMillis = System.currentTimeMillis();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(startMillis); // O fuso horário já será ajustado para o local
+    public static long calculateTriggerTime(long drugTimestamp, long intervalMillis) {
+        long currentTime = System.currentTimeMillis(); // Em UTC
 
-        // Agora, `calendar.getTimeInMillis()` vai retornar o horário ajustado para o fuso horário de Brasília
-        long adjustedStartMillis = calendar.getTimeInMillis();
+        // Calcular o triggerTime inicial
+        long triggerTime = drugTimestamp + intervalMillis;
 
-        // Somar o intervalo (em milissegundos) ao horário ajustado para o fuso horário
-        long triggerTime = adjustedStartMillis + interval;
-
-        // Log para depuração
-        Log.e(tag, "triggerTime (calculado) " + triggerTime);
-        Log.e(tag, "startMillis " + startMillis);
-        Log.e(tag, "adjustedStartMillis " + adjustedStartMillis);
-        Log.e(tag, "interval " + interval);
-
-        // Verifica se o triggerTime está no passado e ajusta
-        while (triggerTime < currentMillis) {
-            triggerTime += interval;  // Ajuste o triggerTime caso ele já tenha passado
+        // Ajustar o triggerTime se já tiver passado
+        while (triggerTime < currentTime) {
+            triggerTime += intervalMillis;
         }
 
-        // Criar a Intent para a notificação
-        Intent intent = new Intent(context, NotificationReceiver.class);
-        intent.putExtra("message", "Hora de tomar o medicamento: " + drugName);
-        intent.putExtra("sound", sound);
-        intent.putExtra("vibration", vibration);
+        // Registrar os horários legíveis para depuração (sem conversão de fuso horário)
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Log.d("DEBUG", "Start Time (Date): " + sdf.format(new Date(drugTimestamp)));
+        Log.d("DEBUG", "IntervalMillis: " + intervalMillis);
+        Log.d("DEBUG", "Trigger Time (Date): " + sdf.format(new Date(triggerTime)));
+        Log.d("DEBUG", "Current Time (Date): " + sdf.format(new Date(currentTime)));
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_IMMUTABLE);
+        return triggerTime;
+    }
+
+    private void scheduleMedicationNotification(int id, String drugName, Timestamp startTime, long interval, Boolean sound, Boolean vibration) {
+        long startMillis = startTime.getSeconds() * 1000;
+        long currentMillis = System.currentTimeMillis();
+
+        long triggerTime = calculateTriggerTime(startMillis, interval);
+
+        Log.d("DEBUG", "Start Time (UTC): " + startMillis);
+        Log.d("DEBUG", "Trigger Time: " + triggerTime + ", Current Time: " + currentMillis);
+
+        Intent intent = new Intent(context, NotificationReceiver.class);
+        intent.putExtra("type", "medication");
+        intent.putExtra("message", "Tomar o medicamento " + drugName);
+        intent.putExtra("sound", true);
+        intent.putExtra("vibration", true);
+        context.sendBroadcast(intent);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         if (alarmManager != null) {
             try {
-                // Agendar o alarme com o horário calculado
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+                    Log.d(tag, "Alarme exato agendado para: " + new Date(triggerTime));
                 } else {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, interval, pendingIntent);
+                    Log.d(tag, "Alarme repetitivo agendado para: " + new Date(triggerTime));
                 }
-                Log.d(tag, "Notificação agendada para " + drugName + " às " + triggerTime);
             } catch (SecurityException e) {
                 Log.e(tag, "Erro ao agendar alarme exato: ", e);
             }
+        } else {
+            Log.e(tag, "AlarmManager está nulo. Não foi possível agendar.");
         }
     }
-
 
     /**
      * Agendar notificações de fases do ciclo.
@@ -259,7 +263,7 @@ public class NotificationHelper {
 
         return PendingIntent.getBroadcast(
                 context,
-                phase.hashCode(), // ID único baseado na fase
+                phase.hashCode(),
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
