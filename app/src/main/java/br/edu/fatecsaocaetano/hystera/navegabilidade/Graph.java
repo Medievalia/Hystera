@@ -128,22 +128,10 @@ public class Graph extends AppCompatActivity {
                         long sumBleeding = 0;
                         int count = 0;
 
-                        Map<String, Integer> monthlyDataDuration = new HashMap<>();
-                        Map<String, Integer> monthlyDataBleeding = new HashMap<>();
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(new Date());
-                        List<String> allMonths = new ArrayList<>();
 
-                        for (int i = 0; i < 6; i++) {
-                            String monthYearLabel = getMonthYearLabel(calendar.getTime());
-                            allMonths.add(monthYearLabel);
-                            calendar.add(Calendar.MONTH, -1);
-                        }
-
-                        for (String month : allMonths) {
-                            monthlyDataDuration.put(month, 0);
-                            monthlyDataBleeding.put(month, 0);
-                        }
+                        int index = 0;  // Para garantir que cada ciclo tenha um índice único no gráfico
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Boolean notCorrect = document.getBoolean("notCorrect");
@@ -156,8 +144,9 @@ public class Graph extends AppCompatActivity {
                             Date startDate = document.getDate("startDate");
 
                             if (duration != null && startDate != null) {
-                                String monthYearLabel = getMonthYearLabel(startDate);
-                                monthlyDataDuration.put(monthYearLabel, monthlyDataDuration.get(monthYearLabel) + duration.intValue());
+                                String monthYearLabel = getMonthYearLabel(startDate);  // Adiciona a label do mês
+                                cycleEntries.add(new Entry(index, duration.intValue()));  // Adiciona a duração de cada ciclo separadamente
+                                monthLabels.add(monthYearLabel);  // Adiciona a label de mês
                                 sumDuration += duration;
                                 count++;
                             } else {
@@ -165,22 +154,13 @@ public class Graph extends AppCompatActivity {
                             }
 
                             if (bleeding != null) {
-                                String monthYearLabel = getMonthYearLabel(startDate);
-                                monthlyDataBleeding.put(monthYearLabel, monthlyDataBleeding.get(monthYearLabel) + bleeding.intValue());
+                                bleedingEntries.add(new Entry(index, bleeding.intValue()));  // Adiciona o sangramento de cada ciclo separadamente
                                 sumBleeding += bleeding;
                             } else {
                                 Log.w(tag, "Sangramento não disponível para o documento: " + document.getId());
                             }
-                        }
 
-                        for (int index = 0; index < allMonths.size(); index++) {
-                            int durationValue = monthlyDataDuration.get(allMonths.get(index));
-                            int bleedingValue = monthlyDataBleeding.get(allMonths.get(index));
-                            if (durationValue > 0 || bleedingValue > 0) {
-                                cycleEntries.add(new Entry(index, durationValue));
-                                bleedingEntries.add(new Entry(index, bleedingValue));
-                                monthLabels.add(allMonths.get(index));
-                            }
+                            index++;  // Incrementa o índice para o próximo ciclo
                         }
 
                         Log.d(tag, "Soma de Duração: " + sumDuration + ", Contagem: " + count);
@@ -197,6 +177,7 @@ public class Graph extends AppCompatActivity {
                     }
                 });
     }
+
 
     private void updateResultTextViews(int averageDuration, int averageBleeding) {
         resultDuration.setText(averageDuration + " dias");

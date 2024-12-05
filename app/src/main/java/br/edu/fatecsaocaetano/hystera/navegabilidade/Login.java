@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.edu.fatecsaocaetano.hystera.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         iniciarComponentes();
+        configurarBotaoVoltar();
 
         esqueceu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +64,16 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(Login.this, ResetPassword.class);
         startActivity(intent);
         finish();
+    }
+
+    private void configurarBotaoVoltar() {
+        MaterialButton voltar = findViewById(R.id.voltar_button);
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void autenticarUsuario(){

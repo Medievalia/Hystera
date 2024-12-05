@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,6 +12,25 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF">
 
+        <!-- Botão Voltar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/voltar_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FFFFFF"
+            android:contentDescription="Voltar"
+            app:icon="@drawable/vector"
+            app:iconTint="#8A50FF"
+            app:iconGravity="textStart"
+            app:iconPadding="5dp"
+            app:cornerRadius="100dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <!-- Logo -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/logo"
@@ -20,10 +38,10 @@
             android:layout_height="280dp"
             android:src="@drawable/logo"
             android:scaleType="fitCenter"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/voltar_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             app:strokeWidth="2dp" />
 
         <!-- Email TextView -->
@@ -65,7 +83,6 @@
                 android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <!-- Senha TextView -->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewSenha"
@@ -105,7 +122,6 @@
                 android:textSize="18sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <!-- Esqueceu a senha Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/esqueceu"
@@ -126,7 +142,6 @@
             android:layout_marginTop="0dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"/>
-
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_seguinte"
