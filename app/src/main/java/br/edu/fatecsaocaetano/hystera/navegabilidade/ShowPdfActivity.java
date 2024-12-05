@@ -3,6 +3,7 @@ package br.edu.fatecsaocaetano.hystera.navegabilidade;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
@@ -11,45 +12,34 @@ import br.edu.fatecsaocaetano.hystera.R;
 
 public class ShowPdfActivity extends AppCompatActivity {
 
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_pdf);
 
         WebView webView = findViewById(R.id.webview_pdf);
-        ProgressBar progressBar = findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar);
 
-        // Habilitar JavaScript se necessário
+        // Habilita o JavaScript no WebView (caso necessário)
         webView.getSettings().setJavaScriptEnabled(true);
 
-        // Define o cliente WebView para abrir o conteúdo dentro do WebView
+        // Configura o WebView para abrir o PDF
         webView.setWebViewClient(new WebViewClient());
-
-        // Use WebChromeClient para gerenciar o progresso de carregamento
         webView.setWebChromeClient(new WebChromeClient() {
+            // Mostra o ProgressBar enquanto o PDF estiver carregando
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress < 100) {
-                    progressBar.setVisibility(View.VISIBLE);  // Exibe o ProgressBar
+                    progressBar.setVisibility(View.VISIBLE);
                 } else {
-                    progressBar.setVisibility(View.GONE);  // Oculta o ProgressBar quando carregado
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });
 
-        // Carregar o PDF da pasta assets
-        webView.loadUrl("file:///android_asset/Termos_uso.pdf");
-    }
-
-    @Override
-    public void onBackPressed() {
-        WebView webView = findViewById(R.id.webview_pdf);
-
-        // Se o WebView puder voltar para uma página anterior, faça isso
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            super.onBackPressed();
-        }
+        // Carrega o PDF diretamente do link "raw" do GitHub
+        webView.loadUrl("https://drive.google.com/file/d/1DuVOVujWOBLei4fdAwL3Qlr25WANfIRu/view");
     }
 }

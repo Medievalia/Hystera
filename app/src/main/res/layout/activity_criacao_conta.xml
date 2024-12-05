@@ -242,10 +242,7 @@
                 android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-
-        <!--Check Box termos de uso  -->
-
+        <!-- Check Box termos de uso  -->
         <LinearLayout
             android:id="@+id/terms"
             android:layout_width="match_parent"
@@ -261,16 +258,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="0dp"/>
 
+            <!-- Texto "Concordo com os" -->
             <TextView
                 android:id="@+id/declaro_que_li_e_aceito_os_termos_de_uso_e_pol_tica_de_privacidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/kurale"
                 android:text="Concordo com os Termos de Uso"
-                android:textColor="#000000"
+                android:textColor="#0000FF"
                 android:textSize="15sp" />
         </LinearLayout>
-
 
         <!-- Botão Casdatrar-->
         <com.google.android.material.button.MaterialButton
