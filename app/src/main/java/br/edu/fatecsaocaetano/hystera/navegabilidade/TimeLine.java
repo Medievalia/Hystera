@@ -48,8 +48,8 @@ public class TimeLine extends AppCompatActivity {
             return;
         }
 
-        NotificationHelper notificationHelper = new NotificationHelper(this);
-        notificationHelper.scheduleMedicationNotifications(userID);
+//        NotificationHelper notificationHelper = new NotificationHelper(this);
+//        notificationHelper.scheduleMedicationNotifications(userID);
 
         //navegação e menu
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

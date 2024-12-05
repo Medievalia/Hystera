@@ -8,24 +8,17 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.provider.Settings;
 import android.util.Log;
-import android.widget.Toast;
-
 import androidx.core.app.NotificationCompat;
-
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 import br.edu.fatecsaocaetano.hystera.R;
 
@@ -155,7 +148,6 @@ public class NotificationHelper {
         }
     }
 
-
     public static long calculateTriggerTime(long drugTimestamp, long intervalMillis) {
         long currentTime = System.currentTimeMillis(); // Em UTC
 
@@ -229,6 +221,37 @@ public class NotificationHelper {
                         Map<String, Map<String, Timestamp>> fases = (Map<String, Map<String, Timestamp>>) latestCycle.get("fases");
 
                         if (fases != null) {
+                            long currentTime = System.currentTimeMillis();
+                            String currentPhase = null;
+
+                            for (Map.Entry<String, Map<String, Timestamp>> entry : fases.entrySet()) {
+                                String fase = entry.getKey();
+                                Map<String, Timestamp> timestamps = entry.getValue();
+                                Timestamp inicio = timestamps.get("inicio");
+                                Timestamp fim = timestamps.get("fim");
+
+                                if (inicio != null && fim != null) {
+                                    long startTime = inicio.getSeconds() * 1000;
+                                    long endTime = fim.getSeconds() * 1000;
+
+                                    // Verificar se o horário atual está dentro da fase
+                                    if (currentTime >= startTime && currentTime <= endTime) {
+                                        currentPhase = fase;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            // Notificar a fase atual, se encontrada
+                            if (currentPhase != null) {
+                                NotificationHelper helper = new NotificationHelper(context);
+                                helper.sendImmediateNotification(
+                                        "Fase Atual do Ciclo",
+                                        "Você está na fase: " + currentPhase
+                                );
+                            }
+
+                            // Continuar agendando notificações futuras
                             for (Map.Entry<String, Map<String, Timestamp>> entry : fases.entrySet()) {
                                 String fase = entry.getKey();
                                 Map<String, Timestamp> timestamps = entry.getValue();
@@ -237,7 +260,7 @@ public class NotificationHelper {
                                 if (inicio != null) {
                                     long triggerTime = inicio.getSeconds() * 1000;
 
-                                    if (System.currentTimeMillis() < triggerTime) {
+                                    if (currentTime < triggerTime) {
                                         PendingIntent pendingIntent = createPendingIntent(context, userId, fase);
                                         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                                         if (alarmManager != null) {

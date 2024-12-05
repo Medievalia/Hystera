@@ -74,17 +74,18 @@ public class MainActivity extends AppCompatActivity {
 
     // Método para agendar as notificações
     private void scheduleNotifications() {
-        NotificationHelper notificationHelper = new NotificationHelper(this);
-
         // Verifica se o usuário está autenticado para agendar as notificações
         FirebaseUser usuarioAtual = FirebaseAuth.getInstance().getCurrentUser();
         if (usuarioAtual != null) {
             String userID = usuarioAtual.getUid();
 
-            // Envia notificações
-            notificationHelper.sendImmediateNotification("Aplicativo Aberto", "Você abriu o aplicativo.");
-            notificationHelper.scheduleCyclePhaseNotifications(this, userID);
+            // Agendar notificações da fase atual e futuras
+            NotificationHelper.scheduleCyclePhaseNotifications(this, userID);
+
+            // Agendar notificações para medicamentos
+            NotificationHelper notificationHelper = new NotificationHelper(this);
             notificationHelper.scheduleMedicationNotifications(userID);
         }
     }
+
 }

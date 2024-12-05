@@ -1,7 +1,12 @@
 package br.edu.fatecsaocaetano.hystera.navegabilidade;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
+
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
+
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Exclude;
@@ -16,6 +21,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class Cycle {
 
@@ -242,6 +248,37 @@ public class Cycle {
         calendar.set(Calendar.SECOND, 00);       // Ajustar para 59s
         calendar.set(Calendar.MILLISECOND, 000); // Ajustar para 999ms
         return new Timestamp(calendar.getTime());
+    }
+
+
+    public void agendarNotificacoes(Context context) {
+        for (Map.Entry<String, Map<String, Timestamp>> entry : fases.entrySet()) {
+            String nomeFase = entry.getKey();
+            Timestamp inicioFase = entry.getValue().get("inicio");
+
+            // Calcular o delay em milissegundos até o início da fase
+            long delay = calcularDelay(inicioFase);
+
+            // Agendar notificação para o início da fase
+            if (delay >= 0) {
+                agendarNotificacao(context, delay, nomeFase);
+            }
+        }
+    }
+
+    private long calcularDelay(Timestamp inicioFase) {
+        long agora = System.currentTimeMillis();
+        long inicioFaseMillis = inicioFase.toDate().getTime();
+        return inicioFaseMillis - agora;
+    }
+
+    private void agendarNotificacao(Context context, long delay, String nomeFase) {
+        OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(FaseNotificacaoWorker.class)
+                .setInitialDelay(delay, TimeUnit.MILLISECONDS)
+                .addTag(nomeFase) // Identifica a notificação
+                .build();
+
+        WorkManager.getInstance(context).enqueue(workRequest);
     }
 
     public boolean isInterrupted() {

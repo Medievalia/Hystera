@@ -42,6 +42,20 @@
             </intent-filter>
         </activity>
 
+        <!-- Configuração do BroadcastReceiver para mudanças de horário -->
+        <receiver
+            android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.TimeChangeReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_CHANGED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Outros receivers e atividades -->
         <receiver
             android:name=".navegabilidade.NotificationReceiver"
             android:enabled="true"
@@ -77,4 +91,5 @@
         <activity android:name="br.edu.fatecsaocaetano.hystera.navegabilidade.Notes" android:exported="true"
             tools:ignore="Instantiatable" />
     </application>
+
 </manifest>
