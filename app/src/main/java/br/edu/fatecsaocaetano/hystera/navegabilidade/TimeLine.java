@@ -49,8 +49,6 @@ public class TimeLine extends AppCompatActivity {
         }
 
         NotificationHelper notificationHelper = new NotificationHelper(this);
-        notificationHelper.sendImmediateNotification("View Aberta", "Você abriu a tela de Example.");
-        notificationHelper.scheduleCyclePhaseNotifications(this, userID);
         notificationHelper.scheduleMedicationNotifications(userID);
 
         //navegação e menu
